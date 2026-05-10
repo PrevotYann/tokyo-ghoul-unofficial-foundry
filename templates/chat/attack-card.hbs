@@ -1,3 +1,22 @@
 <section class="tg-system tg-chat-card">
   <h3>{{localize 'TG.chat.attack'}}</h3>
+  <dl class="tg-chat-grid">
+    <dt>{{localize 'TG.chat.attackRoll'}}</dt>
+    <dd>{{roll.formula}} = <strong>{{roll.total}}</strong></dd>
+    <dt>{{localize 'TG.chat.source'}}</dt>
+    <dd>{{#if attack.itemName}}{{attack.itemName}}{{else}}{{localize 'TG.chat.basicAttack'}}{{/if}}</dd>
+    <dt>{{localize 'TG.chat.damage'}}</dt>
+    <dd>{{attack.damageFormula}} = <strong>{{attack.damage}}</strong></dd>
+    <dt>{{localize 'TG.chat.staminaCost'}}</dt>
+    <dd>{{attack.costFormula}} = <strong>{{attack.staminaCost}}</strong></dd>
+    {{#if resourceSpend.vitalityCost}}
+      <dt>{{localize 'TG.chat.vitalityOverflow'}}</dt>
+      <dd>{{resourceSpend.vitalityCost}}</dd>
+    {{/if}}
+  </dl>
+  <div class="tg-action-row">
+    <button type="button" data-tg-chat-action="dodge">{{localize 'TG.actions.dodge'}}</button>
+    <button type="button" data-tg-chat-action="block">{{localize 'TG.actions.block'}}</button>
+    <button type="button" data-tg-chat-action="takeHit">{{localize 'TG.actions.takeHit'}}</button>
+  </div>
 </section>

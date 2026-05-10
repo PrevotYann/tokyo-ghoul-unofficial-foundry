@@ -243,6 +243,21 @@
   background: rgba(246, 196, 83, 0.11);
 }
 
+.tg-chat-grid {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.35rem 0.65rem;
+  margin: 0 0 0.75rem;
+}
+
+.tg-chat-grid dt {
+  color: var(--tg-muted);
+}
+
+.tg-chat-grid dd {
+  margin: 0;
+}
+
 @media (max-width: 780px) {
   .tg-sheet-header,
   .tg-grid-2,

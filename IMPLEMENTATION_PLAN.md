@@ -1,55 +1,55 @@
 # Implementation Plan
 
 ## Phase 0 - Repository setup
-- [ ] Create package skeleton.
-- [ ] Add `system.json`.
-- [ ] Add ESM entrypoint.
-- [ ] Add CSS and localization.
-- [ ] Add README install instructions.
-- [ ] Verify the system appears in Foundry v14 and a world loads without errors.
+- [x] Create package skeleton.
+- [x] Add `system.json`.
+- [x] Add ESM entrypoint.
+- [x] Add CSS and localization.
+- [x] Add README install instructions.
+- [x] Verify the system appears in Foundry v14 and a world loads without errors.
 
 ## Phase 1 - Data models and document classes
-- [ ] Define Actor DataModels for character and npc.
-- [ ] Define Item DataModels for all item types.
-- [ ] Register Actor/Item document classes.
+- [x] Define Actor DataModels for character and npc.
+- [x] Define Item DataModels for all item types.
+- [x] Register Actor/Item document classes.
 - [ ] Implement `prepareBaseData` and `prepareDerivedData`.
-- [ ] Implement derived stats and validation pure functions.
-- [ ] Unit test formulas.
+- [x] Implement derived stats and validation pure functions.
+- [x] Unit test formulas.
 
 ## Phase 2 - Basic sheets
-- [ ] ActorSheetV2 with header, overview, stats, resources.
-- [ ] ItemSheetV2 for Kagune, Quinque, Edge, Maneuver, Consumable.
-- [ ] Drag/drop owned items.
-- [ ] Validation panel.
-- [ ] Modern responsive CSS.
+- [x] ActorSheetV2 with header, overview, stats, resources.
+- [x] ItemSheetV2 for Kagune, Quinque, Edge, Maneuver, Consumable.
+- [x] Drag/drop owned items.
+- [x] Validation panel.
+- [x] Modern responsive CSS.
 
 ## Phase 3 - Compendiums and source data
-- [ ] Create compendium source JSON.
-- [ ] Add all Edges.
-- [ ] Add all Maneuvers.
-- [ ] Add all Conditions.
-- [ ] Add consumables and templates.
+- [x] Create compendium source JSON.
+- [x] Add all Edges.
+- [x] Add all Maneuvers.
+- [x] Add all Conditions.
+- [x] Add consumables and templates.
 - [ ] Build/import packs.
 - [ ] Verify pack entries can be dragged to sheets.
 
 ## Phase 4 - Roll engine
-- [ ] Implement d20 crit/fumble rules.
-- [ ] Implement stat checks.
-- [ ] Implement contested checks.
-- [ ] Implement chat cards.
-- [ ] Add roll buttons to sheets.
-- [ ] Unit test natural 1/20 and contests.
+- [x] Implement d20 crit/fumble rules.
+- [x] Implement stat checks.
+- [x] Implement contested checks.
+- [x] Implement chat cards.
+- [x] Add roll buttons to sheets.
+- [x] Unit test natural 1/20 and contests.
 
 ## Phase 5 - Combat workflow
 - [ ] Implement Strike workflow.
 - [ ] Implement target/range validation.
-- [ ] Implement stamina costs and damage formulas.
-- [ ] Implement Dodge, Block, Take Hit.
-- [ ] Implement failed defense consequences.
-- [ ] Implement counterattack tiers.
-- [ ] Implement maneuver budget and reaction reservation.
-- [ ] Implement Squad initiative helper.
-- [ ] Implement Raid mode.
+- [x] Implement stamina costs and damage formulas.
+- [x] Implement Dodge, Block, Take Hit.
+- [x] Implement failed defense consequences.
+- [x] Implement counterattack tiers.
+- [x] Implement maneuver budget and reaction reservation.
+- [x] Implement Squad initiative helper.
+- [x] Implement Raid mode.
 - [ ] Add manual GM controls.
 
 ## Phase 6 - Hunger, Rage, and conditions

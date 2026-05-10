@@ -42,6 +42,9 @@ export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApp
     this.element.querySelectorAll("[data-roll-stat]").forEach((button) => {
       button.addEventListener("click", (event) => this.#onRollStat(event));
     });
+    this.element.querySelectorAll("[data-actor-action]").forEach((button) => {
+      button.addEventListener("click", (event) => this.#onActorAction(event));
+    });
     this.element.querySelectorAll("[data-item-id]").forEach((row) => {
       row.setAttribute("draggable", "true");
       row.addEventListener("dragstart", (event) => this.#onDragItem(event));
@@ -82,6 +85,17 @@ export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApp
     event.preventDefault();
     const actor = this.actor ?? this.document;
     await actor.rollCheck(event.currentTarget.dataset.rollStat);
+  }
+
+  async #onActorAction(event) {
+    event.preventDefault();
+    const actor = this.actor ?? this.document;
+    const action = event.currentTarget.dataset.actorAction;
+
+    if (action === "strike") return actor.rollAttack();
+    if (action === "dodge") return actor.rollCheck("spd");
+    if (action === "block") return actor.rollCheck("end");
+    if (action === "breather") return actor.takeBreather();
   }
 
   #groupItems(items) {

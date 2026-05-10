@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Added the Phase 4 d20 roll engine with natural 1 and natural 20 handling.
 - Added basic stat roll buttons and roll chat cards.
 - Added Phase 5 combat math helpers for attack damage/cost, defense outcomes, and counter tiers.
+- Added basic actor combat helpers for attack cards, stamina spending, damage application, Take a Breather, reaction reservation, Squad initiative sorting, and Raid mode modifiers.
 
 ## [0.1.0] - 2026-05-10
 
