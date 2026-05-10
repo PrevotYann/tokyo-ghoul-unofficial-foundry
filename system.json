@@ -1,0 +1,102 @@
+{
+  "id": "tokyo-ghoul-unofficial",
+  "title": "Tokyo Ghoul: Unofficial TTRPG",
+  "description": "A free, unofficial Tokyo Ghoul tabletop RPG system for Foundry VTT v14. This package contains original implementation code and no official Tokyo Ghoul artwork, panels, music, or logos.",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "Tokyo Ghoul: Unofficial TTRPG community"
+    }
+  ],
+  "esmodules": [
+    "src/tokyo-ghoul.mjs"
+  ],
+  "styles": [
+    "styles/tokyo-ghoul.css",
+    "styles/sheets.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Francais",
+      "path": "lang/fr.json"
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "character": {
+        "htmlFields": [
+          "biography.appearance",
+          "biography.personality",
+          "biography.backstory",
+          "biography.likes",
+          "biography.dislikes",
+          "biography.goals",
+          "automation.ruleNotes"
+        ]
+      },
+      "npc": {
+        "htmlFields": [
+          "biography.appearance",
+          "biography.personality",
+          "biography.backstory",
+          "automation.ruleNotes"
+        ]
+      }
+    },
+    "Item": {
+      "kagune": {
+        "htmlFields": [
+          "description",
+          "dynamicNotes"
+        ]
+      },
+      "quinque": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "edge": {
+        "htmlFields": [
+          "notes"
+        ]
+      },
+      "gimmick": {
+        "htmlFields": [
+          "dynamicEffect"
+        ]
+      },
+      "maneuver": {},
+      "consumable": {},
+      "kakuhou": {},
+      "kakuja-armor": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "condition": {},
+      "loot": {
+        "htmlFields": [
+          "description"
+        ]
+      }
+    }
+  },
+  "packs": [],
+  "initiative": "@stats.spd.total",
+  "grid": {
+    "distance": 5,
+    "units": "ft"
+  },
+  "primaryTokenAttribute": "resources.vitality",
+  "secondaryTokenAttribute": "resources.stamina"
+}

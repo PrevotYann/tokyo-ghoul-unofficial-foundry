@@ -1,0 +1,52 @@
+.tg-system {
+  --tg-bg: #111217;
+  --tg-panel: #1a1d25;
+  --tg-panel-strong: #232734;
+  --tg-text: #f3f4f6;
+  --tg-muted: #a9afbd;
+  --tg-line: #343949;
+  --tg-accent: #c91f37;
+  --tg-accent-strong: #f04457;
+  --tg-focus: #f6c453;
+  color: var(--tg-text);
+  font-family: var(--font-primary, "Signika", sans-serif);
+}
+
+.tg-system * {
+  box-sizing: border-box;
+}
+
+.tg-system button,
+.tg-system input,
+.tg-system select,
+.tg-system textarea {
+  font: inherit;
+}
+
+.tg-system input,
+.tg-system select,
+.tg-system textarea {
+  width: 100%;
+  border: 1px solid var(--tg-line);
+  border-radius: 6px;
+  background: #0d0f14;
+  color: var(--tg-text);
+  padding: 0.45rem 0.55rem;
+}
+
+.tg-system input:focus,
+.tg-system select:focus,
+.tg-system textarea:focus,
+.tg-system button:focus {
+  outline: 2px solid var(--tg-focus);
+  outline-offset: 2px;
+}
+
+.tg-system textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.tg-muted {
+  color: var(--tg-muted);
+}

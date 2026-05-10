@@ -1,0 +1,83 @@
+<form class="tg-form tg-character" autocomplete="off">
+  <header class="tg-sheet-header">
+    <img class="tg-portrait" src="{{actor.img}}" alt="{{actor.name}}" data-edit="img">
+    <div class="tg-header-main">
+      <input class="tg-name" name="name" type="text" value="{{actor.name}}" aria-label="{{localize 'TG.sheet.name'}}">
+      <div class="tg-chip-row">
+        <span class="tg-chip">{{localize (concat "TG.classes." system.identity.class)}}</span>
+        <span class="tg-chip">{{localize 'TG.resources.vitality.label'}} {{system.resources.vitality.value}} / {{system.resources.vitality.max}}</span>
+        <span class="tg-chip">{{localize 'TG.resources.stamina.label'}} {{system.resources.stamina.value}} / {{system.resources.stamina.max}}</span>
+        <span class="tg-chip">{{localize 'TG.resources.mealScore.label'}} {{system.resources.mealScore.value}} / {{system.resources.mealScore.max}}</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="tg-panel">
+    <h2>{{localize 'TG.sheet.identity'}}</h2>
+    <div class="tg-grid tg-grid-3">
+      <label>
+        <span>{{localize 'TG.sheet.class'}}</span>
+        <select name="system.identity.class">
+          <option value="ghoul" {{#if (eq system.identity.class "ghoul")}}selected{{/if}}>{{localize 'TG.classes.ghoul'}}</option>
+          <option value="investigator" {{#if (eq system.identity.class "investigator")}}selected{{/if}}>{{localize 'TG.classes.investigator'}}</option>
+          <option value="quinx" {{#if (eq system.identity.class "quinx")}}selected{{/if}}>{{localize 'TG.classes.quinx'}}</option>
+        </select>
+      </label>
+      <label>
+        <span>{{localize 'TG.sheet.alias'}}</span>
+        <input name="system.identity.alias" type="text" value="{{system.identity.alias}}">
+      </label>
+      <label>
+        <span>{{localize 'TG.sheet.pronouns'}}</span>
+        <input name="system.identity.pronouns" type="text" value="{{system.identity.pronouns}}">
+      </label>
+    </div>
+  </section>
+
+  <section class="tg-panel">
+    <h2>{{localize 'TG.sheet.stats'}}</h2>
+    <div class="tg-stat-grid">
+      {{#each stats as |entry|}}
+        <article class="tg-stat-card">
+          <label>
+            <span>{{localize (concat "TG.stats." entry.key ".label")}}</span>
+            <input name="system.stats.{{entry.key}}.base" type="number" value="{{entry.data.base}}" min="0" step="1">
+          </label>
+          <strong>{{entry.data.total}}</strong>
+        </article>
+      {{/each}}
+    </div>
+  </section>
+
+  <section class="tg-panel">
+    <h2>{{localize 'TG.sheet.resources'}}</h2>
+    <div class="tg-grid tg-grid-3">
+      <label>
+        <span>{{localize 'TG.resources.vitality.label'}}</span>
+        <input name="system.resources.vitality.value" type="number" value="{{system.resources.vitality.value}}" min="0" step="1">
+      </label>
+      <label>
+        <span>{{localize 'TG.resources.stamina.label'}}</span>
+        <input name="system.resources.stamina.value" type="number" value="{{system.resources.stamina.value}}" min="0" step="1">
+      </label>
+      <label>
+        <span>{{localize 'TG.resources.mealScore.label'}}</span>
+        <input name="system.resources.mealScore.value" type="number" value="{{system.resources.mealScore.value}}" min="0" step="1">
+      </label>
+    </div>
+  </section>
+
+  <section class="tg-panel">
+    <h2>{{localize 'TG.sheet.items'}}</h2>
+    <ol class="tg-item-list">
+      {{#each items as |item|}}
+        <li>
+          <span>{{item.name}}</span>
+          <span class="tg-chip">{{item.type}}</span>
+        </li>
+      {{else}}
+        <li class="tg-muted">{{localize 'TG.sheet.noItems'}}</li>
+      {{/each}}
+    </ol>
+  </section>
+</form>
