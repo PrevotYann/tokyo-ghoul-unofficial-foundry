@@ -1,0 +1,13 @@
+<div class="tg-panel tg-drop-zone">
+  <h2>{{localize group.label}}</h2>
+  <ol class="tg-item-list">
+    {{#each group.items as |item|}}
+      <li data-item-id="{{item.id}}">
+        <span>{{item.name}}</span>
+        <span class="tg-chip">{{localize (concat "TG.itemTypes." item.type)}}</span>
+      </li>
+    {{else}}
+      <li class="tg-muted">{{localize 'TG.sheet.noItems'}}</li>
+    {{/each}}
+  </ol>
+</div>

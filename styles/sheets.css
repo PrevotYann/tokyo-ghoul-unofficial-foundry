@@ -12,6 +12,10 @@
   background: radial-gradient(circle at top left, rgba(201, 31, 55, 0.14), transparent 32rem), var(--tg-bg);
 }
 
+.tg-form [hidden] {
+  display: none !important;
+}
+
 .tg-sheet-header {
   display: grid;
   grid-template-columns: 96px minmax(0, 1fr);
@@ -64,6 +68,35 @@
   line-height: 1;
 }
 
+.tg-action-row,
+.tg-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.tg-action-row button,
+.tg-tabs button {
+  min-height: 2rem;
+  border: 1px solid var(--tg-line);
+  border-radius: 6px;
+  padding: 0.35rem 0.65rem;
+  background: rgba(13, 15, 20, 0.78);
+  color: var(--tg-text);
+}
+
+.tg-action-row button:hover,
+.tg-tabs button:hover,
+.tg-tabs button.active {
+  border-color: rgba(240, 68, 87, 0.72);
+  background: rgba(201, 31, 55, 0.18);
+}
+
+.tg-tabs {
+  border-bottom: 1px solid var(--tg-line);
+  padding-bottom: 0.55rem;
+}
+
 .tg-panel {
   border: 1px solid var(--tg-line);
   border-radius: 8px;
@@ -91,14 +124,28 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.tg-grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .tg-grid label,
-.tg-stat-card label {
+.tg-stat-card label,
+.tg-resource-grid label,
+.tg-panel > label {
   display: flex;
   min-width: 0;
   flex-direction: column;
   gap: 0.25rem;
   color: var(--tg-muted);
   font-size: 0.86rem;
+}
+
+.tg-inline-check {
+  justify-content: center;
+}
+
+.tg-inline-check input[type="checkbox"] {
+  width: auto;
 }
 
 .tg-stat-grid {
@@ -125,6 +172,18 @@
   font-size: 1.35rem;
 }
 
+.tg-resource-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.tg-resource-grid meter {
+  width: 100%;
+  height: 0.7rem;
+  accent-color: var(--tg-accent);
+}
+
 .tg-item-list {
   display: flex;
   flex-direction: column;
@@ -145,10 +204,36 @@
   background: rgba(13, 15, 20, 0.74);
 }
 
+.tg-item-list li[data-item-id] {
+  cursor: grab;
+}
+
+.tg-drop-zone {
+  min-height: 7rem;
+}
+
+.tg-warning-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tg-warning-list li {
+  border: 1px solid rgba(246, 196, 83, 0.45);
+  border-radius: 6px;
+  padding: 0.45rem 0.55rem;
+  background: rgba(246, 196, 83, 0.11);
+}
+
 @media (max-width: 780px) {
   .tg-sheet-header,
   .tg-grid-2,
-  .tg-grid-3 {
+  .tg-grid-3,
+  .tg-grid-4,
+  .tg-resource-grid {
     grid-template-columns: 1fr;
   }
 

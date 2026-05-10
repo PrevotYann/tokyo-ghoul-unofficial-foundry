@@ -4,7 +4,7 @@ import { validateCharacterSystemData } from "../rules/validation.mjs";
 export class TokyoGhoulActor extends Actor {
   prepareDerivedData() {
     super.prepareDerivedData();
-    this.system.validation = validateCharacterSystemData(this.system);
+    this.system.validation = validateCharacterSystemData(this.system, Array.from(this.items ?? []));
   }
 
   getStat(key) {

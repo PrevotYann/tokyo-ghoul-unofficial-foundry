@@ -9,75 +9,191 @@
         <span class="tg-chip">{{localize 'TG.resources.stamina.label'}} {{system.resources.stamina.value}} / {{system.resources.stamina.max}}</span>
         <span class="tg-chip">{{localize 'TG.resources.mealScore.label'}} {{system.resources.mealScore.value}} / {{system.resources.mealScore.max}}</span>
       </div>
+      <div class="tg-action-row">
+        <button type="button" data-tg-chat-action="strike">{{localize 'TG.actions.strike'}}</button>
+        <button type="button" data-tg-chat-action="dodge">{{localize 'TG.actions.dodge'}}</button>
+        <button type="button" data-tg-chat-action="block">{{localize 'TG.actions.block'}}</button>
+        <button type="button" data-tg-chat-action="breather">{{localize 'TG.actions.breather'}}</button>
+      </div>
     </div>
   </header>
 
-  <section class="tg-panel">
-    <h2>{{localize 'TG.sheet.identity'}}</h2>
-    <div class="tg-grid tg-grid-3">
-      <label>
-        <span>{{localize 'TG.sheet.class'}}</span>
-        <select name="system.identity.class">
-          <option value="ghoul" {{#if (eq system.identity.class "ghoul")}}selected{{/if}}>{{localize 'TG.classes.ghoul'}}</option>
-          <option value="investigator" {{#if (eq system.identity.class "investigator")}}selected{{/if}}>{{localize 'TG.classes.investigator'}}</option>
-          <option value="quinx" {{#if (eq system.identity.class "quinx")}}selected{{/if}}>{{localize 'TG.classes.quinx'}}</option>
-        </select>
-      </label>
-      <label>
-        <span>{{localize 'TG.sheet.alias'}}</span>
-        <input name="system.identity.alias" type="text" value="{{system.identity.alias}}">
-      </label>
-      <label>
-        <span>{{localize 'TG.sheet.pronouns'}}</span>
-        <input name="system.identity.pronouns" type="text" value="{{system.identity.pronouns}}">
-      </label>
-    </div>
-  </section>
+  <nav class="tg-tabs" aria-label="{{localize 'TG.sheet.tabs'}}">
+    <button type="button" class="active" data-tg-tab="overview">{{localize 'TG.tabs.overview'}}</button>
+    <button type="button" data-tg-tab="combat">{{localize 'TG.tabs.combat'}}</button>
+    <button type="button" data-tg-tab="weapons">{{localize 'TG.tabs.weapons'}}</button>
+    <button type="button" data-tg-tab="edges">{{localize 'TG.tabs.edges'}}</button>
+    <button type="button" data-tg-tab="progression">{{localize 'TG.tabs.progression'}}</button>
+    <button type="button" data-tg-tab="inventory">{{localize 'TG.tabs.inventory'}}</button>
+    <button type="button" data-tg-tab="biography">{{localize 'TG.tabs.biography'}}</button>
+    <button type="button" data-tg-tab="settings">{{localize 'TG.tabs.settings'}}</button>
+  </nav>
 
-  <section class="tg-panel">
-    <h2>{{localize 'TG.sheet.stats'}}</h2>
-    <div class="tg-stat-grid">
-      {{#each stats as |entry|}}
-        <article class="tg-stat-card">
-          <label>
-            <span>{{localize (concat "TG.stats." entry.key ".label")}}</span>
-            <input name="system.stats.{{entry.key}}.base" type="number" value="{{entry.data.base}}" min="0" step="1">
-          </label>
-          <strong>{{entry.data.total}}</strong>
-        </article>
-      {{/each}}
+  <section data-tg-panel="overview">
+    <div class="tg-panel">
+      <h2>{{localize 'TG.sheet.identity'}}</h2>
+      <div class="tg-grid tg-grid-4">
+        <label>
+          <span>{{localize 'TG.sheet.class'}}</span>
+          <select name="system.identity.class">
+            <option value="ghoul" {{#if (eq system.identity.class "ghoul")}}selected{{/if}}>{{localize 'TG.classes.ghoul'}}</option>
+            <option value="investigator" {{#if (eq system.identity.class "investigator")}}selected{{/if}}>{{localize 'TG.classes.investigator'}}</option>
+            <option value="quinx" {{#if (eq system.identity.class "quinx")}}selected{{/if}}>{{localize 'TG.classes.quinx'}}</option>
+          </select>
+        </label>
+        <label>
+          <span>{{localize 'TG.sheet.faction'}}</span>
+          <input name="system.identity.faction" type="text" value="{{system.identity.faction}}">
+        </label>
+        <label>
+          <span>{{localize 'TG.sheet.alias'}}</span>
+          <input name="system.identity.alias" type="text" value="{{system.identity.alias}}">
+        </label>
+        <label>
+          <span>{{localize 'TG.sheet.pronouns'}}</span>
+          <input name="system.identity.pronouns" type="text" value="{{system.identity.pronouns}}">
+        </label>
+      </div>
     </div>
-  </section>
 
-  <section class="tg-panel">
-    <h2>{{localize 'TG.sheet.resources'}}</h2>
-    <div class="tg-grid tg-grid-3">
-      <label>
-        <span>{{localize 'TG.resources.vitality.label'}}</span>
-        <input name="system.resources.vitality.value" type="number" value="{{system.resources.vitality.value}}" min="0" step="1">
-      </label>
-      <label>
-        <span>{{localize 'TG.resources.stamina.label'}}</span>
-        <input name="system.resources.stamina.value" type="number" value="{{system.resources.stamina.value}}" min="0" step="1">
-      </label>
-      <label>
-        <span>{{localize 'TG.resources.mealScore.label'}}</span>
-        <input name="system.resources.mealScore.value" type="number" value="{{system.resources.mealScore.value}}" min="0" step="1">
-      </label>
+    <div class="tg-panel">
+      <h2>{{localize 'TG.sheet.stats'}}</h2>
+      <div class="tg-stat-grid">
+        {{#each stats as |entry|}}
+          <article class="tg-stat-card">
+            <label>
+              <span>{{localize (concat "TG.stats." entry.key ".label")}}</span>
+              <input name="system.stats.{{entry.key}}.base" type="number" value="{{entry.data.base}}" min="0" step="1">
+            </label>
+            <strong>{{entry.data.total}}</strong>
+          </article>
+        {{/each}}
+      </div>
     </div>
-  </section>
 
-  <section class="tg-panel">
-    <h2>{{localize 'TG.sheet.items'}}</h2>
-    <ol class="tg-item-list">
-      {{#each items as |item|}}
-        <li>
-          <span>{{item.name}}</span>
-          <span class="tg-chip">{{item.type}}</span>
-        </li>
+    <div class="tg-panel">
+      <h2>{{localize 'TG.sheet.resources'}}</h2>
+      <div class="tg-resource-grid">
+        <label>
+          <span>{{localize 'TG.resources.vitality.label'}}</span>
+          <input name="system.resources.vitality.value" type="number" value="{{system.resources.vitality.value}}" min="0" step="1">
+          <meter min="0" max="{{system.resources.vitality.max}}" value="{{system.resources.vitality.value}}"></meter>
+        </label>
+        <label>
+          <span>{{localize 'TG.resources.stamina.label'}}</span>
+          <input name="system.resources.stamina.value" type="number" value="{{system.resources.stamina.value}}" min="0" step="1">
+          <meter min="0" max="{{system.resources.stamina.max}}" value="{{system.resources.stamina.value}}"></meter>
+        </label>
+        <label>
+          <span>{{localize 'TG.resources.mealScore.label'}}</span>
+          <input name="system.resources.mealScore.value" type="number" value="{{system.resources.mealScore.value}}" min="0" step="1">
+          <meter min="0" max="{{system.resources.mealScore.max}}" value="{{system.resources.mealScore.value}}"></meter>
+        </label>
+      </div>
+    </div>
+
+    <div class="tg-panel">
+      <h2>{{localize 'TG.sheet.validation'}}</h2>
+      {{#if validation.warnings.length}}
+        <ul class="tg-warning-list">
+          {{#each validation.warnings as |warning|}}
+            <li>{{localize warning.message}}</li>
+          {{/each}}
+        </ul>
       {{else}}
-        <li class="tg-muted">{{localize 'TG.sheet.noItems'}}</li>
-      {{/each}}
-    </ol>
+        <p class="tg-muted">{{localize 'TG.validation.noWarnings'}}</p>
+      {{/if}}
+    </div>
+  </section>
+
+  <section data-tg-panel="combat" hidden>
+    <div class="tg-panel">
+      <h2>{{localize 'TG.tabs.combat'}}</h2>
+      <div class="tg-grid tg-grid-3">
+        <label>
+          <span>{{localize 'TG.sheet.combatMode'}}</span>
+          <select name="system.combat.mode">
+            <option value="squad" {{#if (eq system.combat.mode "squad")}}selected{{/if}}>{{localize 'TG.combat.squad'}}</option>
+            <option value="raid" {{#if (eq system.combat.mode "raid")}}selected{{/if}}>{{localize 'TG.combat.raid'}}</option>
+          </select>
+        </label>
+        <label>
+          <span>{{localize 'TG.sheet.rangeBand'}}</span>
+          <input name="system.combat.rangeBand" type="text" value="{{system.combat.rangeBand}}">
+        </label>
+        <label>
+          <span>{{localize 'TG.sheet.reactionsReserved'}}</span>
+          <input name="system.resources.maneuverBudget.reactionsReserved" type="number" value="{{system.resources.maneuverBudget.reactionsReserved}}" min="0" step="1">
+        </label>
+      </div>
+    </div>
+    {{> "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs" group=(lookup itemGroups 2)}}
+  </section>
+
+  <section data-tg-panel="weapons" hidden>
+    {{> "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs" group=(lookup itemGroups 0)}}
+  </section>
+
+  <section data-tg-panel="edges" hidden>
+    {{> "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs" group=(lookup itemGroups 1)}}
+  </section>
+
+  <section data-tg-panel="progression" hidden>
+    <div class="tg-panel">
+      <h2>{{localize 'TG.tabs.progression'}}</h2>
+      <div class="tg-grid tg-grid-2">
+        <label>
+          <span>{{localize 'TG.sheet.statPoints'}}</span>
+          <input name="system.progression.statPoints" type="number" value="{{system.progression.statPoints}}" min="0" step="1">
+        </label>
+        <label>
+          <span>{{localize 'TG.sheet.kakujaStage'}}</span>
+          <input name="system.kakuja.stage" type="text" value="{{system.kakuja.stage}}">
+        </label>
+      </div>
+      <label>
+        <span>{{localize 'TG.sheet.notes'}}</span>
+        <textarea name="system.progression.notes">{{system.progression.notes}}</textarea>
+      </label>
+    </div>
+  </section>
+
+  <section data-tg-panel="inventory" hidden>
+    {{> "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs" group=(lookup itemGroups 3)}}
+    {{> "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs" group=(lookup itemGroups 4)}}
+  </section>
+
+  <section data-tg-panel="biography" hidden>
+    <div class="tg-panel">
+      <h2>{{localize 'TG.tabs.biography'}}</h2>
+      <div class="tg-grid tg-grid-2">
+        <label>
+          <span>{{localize 'TG.biography.appearance'}}</span>
+          <textarea name="system.biography.appearance">{{system.biography.appearance}}</textarea>
+        </label>
+        <label>
+          <span>{{localize 'TG.biography.personality'}}</span>
+          <textarea name="system.biography.personality">{{system.biography.personality}}</textarea>
+        </label>
+        <label>
+          <span>{{localize 'TG.biography.backstory'}}</span>
+          <textarea name="system.biography.backstory">{{system.biography.backstory}}</textarea>
+        </label>
+        <label>
+          <span>{{localize 'TG.biography.goals'}}</span>
+          <textarea name="system.biography.goals">{{system.biography.goals}}</textarea>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <section data-tg-panel="settings" hidden>
+    <div class="tg-panel">
+      <h2>{{localize 'TG.tabs.settings'}}</h2>
+      <label>
+        <span>{{localize 'TG.sheet.ruleNotes'}}</span>
+        <textarea name="system.automation.ruleNotes">{{system.automation.ruleNotes}}</textarea>
+      </label>
+    </div>
   </section>
 </form>

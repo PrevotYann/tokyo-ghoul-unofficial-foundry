@@ -42,6 +42,7 @@ const ITEM_DATA_MODELS = {
 async function preloadTemplates() {
   const templates = [
     "systems/tokyo-ghoul-unofficial/templates/actor/character-sheet.hbs",
+    "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs",
     "systems/tokyo-ghoul-unofficial/templates/item/item-sheet.hbs",
     "systems/tokyo-ghoul-unofficial/templates/chat/roll-card.hbs",
     "systems/tokyo-ghoul-unofficial/templates/chat/attack-card.hbs",

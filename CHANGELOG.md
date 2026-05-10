@@ -1,0 +1,28 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [Unreleased]
+
+### Added
+
+- Expanded the Actor sheet into a tabbed layout with Overview, Combat, Kagune/Quinque, Edges, Progression, Inventory, Biography, and Settings sections.
+- Added categorized owned-item lists with basic drag data support and item drop handling.
+- Added validation warnings for starting stat totals and class-required Kagune/Quinque items.
+- Expanded the Item sheet with type-aware fields for Kagune, Quinque, Edges, Maneuvers, Consumables, and Gimmicks.
+
+## [0.1.0] - 2026-05-10
+
+### Added
+
+- Created the Foundry VTT v14 system manifest for `tokyo-ghoul-unofficial`.
+- Added the ESM entrypoint, config module, localization files, and dark `.tg-system` CSS namespace.
+- Registered Actor and Item document classes with Foundry v14 DataModel stubs for all planned system document types.
+- Added basic Actor and Item sheets using ApplicationV2-era sheet classes.
+- Implemented pure derived-stat functions for Vitality, Stamina, Meal Score maximum, RC Bonds, starting RCL, and unused edge-slot RCL bonuses.
+- Added Node unit tests for the Phase 1 derived-stat rules.
+- Added README install instructions, Foundry smoke-test notes, and initial rule clarification notes.
+
+### Notes
+
+- Full combat, rolls, compendiums, character builder, Hunger/Rage workflows, Kakuja, and progression are intentionally deferred to later phases.
