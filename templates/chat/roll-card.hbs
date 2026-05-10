@@ -1,4 +1,10 @@
 <section class="tg-system tg-chat-card">
   <h3>{{title}}</h3>
-  <p>{{formula}} = {{total}}</p>
+  <p>{{formula}} = <strong>{{total}}</strong></p>
+  {{#if extra}}
+    <p>{{localize 'TG.chat.criticalExtra'}} {{extra}}</p>
+  {{/if}}
+  {{#if success}}
+    <p>{{localize 'TG.chat.success'}}</p>
+  {{/if}}
 </section>

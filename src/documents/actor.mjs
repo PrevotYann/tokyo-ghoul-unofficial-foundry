@@ -1,4 +1,5 @@
 import { calculateDerivedResources } from "../rules/derived-stats.mjs";
+import { rollD20Check } from "../rules/rolls.mjs";
 import { validateCharacterSystemData } from "../rules/validation.mjs";
 
 export class TokyoGhoulActor extends Actor {
@@ -33,5 +34,29 @@ export class TokyoGhoulActor extends Actor {
       stats: this.system?.stats,
       kaguneType: kagune?.system?.primaryType ?? kagune?.system?.type ?? null
     });
+  }
+
+  async rollCheck(stat, options = {}) {
+    const result = await rollD20Check({ actor: this, stat, ...options });
+    const content = await renderTemplate("systems/tokyo-ghoul-unofficial/templates/chat/roll-card.hbs", {
+      title: game.i18n.format("TG.chat.statCheck", { stat: game.i18n.localize(`TG.stats.${stat}.label`) }),
+      formula: result.formula,
+      total: result.total,
+      natural: result.natural,
+      extra: result.extra,
+      success: result.success
+    });
+
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content,
+      flags: {
+        "tokyo-ghoul-unofficial": {
+          roll: result
+        }
+      }
+    });
+
+    return result;
   }
 }

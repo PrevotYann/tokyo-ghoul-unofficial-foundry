@@ -12,6 +12,8 @@ All notable changes to this project will be documented in this file.
 - Expanded the Item sheet with type-aware fields for Kagune, Quinque, Edges, Maneuvers, Consumables, and Gimmicks.
 - Added Phase 3 pack source JSON for Edges, Maneuvers, Conditions, generic Kagune/Quinque templates, Consumables, and Gimmicks.
 - Added a pack source validator script.
+- Added the Phase 4 d20 roll engine with natural 1 and natural 20 handling.
+- Added basic stat roll buttons and roll chat cards.
 
 ## [0.1.0] - 2026-05-10
 

@@ -65,7 +65,10 @@
               <span>{{localize (concat "TG.stats." entry.key ".label")}}</span>
               <input name="system.stats.{{entry.key}}.base" type="number" value="{{entry.data.base}}" min="0" step="1">
             </label>
-            <strong>{{entry.data.total}}</strong>
+            <div class="tg-stat-footer">
+              <strong>{{entry.data.total}}</strong>
+              <button type="button" data-roll-stat="{{entry.key}}">{{localize 'TG.actions.roll'}}</button>
+            </div>
           </article>
         {{/each}}
       </div>

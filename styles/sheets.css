@@ -167,9 +167,24 @@
 }
 
 .tg-stat-card strong {
-  align-self: flex-end;
   color: var(--tg-accent-strong);
   font-size: 1.35rem;
+}
+
+.tg-stat-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.tg-stat-footer button {
+  min-height: 1.8rem;
+  border: 1px solid var(--tg-line);
+  border-radius: 6px;
+  background: rgba(13, 15, 20, 0.78);
+  color: var(--tg-text);
+  padding: 0.25rem 0.45rem;
 }
 
 .tg-resource-grid {
