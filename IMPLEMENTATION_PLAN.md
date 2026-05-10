@@ -64,8 +64,8 @@
 - [ ] Implement all Edge effects.
 - [x] Implement type advantage.
 - [x] Implement RC Bonds and Quinque blocking.
-- [ ] Implement sidearms/Q bullets.
-- [ ] Implement grenades and medkits.
+- [x] Implement sidearms/Q bullets.
+- [x] Implement grenades and medkits.
 - [ ] Implement gimmick activation and effects.
 - [ ] Implement Dynamic Edge/Gimmick manual/custom workflow.
 
