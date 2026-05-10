@@ -70,11 +70,11 @@
 - [ ] Implement Dynamic Edge/Gimmick manual/custom workflow.
 
 ## Phase 8 - Character builder
-- [ ] Implement class selection.
-- [ ] Implement Kagune builder.
-- [ ] Implement Quinque builder.
-- [ ] Implement stats allocation.
-- [ ] Implement validation review.
+- [x] Implement class selection.
+- [x] Implement Kagune builder.
+- [x] Implement Quinque builder.
+- [x] Implement stats allocation.
+- [x] Implement validation review.
 - [ ] Create actor with owned items from selections.
 
 ## Phase 9 - Kakuja, Kakuja Quinque, progression

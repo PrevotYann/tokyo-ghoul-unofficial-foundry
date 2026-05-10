@@ -21,6 +21,7 @@ All notable changes to this project will be documented in this file.
 - Added Phase 6 condition helpers for Bleeding, Burning, Grappled, and regeneration/suppression rules.
 - Added Phase 7 type advantage, anti-Ghoul Quinque bonus, RC Bonds, and Quinque interpose block helpers.
 - Added Phase 7 medkit, grenade, and Q bullet helpers.
+- Added Phase 8 character-builder draft helpers for class profiles, stat presets, starting RCL, and starter Kagune/Quinque item data.
 
 ## [0.1.0] - 2026-05-10
 
