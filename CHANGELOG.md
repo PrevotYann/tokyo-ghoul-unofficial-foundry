@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 - Added basic actor combat helpers for attack cards, stamina spending, damage application, Take a Breather, reaction reservation, Squad initiative sorting, and Raid mode modifiers.
 - Added target range validation and selected-target display to attack declaration cards.
 - Added Phase 6 Hunger/Rage threshold, TN, restoration, and failure-resolution helpers with actor CRL control checks.
+- Added Phase 6 condition helpers for Bleeding, Burning, Grappled, and regeneration/suppression rules.
 
 ## [0.1.0] - 2026-05-10
 
