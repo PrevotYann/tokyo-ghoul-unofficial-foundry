@@ -10,6 +10,8 @@ All notable changes to this project will be documented in this file.
 - Added categorized owned-item lists with basic drag data support and item drop handling.
 - Added validation warnings for starting stat totals and class-required Kagune/Quinque items.
 - Expanded the Item sheet with type-aware fields for Kagune, Quinque, Edges, Maneuvers, Consumables, and Gimmicks.
+- Added Phase 3 pack source JSON for Edges, Maneuvers, Conditions, generic Kagune/Quinque templates, Consumables, and Gimmicks.
+- Added a pack source validator script.
 
 ## [0.1.0] - 2026-05-10
 

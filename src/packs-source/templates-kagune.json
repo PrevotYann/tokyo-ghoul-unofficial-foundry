@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Sample Ukaku Kagune",
+    "type": "kagune",
+    "system": {
+      "type": "ukaku",
+      "primaryType": "ukaku",
+      "secondaryType": null,
+      "rcl": 10,
+      "manifested": false,
+      "range": { "melee": "close", "projectile": "long" },
+      "edgeSlots": { "max": 3, "used": 0, "bonusFromType": 0 },
+      "edges": [],
+      "evolution": { "spentRcl": 0, "statPurchases": [], "swappedEdges": [] },
+      "automation": "manual",
+      "description": "Fast projectile-focused Kagune template.",
+      "dynamicNotes": ""
+    }
+  },
+  {
+    "name": "Sample Koukaku Kagune",
+    "type": "kagune",
+    "system": {
+      "type": "koukaku",
+      "primaryType": "koukaku",
+      "secondaryType": null,
+      "rcl": 10,
+      "manifested": false,
+      "range": { "melee": "close", "projectile": null },
+      "edgeSlots": { "max": 3, "used": 0, "bonusFromType": 0 },
+      "edges": [],
+      "evolution": { "spentRcl": 0, "statPurchases": [], "swappedEdges": [] },
+      "automation": "manual",
+      "description": "Heavy close-range Kagune template.",
+      "dynamicNotes": ""
+    }
+  },
+  {
+    "name": "Sample Rinkaku Tendril Kagune",
+    "type": "kagune",
+    "system": {
+      "type": "rinkaku",
+      "primaryType": "rinkaku",
+      "secondaryType": null,
+      "rcl": 10,
+      "manifested": false,
+      "range": { "melee": "mid", "projectile": null },
+      "edgeSlots": { "max": 3, "used": 0, "bonusFromType": 0 },
+      "edges": [],
+      "evolution": { "spentRcl": 0, "statPurchases": [], "swappedEdges": [] },
+      "automation": "manual",
+      "description": "Flexible mid-range Kagune template.",
+      "dynamicNotes": ""
+    }
+  },
+  {
+    "name": "Sample Bikaku Tail Kagune",
+    "type": "kagune",
+    "system": {
+      "type": "bikaku",
+      "primaryType": "bikaku",
+      "secondaryType": null,
+      "rcl": 10,
+      "manifested": false,
+      "range": { "melee": "mid", "projectile": null },
+      "edgeSlots": { "max": 4, "used": 0, "bonusFromType": 1 },
+      "edges": [],
+      "evolution": { "spentRcl": 0, "statPurchases": [], "swappedEdges": [] },
+      "automation": "manual",
+      "description": "Balanced mid-range Kagune template.",
+      "dynamicNotes": ""
+    }
+  }
+]

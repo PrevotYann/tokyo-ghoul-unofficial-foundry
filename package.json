@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test test/unit/**/*.test.mjs"
+    "test": "node --test test/unit/**/*.test.mjs",
+    "test:packs": "node scripts/validate-packs-source.mjs"
   }
 }

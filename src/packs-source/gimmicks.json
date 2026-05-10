@@ -1,0 +1,7 @@
+[
+  { "name": "Attack Gimmick", "type": "gimmick", "system": { "gimmickType": "attack", "active": false, "staminaCostMode": "maxEndSpd", "selectedStat": null, "selectedBenefit": null, "grantedEdges": [], "dynamicEffect": "", "automation": "manual", "description": "Signature attack using RCL and a selected stat." } },
+  { "name": "Defense Gimmick", "type": "gimmick", "system": { "gimmickType": "defense", "active": false, "staminaCostMode": "maxEndSpd", "selectedStat": null, "selectedBenefit": null, "grantedEdges": [], "dynamicEffect": "", "automation": "manual", "description": "Defensive form that can assist Dodge or Block timing." } },
+  { "name": "Form Gimmick", "type": "gimmick", "system": { "gimmickType": "form", "active": false, "staminaCostMode": "maxEndSpd", "selectedStat": null, "selectedBenefit": null, "grantedEdges": [], "dynamicEffect": "", "automation": "manual", "description": "Alternate form with attack or damage benefit." } },
+  { "name": "Utility Gimmick", "type": "gimmick", "system": { "gimmickType": "utility", "active": false, "staminaCostMode": "tripleMaxEndSpd", "selectedStat": null, "selectedBenefit": null, "grantedEdges": [], "dynamicEffect": "", "automation": "manual", "description": "Utility form that grants temporary edge support." } },
+  { "name": "Dynamic Gimmick", "type": "gimmick", "system": { "gimmickType": "dynamic", "active": false, "staminaCostMode": "custom", "selectedStat": null, "selectedBenefit": null, "grantedEdges": [], "dynamicEffect": "", "automation": "manual", "description": "GM-defined gimmick effect." } }
+]

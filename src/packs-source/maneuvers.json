@@ -1,0 +1,198 @@
+[
+  {
+    "name": "Strike",
+    "type": "maneuver",
+    "system": {
+      "maneuverType": "action",
+      "requiresEdge": null,
+      "staminaFormula": "",
+      "damageFormula": "by attack source",
+      "rangeModifier": "0",
+      "automation": "manual",
+      "chatAction": "strike",
+      "description": "Make a basic attack with an eligible source."
+    }
+  },
+  {
+    "name": "Move",
+    "type": "maneuver",
+    "system": {
+      "maneuverType": "action",
+      "requiresEdge": null,
+      "staminaFormula": "",
+      "damageFormula": "",
+      "rangeModifier": "1 band",
+      "automation": "manual",
+      "chatAction": "move",
+      "description": "Move one range band."
+    }
+  },
+  {
+    "name": "Ready",
+    "type": "maneuver",
+    "system": {
+      "maneuverType": "action",
+      "requiresEdge": null,
+      "staminaFormula": "",
+      "damageFormula": "",
+      "rangeModifier": "0",
+      "automation": "manual",
+      "chatAction": "ready",
+      "description": "Reserve one clear triggered action."
+    }
+  },
+  {
+    "name": "Take a Breather",
+    "type": "maneuver",
+    "system": {
+      "maneuverType": "action",
+      "requiresEdge": null,
+      "staminaFormula": "-END recovery",
+      "damageFormula": "",
+      "rangeModifier": "0",
+      "automation": "manual",
+      "chatAction": "breather",
+      "description": "Recover Stamina and limit the other maneuver this turn."
+    }
+  },
+  {
+    "name": "All-Out Offensive",
+    "type": "maneuver",
+    "system": {
+      "maneuverType": "action",
+      "requiresEdge": null,
+      "staminaFormula": "attacks * 5",
+      "damageFormula": "by attack source",
+      "rangeModifier": "0",
+      "automation": "manual",
+      "chatAction": "allOut",
+      "description": "Spend both maneuvers to make up to five attacks."
+    }
+  },
+  {
+    "name": "Counter",
+    "type": "maneuver",
+    "system": {
+      "maneuverType": "action",
+      "requiresEdge": null,
+      "staminaFormula": "max(SPD * 3 - PER, 0)",
+      "damageFormula": "by counter tier",
+      "rangeModifier": "0",
+      "automation": "manual",
+      "chatAction": "counter",
+      "description": "Declare a counter stance until next turn."
+    }
+  },
+  {
+    "name": "Enhance",
+    "type": "maneuver",
+    "system": {
+      "maneuverType": "action",
+      "requiresEdge": null,
+      "staminaFormula": "by feature",
+      "damageFormula": "",
+      "rangeModifier": "0",
+      "automation": "manual",
+      "chatAction": "enhance",
+      "description": "Activate or deactivate a feature such as a gimmick or Kakuja."
+    }
+  },
+  {
+    "name": "Overextend",
+    "type": "maneuver",
+    "system": {
+      "maneuverType": "action",
+      "requiresEdge": null,
+      "staminaFormula": "SPD",
+      "damageFormula": "by attack source",
+      "rangeModifier": "1 band",
+      "automation": "manual",
+      "chatAction": "overextend",
+      "description": "Push a melee attack one range band farther with a SPD penalty."
+    }
+  },
+  {
+    "name": "Grab",
+    "type": "maneuver",
+    "system": {
+      "maneuverType": "action",
+      "requiresEdge": "Grappler",
+      "staminaFormula": "",
+      "damageFormula": "",
+      "rangeModifier": "0",
+      "automation": "manual",
+      "chatAction": "grab",
+      "description": "Opposed STR action to grapple a target."
+    }
+  },
+  {
+    "name": "Throw",
+    "type": "maneuver",
+    "system": {
+      "maneuverType": "action",
+      "requiresEdge": "Grappler",
+      "staminaFormula": "STR * 2",
+      "damageFormula": "collision distance",
+      "rangeModifier": "floor(STR / 2)",
+      "automation": "manual",
+      "chatAction": "throw",
+      "description": "Throw a grappled target."
+    }
+  },
+  {
+    "name": "Heavy Strike",
+    "type": "maneuver",
+    "system": {
+      "maneuverType": "action",
+      "requiresEdge": "Heavy Strikes",
+      "staminaFormula": "STR * 2",
+      "damageFormula": "double STR portion",
+      "rangeModifier": "0",
+      "automation": "manual",
+      "chatAction": "heavyStrike",
+      "description": "A costly melee strike that doubles the STR damage portion."
+    }
+  },
+  {
+    "name": "Dodge",
+    "type": "maneuver",
+    "system": {
+      "maneuverType": "reaction",
+      "requiresEdge": null,
+      "staminaFormula": "",
+      "damageFormula": "",
+      "rangeModifier": "0",
+      "automation": "manual",
+      "chatAction": "dodge",
+      "description": "Reaction defense using SPD."
+    }
+  },
+  {
+    "name": "Block",
+    "type": "maneuver",
+    "system": {
+      "maneuverType": "reaction",
+      "requiresEdge": null,
+      "staminaFormula": "",
+      "damageFormula": "",
+      "rangeModifier": "0",
+      "automation": "manual",
+      "chatAction": "block",
+      "description": "Reaction defense using END."
+    }
+  },
+  {
+    "name": "Take Hit",
+    "type": "maneuver",
+    "system": {
+      "maneuverType": "reaction",
+      "requiresEdge": null,
+      "staminaFormula": "",
+      "damageFormula": "full incoming damage",
+      "rangeModifier": "0",
+      "automation": "manual",
+      "chatAction": "takeHit",
+      "description": "Accept the incoming hit without a defense roll."
+    }
+  }
+]
