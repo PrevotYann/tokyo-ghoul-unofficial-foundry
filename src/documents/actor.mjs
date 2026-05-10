@@ -1,6 +1,7 @@
 import { calculateDerivedResources } from "../rules/derived-stats.mjs";
 import { buildAttackSummary, consumeReaction, reserveReaction, validateAttackRange } from "../rules/combat-workflow.mjs";
 import { clampResource } from "../rules/damage.mjs";
+import { calculateHungerTargetNumber, calculateRageTargetNumber } from "../rules/hunger-rage.mjs";
 import { rollD20Check } from "../rules/rolls.mjs";
 import { validateCharacterSystemData } from "../rules/validation.mjs";
 
@@ -212,5 +213,46 @@ export class TokyoGhoulActor extends Actor {
       "system.resources.maneuverBudget.reactionsReserved": result.reactionsReserved
     });
     return result;
+  }
+
+  async checkHungerOrRage(trigger = "manual", options = {}) {
+    const actorClass = this.system?.identity?.class;
+    const checks = [];
+
+    if (actorClass === "ghoul" || actorClass === "quinx") {
+      checks.push({
+        kind: "hunger",
+        targetNumber: calculateHungerTargetNumber({
+          mealScore: this.system.resources.mealScore,
+          stamina: this.system.resources.stamina,
+          context: options.context ?? "outOfCombat"
+        })
+      });
+    }
+
+    if (actorClass === "investigator" || actorClass === "quinx") {
+      checks.push({
+        kind: "rage",
+        targetNumber: calculateRageTargetNumber(this.system.resources.vitality)
+      });
+    }
+
+    const results = [];
+    for (const check of checks) {
+      const roll = await rollD20Check({ actor: this, stat: "crl", targetNumber: check.targetNumber });
+      results.push({ ...check, roll });
+      await ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        content: game.i18n.format("TG.chat.controlCheck", {
+          actor: this.name,
+          kind: game.i18n.localize(`TG.control.${check.kind}`),
+          trigger,
+          total: roll.total,
+          target: check.targetNumber
+        })
+      });
+    }
+
+    return results;
   }
 }

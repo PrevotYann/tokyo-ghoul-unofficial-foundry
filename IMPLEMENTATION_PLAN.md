@@ -53,8 +53,8 @@
 - [ ] Add manual GM controls.
 
 ## Phase 6 - Hunger, Rage, and conditions
-- [ ] Implement Hunger thresholds and checks.
-- [ ] Implement Rage thresholds and temp stat assignment.
+- [x] Implement Hunger thresholds and checks.
+- [x] Implement Rage thresholds and temp stat assignment.
 - [ ] Implement Bleeding, Burning, Grappled.
 - [ ] Implement regeneration and suppression.
 - [ ] Implement Take a Breather interactions.
