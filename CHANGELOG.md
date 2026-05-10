@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 - Added target range validation and selected-target display to attack declaration cards.
 - Added Phase 6 Hunger/Rage threshold, TN, restoration, and failure-resolution helpers with actor CRL control checks.
 - Added Phase 6 condition helpers for Bleeding, Burning, Grappled, and regeneration/suppression rules.
+- Added Phase 7 type advantage, anti-Ghoul Quinque bonus, RC Bonds, and Quinque interpose block helpers.
 
 ## [0.1.0] - 2026-05-10
 

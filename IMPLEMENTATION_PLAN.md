@@ -62,8 +62,8 @@
 
 ## Phase 7 - Kagune, Quinque, Edges, Gimmicks
 - [ ] Implement all Edge effects.
-- [ ] Implement type advantage.
-- [ ] Implement RC Bonds and Quinque blocking.
+- [x] Implement type advantage.
+- [x] Implement RC Bonds and Quinque blocking.
 - [ ] Implement sidearms/Q bullets.
 - [ ] Implement grenades and medkits.
 - [ ] Implement gimmick activation and effects.
