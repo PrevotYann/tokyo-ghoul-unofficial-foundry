@@ -14,10 +14,13 @@
   "TG.chat.attackRoll": "Attack Roll",
   "TG.chat.basicAttack": "Basic Attack",
   "TG.chat.damage": "Damage",
+  "TG.chat.noTargets": "No targets selected",
+  "TG.chat.range": "Range",
   "TG.chat.source": "Source",
   "TG.chat.spendStamina": "{actor} spends {amount} Stamina. Vitality overflow: {vitality}.",
   "TG.chat.staminaCost": "Stamina Cost",
   "TG.chat.takeBreather": "{actor} recovers {amount} Stamina.",
+  "TG.chat.targets": "Targets",
   "TG.chat.vitalityOverflow": "Vitality Overflow",
   "TG.actions.block": "Block",
   "TG.actions.breather": "Take a Breather",
@@ -120,5 +123,6 @@
   "TG.validation.ghoulNeedsKagune": "Ghouls need a Kagune item.",
   "TG.validation.investigatorNeedsQuinque": "Investigators need an equipped Quinque item.",
   "TG.validation.quinxNeedsBoth": "Quinx need both a Kagune and a Quinque.",
-  "TG.validation.statsTotal": "Starting stats should total 60 points."
+  "TG.validation.statsTotal": "Starting stats should total 60 points.",
+  "TG.validation.targetOutOfRange": "Target range is beyond this attack source's reach."
 }

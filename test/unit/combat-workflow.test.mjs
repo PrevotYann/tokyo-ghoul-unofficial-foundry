@@ -7,9 +7,12 @@ import {
   compareSquadInitiative,
   consumeReaction,
   getAttackSourceFromItem,
+  getAttackRangeBand,
   getCombatModeRules,
   getManeuverBudgetForMode,
-  reserveReaction
+  isRangeBandInReach,
+  reserveReaction,
+  validateAttackRange
 } from "../../src/rules/combat-workflow.mjs";
 
 test("combat mode rules expose squad and raid maneuver budgets", () => {
@@ -52,6 +55,21 @@ test("attack summary uses actor stats, item RCL, and combat mode", () => {
   assert.equal(summary.itemName, "Test Kagune");
   assert.equal(summary.damage, 18);
   assert.equal(summary.staminaCost, 1);
+});
+
+test("attack range helpers validate target reach", () => {
+  const ukaku = { type: "kagune", system: { range: { melee: "close", projectile: "long" } } };
+
+  assert.equal(getAttackRangeBand(ukaku, "melee"), "close");
+  assert.equal(getAttackRangeBand(ukaku, "ranged"), "long");
+  assert.equal(isRangeBandInReach("mid", "long"), true);
+  assert.equal(isRangeBandInReach("far", "long"), false);
+  assert.deepEqual(validateAttackRange({ item: ukaku, attackMode: "melee", targetRangeBand: "mid" }), {
+    valid: false,
+    targetRangeBand: "mid",
+    maxRangeBand: "close",
+    message: "TG.validation.targetOutOfRange"
+  });
 });
 
 test("reaction reservation consumes a maneuver and can be spent", () => {

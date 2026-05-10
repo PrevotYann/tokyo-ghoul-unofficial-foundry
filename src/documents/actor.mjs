@@ -1,5 +1,5 @@
 import { calculateDerivedResources } from "../rules/derived-stats.mjs";
-import { buildAttackSummary, consumeReaction, reserveReaction } from "../rules/combat-workflow.mjs";
+import { buildAttackSummary, consumeReaction, reserveReaction, validateAttackRange } from "../rules/combat-workflow.mjs";
 import { clampResource } from "../rules/damage.mjs";
 import { rollD20Check } from "../rules/rolls.mjs";
 import { validateCharacterSystemData } from "../rules/validation.mjs";
@@ -92,7 +92,18 @@ export class TokyoGhoulActor extends Actor {
   }
 
   async rollAttack(item = null, options = {}) {
-    const attack = this.buildAttackSummary(item, options);
+    const sourceItem = item ?? this.getDefaultAttackItem();
+    const attack = this.buildAttackSummary(sourceItem, options);
+    const targets = Array.from(game.user?.targets ?? []).map((target) => ({
+      name: target.name,
+      uuid: target.document?.uuid ?? target.actor?.uuid ?? null
+    }));
+    const rangeValidation = validateAttackRange({
+      item: sourceItem,
+      attackMode: options.attackMode ?? "melee",
+      targetRangeBand: options.targetRangeBand ?? this.system?.combat?.rangeBand ?? "melee",
+      sidearm: options.sidearm ?? false
+    });
     const roll = await rollD20Check({ actor: this, stat: "per", bonus: options.bonus ?? 0, penalty: options.penalty ?? 0 });
     const resourceSpend = options.spendResources === false
       ? { staminaSpent: 0, vitalityCost: 0 }
@@ -100,6 +111,8 @@ export class TokyoGhoulActor extends Actor {
     const content = await renderTemplate("systems/tokyo-ghoul-unofficial/templates/chat/attack-card.hbs", {
       actor: this,
       attack,
+      targets,
+      rangeValidation,
       roll,
       resourceSpend
     });
@@ -110,6 +123,8 @@ export class TokyoGhoulActor extends Actor {
       flags: {
         "tokyo-ghoul-unofficial": {
           attack,
+          targets,
+          rangeValidation,
           roll,
           resourceSpend
         }

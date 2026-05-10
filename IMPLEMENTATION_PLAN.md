@@ -42,7 +42,7 @@
 
 ## Phase 5 - Combat workflow
 - [ ] Implement Strike workflow.
-- [ ] Implement target/range validation.
+- [x] Implement target/range validation.
 - [x] Implement stamina costs and damage formulas.
 - [x] Implement Dodge, Block, Take Hit.
 - [x] Implement failed defense consequences.

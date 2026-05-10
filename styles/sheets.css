@@ -243,6 +243,13 @@
   background: rgba(246, 196, 83, 0.11);
 }
 
+.tg-warning {
+  border: 1px solid rgba(246, 196, 83, 0.45);
+  border-radius: 6px;
+  padding: 0.45rem 0.55rem;
+  background: rgba(246, 196, 83, 0.11);
+}
+
 .tg-chat-grid {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);

@@ -5,6 +5,16 @@
     <dd>{{roll.formula}} = <strong>{{roll.total}}</strong></dd>
     <dt>{{localize 'TG.chat.source'}}</dt>
     <dd>{{#if attack.itemName}}{{attack.itemName}}{{else}}{{localize 'TG.chat.basicAttack'}}{{/if}}</dd>
+    <dt>{{localize 'TG.chat.targets'}}</dt>
+    <dd>
+      {{#each targets as |target|}}
+        {{target.name}}{{#unless @last}}, {{/unless}}
+      {{else}}
+        {{localize 'TG.chat.noTargets'}}
+      {{/each}}
+    </dd>
+    <dt>{{localize 'TG.chat.range'}}</dt>
+    <dd>{{rangeValidation.targetRangeBand}} / {{rangeValidation.maxRangeBand}}</dd>
     <dt>{{localize 'TG.chat.damage'}}</dt>
     <dd>{{attack.damageFormula}} = <strong>{{attack.damage}}</strong></dd>
     <dt>{{localize 'TG.chat.staminaCost'}}</dt>
@@ -14,6 +24,9 @@
       <dd>{{resourceSpend.vitalityCost}}</dd>
     {{/if}}
   </dl>
+  {{#unless rangeValidation.valid}}
+    <p class="tg-warning">{{localize rangeValidation.message}}</p>
+  {{/unless}}
   <div class="tg-action-row">
     <button type="button" data-tg-chat-action="dodge">{{localize 'TG.actions.dodge'}}</button>
     <button type="button" data-tg-chat-action="block">{{localize 'TG.actions.block'}}</button>

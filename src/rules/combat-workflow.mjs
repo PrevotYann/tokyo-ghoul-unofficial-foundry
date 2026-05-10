@@ -1,5 +1,7 @@
 import { calculateAttackFormula } from "./damage.mjs";
 
+const RANGE_ORDER = ["melee", "close", "mid", "long", "far", "infinite"];
+
 function numberOrZero(value) {
   const number = Number(value);
   return Number.isFinite(number) ? number : 0;
@@ -52,6 +54,32 @@ export function getAttackSourceFromItem(item) {
   return "basic";
 }
 
+export function getAttackRangeBand(item, attackMode = "melee", { sidearm = false } = {}) {
+  if (sidearm) return item?.system?.range?.projectile ?? "long";
+  if (!item) return attackMode === "ranged" ? "long" : "melee";
+  const range = item.system?.range ?? {};
+  return attackMode === "ranged" ? range.projectile ?? range.melee ?? "melee" : range.melee ?? "melee";
+}
+
+export function isRangeBandInReach(targetRangeBand = "melee", maxRangeBand = "melee") {
+  const targetIndex = RANGE_ORDER.indexOf(targetRangeBand);
+  const maxIndex = RANGE_ORDER.indexOf(maxRangeBand);
+  if (maxRangeBand === "infinite") return true;
+  if (targetIndex === -1 || maxIndex === -1) return false;
+  return targetIndex <= maxIndex;
+}
+
+export function validateAttackRange({ item = null, attackMode = "melee", targetRangeBand = "melee", sidearm = false } = {}) {
+  const maxRangeBand = getAttackRangeBand(item, attackMode, { sidearm });
+  const inRange = isRangeBandInReach(targetRangeBand, maxRangeBand);
+  return {
+    valid: inRange,
+    targetRangeBand,
+    maxRangeBand,
+    message: inRange ? null : "TG.validation.targetOutOfRange"
+  };
+}
+
 export function buildAttackSummary({ stats = {}, item = null, attackMode = "melee", combatMode = "squad", sidearm = false } = {}) {
   const source = getAttackSourceFromItem(item);
   const raw = calculateAttackFormula({
@@ -67,6 +95,7 @@ export function buildAttackSummary({ stats = {}, item = null, attackMode = "mele
     source,
     attackMode,
     itemName: item?.name ?? null,
+    range: getAttackRangeBand(item, attackMode, { sidearm }),
     ...applyCombatModeToAttack(raw, combatMode)
   };
 }

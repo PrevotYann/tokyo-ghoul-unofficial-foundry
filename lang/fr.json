@@ -14,10 +14,13 @@
   "TG.chat.attackRoll": "Jet d'attaque",
   "TG.chat.basicAttack": "Attaque de base",
   "TG.chat.damage": "Degats",
+  "TG.chat.noTargets": "Aucune cible selectionnee",
+  "TG.chat.range": "Portee",
   "TG.chat.source": "Source",
   "TG.chat.spendStamina": "{actor} depense {amount} Endurance. Debordement en Vitalite : {vitality}.",
   "TG.chat.staminaCost": "Cout d'endurance",
   "TG.chat.takeBreather": "{actor} recupere {amount} Endurance.",
+  "TG.chat.targets": "Cibles",
   "TG.chat.vitalityOverflow": "Debordement en Vitalite",
   "TG.actions.block": "Bloquer",
   "TG.actions.breather": "Souffler",
@@ -120,5 +123,6 @@
   "TG.validation.ghoulNeedsKagune": "Les goules ont besoin d'un objet Kagune.",
   "TG.validation.investigatorNeedsQuinque": "Les inspecteurs ont besoin d'un objet Quinque equipe.",
   "TG.validation.quinxNeedsBoth": "Les Quinx ont besoin d'un Kagune et d'un Quinque.",
-  "TG.validation.statsTotal": "Les stats de depart devraient totaliser 60 points."
+  "TG.validation.statsTotal": "Les stats de depart devraient totaliser 60 points.",
+  "TG.validation.targetOutOfRange": "La cible est hors de portee pour cette source d'attaque."
 }
