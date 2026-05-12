@@ -2,6 +2,7 @@ import { calculateDerivedResources } from "../rules/derived-stats.mjs";
 import { buildAttackSummary, consumeReaction, reserveReaction, validateAttackRange } from "../rules/combat-workflow.mjs";
 import { clampResource } from "../rules/damage.mjs";
 import { calculateHungerTargetNumber, calculateRageTargetNumber } from "../rules/hunger-rage.mjs";
+import { getKakujaBonusOptions } from "../rules/kakuja.mjs";
 import { rollD20Check } from "../rules/rolls.mjs";
 import { validateCharacterSystemData } from "../rules/validation.mjs";
 
@@ -264,5 +265,37 @@ export class TokyoGhoulActor extends Actor {
     }
 
     return results;
+  }
+
+  async activateKakuja({ stage = "half", selectedStat = null } = {}) {
+    const kagune = this.getActiveKagune() ?? this.items.find((item) => item.type === "kagune");
+    const kaguneType = kagune?.system?.primaryType ?? kagune?.system?.type ?? "ukaku";
+    const options = getKakujaBonusOptions(kaguneType, stage);
+    const bonus = options.find((option) => option.stat === selectedStat) ?? options[0];
+    const update = {
+      "system.kakuja.active": true,
+      "system.kakuja.stage": stage,
+      "system.kakuja.selectedBonus": bonus ? `${bonus.stat}:${bonus.value}` : null
+    };
+
+    if (bonus && bonus.stat !== "rcl") {
+      update[`system.stats.${bonus.stat}.kakuja`] = bonus.value;
+    }
+
+    await this.update(update);
+    return bonus;
+  }
+
+  async deactivateKakuja() {
+    const update = {
+      "system.kakuja.active": false,
+      "system.kakuja.selectedBonus": null
+    };
+
+    for (const key of ["str", "acc", "per", "end", "spd", "crl"]) {
+      update[`system.stats.${key}.kakuja`] = 0;
+    }
+
+    await this.update(update);
   }
 }

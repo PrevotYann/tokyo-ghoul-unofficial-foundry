@@ -7,7 +7,9 @@
         <span class="tg-chip">{{localize (concat "TG.classes." system.identity.class)}}</span>
         <span class="tg-chip">{{localize 'TG.resources.vitality.label'}} {{system.resources.vitality.value}} / {{system.resources.vitality.max}}</span>
         <span class="tg-chip">{{localize 'TG.resources.stamina.label'}} {{system.resources.stamina.value}} / {{system.resources.stamina.max}}</span>
-        <span class="tg-chip">{{localize 'TG.resources.mealScore.label'}} {{system.resources.mealScore.value}} / {{system.resources.mealScore.max}}</span>
+        {{#if usesMealScore}}
+          <span class="tg-chip">{{localize 'TG.resources.mealScore.label'}} {{system.resources.mealScore.value}} / {{system.resources.mealScore.max}}</span>
+        {{/if}}
       </div>
       <div class="tg-action-row">
         <button type="button" data-actor-action="strike">{{localize 'TG.actions.strike'}}</button>
@@ -90,11 +92,13 @@
           <input name="system.resources.stamina.value" type="number" value="{{system.resources.stamina.value}}" min="0" step="1">
           <meter min="0" max="{{system.resources.stamina.max}}" value="{{system.resources.stamina.value}}"></meter>
         </label>
-        <label>
-          <span>{{localize 'TG.resources.mealScore.label'}}</span>
-          <input name="system.resources.mealScore.value" type="number" value="{{system.resources.mealScore.value}}" min="0" step="1">
-          <meter min="0" max="{{system.resources.mealScore.max}}" value="{{system.resources.mealScore.value}}"></meter>
-        </label>
+        {{#if usesMealScore}}
+          <label>
+            <span>{{localize 'TG.resources.mealScore.label'}}</span>
+            <input name="system.resources.mealScore.value" type="number" value="{{system.resources.mealScore.value}}" min="0" step="1">
+            <meter min="0" max="{{system.resources.mealScore.max}}" value="{{system.resources.mealScore.value}}"></meter>
+          </label>
+        {{/if}}
       </div>
     </div>
 

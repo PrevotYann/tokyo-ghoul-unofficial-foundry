@@ -12,6 +12,7 @@ import {
   calculateVitalityMax,
   validateStartingStatTotal
 } from "../../src/rules/derived-stats.mjs";
+import { applyCharacterDerivedData } from "../../src/data-models/helpers.mjs";
 
 const balancedStats = {
   str: { base: 10 },
@@ -74,4 +75,21 @@ test("starting stat validation expects 60 base points", () => {
     difference: 0
   });
   assert.equal(validateStartingStatTotal({ ...balancedStats, str: { base: 11 } }).valid, false);
+});
+
+test("Meal Score derived max is hidden for investigators at the data layer", () => {
+  const model = {
+    identity: { class: "investigator" },
+    stats: structuredClone(balancedStats),
+    resources: {
+      vitality: { value: 60, max: 60, tempMaxPenalty: 0 },
+      stamina: { value: 60, max: 60, tempMaxPenalty: 0 },
+      mealScore: { value: 10, max: 10 }
+    },
+    parent: { items: [] }
+  };
+
+  applyCharacterDerivedData(model);
+  assert.equal(model.resources.mealScore.max, 0);
+  assert.equal(model.resources.mealScore.value, 0);
 });

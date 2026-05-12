@@ -58,7 +58,8 @@ export function applyCharacterDerivedData(model) {
   model.resources.vitality.value = Math.min(model.resources.vitality.value, model.resources.vitality.max);
   model.resources.stamina.max = Math.max(0, derived.staminaMax - model.resources.stamina.tempMaxPenalty);
   model.resources.stamina.value = Math.min(model.resources.stamina.value, model.resources.stamina.max);
-  model.resources.mealScore.max = derived.mealScoreMax;
+  const usesMealScore = model.identity?.class === "ghoul" || model.identity?.class === "quinx";
+  model.resources.mealScore.max = usesMealScore ? derived.mealScoreMax : 0;
   model.resources.mealScore.value = Math.min(model.resources.mealScore.value, model.resources.mealScore.max);
 }
 

@@ -24,6 +24,9 @@ All notable changes to this project will be documented in this file.
 - Added Phase 8 character-builder draft helpers for class profiles, stat presets, starting RCL, and starter Kagune/Quinque item data.
 - Added an explicit Actor sheet class setup action that creates missing starting Kagune/Quinque items for the selected class.
 - Replaced placeholder attack-card Dodge, Block, and Take Hit buttons with automated defense resolution and damage application.
+- Hid Meal Score for Investigators and zeroed their derived Meal Score maximum.
+- Added a simple character builder app exposed as `game.tokyoGhoul.openCharacterBuilder()` which creates Actors with starter owned Kagune/Quinque items.
+- Added Phase 9 Kakuja eligibility, activation bonus, upkeep, and mastery helper logic.
 
 ## [0.1.0] - 2026-05-10
 

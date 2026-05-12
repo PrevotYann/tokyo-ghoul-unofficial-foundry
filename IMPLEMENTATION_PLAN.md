@@ -75,11 +75,11 @@
 - [x] Implement Quinque builder.
 - [x] Implement stats allocation.
 - [x] Implement validation review.
-- [ ] Create actor with owned items from selections.
+- [x] Create actor with owned items from selections.
 
 ## Phase 9 - Kakuja, Kakuja Quinque, progression
-- [ ] Implement Kakuja eligibility and activation.
-- [ ] Implement mastery tracker and loss of control workflow.
+- [x] Implement Kakuja eligibility and activation.
+- [x] Implement mastery tracker and loss of control workflow.
 - [ ] Implement Kakuja armor/weapon.
 - [ ] Implement Kagune Evolution spending.
 - [ ] Implement consumption rewards.

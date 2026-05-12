@@ -40,6 +40,12 @@ Run pure unit tests outside Foundry:
 npm test
 ```
 
+Open the simple in-world character builder from the Foundry console:
+
+```js
+game.tokyoGhoul.openCharacterBuilder()
+```
+
 ## Smoke Test
 
 In a clean Foundry v14 world:

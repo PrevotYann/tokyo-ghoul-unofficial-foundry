@@ -16,6 +16,7 @@ import { TokyoGhoulItem } from "./documents/item.mjs";
 import { TokyoGhoulActiveEffect } from "./documents/active-effect.mjs";
 import { registerCombatHooks } from "./documents/combat.mjs";
 import { TokyoGhoulActorSheet } from "./sheets/actor-sheet.mjs";
+import { CharacterBuilderApp, createActorFromCharacterDraft } from "./sheets/builder-app.mjs";
 import { TokyoGhoulItemSheet } from "./sheets/item-sheet.mjs";
 import { registerMigrationSettings, runMigrations } from "./rules/migrations.mjs";
 import { registerChatCardListeners } from "./ui/chat-cards.mjs";
@@ -43,6 +44,7 @@ async function preloadTemplates() {
   const templates = [
     "systems/tokyo-ghoul-unofficial/templates/actor/character-sheet.hbs",
     "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs",
+    "systems/tokyo-ghoul-unofficial/templates/apps/character-builder.hbs",
     "systems/tokyo-ghoul-unofficial/templates/item/item-sheet.hbs",
     "systems/tokyo-ghoul-unofficial/templates/chat/roll-card.hbs",
     "systems/tokyo-ghoul-unofficial/templates/chat/attack-card.hbs",
@@ -87,6 +89,11 @@ Hooks.once("init", async () => {
       bar: ["resources.vitality", "resources.stamina"],
       value: ["stats.spd.total"]
     }
+  };
+  game.tokyoGhoul = {
+    CharacterBuilderApp,
+    createActorFromCharacterDraft,
+    openCharacterBuilder: () => new CharacterBuilderApp().render({ force: true })
   };
 
   registerHandlebarsHelpers();

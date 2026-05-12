@@ -28,6 +28,7 @@ export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApp
       ...context,
       actor,
       system: actor.system,
+      usesMealScore: actor.system.identity?.class === "ghoul" || actor.system.identity?.class === "quinx",
       stats: Object.entries(actor.system.stats ?? {}).map(([key, data]) => ({ key, data })),
       itemGroups: this.#groupItems(items),
       validation: validateCharacterSystemData(actor.system, items),

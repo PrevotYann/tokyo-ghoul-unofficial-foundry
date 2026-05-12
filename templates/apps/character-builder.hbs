@@ -1,0 +1,48 @@
+<form class="tg-form tg-builder-form" autocomplete="off">
+  <section class="tg-panel">
+    <h2>{{localize 'TG.builder.title'}}</h2>
+    <div class="tg-grid tg-grid-2">
+      <label>
+        <span>{{localize 'TG.sheet.name'}}</span>
+        <input name="name" type="text" value="{{localize 'TG.builder.defaultName'}}">
+      </label>
+      <label>
+        <span>{{localize 'TG.sheet.class'}}</span>
+        <select name="actorClass">
+          <option value="ghoul">{{localize 'TG.classes.ghoul'}}</option>
+          <option value="investigator">{{localize 'TG.classes.investigator'}}</option>
+          <option value="quinx">{{localize 'TG.classes.quinx'}}</option>
+        </select>
+      </label>
+      <label>
+        <span>{{localize 'TG.builder.statPreset'}}</span>
+        <select name="statPreset">
+          {{#each presets as |preset|}}
+            <option value="{{preset}}">{{localize (concat "TG.presets." preset)}}</option>
+          {{/each}}
+        </select>
+      </label>
+      <label>
+        <span>{{localize 'TG.builder.kaguneType'}}</span>
+        <select name="kaguneType">
+          <option value="ukaku">{{localize 'TG.kagune.ukaku'}}</option>
+          <option value="koukaku">{{localize 'TG.kagune.koukaku'}}</option>
+          <option value="rinkaku">{{localize 'TG.kagune.rinkaku'}}</option>
+          <option value="bikaku">{{localize 'TG.kagune.bikaku'}}</option>
+        </select>
+      </label>
+      <label>
+        <span>{{localize 'TG.builder.quinqueType'}}</span>
+        <select name="quinqueType">
+          <option value="ukaku">{{localize 'TG.kagune.ukaku'}}</option>
+          <option value="koukaku">{{localize 'TG.kagune.koukaku'}}</option>
+          <option value="rinkaku">{{localize 'TG.kagune.rinkaku'}}</option>
+          <option value="bikaku">{{localize 'TG.kagune.bikaku'}}</option>
+        </select>
+      </label>
+    </div>
+  </section>
+  <footer class="tg-action-row">
+    <button type="submit">{{localize 'TG.builder.createActor'}}</button>
+  </footer>
+</form>
