@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { calculateAttackFormula, calculateDefenseOutcome, getCounterTier } from "../../src/rules/damage.mjs";
+import { calculateAttackFormula, calculateDefenseOutcome, getCounterTier, resolveDefense } from "../../src/rules/damage.mjs";
 
 test("basic attacks use STR or ACC with no stamina cost", () => {
   assert.deepEqual(calculateAttackFormula({ mode: "melee", source: "basic", str: 8 }), {
@@ -51,4 +51,25 @@ test("counter tiers match defense margin thresholds", () => {
   assert.deepEqual(getCounterTier(20, 10), { margin: 10, automatic: false, damageMultiplier: 1 });
   assert.deepEqual(getCounterTier(25, 10), { margin: 15, automatic: true, damageMultiplier: 1 });
   assert.deepEqual(getCounterTier(30, 10), { margin: 20, automatic: true, damageMultiplier: 1.5 });
+});
+
+test("defense resolution compares rolls and returns outcome plus counter tier", () => {
+  assert.deepEqual(resolveDefense({ defense: "dodge", defenseTotal: 16, attackTotal: 10, damage: 12 }), {
+    defense: "dodge",
+    success: true,
+    defenseTotal: 16,
+    attackTotal: 10,
+    vitalityDamage: 0,
+    staminaDamage: 0,
+    counter: { margin: 6, automatic: false, damageMultiplier: 0.5 }
+  });
+  assert.deepEqual(resolveDefense({ defense: "block", defenseTotal: 9, attackTotal: 10, damage: 12 }), {
+    defense: "block",
+    success: false,
+    defenseTotal: 9,
+    attackTotal: 10,
+    vitalityDamage: 18,
+    staminaDamage: 0,
+    counter: { margin: -10, automatic: false, damageMultiplier: 0 }
+  });
 });

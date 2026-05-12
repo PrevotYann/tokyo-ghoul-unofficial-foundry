@@ -1,3 +1,23 @@
 <section class="tg-system tg-chat-card">
   <h3>{{localize 'TG.chat.defense'}}</h3>
+  <dl class="tg-chat-grid">
+    <dt>{{localize 'TG.chat.defender'}}</dt>
+    <dd>{{defender.name}}</dd>
+    <dt>{{localize 'TG.chat.defenseAction'}}</dt>
+    <dd>{{localize (concat "TG.actions." action)}}</dd>
+    {{#if defenseRoll}}
+      <dt>{{localize 'TG.chat.defenseRoll'}}</dt>
+      <dd>{{defenseRoll.formula}} = <strong>{{defenseRoll.total}}</strong></dd>
+    {{/if}}
+    <dt>{{localize 'TG.chat.result'}}</dt>
+    <dd>{{#if resolution.success}}{{localize 'TG.chat.success'}}{{else}}{{localize 'TG.chat.failure'}}{{/if}}</dd>
+    <dt>{{localize 'TG.resources.vitality.label'}}</dt>
+    <dd>-{{resolution.vitalityDamage}}</dd>
+    <dt>{{localize 'TG.resources.stamina.label'}}</dt>
+    <dd>-{{resolution.staminaDamage}}</dd>
+    {{#if resolution.counter.damageMultiplier}}
+      <dt>{{localize 'TG.chat.counter'}}</dt>
+      <dd>{{resolution.counter.damageMultiplier}}x</dd>
+    {{/if}}
+  </dl>
 </section>

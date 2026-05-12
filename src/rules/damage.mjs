@@ -84,3 +84,24 @@ export function getCounterTier(defenderTotal, attackerTotal) {
   if (margin >= 5) return { margin, automatic: false, damageMultiplier: 0.5 };
   return { margin, automatic: false, damageMultiplier: 0 };
 }
+
+export function resolveDefense({
+  defense = "takeHit",
+  defenseTotal = 0,
+  attackTotal = 0,
+  damage = 0,
+  harshConsequences = true
+} = {}) {
+  const success = defense === "takeHit" ? false : numberOrZero(defenseTotal) > numberOrZero(attackTotal);
+  const outcome = calculateDefenseOutcome({ defense, success, damage, harshConsequences });
+  const counter = success ? getCounterTier(defenseTotal, attackTotal) : getCounterTier(0, attackTotal);
+
+  return {
+    defense,
+    success,
+    defenseTotal: numberOrZero(defenseTotal),
+    attackTotal: numberOrZero(attackTotal),
+    ...outcome,
+    counter
+  };
+}

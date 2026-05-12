@@ -41,7 +41,7 @@
 - [x] Unit test natural 1/20 and contests.
 
 ## Phase 5 - Combat workflow
-- [ ] Implement Strike workflow.
+- [x] Implement Strike workflow.
 - [x] Implement target/range validation.
 - [x] Implement stamina costs and damage formulas.
 - [x] Implement Dodge, Block, Take Hit.
@@ -57,7 +57,7 @@
 - [x] Implement Rage thresholds and temp stat assignment.
 - [x] Implement Bleeding, Burning, Grappled.
 - [x] Implement regeneration and suppression.
-- [ ] Implement Take a Breather interactions.
+- [x] Implement Take a Breather interactions.
 - [ ] Add condition start/end turn hooks.
 
 ## Phase 7 - Kagune, Quinque, Edges, Gimmicks

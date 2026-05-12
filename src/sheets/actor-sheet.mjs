@@ -1,4 +1,5 @@
 import { parseDropData } from "../ui/drag-drop.mjs";
+import { createKaguneDraft, createQuinqueDraft, getClassStartingProfile } from "../rules/character-builder.mjs";
 import { validateCharacterSystemData } from "../rules/validation.mjs";
 
 export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
@@ -45,6 +46,7 @@ export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApp
     this.element.querySelectorAll("[data-actor-action]").forEach((button) => {
       button.addEventListener("click", (event) => this.#onActorAction(event));
     });
+    this.element.querySelector("[name='system.identity.class']")?.addEventListener("change", (event) => this.#onClassChange(event));
     this.element.querySelectorAll("[data-item-id]").forEach((row) => {
       row.setAttribute("draggable", "true");
       row.addEventListener("dragstart", (event) => this.#onDragItem(event));
@@ -96,6 +98,36 @@ export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApp
     if (action === "dodge") return actor.rollCheck("spd");
     if (action === "block") return actor.rollCheck("end");
     if (action === "breather") return actor.takeBreather();
+    if (action === "setupClass") return this.#setupClass(actor);
+  }
+
+  async #onClassChange(event) {
+    const actor = this.actor ?? this.document;
+    await actor.update({ "system.identity.class": event.currentTarget.value });
+  }
+
+  async #setupClass(actor) {
+    const actorClass = actor.system.identity.class;
+    const profile = getClassStartingProfile(actorClass);
+    const embedded = [];
+
+    if (profile.needsKagune && !actor.items.some((item) => item.type === "kagune")) {
+      embedded.push(createKaguneDraft({ actorClass }));
+    }
+
+    if (profile.needsQuinque && !actor.items.some((item) => item.type === "quinque")) {
+      embedded.push(createQuinqueDraft({ actorClass }));
+    }
+
+    const update = {
+      "system.identity.faction": actorClass === "ghoul" ? "ghoul" : "ccg",
+      "system.resources.maneuverBudget.max": actor.system.combat?.mode === "raid" ? 3 : 2,
+      "system.resources.maneuverBudget.value": actor.system.combat?.mode === "raid" ? 3 : 2
+    };
+
+    await actor.update(update);
+    if (embedded.length) await actor.createEmbeddedDocuments("Item", embedded);
+    ui.notifications?.info(game.i18n.format("TG.notifications.classSetupApplied", { class: game.i18n.localize(`TG.classes.${actorClass}`) }));
   }
 
   #groupItems(items) {

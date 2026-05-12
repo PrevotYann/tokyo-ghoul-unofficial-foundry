@@ -22,6 +22,8 @@ All notable changes to this project will be documented in this file.
 - Added Phase 7 type advantage, anti-Ghoul Quinque bonus, RC Bonds, and Quinque interpose block helpers.
 - Added Phase 7 medkit, grenade, and Q bullet helpers.
 - Added Phase 8 character-builder draft helpers for class profiles, stat presets, starting RCL, and starter Kagune/Quinque item data.
+- Added an explicit Actor sheet class setup action that creates missing starting Kagune/Quinque items for the selected class.
+- Replaced placeholder attack-card Dodge, Block, and Take Hit buttons with automated defense resolution and damage application.
 
 ## [0.1.0] - 2026-05-10
 

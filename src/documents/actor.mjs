@@ -123,6 +123,7 @@ export class TokyoGhoulActor extends Actor {
       content,
       flags: {
         "tokyo-ghoul-unofficial": {
+          attackerActorUuid: this.uuid,
           attack,
           targets,
           rangeValidation,
@@ -179,9 +180,18 @@ export class TokyoGhoulActor extends Actor {
   async takeBreather(options = {}) {
     const recovery = this.getStat("end") * (options.multiplier ?? 1);
     const stamina = this.system.resources.stamina;
-    await this.update({
+    const update = {
       "system.resources.stamina.value": clampResource(stamina.value + recovery, 0, stamina.max)
-    });
+    };
+
+    if (this.system.resources.rage?.active) {
+      update["system.resources.rage.active"] = false;
+      update["system.resources.rage.voluntarilyEntered"] = false;
+      update["system.resources.rage.tempStatBudget"] = 0;
+      update["system.resources.rage.assigned"] = {};
+    }
+
+    await this.update(update);
     if (!options.quiet) {
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
