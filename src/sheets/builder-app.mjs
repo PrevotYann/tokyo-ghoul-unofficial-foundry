@@ -1,5 +1,18 @@
 import { createCharacterDraft, STAT_PRESETS } from "../rules/character-builder.mjs";
 
+function getCenteredPosition({ width = 560, height = 520 } = {}) {
+  const viewportWidth = globalThis.window?.innerWidth ?? width + 160;
+  const viewportHeight = globalThis.window?.innerHeight ?? height + 160;
+  return {
+    width,
+    height,
+    left: Math.max(24, Math.round((viewportWidth - width) / 2)),
+    top: Math.max(64, Math.round((viewportHeight - height) / 2))
+  };
+}
+
+let activeBuilderApp = null;
+
 export async function createActorFromCharacterDraft(options = {}) {
   const draft = createCharacterDraft(options);
   const { items, validation, ...actorData } = draft;
@@ -14,15 +27,27 @@ export async function createActorFromCharacterDraft(options = {}) {
 
   const actor = await Actor.create(actorData);
   if (items.length) await actor.createEmbeddedDocuments("Item", items);
-  actor.sheet?.render?.({ force: true });
+  actor.sheet?.render?.(true);
   return actor;
+}
+
+export async function openCharacterBuilder() {
+  if (activeBuilderApp?.rendered) {
+    await activeBuilderApp.close();
+  }
+
+  const app = new CharacterBuilderApp({ position: getCenteredPosition() });
+  activeBuilderApp = app;
+  await app.render(true);
+  app.setPosition(getCenteredPosition());
+  return app;
 }
 
 export class CharacterBuilderApp extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
   static DEFAULT_OPTIONS = {
     id: "tg-character-builder",
-    classes: ["tg-system", "tg-builder"],
-    window: { title: "TG.builder.title", resizable: true },
+    classes: ["tg-builder-window"],
+    window: { frame: true, positioned: true, title: "TG.builder.title", resizable: true, minimizable: true },
     position: { width: 560, height: 520 },
     form: {
       handler: CharacterBuilderApp.#onSubmit,

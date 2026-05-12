@@ -6,16 +6,16 @@ Tokyo Ghoul is owned by its respective rights holders. This package does not inc
 
 ## Status
 
-Phase 0-1 skeleton is in progress:
+Current implementation status is tracked in `IMPLEMENTATION_PLAN.md`. The system currently includes:
 
 - Foundry v14 `system.json`
 - ESM entrypoint
 - Actor and Item document types
-- DataModel stubs
-- Basic Actor and Item sheets
-- Pure derived-stat functions and unit tests
-
-Full combat, compendiums, character builder, Hunger/Rage workflows, Kakuja, and progression are planned in later phases from `IMPLEMENTATION_PLAN.md`.
+- DataModels for actor and item types
+- Actor and Item sheets with class setup, resource automation, attacks, and basic defenses
+- Pack source validation for Edges, Maneuvers, Conditions, equipment, Kagune, Quinque, Gimmicks, and Kakuja armor
+- Pure rules helpers and unit tests for derived stats, rolls, combat math, Hunger/Rage, conditions, gear, builder drafts, and Kakuja helpers
+- A simple in-world character builder
 
 ## Manual Install
 
@@ -46,6 +46,8 @@ Open the simple in-world character builder from the Foundry console:
 game.tokyoGhoul.openCharacterBuilder()
 ```
 
+If a test window ever renders in a bad position while developing, reload the browser tab. The builder is designed to reopen centered and closes any prior builder instance first.
+
 ## Smoke Test
 
 In a clean Foundry v14 world:
@@ -53,9 +55,11 @@ In a clean Foundry v14 world:
 1. Enable the system by creating a world with it.
 2. Create a `character` Actor.
 3. Open the Actor sheet and edit class, stats, and current resources.
-4. Create one Item of each declared type.
-5. Open the Item sheets and confirm the generic fields render.
-6. Confirm the browser console has no system load errors.
+4. Change class setup between Ghoul, Investigator, and Quinx and confirm starting items/resources update.
+5. Run `game.tokyoGhoul.openCharacterBuilder()` and confirm it opens as a centered framed window.
+6. Create one Item of each declared type.
+7. Open the Item sheets and confirm the fields render.
+8. Confirm the browser console has no system load errors.
 
 ## Rulebook Source
 

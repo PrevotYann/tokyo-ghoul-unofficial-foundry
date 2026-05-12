@@ -16,7 +16,7 @@ import { TokyoGhoulItem } from "./documents/item.mjs";
 import { TokyoGhoulActiveEffect } from "./documents/active-effect.mjs";
 import { registerCombatHooks } from "./documents/combat.mjs";
 import { TokyoGhoulActorSheet } from "./sheets/actor-sheet.mjs";
-import { CharacterBuilderApp, createActorFromCharacterDraft } from "./sheets/builder-app.mjs";
+import { CharacterBuilderApp, createActorFromCharacterDraft, openCharacterBuilder } from "./sheets/builder-app.mjs";
 import { TokyoGhoulItemSheet } from "./sheets/item-sheet.mjs";
 import { registerMigrationSettings, runMigrations } from "./rules/migrations.mjs";
 import { registerChatCardListeners } from "./ui/chat-cards.mjs";
@@ -93,7 +93,7 @@ Hooks.once("init", async () => {
   game.tokyoGhoul = {
     CharacterBuilderApp,
     createActorFromCharacterDraft,
-    openCharacterBuilder: () => new CharacterBuilderApp().render({ force: true })
+    openCharacterBuilder
   };
 
   registerHandlebarsHelpers();
