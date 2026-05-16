@@ -91,7 +91,50 @@
       }
     }
   },
-  "packs": [],
+  "packs": [
+    {
+      "name": "edges",
+      "label": "Edges",
+      "path": "packs/edges",
+      "type": "Item",
+      "system": "tokyo-ghoul-unofficial"
+    },
+    {
+      "name": "maneuvers",
+      "label": "Maneuvers",
+      "path": "packs/maneuvers",
+      "type": "Item",
+      "system": "tokyo-ghoul-unofficial"
+    },
+    {
+      "name": "conditions",
+      "label": "Conditions",
+      "path": "packs/conditions",
+      "type": "Item",
+      "system": "tokyo-ghoul-unofficial"
+    },
+    {
+      "name": "equipment",
+      "label": "Equipment",
+      "path": "packs/equipment",
+      "type": "Item",
+      "system": "tokyo-ghoul-unofficial"
+    },
+    {
+      "name": "sample-kagune",
+      "label": "Sample Kagune",
+      "path": "packs/sample-kagune",
+      "type": "Item",
+      "system": "tokyo-ghoul-unofficial"
+    },
+    {
+      "name": "sample-quinque",
+      "label": "Sample Quinque",
+      "path": "packs/sample-quinque",
+      "type": "Item",
+      "system": "tokyo-ghoul-unofficial"
+    }
+  ],
   "initiative": "@stats.spd.total",
   "grid": {
     "distance": 5,

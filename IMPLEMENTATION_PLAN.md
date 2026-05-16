@@ -12,7 +12,7 @@
 - [x] Define Actor DataModels for character and npc.
 - [x] Define Item DataModels for all item types.
 - [x] Register Actor/Item document classes.
-- [ ] Implement `prepareBaseData` and `prepareDerivedData`.
+- [x] Implement `prepareBaseData` and `prepareDerivedData`.
 - [x] Implement derived stats and validation pure functions.
 - [x] Unit test formulas.
 
@@ -29,7 +29,7 @@
 - [x] Add all Maneuvers.
 - [x] Add all Conditions.
 - [x] Add consumables and templates.
-- [ ] Build/import packs.
+- [x] Build/import packs.
 - [ ] Verify pack entries can be dragged to sheets.
 
 ## Phase 4 - Roll engine
@@ -50,7 +50,7 @@
 - [x] Implement maneuver budget and reaction reservation.
 - [x] Implement Squad initiative helper.
 - [x] Implement Raid mode.
-- [ ] Add manual GM controls.
+- [x] Add manual GM controls.
 
 ## Phase 6 - Hunger, Rage, and conditions
 - [x] Implement Hunger thresholds and checks.
@@ -58,16 +58,16 @@
 - [x] Implement Bleeding, Burning, Grappled.
 - [x] Implement regeneration and suppression.
 - [x] Implement Take a Breather interactions.
-- [ ] Add condition start/end turn hooks.
+- [x] Add condition start/end turn hooks.
 
 ## Phase 7 - Kagune, Quinque, Edges, Gimmicks
-- [ ] Implement all Edge effects.
+- [x] Implement all Edge effects.
 - [x] Implement type advantage.
 - [x] Implement RC Bonds and Quinque blocking.
 - [x] Implement sidearms/Q bullets.
 - [x] Implement grenades and medkits.
-- [ ] Implement gimmick activation and effects.
-- [ ] Implement Dynamic Edge/Gimmick manual/custom workflow.
+- [x] Implement gimmick activation and effects.
+- [x] Implement Dynamic Edge/Gimmick manual/custom workflow.
 
 ## Phase 8 - Character builder
 - [x] Implement class selection.
@@ -80,11 +80,11 @@
 ## Phase 9 - Kakuja, Kakuja Quinque, progression
 - [x] Implement Kakuja eligibility and activation.
 - [x] Implement mastery tracker and loss of control workflow.
-- [ ] Implement Kakuja armor/weapon.
-- [ ] Implement Kagune Evolution spending.
-- [ ] Implement consumption rewards.
-- [ ] Implement Kakuhou storage.
-- [ ] Implement Quinque forge/upgrade workflow.
+- [x] Implement Kakuja armor/weapon.
+- [x] Implement Kagune Evolution spending.
+- [x] Implement consumption rewards.
+- [x] Implement Kakuhou storage.
+- [x] Implement Quinque forge/upgrade workflow.
 
 ## Phase 10 - QA, docs, and release
 - [ ] Complete all tests in `TEST_PLAN.md`.

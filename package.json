@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test test/unit/**/*.test.mjs",
-    "test:packs": "node scripts/validate-packs-source.mjs"
+    "test:packs": "node scripts/validate-packs-source.mjs",
+    "build:packs": "node scripts/build-packs-source.mjs"
   }
 }

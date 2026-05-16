@@ -1,6 +1,12 @@
 import { calculateRcBondsMax } from "../rules/derived-stats.mjs";
 
 export class TokyoGhoulItem extends Item {
+  prepareBaseData() {
+    super.prepareBaseData();
+    if (!["kagune", "quinque"].includes(this.type)) return;
+    this.system.edgeSlots.used = Array.from(this.system?.edges ?? []).length;
+  }
+
   prepareDerivedData() {
     super.prepareDerivedData();
     if (this.type !== "quinque") return;

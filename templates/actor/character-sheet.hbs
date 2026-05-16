@@ -16,6 +16,7 @@
         <button type="button" data-actor-action="dodge">{{localize 'TG.actions.dodge'}}</button>
         <button type="button" data-actor-action="block">{{localize 'TG.actions.block'}}</button>
         <button type="button" data-actor-action="breather">{{localize 'TG.actions.breather'}}</button>
+        <button type="button" data-actor-action="controlCheck">{{localize 'TG.actions.controlCheck'}}</button>
       </div>
     </div>
   </header>
@@ -136,6 +137,10 @@
           <input name="system.resources.maneuverBudget.reactionsReserved" type="number" value="{{system.resources.maneuverBudget.reactionsReserved}}" min="0" step="1">
         </label>
       </div>
+      <div class="tg-action-row tg-panel-actions">
+        <button type="button" data-actor-action="reserveReaction">{{localize 'TG.actions.reserveReaction'}}</button>
+        <button type="button" data-actor-action="toggleGimmick">{{localize 'TG.actions.toggleGimmick'}}</button>
+      </div>
     </div>
     {{> "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs" group=(lookup itemGroups 2)}}
   </section>
@@ -160,6 +165,10 @@
           <span>{{localize 'TG.sheet.kakujaStage'}}</span>
           <input name="system.kakuja.stage" type="text" value="{{system.kakuja.stage}}">
         </label>
+      </div>
+      <div class="tg-action-row tg-panel-actions">
+        <button type="button" data-actor-action="activateKakuja">{{localize 'TG.actions.activateKakuja'}}</button>
+        <button type="button" data-actor-action="deactivateKakuja">{{localize 'TG.actions.deactivateKakuja'}}</button>
       </div>
       <label>
         <span>{{localize 'TG.sheet.notes'}}</span>

@@ -14,7 +14,7 @@ Current implementation status is tracked in `IMPLEMENTATION_PLAN.md`. The system
 - DataModels for actor and item types
 - Actor and Item sheets with class setup, resource automation, attacks, and basic defenses
 - Pack source validation for Edges, Maneuvers, Conditions, equipment, Kagune, Quinque, Gimmicks, and Kakuja armor
-- Pure rules helpers and unit tests for derived stats, rolls, combat math, Hunger/Rage, conditions, gear, builder drafts, and Kakuja helpers
+- Pure rules helpers and unit tests for derived stats, rolls, combat math, Hunger/Rage, conditions, gear, builder drafts, Gimmicks, progression/crafting, and Kakuja helpers
 - A simple in-world character builder
 
 ## Manual Install
@@ -38,6 +38,18 @@ Run pure unit tests outside Foundry:
 
 ```powershell
 npm test
+```
+
+Validate pack source records:
+
+```powershell
+npm run test:packs
+```
+
+Build source bundles for the declared packs:
+
+```powershell
+npm run build:packs
 ```
 
 Open the simple in-world character builder from the Foundry console:

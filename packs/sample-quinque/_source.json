@@ -1,0 +1,214 @@
+[
+  {
+    "name": "Sample Ukaku Quinque",
+    "type": "quinque",
+    "system": {
+      "type": "ukaku",
+      "primaryType": "ukaku",
+      "secondaryType": null,
+      "rcl": 10,
+      "rcBonds": {
+        "value": 10,
+        "max": 10,
+        "broken": false,
+        "repairDaysRemaining": 0
+      },
+      "equipped": true,
+      "range": {
+        "melee": "close",
+        "projectile": "long"
+      },
+      "edgeSlots": {
+        "max": 3,
+        "used": 0
+      },
+      "edges": [],
+      "gimmick": null,
+      "sidearm": {
+        "enabled": false,
+        "ammoType": "ukaku",
+        "ammo": {
+          "value": 0,
+          "max": 0
+        }
+      },
+      "kakuja": {
+        "isKakujaWeapon": false,
+        "freeGimmick": false,
+        "dynamicEdge": null
+      },
+      "automation": "manual",
+      "description": "Light ranged Quinque template."
+    }
+  },
+  {
+    "name": "Sample Koukaku Shield Quinque",
+    "type": "quinque",
+    "system": {
+      "type": "koukaku",
+      "primaryType": "koukaku",
+      "secondaryType": null,
+      "rcl": 10,
+      "rcBonds": {
+        "value": 10,
+        "max": 10,
+        "broken": false,
+        "repairDaysRemaining": 0
+      },
+      "equipped": true,
+      "range": {
+        "melee": "close",
+        "projectile": null
+      },
+      "edgeSlots": {
+        "max": 3,
+        "used": 0
+      },
+      "edges": [],
+      "gimmick": null,
+      "sidearm": {
+        "enabled": false,
+        "ammoType": "koukaku",
+        "ammo": {
+          "value": 0,
+          "max": 0
+        }
+      },
+      "kakuja": {
+        "isKakujaWeapon": false,
+        "freeGimmick": false,
+        "dynamicEdge": null
+      },
+      "automation": "manual",
+      "description": "Heavy defensive Quinque template."
+    }
+  },
+  {
+    "name": "Sample Rinkaku Quinque",
+    "type": "quinque",
+    "system": {
+      "type": "rinkaku",
+      "primaryType": "rinkaku",
+      "secondaryType": null,
+      "rcl": 10,
+      "rcBonds": {
+        "value": 10,
+        "max": 10,
+        "broken": false,
+        "repairDaysRemaining": 0
+      },
+      "equipped": true,
+      "range": {
+        "melee": "mid",
+        "projectile": null
+      },
+      "edgeSlots": {
+        "max": 3,
+        "used": 0
+      },
+      "edges": [],
+      "gimmick": null,
+      "sidearm": {
+        "enabled": false,
+        "ammoType": "rinkaku",
+        "ammo": {
+          "value": 0,
+          "max": 0
+        }
+      },
+      "kakuja": {
+        "isKakujaWeapon": false,
+        "freeGimmick": false,
+        "dynamicEdge": null
+      },
+      "automation": "manual",
+      "description": "Specialized mid-range Quinque template."
+    }
+  },
+  {
+    "name": "Sample Bikaku Quinque",
+    "type": "quinque",
+    "system": {
+      "type": "bikaku",
+      "primaryType": "bikaku",
+      "secondaryType": null,
+      "rcl": 10,
+      "rcBonds": {
+        "value": 10,
+        "max": 10,
+        "broken": false,
+        "repairDaysRemaining": 0
+      },
+      "equipped": true,
+      "range": {
+        "melee": "mid",
+        "projectile": null
+      },
+      "edgeSlots": {
+        "max": 3,
+        "used": 0
+      },
+      "edges": [],
+      "gimmick": null,
+      "sidearm": {
+        "enabled": false,
+        "ammoType": "bikaku",
+        "ammo": {
+          "value": 0,
+          "max": 0
+        }
+      },
+      "kakuja": {
+        "isKakujaWeapon": false,
+        "freeGimmick": false,
+        "dynamicEdge": null
+      },
+      "automation": "manual",
+      "description": "Balanced mid-range Quinque template."
+    }
+  },
+  {
+    "name": "Sample Investigator Sidearm",
+    "type": "quinque",
+    "system": {
+      "type": "ukaku",
+      "primaryType": "ukaku",
+      "secondaryType": null,
+      "rcl": 10,
+      "rcBonds": {
+        "value": 10,
+        "max": 10,
+        "broken": false,
+        "repairDaysRemaining": 0
+      },
+      "equipped": true,
+      "range": {
+        "melee": "close",
+        "projectile": "long"
+      },
+      "edgeSlots": {
+        "max": 3,
+        "used": 1
+      },
+      "edges": [
+        "Sidearm"
+      ],
+      "gimmick": null,
+      "sidearm": {
+        "enabled": true,
+        "ammoType": "ukaku",
+        "ammo": {
+          "value": 6,
+          "max": 6
+        }
+      },
+      "kakuja": {
+        "isKakujaWeapon": false,
+        "freeGimmick": false,
+        "dynamicEdge": null
+      },
+      "automation": "manual",
+      "description": "Generic sidearm-enabled Quinque template."
+    }
+  }
+]

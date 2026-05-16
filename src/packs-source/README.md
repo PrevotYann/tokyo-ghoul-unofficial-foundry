@@ -10,4 +10,4 @@ Current status:
 - Templates: generic Kagune and Quinque samples only.
 - Consumables and Gimmicks: generic starter records.
 
-The actual Foundry pack database generation step is still pending. Do not add generated pack databases by hand until the build/import workflow is decided.
+Run `npm run build:packs` to create `_source.json` import bundles under `packs/*`. These are source bundles for Foundry import/build workflows; final LevelDB pack databases should still be generated from Foundry or a dedicated pack build tool before release.

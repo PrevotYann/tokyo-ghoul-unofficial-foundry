@@ -7,6 +7,7 @@ import {
   removeBleedingStacksByRegeneration,
   resolveBleedingStartTurn,
   resolveBurningStartTurn,
+  resolveConditionStartTurn,
   resolveGrappleBreak
 } from "../../src/rules/conditions.mjs";
 
@@ -47,4 +48,23 @@ test("grappled actors have restricted actions and opposed break checks", () => {
   assert.equal(canActWhileGrappled("breather"), true);
   assert.deepEqual(resolveGrappleBreak({ grapplerTotal: 14, targetTotal: 15 }), { broken: true, margin: 1 });
   assert.deepEqual(resolveGrappleBreak({ grapplerTotal: 14, targetTotal: 14 }), { broken: false, margin: 0 });
+});
+
+test("condition start-turn resolver handles bleeding and burning updates", () => {
+  assert.deepEqual(resolveConditionStartTurn({ conditionId: "bleeding", stacks: 2, regenerationType: "normal" }), {
+    conditionId: "bleeding",
+    stacks: 1,
+    vitalityDamage: 1,
+    remove: false
+  });
+
+  assert.deepEqual(resolveConditionStartTurn({ conditionId: "burning", stacks: 1 }), {
+    conditionId: "burning",
+    stacks: 1,
+    vitalityDamage: 0,
+    remove: false,
+    requiresRoll: "end"
+  });
+
+  assert.equal(resolveConditionStartTurn({ conditionId: "burning", stacks: 1, endRollTotal: 18 }).remove, true);
 });

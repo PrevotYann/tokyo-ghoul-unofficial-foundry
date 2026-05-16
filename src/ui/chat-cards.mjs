@@ -63,7 +63,9 @@ async function handleDefenseAction(message, action) {
     ui.notifications?.warn(game.i18n.localize("TG.notifications.noReservedReaction"));
   }
 
-  const defenseRoll = await rollD20Check({ actor: defender, stat, opponentTotal: flags.roll.total });
+  const edgeModifiers = defender.getEdgeModifiers?.() ?? {};
+  const bonus = action === "dodge" ? edgeModifiers.dodgeBonus ?? 0 : edgeModifiers.blockBonus ?? 0;
+  const defenseRoll = await rollD20Check({ actor: defender, stat, bonus, opponentTotal: flags.roll.total });
   const resolution = resolveDefense({
     defense: action,
     defenseTotal: defenseRoll.total,
@@ -74,6 +76,38 @@ async function handleDefenseAction(message, action) {
   if (resolution.vitalityDamage > 0) await defender.applyDamage(resolution.vitalityDamage, { quiet: true });
   if (resolution.staminaDamage > 0) await defender.spendStamina(resolution.staminaDamage, { quiet: true });
   await createDefenseMessage({ defender, action, defenseRoll, resolution });
+}
+
+async function handleGmControlAction(message, action) {
+  if (!game.user.isGM) {
+    ui.notifications?.warn(game.i18n.localize("TG.notifications.noPermission"));
+    return;
+  }
+
+  const flags = message?.flags?.[SYSTEM_ID];
+  const actor = await getDefenseActor(message);
+  if (!actor || !flags?.attack) {
+    ui.notifications?.warn(game.i18n.localize("TG.notifications.noDefenseActor"));
+    return;
+  }
+
+  const amount = action === "gmApplyHalfDamage" ? Math.floor(flags.attack.damage / 2) : flags.attack.damage;
+  if (action === "gmApplyStaminaDamage") await actor.spendStamina(amount, { quiet: true });
+  else await actor.applyDamage(amount, { quiet: true });
+
+  await ChatMessage.create({
+    speaker: ChatMessage.getSpeaker({ actor }),
+    content: game.i18n.format("TG.chat.gmAdjustment", {
+      actor: actor.name,
+      amount,
+      resource: game.i18n.localize(action === "gmApplyStaminaDamage" ? "TG.resources.stamina.label" : "TG.resources.vitality.label")
+    }),
+    flags: {
+      [SYSTEM_ID]: {
+        gmAdjustment: { action, amount, actorUuid: actor.uuid }
+      }
+    }
+  });
 }
 
 async function createDefenseMessage({ defender, action, defenseRoll = null, resolution }) {
@@ -108,6 +142,11 @@ export function registerChatCardListeners() {
     const action = button.dataset.tgChatAction;
     if (["dodge", "block", "takeHit"].includes(action)) {
       await handleDefenseAction(getMessageFromEvent(event), action);
+      return;
+    }
+
+    if (["gmApplyDamage", "gmApplyHalfDamage", "gmApplyStaminaDamage"].includes(action)) {
+      await handleGmControlAction(getMessageFromEvent(event), action);
       return;
     }
 

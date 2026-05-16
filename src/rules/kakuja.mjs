@@ -54,3 +54,44 @@ export function advanceKakujaMastery({ currentSuccesses = 0, success = false, co
     lostControl: false
   };
 }
+
+export function calculateKakujaWeaponEdgeSlots(baseSlots = 0) {
+  return Math.max(0, numberOrZero(baseSlots)) * 2;
+}
+
+export function calculateKakujaArmorDamageReduction({ incomingDamage = 0, armorRcl = 0 } = {}) {
+  return Math.max(0, numberOrZero(incomingDamage) - numberOrZero(armorRcl));
+}
+
+export function calculateKakujaArmorParasiticDamage({ armorRcl = 0, weaponRcl = 0, turnsActive = 0 } = {}) {
+  if (numberOrZero(turnsActive) <= 5) return 0;
+  return Math.floor(numberOrZero(armorRcl) / 2) + Math.floor(numberOrZero(weaponRcl) / 2);
+}
+
+export function getKakujaArmorTypeEffect({ armorType = "attack", selectedAttackStat = "str" } = {}) {
+  if (armorType === "speed") {
+    return {
+      statMultipliers: { spd: 2 },
+      extraManeuvers: 1,
+      removesDamageManeuverCosts: false
+    };
+  }
+
+  if (armorType === "attack") {
+    return {
+      statMultipliers: { [selectedAttackStat === "acc" ? "acc" : "str"]: 2 },
+      extraManeuvers: 0,
+      removesDamageManeuverCosts: true
+    };
+  }
+
+  return {
+    statMultipliers: {},
+    extraManeuvers: 0,
+    removesDamageManeuverCosts: false
+  };
+}
+
+export function calculateQuinxKaguneCostUnderArmor({ baseCost = 0, actorClass = "quinx", armorActive = false } = {}) {
+  return actorClass === "quinx" && armorActive ? numberOrZero(baseCost) * 2 : numberOrZero(baseCost);
+}

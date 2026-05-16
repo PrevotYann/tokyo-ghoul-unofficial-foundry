@@ -1,15 +1,25 @@
 import { calculateDerivedResources } from "../rules/derived-stats.mjs";
 import { buildAttackSummary, consumeReaction, reserveReaction, validateAttackRange } from "../rules/combat-workflow.mjs";
+import { resolveConditionStartTurn } from "../rules/conditions.mjs";
 import { clampResource } from "../rules/damage.mjs";
+import { calculateEdgeCombatModifiers, collectEdgeNames } from "../rules/edges.mjs";
+import { buildGimmickActivationSummary } from "../rules/gimmicks.mjs";
 import { calculateHungerTargetNumber, calculateRageTargetNumber } from "../rules/hunger-rage.mjs";
-import { getKakujaBonusOptions } from "../rules/kakuja.mjs";
+import { calculateKakujaUpkeep, getKakujaBonusOptions } from "../rules/kakuja.mjs";
+import { calculateConsumptionReward, calculateQuinqueGimmickAddition, calculateQuinqueUpgrade } from "../rules/progression.mjs";
 import { rollD20Check } from "../rules/rolls.mjs";
 import { validateCharacterSystemData } from "../rules/validation.mjs";
 
 export class TokyoGhoulActor extends Actor {
+  prepareBaseData() {
+    super.prepareBaseData();
+    this.system.validation = this.system.validation ?? { warnings: [] };
+  }
+
   prepareDerivedData() {
     super.prepareDerivedData();
     this.system.validation = validateCharacterSystemData(this.system, Array.from(this.items ?? []));
+    this.edgeModifiers = this.getEdgeModifiers();
   }
 
   getStat(key) {
@@ -36,8 +46,24 @@ export class TokyoGhoulActor extends Actor {
     return this.items.find((item) => item.type === "quinque" && item.system?.equipped);
   }
 
+  getActiveKakujaArmor() {
+    return this.items.find((item) => item.type === "kakuja-armor" && item.system?.manifested);
+  }
+
   getDefaultAttackItem() {
     return this.getActiveKagune() ?? this.getActiveQuinque() ?? null;
+  }
+
+  getEdgeNames(sourceItem = null) {
+    return collectEdgeNames({ actorItems: Array.from(this.items ?? []), sourceItem });
+  }
+
+  getEdgeModifiers(sourceItem = null) {
+    return calculateEdgeCombatModifiers(this.getEdgeNames(sourceItem), {
+      actorClass: this.system?.identity?.class,
+      end: this.getStat("end"),
+      spd: this.getStat("spd")
+    });
   }
 
   getAvailableManeuvers() {
@@ -57,7 +83,13 @@ export class TokyoGhoulActor extends Actor {
   }
 
   async rollCheck(stat, options = {}) {
-    const result = await rollD20Check({ actor: this, stat, ...options });
+    const edgeModifiers = this.getEdgeModifiers();
+    const reactionBonus = options.reaction === "dodge"
+      ? edgeModifiers.dodgeBonus
+      : options.reaction === "block"
+        ? edgeModifiers.blockBonus
+        : 0;
+    const result = await rollD20Check({ actor: this, stat, ...options, bonus: (options.bonus ?? 0) + reactionBonus });
     const content = await renderTemplate("systems/tokyo-ghoul-unofficial/templates/chat/roll-card.hbs", {
       title: game.i18n.format("TG.chat.statCheck", { stat: game.i18n.localize(`TG.stats.${stat}.label`) }),
       formula: result.formula,
@@ -81,16 +113,24 @@ export class TokyoGhoulActor extends Actor {
   }
 
   buildAttackSummary(item = null, options = {}) {
-    return buildAttackSummary({
+    const sourceItem = item ?? this.getDefaultAttackItem();
+    const attack = buildAttackSummary({
       stats: {
         str: this.getStat("str"),
         acc: this.getStat("acc")
       },
-      item: item ?? this.getDefaultAttackItem(),
+      item: sourceItem,
       attackMode: options.attackMode ?? "melee",
       combatMode: options.combatMode ?? this.system?.combat?.mode ?? "squad",
       sidearm: options.sidearm ?? false
     });
+    const edgeModifiers = this.getEdgeModifiers(sourceItem);
+
+    return {
+      ...attack,
+      damage: attack.damage + edgeModifiers.damageBonus,
+      edgeModifiers
+    };
   }
 
   async rollAttack(item = null, options = {}) {
@@ -179,7 +219,7 @@ export class TokyoGhoulActor extends Actor {
   }
 
   async takeBreather(options = {}) {
-    const recovery = this.getStat("end") * (options.multiplier ?? 1);
+    const recovery = this.getStat("end") * (options.multiplier ?? this.getEdgeModifiers().breatherMultiplier);
     const stamina = this.system.resources.stamina;
     const update = {
       "system.resources.stamina.value": clampResource(stamina.value + recovery, 0, stamina.max)
@@ -200,6 +240,109 @@ export class TokyoGhoulActor extends Actor {
       });
     }
     return recovery;
+  }
+
+  async processStartTurnConditions(options = {}) {
+    const conditionItems = Array.from(this.items ?? []).filter((item) => item.type === "condition");
+    const results = [];
+    const edgeModifiers = this.getEdgeModifiers();
+
+    for (const condition of conditionItems) {
+      let endRollTotal = options.endRollTotal;
+      if (condition.system?.conditionId === "burning" && endRollTotal === undefined) {
+        const roll = await rollD20Check({ actor: this, stat: "end" });
+        endRollTotal = roll.total;
+      }
+
+      const result = resolveConditionStartTurn({
+        conditionId: condition.system?.conditionId,
+        stacks: condition.system?.stacks,
+        regenerationType: edgeModifiers.regenerationType,
+        endRollTotal
+      });
+      results.push({ item: condition, ...result });
+
+      if (result.vitalityDamage > 0) await this.applyDamage(result.vitalityDamage, { quiet: true });
+      if (result.remove) await condition.delete();
+      else if (result.stacks !== condition.system?.stacks) await condition.update({ "system.stacks": result.stacks });
+    }
+
+    if (!options.quiet && results.length) {
+      await ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        content: game.i18n.format("TG.chat.conditionTurn", { actor: this.name, count: results.length }),
+        flags: { "tokyo-ghoul-unofficial": { conditionTurn: results.map(({ item, ...result }) => ({ itemId: item.id, ...result })) } }
+      });
+    }
+
+    return results;
+  }
+
+  async processEndTurnConditions(options = {}) {
+    const updates = [];
+
+    if (this.system?.combat?.grapple?.isGrappling) {
+      const drain = this.getStat("end");
+      if (drain > 0) {
+        await this.spendStamina(drain, { quiet: true });
+        updates.push({ kind: "grappleDrain", staminaDamage: drain });
+      }
+    }
+
+    if (this.system?.kakuja?.active) {
+      const kagune = this.getActiveKagune() ?? this.items.find((item) => item.type === "kagune");
+      const stage = this.system.kakuja.stage;
+      const mastered = stage === "full" ? this.system.kakuja.masteredFull : this.system.kakuja.masteredHalf;
+      const upkeep = calculateKakujaUpkeep({ stage, rcl: kagune?.system?.rcl ?? 0, mastered });
+      if (upkeep > 0) {
+        await this.spendStamina(upkeep, { quiet: true });
+        updates.push({ kind: "kakujaUpkeep", staminaDamage: upkeep });
+      }
+    }
+
+    if (!options.quiet && updates.length) {
+      await ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        content: game.i18n.format("TG.chat.endTurnEffects", { actor: this.name, count: updates.length }),
+        flags: { "tokyo-ghoul-unofficial": { endTurnEffects: updates } }
+      });
+    }
+
+    return updates;
+  }
+
+  async toggleGimmick(gimmick = null, options = {}) {
+    const item = gimmick ?? this.items.find((owned) => owned.type === "gimmick");
+    if (!item) return null;
+
+    const summary = buildGimmickActivationSummary({
+      gimmickType: item.system?.gimmickType,
+      active: item.system?.active,
+      staminaCostMode: item.system?.staminaCostMode,
+      stats: {
+        end: this.getStat("end"),
+        spd: this.getStat("spd")
+      },
+      customCost: options.customCost,
+      free: options.free ?? false
+    });
+
+    if (summary.staminaCost > 0) await this.spendStamina(summary.staminaCost, { quiet: true });
+    await item.update({ "system.active": summary.active });
+
+    if (!options.quiet) {
+      await ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        content: game.i18n.format("TG.chat.gimmickToggle", {
+          actor: this.name,
+          gimmick: item.name,
+          state: game.i18n.localize(summary.active ? "TG.states.active" : "TG.states.inactive"),
+          cost: summary.staminaCost
+        })
+      });
+    }
+
+    return summary;
   }
 
   async reserveReactionManeuver() {
@@ -250,7 +393,12 @@ export class TokyoGhoulActor extends Actor {
 
     const results = [];
     for (const check of checks) {
-      const roll = await rollD20Check({ actor: this, stat: "crl", targetNumber: check.targetNumber });
+      const edgeModifiers = this.getEdgeModifiers();
+      const roll = edgeModifiers.autoPassCrl
+        ? { total: check.targetNumber, success: true, formula: "Inner Peace", natural: null, extra: null }
+        : edgeModifiers.autoFailCrl
+          ? { total: 0, success: false, formula: "Rampant", natural: null, extra: null }
+          : await rollD20Check({ actor: this, stat: "crl", targetNumber: check.targetNumber });
       results.push({ ...check, roll });
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
@@ -297,5 +445,61 @@ export class TokyoGhoulActor extends Actor {
     }
 
     await this.update(update);
+  }
+
+  async applyConsumptionReward({ targetHighestRcl = 0, rclGain = 1, rclLimit = Number.POSITIVE_INFINITY, targetName = "" } = {}) {
+    const kagune = this.getActiveKagune() ?? this.items.find((item) => item.type === "kagune");
+    const currentRcl = Number(kagune?.system?.rcl ?? this.system?.rcl?.ghoul?.value ?? 0);
+    const reward = calculateConsumptionReward({
+      actorClass: this.system?.identity?.class,
+      currentStatPoints: this.system?.progression?.statPoints,
+      currentRcl,
+      targetHighestRcl,
+      rclLimit,
+      rclGain
+    });
+
+    const consumed = Array.from(this.system?.progression?.consumed ?? []);
+    consumed.push({
+      targetName,
+      targetHighestRcl,
+      statPointsGained: reward.statPointsGained,
+      rclGained: reward.rclGained
+    });
+
+    await this.update({
+      "system.progression.statPoints": reward.statPoints,
+      "system.progression.consumed": consumed
+    });
+
+    if (kagune && reward.rclGained > 0) await kagune.update({ "system.rcl": reward.rcl });
+    return reward;
+  }
+
+  async upgradeQuinqueWithKakuhou(quinque, kakuhou, options = {}) {
+    if (!quinque || quinque.type !== "quinque") return null;
+    const source = kakuhou?.system ?? kakuhou ?? {};
+    const update = {};
+
+    if (options.addGimmick) {
+      const gimmick = calculateQuinqueGimmickAddition({
+        currentRcl: quinque.system?.rcl,
+        kakuhouType: source.sourceKaguneType,
+        hasDynamicEdge: source.sourceEdges?.includes?.("Dynamic Edge")
+      });
+      if (!gimmick.affordable) return { affordable: false, gimmick };
+      update["system.rcl"] = gimmick.rcl;
+      update["system.gimmick"] = gimmick.gimmickType;
+    } else {
+      const upgrade = calculateQuinqueUpgrade({
+        currentRcl: quinque.system?.rcl,
+        sourceRcl: source.sourceRcl
+      });
+      update["system.rcl"] = upgrade.rcl;
+    }
+
+    await quinque.update(update);
+    if (kakuhou?.update) await kakuhou.update({ "system.consumed": true, "system.usedFor": options.addGimmick ? "gimmick" : "upgrade" });
+    return { affordable: true, update };
   }
 }

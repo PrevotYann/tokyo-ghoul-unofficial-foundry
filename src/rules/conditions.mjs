@@ -52,3 +52,43 @@ export function resolveGrappleBreak({ grapplerTotal = 0, targetTotal = 0 } = {})
     margin: numberOrZero(targetTotal) - numberOrZero(grapplerTotal)
   };
 }
+
+export function resolveConditionStartTurn({ conditionId = "", stacks = 1, regenerationType = "none", endRollTotal = null } = {}) {
+  if (conditionId === "bleeding") {
+    const result = resolveBleedingStartTurn({ stacks, regenerationType });
+    return {
+      conditionId,
+      stacks: result.remainingStacks,
+      vitalityDamage: result.vitalityDamage,
+      remove: result.remainingStacks <= 0
+    };
+  }
+
+  if (conditionId === "burning") {
+    if (endRollTotal === null || endRollTotal === undefined) {
+      return {
+        conditionId,
+        stacks: numberOrZero(stacks),
+        vitalityDamage: 0,
+        remove: false,
+        requiresRoll: "end"
+      };
+    }
+
+    const result = resolveBurningStartTurn({ stacks, endRollTotal });
+    return {
+      conditionId,
+      stacks: result.stacks,
+      vitalityDamage: result.vitalityDamage,
+      remove: result.cleared,
+      modifiedRoll: result.modifiedRoll
+    };
+  }
+
+  return {
+    conditionId,
+    stacks: numberOrZero(stacks),
+    vitalityDamage: 0,
+    remove: false
+  };
+}

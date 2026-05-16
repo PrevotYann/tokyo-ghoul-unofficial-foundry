@@ -96,9 +96,14 @@ export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApp
     const action = event.currentTarget.dataset.actorAction;
 
     if (action === "strike") return actor.rollAttack();
-    if (action === "dodge") return actor.rollCheck("spd");
-    if (action === "block") return actor.rollCheck("end");
+    if (action === "dodge") return actor.rollCheck("spd", { reaction: "dodge" });
+    if (action === "block") return actor.rollCheck("end", { reaction: "block" });
     if (action === "breather") return actor.takeBreather();
+    if (action === "reserveReaction") return actor.reserveReactionManeuver();
+    if (action === "controlCheck") return actor.checkHungerOrRage("manual");
+    if (action === "toggleGimmick") return actor.toggleGimmick();
+    if (action === "activateKakuja") return actor.activateKakuja({ stage: actor.system.kakuja?.stage === "full" ? "full" : "half" });
+    if (action === "deactivateKakuja") return actor.deactivateKakuja();
     if (action === "setupClass") return this.#setupClass(actor);
   }
 

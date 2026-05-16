@@ -3,8 +3,13 @@ import test from "node:test";
 
 import {
   advanceKakujaMastery,
+  calculateKakujaArmorDamageReduction,
+  calculateKakujaArmorParasiticDamage,
   calculateKakujaUpkeep,
+  calculateKakujaWeaponEdgeSlots,
+  calculateQuinxKaguneCostUnderArmor,
   canFullKakuja,
+  getKakujaArmorTypeEffect,
   getKakujaBonusOptions,
   getKakujaEligibility,
   getMasteryRequirement
@@ -51,4 +56,18 @@ test("mastery requires combat or out-of-combat success streaks and failure cause
     mastered: false,
     lostControl: true
   });
+});
+
+test("Kakuja Quinque helpers cover weapon slots, armor reduction, parasitic damage, and Quinx costs", () => {
+  assert.equal(calculateKakujaWeaponEdgeSlots(3), 6);
+  assert.equal(calculateKakujaArmorDamageReduction({ incomingDamage: 18, armorRcl: 10 }), 8);
+  assert.equal(calculateKakujaArmorDamageReduction({ incomingDamage: 8, armorRcl: 10 }), 0);
+  assert.equal(calculateKakujaArmorParasiticDamage({ armorRcl: 10, weaponRcl: 20, turnsActive: 5 }), 0);
+  assert.equal(calculateKakujaArmorParasiticDamage({ armorRcl: 10, weaponRcl: 20, turnsActive: 6 }), 15);
+  assert.deepEqual(getKakujaArmorTypeEffect({ armorType: "speed" }), {
+    statMultipliers: { spd: 2 },
+    extraManeuvers: 1,
+    removesDamageManeuverCosts: false
+  });
+  assert.equal(calculateQuinxKaguneCostUnderArmor({ baseCost: 7, armorActive: true }), 14);
 });

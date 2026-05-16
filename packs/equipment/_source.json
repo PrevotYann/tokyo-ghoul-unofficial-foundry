@@ -1,0 +1,166 @@
+[
+  {
+    "name": "Sample Medkit",
+    "type": "consumable",
+    "system": {
+      "consumableType": "medkit",
+      "quantity": 1,
+      "maxCarry": 5,
+      "range": "melee",
+      "area": "none",
+      "effect": {
+        "removes": [
+          "bleeding",
+          "burning"
+        ],
+        "healingFormula": "PER + target END"
+      },
+      "automation": "manual",
+      "description": "Medical kit for assisted healing and condition removal."
+    }
+  },
+  {
+    "name": "Sample Frag Grenade",
+    "type": "consumable",
+    "system": {
+      "consumableType": "fragGrenade",
+      "quantity": 1,
+      "maxCarry": 10,
+      "range": "mid",
+      "area": "closeRadius",
+      "effect": {
+        "damageFormula": "ACC * 3"
+      },
+      "automation": "manual",
+      "description": "Explosive grenade with close-area damage."
+    }
+  },
+  {
+    "name": "Sample Incendiary Grenade",
+    "type": "consumable",
+    "system": {
+      "consumableType": "incendiaryGrenade",
+      "quantity": 1,
+      "maxCarry": 10,
+      "range": "mid",
+      "area": "closeRadius",
+      "effect": {
+        "applies": [
+          "burning"
+        ]
+      },
+      "automation": "manual",
+      "description": "Area grenade that applies Burning."
+    }
+  },
+  {
+    "name": "Sample RC Limiter Grenade",
+    "type": "consumable",
+    "system": {
+      "consumableType": "rcLimiterGrenade",
+      "quantity": 1,
+      "maxCarry": 10,
+      "range": "mid",
+      "area": "closeRadius",
+      "effect": {
+        "applies": [
+          "rc-limiter-cloud"
+        ],
+        "durationTurns": 3
+      },
+      "automation": "manual",
+      "description": "Creates a temporary RC limiter cloud."
+    }
+  },
+  {
+    "name": "Sample Q Bullet",
+    "type": "consumable",
+    "system": {
+      "consumableType": "qBullet",
+      "quantity": 6,
+      "maxCarry": null,
+      "range": "long",
+      "area": "none",
+      "effect": {
+        "attackSource": "sidearm"
+      },
+      "automation": "manual",
+      "description": "Sidearm ammunition for assisted Quinque attacks."
+    }
+  },
+  {
+    "name": "Attack Gimmick",
+    "type": "gimmick",
+    "system": {
+      "gimmickType": "attack",
+      "active": false,
+      "staminaCostMode": "maxEndSpd",
+      "selectedStat": null,
+      "selectedBenefit": null,
+      "grantedEdges": [],
+      "dynamicEffect": "",
+      "automation": "manual",
+      "description": "Signature attack using RCL and a selected stat."
+    }
+  },
+  {
+    "name": "Defense Gimmick",
+    "type": "gimmick",
+    "system": {
+      "gimmickType": "defense",
+      "active": false,
+      "staminaCostMode": "maxEndSpd",
+      "selectedStat": null,
+      "selectedBenefit": null,
+      "grantedEdges": [],
+      "dynamicEffect": "",
+      "automation": "manual",
+      "description": "Defensive form that can assist Dodge or Block timing."
+    }
+  },
+  {
+    "name": "Form Gimmick",
+    "type": "gimmick",
+    "system": {
+      "gimmickType": "form",
+      "active": false,
+      "staminaCostMode": "maxEndSpd",
+      "selectedStat": null,
+      "selectedBenefit": null,
+      "grantedEdges": [],
+      "dynamicEffect": "",
+      "automation": "manual",
+      "description": "Alternate form with attack or damage benefit."
+    }
+  },
+  {
+    "name": "Utility Gimmick",
+    "type": "gimmick",
+    "system": {
+      "gimmickType": "utility",
+      "active": false,
+      "staminaCostMode": "tripleMaxEndSpd",
+      "selectedStat": null,
+      "selectedBenefit": null,
+      "grantedEdges": [],
+      "dynamicEffect": "",
+      "automation": "manual",
+      "description": "Utility form that grants temporary edge support."
+    }
+  },
+  {
+    "name": "Dynamic Gimmick",
+    "type": "gimmick",
+    "system": {
+      "gimmickType": "dynamic",
+      "active": false,
+      "staminaCostMode": "custom",
+      "selectedStat": null,
+      "selectedBenefit": null,
+      "grantedEdges": [],
+      "dynamicEffect": "",
+      "automation": "manual",
+      "description": "GM-defined gimmick effect."
+    }
+  }
+]
