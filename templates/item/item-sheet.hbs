@@ -54,7 +54,7 @@
   {{#if typeFlags.isQuinque}}
     <section class="tg-panel">
       <h2>{{localize 'TG.itemTypes.quinque'}}</h2>
-      <div class="tg-grid tg-grid-3"><label><span>{{localize 'TG.sheet.kakujaWeapon'}}</span><input name="system.kakuja.isKakujaWeapon" type="checkbox" {{#if system.kakuja.isKakujaWeapon}}checked{{/if}}></label><label><span>{{localize 'TG.sheet.freeGimmick'}}</span><input name="system.kakuja.freeGimmick" type="checkbox" {{#if system.kakuja.freeGimmick}}checked{{/if}}></label><label><span>{{localize 'TG.sheet.ammo'}}</span><input type="number" min="0" name="system.sidearm.ammo.value" value="{{system.sidearm.ammo.value}}"></label></div>
+      <div class="tg-grid tg-grid-3"><label class="tg-inline-check"><span>{{localize 'TG.sheet.kakujaWeapon'}}</span><input name="system.kakuja.isKakujaWeapon" type="checkbox" {{#if system.kakuja.isKakujaWeapon}}checked{{/if}}></label><label class="tg-inline-check"><span>{{localize 'TG.sheet.freeGimmick'}}</span><input name="system.kakuja.freeGimmick" type="checkbox" {{#if system.kakuja.freeGimmick}}checked{{/if}}></label><label><span>{{localize 'TG.sheet.ammo'}}</span><input type="number" min="0" name="system.sidearm.ammo.value" value="{{system.sidearm.ammo.value}}"></label></div>
       <div class="tg-grid tg-grid-3">
         <label>
           <span>{{localize 'TG.sheet.type'}}</span>
@@ -102,7 +102,7 @@
     <label><span>{{localize 'TG.resources.rcl.label'}}</span><input type="number" min="0" name="system.sourceRcl" value="{{system.sourceRcl}}"></label>
     <label><span>{{localize 'TG.sheet.type'}}</span><select name="system.sourceKaguneType">{{#each weaponTypes}}<option value="{{this}}" {{#if (eq this ../system.sourceKaguneType)}}selected{{/if}}>{{localize (concat "TG.kagune." this)}}</option>{{/each}}</select></label>
     <label><span>{{localize 'TG.sheet.edgesComma'}}</span><input name="system.sourceEdges" value="{{sourceEdgesText}}"></label>
-    <label><span>{{localize 'TG.sheet.consumed'}}</span><input name="system.consumed" type="checkbox" {{#if system.consumed}}checked{{/if}}></label>
+    <label class="tg-inline-check"><span>{{localize 'TG.sheet.consumed'}}</span><input name="system.consumed" type="checkbox" {{#if system.consumed}}checked{{/if}}></label>
   </div></section>{{/if}}
   {{#if typeFlags.isEdge}}
     <section class="tg-panel">
@@ -121,10 +121,10 @@
           <input name="system.formula" type="text" value="{{system.formula}}">
         </label>
       </div>
-      <label>
+      <div class="tg-rich-field">
         <span>{{localize 'TG.sheet.notes'}}</span>
-        <textarea name="system.notes">{{system.notes}}</textarea>
-      </label>
+        <prose-mirror class="tg-rich-text" name="system.notes" data-document-uuid="{{item.uuid}}" value="{{system.notes}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "notes"}}}</prose-mirror>
+      </div>
     </section>
   {{/if}}
 
@@ -187,15 +187,15 @@
       </div>
       <label><span>{{localize 'TG.sheet.grantedEdges'}}</span><input name="system.grantedEdges" value="{{grantedEdgesText}}"></label>
       <div class="tg-grid tg-grid-2"><label><span>{{localize 'TG.sheet.stats'}}</span><input name="system.selectedStat" value="{{system.selectedStat}}"></label><label><span>{{localize 'TG.sheet.selectedBenefit'}}</span><select name="system.selectedBenefit"><option value="attack" {{#if (eq system.selectedBenefit "attack")}}selected{{/if}}>{{localize 'TG.chat.attack'}}</option><option value="damage" {{#if (eq system.selectedBenefit "damage")}}selected{{/if}}>{{localize 'TG.chat.damage'}}</option></select></label></div>
-      <label>
+      <div class="tg-rich-field">
         <span>{{localize 'TG.sheet.dynamicEffect'}}</span>
-        <textarea name="system.dynamicEffect">{{system.dynamicEffect}}</textarea>
-      </label>
+        <prose-mirror class="tg-rich-text" name="system.dynamicEffect" data-document-uuid="{{item.uuid}}" value="{{system.dynamicEffect}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "dynamicEffect"}}}</prose-mirror>
+      </div>
     </section>
   {{/if}}
 
   <section class="tg-panel">
     <h2>{{localize 'TG.sheet.description'}}</h2>
-    <textarea name="system.description">{{system.description}}</textarea>
+    <prose-mirror class="tg-rich-text" name="system.description" data-document-uuid="{{item.uuid}}" value="{{system.description}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "description"}}}</prose-mirror>
   </section>
 </div>

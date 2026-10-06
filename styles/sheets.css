@@ -352,3 +352,29 @@
  .tg-system.tg-item-sheet .tg-grid-2, .tg-system.tg-item-sheet .tg-grid-3 {grid-template-columns:1fr;}
  .tg-system.tg-item-sheet .tg-item-automation {flex-wrap:wrap;}
 }
+
+/* Rich text is readable until an owner deliberately opens its native editor. */
+.tg-system .tg-rich-field {display:flex; flex-direction:column; gap:6px; min-width:0;}
+.tg-system .tg-rich-field > span {color:var(--tg-muted); font-size:13px; font-weight:550;}
+.tg-system .tg-rich-text {
+  display:block; min-height:96px; height:auto; position:relative;
+  border:1px solid var(--tg-line); border-radius:6px; background:#0d0f14;
+  color:var(--tg-text); line-height:1.6; overflow-wrap:anywhere;
+}
+.tg-system .tg-rich-text .editor-content {padding:12px; min-height:96px; height:auto; overflow:visible;}
+.tg-system .tg-rich-text.inactive .editor-content {padding-right:42px;}
+.tg-system .tg-rich-text .editor-content > :first-child {margin-top:0;}
+.tg-system .tg-rich-text .editor-content > :last-child {margin-bottom:0;}
+.tg-system .tg-rich-text ul, .tg-system .tg-rich-text ol {padding-left:1.5rem;}
+.tg-system .tg-rich-text.active {min-height:220px;}
+.tg-system .tg-rich-text.active .editor-content {min-height:160px;}
+.tg-system .tg-rich-text > button.toggle:enabled {
+  display:flex; align-items:center; justify-content:center;
+  top:6px; right:6px; width:28px; height:28px; min-height:28px; padding:0;
+}
+.tg-system .tg-rich-text[disabled] > button.toggle {display:none;}
+.tg-system .tg-grid label.tg-inline-check {
+  flex-direction:row; align-items:center; justify-content:flex-start; gap:8px;
+  align-self:end; min-height:36px; cursor:pointer;
+}
+.tg-system .tg-inline-check > input[type=checkbox] {order:-1;}

@@ -169,9 +169,9 @@
         </label>
       </div>
       <div class="tg-grid tg-grid-3">
-        <label><span>{{localize 'TG.sheet.kakujaUnlocked'}}</span><input name="system.kakuja.eligible" type="checkbox" {{#if system.kakuja.eligible}}checked{{/if}}></label>
-        <label><span>{{localize 'TG.sheet.masteredHalf'}}</span><input name="system.kakuja.masteredHalf" type="checkbox" {{#if system.kakuja.masteredHalf}}checked{{/if}}></label>
-        <label><span>{{localize 'TG.sheet.masteredFull'}}</span><input name="system.kakuja.masteredFull" type="checkbox" {{#if system.kakuja.masteredFull}}checked{{/if}}></label>
+        <label class="tg-inline-check"><span>{{localize 'TG.sheet.kakujaUnlocked'}}</span><input name="system.kakuja.eligible" type="checkbox" {{#if system.kakuja.eligible}}checked{{/if}}></label>
+        <label class="tg-inline-check"><span>{{localize 'TG.sheet.masteredHalf'}}</span><input name="system.kakuja.masteredHalf" type="checkbox" {{#if system.kakuja.masteredHalf}}checked{{/if}}></label>
+        <label class="tg-inline-check"><span>{{localize 'TG.sheet.masteredFull'}}</span><input name="system.kakuja.masteredFull" type="checkbox" {{#if system.kakuja.masteredFull}}checked{{/if}}></label>
       </div>
       <p class="tg-muted">{{localize 'TG.sheet.masteryProgress'}}: {{system.kakuja.masterySuccesses}} ? {{system.kakuja.selectedBonus}}</p>
       <div class="tg-action-row tg-panel-actions">
@@ -184,10 +184,10 @@
         <button type="button" data-actor-action="activateKakuja">{{localize 'TG.actions.activateKakuja'}}</button>
         <button type="button" data-actor-action="deactivateKakuja">{{localize 'TG.actions.deactivateKakuja'}}</button>
       </div>
-      <label>
+      <div class="tg-rich-field">
         <span>{{localize 'TG.sheet.notes'}}</span>
-        <textarea name="system.progression.notes">{{system.progression.notes}}</textarea>
-      </label>
+        <prose-mirror class="tg-rich-text" name="system.progression.notes" data-document-uuid="{{actor.uuid}}" value="{{system.progression.notes}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "progression.notes"}}}</prose-mirror>
+      </div>
     </div>
   </section>
 
@@ -200,22 +200,22 @@
     <div class="tg-panel">
       <h2>{{localize 'TG.tabs.biography'}}</h2>
       <div class="tg-grid tg-grid-2">
-        <label>
+        <div class="tg-rich-field">
           <span>{{localize 'TG.biography.appearance'}}</span>
-          <textarea name="system.biography.appearance">{{system.biography.appearance}}</textarea>
-        </label>
-        <label>
+          <prose-mirror class="tg-rich-text" name="system.biography.appearance" data-document-uuid="{{actor.uuid}}" value="{{system.biography.appearance}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "biography.appearance"}}}</prose-mirror>
+        </div>
+        <div class="tg-rich-field">
           <span>{{localize 'TG.biography.personality'}}</span>
-          <textarea name="system.biography.personality">{{system.biography.personality}}</textarea>
-        </label>
-        <label>
+          <prose-mirror class="tg-rich-text" name="system.biography.personality" data-document-uuid="{{actor.uuid}}" value="{{system.biography.personality}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "biography.personality"}}}</prose-mirror>
+        </div>
+        <div class="tg-rich-field">
           <span>{{localize 'TG.biography.backstory'}}</span>
-          <textarea name="system.biography.backstory">{{system.biography.backstory}}</textarea>
-        </label>
-        <label>
+          <prose-mirror class="tg-rich-text" name="system.biography.backstory" data-document-uuid="{{actor.uuid}}" value="{{system.biography.backstory}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "biography.backstory"}}}</prose-mirror>
+        </div>
+        <div class="tg-rich-field">
           <span>{{localize 'TG.biography.goals'}}</span>
-          <textarea name="system.biography.goals">{{system.biography.goals}}</textarea>
-        </label>
+          <prose-mirror class="tg-rich-text" name="system.biography.goals" data-document-uuid="{{actor.uuid}}" value="{{system.biography.goals}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "biography.goals"}}}</prose-mirror>
+        </div>
       </div>
     </div>
   </section>
@@ -223,10 +223,10 @@
   <section role="tabpanel" data-tg-panel="settings" hidden>
     <div class="tg-panel">
       <h2>{{localize 'TG.tabs.settings'}}</h2>
-      <label>
+      <div class="tg-rich-field">
         <span>{{localize 'TG.sheet.ruleNotes'}}</span>
-        <textarea name="system.automation.ruleNotes">{{system.automation.ruleNotes}}</textarea>
-      </label>
+        <prose-mirror class="tg-rich-text" name="system.automation.ruleNotes" data-document-uuid="{{actor.uuid}}" value="{{system.automation.ruleNotes}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "automation.ruleNotes"}}}</prose-mirror>
+      </div>
     </div>
     <div class="tg-panel"><h2>{{localize 'TG.sheet.effects'}}</h2>
       <button type="button" data-actor-action="addEffect">{{localize 'TG.actions.addEffect'}}</button>

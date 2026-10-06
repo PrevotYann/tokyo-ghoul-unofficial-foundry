@@ -1,3 +1,4 @@
+import { enrichSheetFields, labelRichTextEditors } from "./rich-text.mjs";
 import { assignEdgeToWeapon } from "./edge-assignment.mjs";
 import { parseDropData } from "../ui/drag-drop.mjs";
 
@@ -26,6 +27,7 @@ export class TokyoGhoulItemSheet extends foundry.applications.api.HandlebarsAppl
       ...context,
       item,
       system: item.system,
+      enriched: await enrichSheetFields(item, ["description", "notes", "dynamicEffect"]),
       typeFlags: {
         isKagune: item.type === "kagune",
         isQuinque: item.type === "quinque",
@@ -48,6 +50,7 @@ export class TokyoGhoulItemSheet extends foundry.applications.api.HandlebarsAppl
 
   _onRender(context, options) {
     super._onRender(context, options);
+    labelRichTextEditors(this.element);
     if (this.isEditable && ["kagune", "quinque"].includes(this.document.type)) {
       this.element.ondragover = event => event.preventDefault();
       this.element.ondrop = event => this._onDrop(event);

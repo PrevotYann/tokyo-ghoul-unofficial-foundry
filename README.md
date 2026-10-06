@@ -2,7 +2,7 @@
 
 **Included one-shot: The Last Delivery.** An original 4–6 player Tokyo Ghoul investigation with six pregens, NPCs, weapons, evidence handouts and three generated top-down battlemaps. Open its Adventure compendium and import all content, then read **00 • GM Start Here**. [Contents, setup and validation](docs/qa/last-delivery.md).
 
-An unofficial system for Foundry **v14**, verified locally on **14.368**. Version 0.4.0 adds **The Last Delivery**, a complete native Adventure with original characters, equipment, journals, illustrated battlemaps, working walls/doors, lighting, vision and preplaced tokens.
+An unofficial system for Foundry **v14**, verified locally on **14.368**. Version 0.4.1 fixes formatted sheet text and checkbox layout. Version 0.4.0 added **The Last Delivery**, a complete native Adventure with original characters, equipment, journals, illustrated battlemaps, working walls/doors, lighting, vision and preplaced tokens.
 
 ## Install
 
@@ -43,3 +43,5 @@ Run npm run release:package to create the installable archive and manifests in a
 The developer rulebook is expected locally at docs/rulebook/Tokyo Ghoul Tabletop RPG - Unofficial.pdf and is excluded from releases. Mechanics use formulas and concise paraphrases. The placeholder SVG is original. The background and custom wordmark were generated with the built-in image tool; the generation prompt is included beside the image in assets/. No official Tokyo Ghoul artwork, panels, music, logos or fonts are shipped. Tokyo Ghoul belongs to its respective rights holders.
 
 French localization includes English stubs for newer controls. Spatial movement, cover, area membership, Dynamic abilities and narrative triggers require GM judgment; consult the audit rather than assuming complete automation.
+
+Rich text on Actor and Item sheets is rendered as formatted content by default. Owners can use the pencil button to edit and save it; read-only sheets hide that control. Run `npm run test:sheet-content` against the disposable `tg-qa` v14 world to verify rich text display, editing, saving, permissions, weapon checkboxes and narrow layouts.

@@ -1,3 +1,4 @@
+import { enrichSheetFields, labelRichTextEditors } from "./rich-text.mjs";
 import { promptAttackOptions, promptRollOptions, promptFields } from "./roll-dialogs.mjs";
 import { assignEdgeToWeapon } from "./edge-assignment.mjs";
 import { parseDropData } from "../ui/drag-drop.mjs";
@@ -32,6 +33,7 @@ export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApp
       ...context,
       actor,
       system: actor.system,
+      enriched: await enrichSheetFields(actor, ["biography.appearance", "biography.personality", "biography.backstory", "biography.goals", "progression.notes", "automation.ruleNotes"]),
       usesMealScore: actor.system.identity?.class === "ghoul" || actor.system.identity?.class === "quinx",
       effects: actor.effects.contents,
       rangeBands: ["melee","close","mid","long","far"],
@@ -46,6 +48,7 @@ export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApp
 
   async _onRender(context, options) {
     await super._onRender(context, options);
+    labelRichTextEditors(this.element);
     this.#activateTab(this.#activeTab);
     this.element.querySelectorAll("[data-effect-id]").forEach(button => button.addEventListener("click", () => this.actor.effects.get(button.dataset.effectId)?.sheet.render({force:true})));
     this.element.querySelectorAll("[data-item-action]").forEach(button => button.addEventListener("click", event => this.#onItemAction(event)));

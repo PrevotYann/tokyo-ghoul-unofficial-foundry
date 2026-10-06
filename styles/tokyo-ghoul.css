@@ -36,7 +36,7 @@
 
 /* Do not apply a text-font shorthand to Font Awesome buttons. */
 .tg-system button:not(.icon):not([class*="fa-"]):not(.fa, .fas, .far, .fal, .fat, .fad, .fab),
-.tg-system input,
+.tg-system input:not([type="checkbox"]):not([type="radio"]),
 .tg-system select,
 .tg-system textarea {
   font: inherit;
@@ -54,7 +54,7 @@
   font-variant: normal;
 }
 
-.tg-system input,
+.tg-system input:not([type="checkbox"]):not([type="radio"]),
 .tg-system select,
 .tg-system textarea {
   width: 100%;
@@ -113,7 +113,13 @@
 .tg-system button:hover {background:#353d50; border-color:var(--tg-accent-strong);}
 .tg-system button:disabled {cursor:default; opacity:.55;}
 .tg-system input:not([type=checkbox]), .tg-system select {min-height:36px; height:auto; line-height:1.5;}
-.tg-system input[type=checkbox] {width:18px; height:18px; padding:0; accent-color:var(--tg-accent-strong);}
+.tg-system input[type=checkbox] {
+  appearance:auto; width:18px; height:18px; min-width:18px; max-width:18px;
+  flex:0 0 18px; padding:0; margin:0; border:0; background:transparent;
+  accent-color:var(--tg-accent-strong);
+}
+.tg-system input[type=checkbox]::before,
+.tg-system input[type=checkbox]::after {content:none; display:none;}
 .tg-system :is(button, input, select, textarea):focus-visible {outline:2px solid var(--tg-focus); outline-offset:3px;}
 .tg-system label {color:var(--tg-muted);}
 .tg-system .window-header {background:#11151f; border-bottom:1px solid var(--tg-line); color:var(--tg-text);}
