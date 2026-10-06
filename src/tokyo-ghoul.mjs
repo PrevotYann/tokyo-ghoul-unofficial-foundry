@@ -21,6 +21,9 @@ import { TokyoGhoulItemSheet } from "./sheets/item-sheet.mjs";
 import { registerMigrationSettings, runMigrations } from "./rules/migrations.mjs";
 import { registerChatCardListeners } from "./ui/chat-cards.mjs";
 import { registerHandlebarsHelpers } from "./ui/handlebars-helpers.mjs";
+import { registerBabeleHooks } from "./localization/babele.mjs";
+
+registerBabeleHooks();
 
 const ACTOR_DATA_MODELS = {
   character: CharacterDataModel,

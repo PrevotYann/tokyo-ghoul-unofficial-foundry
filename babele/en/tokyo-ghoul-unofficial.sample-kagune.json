@@ -1,0 +1,31 @@
+{
+  "label": "Sample Kagune",
+  "mapping": {
+    "name": "name",
+    "description": "system.description",
+    "dynamicNotes": "system.dynamicNotes"
+  },
+  "folders": {},
+  "entries": {
+    "53a68de271e21a67": {
+      "name": "Sample Ukaku Kagune",
+      "description": "Fast projectile-focused Kagune template.",
+      "dynamicNotes": ""
+    },
+    "5231a58a82cdce0d": {
+      "name": "Sample Koukaku Kagune",
+      "description": "Heavy close-range Kagune template.",
+      "dynamicNotes": ""
+    },
+    "5bc18eb9726cef9e": {
+      "name": "Sample Rinkaku Tendril Kagune",
+      "description": "Flexible mid-range Kagune template.",
+      "dynamicNotes": ""
+    },
+    "2fe1e6523c5c84e0": {
+      "name": "Sample Bikaku Tail Kagune",
+      "description": "Balanced mid-range Kagune template.",
+      "dynamicNotes": ""
+    }
+  }
+}

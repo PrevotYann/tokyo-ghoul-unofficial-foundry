@@ -93,7 +93,7 @@ test("kakuhou storage entries preserve source data without Foundry documents", (
     sourceRank: "A",
     sourceRcl: 20,
     sourceKaguneType: "bikaku",
-    sourceEdges: ["Massive"],
+    sourceEdges: ["massive"],
     consumed: false,
     usedFor: null
   });

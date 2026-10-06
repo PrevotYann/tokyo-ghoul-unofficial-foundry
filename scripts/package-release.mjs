@@ -14,21 +14,31 @@ const crc32 = data => {
 const root = process.cwd();
 const manifest = JSON.parse(await fs.readFile("system.json", "utf8"));
 const files = ["system.json", "README.md"];
+const sources = new Map();
+const packsIndex = process.argv.indexOf("--packs");
+const packsDirectory = packsIndex < 0 ? "packs" : path.resolve(process.argv[packsIndex + 1]);
 for (const optional of ["LICENSE", "LICENSE.md"]) {
   try { await fs.access(optional); files.push(optional); } catch {}
 }
-async function collect(directory) {
-  for (const entry of await fs.readdir(directory, {withFileTypes:true})) {
+async function collect(directory, sourceDirectory = directory) {
+  for (const entry of await fs.readdir(sourceDirectory, {withFileTypes:true})) {
     const relative = `${directory}/${entry.name}`;
-    if (entry.isDirectory()) await collect(relative);
-    else if (!/^(LOCK|LOG.*)$/.test(entry.name)) files.push(relative);
+    const source = path.join(sourceDirectory, entry.name);
+    if (entry.isDirectory()) {
+      if (directory.startsWith("packs") && entry.name === "lost") continue;
+      await collect(relative, source);
+    } else if (!/^(LOCK|LOG.*)$/.test(entry.name)) {
+      files.push(relative);
+      sources.set(relative, source);
+    }
   }
 }
-for (const directory of ["assets", "src", "templates", "styles", "lang", "packs", "docs/qa"]) await collect(directory);
+for (const directory of ["assets", "src", "templates", "styles", "lang", "babele", "docs/qa"]) await collect(directory);
+await collect("packs", packsDirectory);
 const local = [], central = [];
 let offset = 0;
 for (const relative of files.sort()) {
-  const content = await fs.readFile(path.join(root, relative));
+  const content = await fs.readFile(sources.get(relative) ?? path.join(root, relative));
   const name = Buffer.from(`${manifest.id}/${relative}`, "utf8");
   const crc = crc32(content);
   const header = Buffer.alloc(30);

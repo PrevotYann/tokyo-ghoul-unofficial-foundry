@@ -10,4 +10,6 @@ Current status:
 - Templates: generic Kagune and Quinque samples only.
 - Consumables and Gimmicks: generic starter records.
 
-Run `npm run build:packs` to create `_source.json` import bundles under `packs/*`. These are source bundles for Foundry import/build workflows; final LevelDB pack databases should still be generated from Foundry or a dedicated pack build tool before release.
+All source names and text are English. Edge records include a stable `system.ruleId` that translation modules must preserve.
+
+Run `npm run build:packs` to create native LevelDB databases and `_source.json` bundles under `packs/*`. Stop Foundry first, or use `npm run build:packs -- --output artifacts/translation-packs` to build separately. Run `npm run build:translations` after changing English text to refresh the ID-keyed Babele files. See [translation instructions](../../docs/qa/translations.md).

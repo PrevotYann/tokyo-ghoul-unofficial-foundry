@@ -1,0 +1,12 @@
+Generated using the built-in image_gen tool.
+
+Use case: ads-marketing.
+Asset type: finished wide 16:9 game-system thumbnail and background artwork for a Foundry VTT Tokyo Ghoul unofficial tabletop RPG; high-resolution landscape.
+Primary request: create a polished dark urban horror key visual with a large, ORIGINAL "TOKYO GHOUL" / "TTRPG" typographic logo, legible when reduced to a thumbnail.
+Scene/backdrop: original illustrated Tokyo-like night skyline, layered rooftops and distant towers disappearing into rain and charcoal mist; subtly luminous red windows, wet reflections, understated crimson organic energy ribbons framing the outer corners.
+Subject: the central custom wordmark is the hero. Above it a small original stylized crimson eye emblem: almond outline, dark sclera, circular red iris and black pupil with one pale glint, inspired by the project's original eye mark. No characters.
+Style/medium: premium original digital illustration and graphic design, cinematic urban horror, ink-like textures, restrained grain, architectural detail fading into atmospheric darkness, crisp designed lettering rather than a photo of a physical sign.
+Composition/framing: wide 16:9 full-bleed artwork, central logo inside the middle 60% of the width and middle 50% of the height for thumbnail and crop safety; quieter near-black edges and dark lower area suitable behind UI. Strong silhouette and hierarchy.
+Color palette: near-black charcoal, slate blue-gray, off-white lettering, deep crimson and small sharp red highlights, matching the existing system's dark urban theme.
+Text (verbatim): main title "TOKYO GHOUL"; second line "TTRPG"; small but readable third line "UNOFFICIAL TABLETOP RPG". Correct spelling TOKYO, not TOGKO. Render these words only. Main title bold condensed original sharp geometric lettering with tasteful small distressed cuts, predominantly off-white, subtle crimson accent. TTRPG widely tracked clean capitals in red.
+Constraints: create a new original logo treatment; do not reproduce the official anime or manga logo, screenshots, recognizable characters, manga panels or franchise artwork. No other text, no random Japanese lettering, no watermark, no border, no mockup, no excessive splatter or gore. Must look like a finished background asset with readable logo and polished intentional composition.

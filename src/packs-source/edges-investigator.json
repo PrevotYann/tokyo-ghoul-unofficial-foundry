@@ -23,7 +23,8 @@
         }
       ],
       "formula": "RC Bonds floor(RCL / 2)",
-      "notes": "Rinkaku Quinque self-repair option."
+      "notes": "Rinkaku Quinque self-repair option.",
+      "ruleId": "high-speed-regeneration"
     }
   },
   {
@@ -50,7 +51,8 @@
         }
       ],
       "formula": "ACC damage",
-      "notes": "Adds Q bullet sidearm configuration."
+      "notes": "Adds Q bullet sidearm configuration.",
+      "ruleId": "sidearm"
     }
   },
   {
@@ -80,7 +82,8 @@
       "automation": "assisted",
       "effects": [],
       "formula": "STR + RCL for grapple uses",
-      "notes": "Extends grapple options for suitable Quinque."
+      "notes": "Extends grapple options for suitable Quinque.",
+      "ruleId": "prehensile"
     }
   },
   {
@@ -107,7 +110,8 @@
         }
       ],
       "formula": "+1 range band",
-      "notes": "Extends effective Quinque range."
+      "notes": "Extends effective Quinque range.",
+      "ruleId": "massive"
     }
   },
   {
@@ -136,7 +140,8 @@
         }
       ],
       "formula": "",
-      "notes": "Can apply Bleeding on eligible hits."
+      "notes": "Can apply Bleeding on eligible hits.",
+      "ruleId": "sharpened"
     }
   },
   {
@@ -161,7 +166,8 @@
       "automation": "full",
       "effects": [],
       "formula": "+floor(END / 2) damage",
-      "notes": "Adds impact damage."
+      "notes": "Adds impact damage.",
+      "ruleId": "blunt"
     }
   },
   {
@@ -190,7 +196,8 @@
         }
       ],
       "formula": "",
-      "notes": "Prevents Rage."
+      "notes": "Prevents Rage.",
+      "ruleId": "inner-peace"
     }
   },
   {
@@ -219,7 +226,8 @@
         }
       ],
       "formula": "reduced Rage costs",
-      "notes": "Changes Rage checks and costs."
+      "notes": "Changes Rage checks and costs.",
+      "ruleId": "rampant"
     }
   },
   {
@@ -245,7 +253,8 @@
       "automation": "full",
       "effects": [],
       "formula": "",
-      "notes": "Unlocks Grab and Throw maneuvers."
+      "notes": "Unlocks Grab and Throw maneuvers.",
+      "ruleId": "grappler"
     }
   },
   {
@@ -279,7 +288,8 @@
         }
       ],
       "formula": "+3 Dodge",
-      "notes": "Improves Dodge."
+      "notes": "Improves Dodge.",
+      "ruleId": "preemptive"
     }
   },
   {
@@ -313,7 +323,8 @@
         }
       ],
       "formula": "+3 Block",
-      "notes": "Improves Block."
+      "notes": "Improves Block.",
+      "ruleId": "hardy"
     }
   },
   {
@@ -342,7 +353,8 @@
         }
       ],
       "formula": "attacks * 3",
-      "notes": "Improves All-Out Offensive cost and damage."
+      "notes": "Improves All-Out Offensive cost and damage.",
+      "ruleId": "quick-strikes"
     }
   },
   {
@@ -375,7 +387,8 @@
         }
       ],
       "formula": "SPD melee damage/cost basis",
-      "notes": "Uses SPD for melee Quinque damage and cost calculations."
+      "notes": "Uses SPD for melee Quinque damage and cost calculations.",
+      "ruleId": "lightweight"
     }
   },
   {
@@ -403,7 +416,8 @@
       "automation": "full",
       "effects": [],
       "formula": "discounted Heavy Strike cost",
-      "notes": "Unlocks discounted Heavy Strike."
+      "notes": "Unlocks discounted Heavy Strike.",
+      "ruleId": "heavy-strikes"
     }
   },
   {
@@ -430,7 +444,8 @@
         }
       ],
       "formula": "RCL * 1.5",
-      "notes": "Raises effective Quinque RCL."
+      "notes": "Raises effective Quinque RCL.",
+      "ruleId": "cannibalistic"
     }
   },
   {
@@ -457,7 +472,8 @@
         }
       ],
       "formula": "dual type",
-      "notes": "Two-in-one Quinque support."
+      "notes": "Two-in-one Quinque support.",
+      "ruleId": "chimera"
     }
   },
   {
@@ -485,7 +501,8 @@
         }
       ],
       "formula": "type advantage +4",
-      "notes": "Improves Quinque type advantage against Ghouls."
+      "notes": "Improves Quinque type advantage against Ghouls.",
+      "ruleId": "natural-predator"
     }
   },
   {
@@ -513,7 +530,8 @@
         }
       ],
       "formula": "PER + target END healing",
-      "notes": "Adds medkit support."
+      "notes": "Adds medkit support.",
+      "ruleId": "healer"
     }
   },
   {
@@ -541,7 +559,8 @@
         }
       ],
       "formula": "10 grenade carry limit",
-      "notes": "Adds grenade support."
+      "notes": "Adds grenade support.",
+      "ruleId": "grenadier"
     }
   },
   {
@@ -570,7 +589,8 @@
         }
       ],
       "formula": "by gimmick type",
-      "notes": "Adds a Quinque gimmick."
+      "notes": "Adds a Quinque gimmick.",
+      "ruleId": "gimmick"
     }
   },
   {
@@ -594,7 +614,8 @@
       "automation": "manual",
       "effects": [],
       "formula": "custom",
-      "notes": "GM-defined custom effect."
+      "notes": "GM-defined custom effect.",
+      "ruleId": "dynamic-edge"
     }
   }
 ]

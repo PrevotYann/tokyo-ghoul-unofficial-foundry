@@ -1,0 +1,166 @@
+{
+  "label": "Edges",
+  "mapping": {
+    "name": "name",
+    "description": "system.description",
+    "notes": "system.notes"
+  },
+  "folders": {
+    "Kagune Edges": "Kagune Edges",
+    "Investigator Edges": "Investigator Edges"
+  },
+  "entries": {
+    "91713da031d5939e": {
+      "name": "High-Speed Regeneration",
+      "notes": "Rinkaku regeneration upgrade with special wound handling."
+    },
+    "eb3c77f5f74c2a30": {
+      "name": "Ghoul Regeneration",
+      "notes": "Default Ghoul and Quinx regeneration."
+    },
+    "231485f5d36e0448": {
+      "name": "Prehensile",
+      "notes": "Extends grapple options for suitable Kagune."
+    },
+    "a02c876f7deac764": {
+      "name": "Massive",
+      "notes": "Extends effective Kagune range."
+    },
+    "814adc493d0ca42c": {
+      "name": "Sharpened",
+      "notes": "Can apply Bleeding on eligible hits."
+    },
+    "bbcd434ade7a9660": {
+      "name": "Blunt",
+      "notes": "Adds impact damage."
+    },
+    "ecf31f2c2e1e6b1a": {
+      "name": "Inner Peace",
+      "notes": "Auto-passes CRL control checks but blocks Kakuja."
+    },
+    "dd97c66bc2098e91": {
+      "name": "Rampant",
+      "notes": "Changes Hunger and mastery behavior."
+    },
+    "306f50bc5b702488": {
+      "name": "Grappler",
+      "notes": "Unlocks Grab and Throw maneuvers."
+    },
+    "1823d715d7bd1848": {
+      "name": "Preemptive",
+      "notes": "Improves Dodge."
+    },
+    "bcb068a4ee8b679b": {
+      "name": "Hardy",
+      "notes": "Improves Block."
+    },
+    "565c9b624ad962d8": {
+      "name": "Quick Strikes",
+      "notes": "Improves All-Out Offensive cost and damage."
+    },
+    "609235dad1e31703": {
+      "name": "Breathing Exercises",
+      "notes": "Improves Take a Breather recovery."
+    },
+    "d5cf008b7f1b59b0": {
+      "name": "Heavy Strikes",
+      "notes": "Unlocks Heavy Strike."
+    },
+    "3ccbf5ccaa06f87c": {
+      "name": "Cannibalistic",
+      "notes": "Enables Kakuja paths and improves Ghoul meal restoration."
+    },
+    "a496ac1909f8a0b9": {
+      "name": "Chimera",
+      "notes": "Dual Kagune support with special progression and Kakuja handling."
+    },
+    "07e4c62ef33e66f1": {
+      "name": "Dynamic Edge",
+      "notes": "GM-defined custom effect."
+    },
+    "ee1fbc08ad0cb4da": {
+      "name": "High-Speed Regeneration",
+      "notes": "Rinkaku Quinque self-repair option."
+    },
+    "5f8325fac2459f9c": {
+      "name": "Sidearm",
+      "notes": "Adds Q bullet sidearm configuration."
+    },
+    "f56e1ce0c6127eb9": {
+      "name": "Prehensile",
+      "notes": "Extends grapple options for suitable Quinque."
+    },
+    "0ad159b075b4ef1b": {
+      "name": "Massive",
+      "notes": "Extends effective Quinque range."
+    },
+    "1b0f9748b67f802d": {
+      "name": "Sharpened",
+      "notes": "Can apply Bleeding on eligible hits."
+    },
+    "dff3cb1ab8da5d7d": {
+      "name": "Blunt",
+      "notes": "Adds impact damage."
+    },
+    "abd5210a902926b0": {
+      "name": "Inner Peace",
+      "notes": "Prevents Rage."
+    },
+    "fec62598d272d373": {
+      "name": "Rampant",
+      "notes": "Changes Rage checks and costs."
+    },
+    "17ced0dca0cda525": {
+      "name": "Grappler",
+      "notes": "Unlocks Grab and Throw maneuvers."
+    },
+    "331939b60da9a8b0": {
+      "name": "Preemptive",
+      "notes": "Improves Dodge."
+    },
+    "102eff74ac1aeb35": {
+      "name": "Hardy",
+      "notes": "Improves Block."
+    },
+    "806b91c37d12a920": {
+      "name": "Quick Strikes",
+      "notes": "Improves All-Out Offensive cost and damage."
+    },
+    "d5a07dc6282ef1de": {
+      "name": "Lightweight",
+      "notes": "Uses SPD for melee Quinque damage and cost calculations."
+    },
+    "f032fa7280637e3f": {
+      "name": "Heavy Strikes",
+      "notes": "Unlocks discounted Heavy Strike."
+    },
+    "5062d7c1463c0024": {
+      "name": "Cannibalistic",
+      "notes": "Raises effective Quinque RCL."
+    },
+    "e9fbcaf7811e68d9": {
+      "name": "Chimera",
+      "notes": "Two-in-one Quinque support."
+    },
+    "45e8ddf2b75712ed": {
+      "name": "Natural Predator",
+      "notes": "Improves Quinque type advantage against Ghouls."
+    },
+    "f2a300216b986c50": {
+      "name": "Healer",
+      "notes": "Adds medkit support."
+    },
+    "00872e12a43a023d": {
+      "name": "Grenadier",
+      "notes": "Adds grenade support."
+    },
+    "68901292caaf9993": {
+      "name": "Gimmick",
+      "notes": "Adds a Quinque gimmick."
+    },
+    "bde23b2d1bed04b0": {
+      "name": "Dynamic Edge",
+      "notes": "GM-defined custom effect."
+    }
+  }
+}

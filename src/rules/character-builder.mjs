@@ -1,4 +1,5 @@
 import { TG_CONFIG } from "../config.mjs";
+import { hasEdge, normalizeEdgeName } from "./edges.mjs";
 import { calculateStartingRcl, validateStartingStatTotal } from "./derived-stats.mjs";
 
 export const STAT_PRESETS = {
@@ -56,11 +57,12 @@ export function calculateBuilderRcl({ baseRcl, maxEdges, chosenEdges = [] } = {}
   return calculateStartingRcl({
     baseRcl,
     maxStartingEdges: maxEdges,
-    chosenStartingEdges: chosenEdges.reduce((n,edge)=>n+(String(edge).toLowerCase()==="healer"?2:1),0)
+    chosenStartingEdges: chosenEdges.reduce((n,edge)=>n+(hasEdge([edge], "healer")?2:1),0)
   });
 }
 
 export function createKaguneDraft({ name = "Kagune", actorClass = "ghoul", kaguneType = "ukaku", edges = [] } = {}) {
+  edges = edges.map(normalizeEdgeName);
   const profile = getClassStartingProfile(actorClass);
   const rcl = calculateBuilderRcl({ baseRcl: profile.kaguneRcl, maxEdges: profile.kaguneEdgeSlots, chosenEdges: edges });
   return {
@@ -84,6 +86,7 @@ export function createKaguneDraft({ name = "Kagune", actorClass = "ghoul", kagun
 }
 
 export function createQuinqueDraft({ name = "Quinque", actorClass = "investigator", quinqueType = "ukaku", edges = [] } = {}) {
+  edges = edges.map(normalizeEdgeName);
   const profile = getClassStartingProfile(actorClass);
   const rcl = calculateBuilderRcl({ baseRcl: profile.quinqueRcl, maxEdges: profile.quinqueEdgeSlots, chosenEdges: edges });
   return {
@@ -100,7 +103,7 @@ export function createQuinqueDraft({ name = "Quinque", actorClass = "investigato
       edgeSlots: { max: profile.quinqueEdgeSlots, used: edges.length },
       edges,
       gimmick: null,
-      sidearm: { enabled: edges.includes("Sidearm"), ammoType: quinqueType, ammo: { value: edges.includes("Sidearm") ? rcl : 0, max: rcl } },
+      sidearm: { enabled: hasEdge(edges, "sidearm"), ammoType: quinqueType, ammo: { value: hasEdge(edges, "sidearm") ? rcl : 0, max: rcl } },
       kakuja: { isKakujaWeapon: false, freeGimmick: false, dynamicEdge: null },
       automation: "manual",
       description: ""

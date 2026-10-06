@@ -1,0 +1,66 @@
+{
+  "label": "Maneuvers",
+  "mapping": {
+    "name": "name",
+    "description": "system.description"
+  },
+  "folders": {},
+  "entries": {
+    "b6d4244618c7fc18": {
+      "name": "Strike",
+      "description": "Make a basic attack with an eligible source."
+    },
+    "564ac202f07915e8": {
+      "name": "Move",
+      "description": "Move one range band."
+    },
+    "16e183ca15f5b215": {
+      "name": "Ready",
+      "description": "Reserve one clear triggered action."
+    },
+    "2491d3be64232a16": {
+      "name": "Take a Breather",
+      "description": "Recover Stamina and limit the other maneuver this turn."
+    },
+    "6c078c2a81186597": {
+      "name": "All-Out Offensive",
+      "description": "Spend both maneuvers to make up to five attacks."
+    },
+    "7db3792a7c0a32e9": {
+      "name": "Counter",
+      "description": "Declare a counter stance until next turn."
+    },
+    "8f9a1f3b38a881f8": {
+      "name": "Enhance",
+      "description": "Activate or deactivate a feature such as a gimmick or Kakuja."
+    },
+    "70e016dff6ef9bba": {
+      "name": "Overextend",
+      "description": "Push a melee attack one range band farther with a SPD penalty."
+    },
+    "b774765393012fc1": {
+      "name": "Grab",
+      "description": "Opposed STR action to grapple a target."
+    },
+    "510145f647aa3d1a": {
+      "name": "Throw",
+      "description": "Throw a grappled target."
+    },
+    "c588c2eed2464e6c": {
+      "name": "Heavy Strike",
+      "description": "A costly melee strike that doubles the STR damage portion."
+    },
+    "c48ded3ca69a75df": {
+      "name": "Dodge",
+      "description": "Reaction defense using SPD."
+    },
+    "6bdcc7fa3ff11b3d": {
+      "name": "Block",
+      "description": "Reaction defense using END."
+    },
+    "b6e675d72997f3f1": {
+      "name": "Take Hit",
+      "description": "Accept the incoming hit without a defense roll."
+    }
+  }
+}

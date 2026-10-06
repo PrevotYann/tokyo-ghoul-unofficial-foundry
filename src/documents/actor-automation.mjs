@@ -166,7 +166,7 @@ export const actorAutomation = Base => class extends Base {
         const eligibility=getKakujaEligibility({actorClass:cls,rcl:this.items.find(i=>i.type==="kagune")?.system.rcl,edges:this.getEdgeNames(this.getDefaultAttackItem()),masteredHalf:this.system.kakuja.masteredHalf});
         if (eligibility.canHalf) await this.update({"system.kakuja.eligible":true});
       }
-      await this.log("TG.chat.controlCheck",{kind:game.i18n.localize(`TG.control.${kind}`),trigger,total:roll.total,target:targetNumber});
+      await this.log("TG.chat.controlCheck",{kind:game.i18n.localize(`TG.control.${kind}`),trigger:trigger==="manual"?game.i18n.localize("TG.control.manualTrigger"):trigger,total:roll.total,target:targetNumber});
       if (kind==="hunger" && this.system.kakuja.active) await this.resolveKakujaMasteryRoll(roll);
       results.push({kind,targetNumber,roll});
     }

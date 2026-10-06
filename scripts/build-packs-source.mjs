@@ -1,18 +1,13 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
 import { ClassicLevel } from 'classic-level';
+import { packMap, folderNames, packId as id, itemId } from './lib/pack-source.mjs';
 
-const packMap = {
-  edges: ['edges-ghoul.json', 'edges-investigator.json'],
-  maneuvers: ['maneuvers.json'], conditions: ['conditions.json'],
-  equipment: ['consumables.json', 'gimmicks.json', 'kakuja-armor.json'],
-  'sample-kagune': ['templates-kagune.json'], 'sample-quinque': ['templates-quinque.json']
-};
-const id = value => createHash('sha256').update(value).digest('hex').slice(0,16);
 const root = process.cwd();
+const outputIndex = process.argv.indexOf('--output');
+const output = outputIndex < 0 ? path.join(root, 'packs') : path.resolve(process.argv[outputIndex + 1]);
 for (const [packName, files] of Object.entries(packMap)) {
-  const target = path.join(root, 'packs', packName);
+  const target = path.join(output, packName);
   const database = new ClassicLevel(target, {keyEncoding:'utf8',valueEncoding:'json'});
   await database.open();
   try {
@@ -21,12 +16,12 @@ for (const [packName, files] of Object.entries(packMap)) {
     const folders=database.sublevel('folders',{valueEncoding:'json'});
     const records=[];
     for (const file of files) {
-      const name = ({'edges-ghoul.json':'Kagune Edges','edges-investigator.json':'Investigator Edges','consumables.json':'Consumables','gimmicks.json':'Gimmicks','kakuja-armor.json':'Kakuja Armor'})[file];
+      const name = folderNames[file];
       const folderId=name?id(`${packName}:${name}`):null;
       if (folderId) await folders.put(folderId,{_id:folderId,name,type:'Item',folder:null,sorting:'a',color:packName==='edges'?'#9b263b':'#3e5168'});
       const data=JSON.parse(await fs.readFile(path.join(root,'src','packs-source',file),'utf8'));
       for (const record of data) {
-        const _id=id(`${packName}:${file}:${record.name}`);
+        const _id=itemId(packName, file, record);
         const entry={...record,_id,folder:folderId,img:record.img??'systems/tokyo-ghoul-unofficial/assets/rc-mark.svg',effects:[],flags:{},ownership:{default:0}};
         await items.put(_id,entry); records.push(entry);
       }

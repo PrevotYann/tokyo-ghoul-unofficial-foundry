@@ -61,7 +61,7 @@ export function buildD20Formula({ stat = null, statValue = 0, bonus = 0, penalty
   else if (statValue) parts.push(`+ ${numberOrZero(statValue)}`);
   if (bonus) parts.push(`+ ${numberOrZero(bonus)}`);
   if (penalty) parts.push(`- ${numberOrZero(penalty)}`);
-  if (extra) parts.push(`+ crit ${numberOrZero(extra)}`);
+  if (extra) parts.push(`+ ${numberOrZero(extra)}`);
   if (natural === 1) parts.push("- 10");
   return parts.join(" ");
 }

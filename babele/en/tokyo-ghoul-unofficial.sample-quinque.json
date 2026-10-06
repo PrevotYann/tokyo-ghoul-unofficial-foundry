@@ -1,0 +1,30 @@
+{
+  "label": "Sample Quinque",
+  "mapping": {
+    "name": "name",
+    "description": "system.description"
+  },
+  "folders": {},
+  "entries": {
+    "18d6e5bc63760da1": {
+      "name": "Sample Ukaku Quinque",
+      "description": "Light ranged Quinque template."
+    },
+    "0c744b7abc79250e": {
+      "name": "Sample Koukaku Shield Quinque",
+      "description": "Heavy defensive Quinque template."
+    },
+    "122e2a46968d6843": {
+      "name": "Sample Rinkaku Quinque",
+      "description": "Specialized mid-range Quinque template."
+    },
+    "698f097f7a2d513d": {
+      "name": "Sample Bikaku Quinque",
+      "description": "Balanced mid-range Quinque template."
+    },
+    "664e9c97468096d4": {
+      "name": "Sample Investigator Sidearm",
+      "description": "Generic sidearm-enabled Quinque template."
+    }
+  }
+}

@@ -2,7 +2,15 @@
   "id": "tokyo-ghoul-unofficial",
   "title": "Tokyo Ghoul: Unofficial TTRPG",
   "description": "A free, unofficial Tokyo Ghoul tabletop RPG system for Foundry VTT v14. This package contains original implementation code and no official Tokyo Ghoul artwork, panels, music, or logos.",
-  "version": "0.2.1",
+  "version": "0.3.0",
+  "background": "systems/tokyo-ghoul-unofficial/assets/tokyo-ghoul-background.png",
+  "media": [
+    {
+      "type": "setup",
+      "url": "https://raw.githubusercontent.com/PrevotYann/tokyo-ghoul-unofficial-foundry/v0.3.0/assets/tokyo-ghoul-background.png",
+      "thumbnail": "https://raw.githubusercontent.com/PrevotYann/tokyo-ghoul-unofficial-foundry/v0.3.0/assets/tokyo-ghoul-background.png"
+    }
+  ],
   "compatibility": {
     "minimum": "14",
     "verified": "14.368"
@@ -164,5 +172,5 @@
   ],
   "url": "https://github.com/PrevotYann/tokyo-ghoul-unofficial-foundry",
   "manifest": "https://github.com/PrevotYann/tokyo-ghoul-unofficial-foundry/releases/latest/download/system.json",
-  "download": "https://github.com/PrevotYann/tokyo-ghoul-unofficial-foundry/releases/download/v0.2.1/tokyo-ghoul-unofficial.zip"
+  "download": "https://github.com/PrevotYann/tokyo-ghoul-unofficial-foundry/releases/download/v0.3.0/tokyo-ghoul-unofficial.zip"
 }

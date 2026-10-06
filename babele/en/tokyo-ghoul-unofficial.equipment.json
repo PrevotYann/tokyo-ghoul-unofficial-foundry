@@ -1,0 +1,68 @@
+{
+  "label": "Equipment",
+  "mapping": {
+    "name": "name",
+    "description": "system.description",
+    "dynamicEffect": "system.dynamicEffect"
+  },
+  "folders": {
+    "Consumables": "Consumables",
+    "Gimmicks": "Gimmicks",
+    "Kakuja Armor": "Kakuja Armor"
+  },
+  "entries": {
+    "d39c1ef79213532c": {
+      "name": "Sample Medkit",
+      "description": "Medical kit for assisted healing and condition removal."
+    },
+    "991127809b4dd7d2": {
+      "name": "Sample Frag Grenade",
+      "description": "Explosive grenade with close-area damage."
+    },
+    "70eda0a47ecb23f6": {
+      "name": "Sample Incendiary Grenade",
+      "description": "Area grenade that applies Burning."
+    },
+    "6b1e8797d15703d6": {
+      "name": "Sample RC Limiter Grenade",
+      "description": "Creates a temporary RC limiter cloud."
+    },
+    "464c09eae9b5983a": {
+      "name": "Sample Q Bullet",
+      "description": "Sidearm ammunition for assisted Quinque attacks."
+    },
+    "ca5f87508bf8b903": {
+      "name": "Attack Gimmick",
+      "description": "Signature attack using RCL and a selected stat.",
+      "dynamicEffect": ""
+    },
+    "1c2a735a480951ed": {
+      "name": "Defense Gimmick",
+      "description": "Defensive form that can assist Dodge or Block timing.",
+      "dynamicEffect": ""
+    },
+    "046c6570f1406442": {
+      "name": "Form Gimmick",
+      "description": "Alternate form with attack or damage benefit.",
+      "dynamicEffect": ""
+    },
+    "a413befe06acdcc6": {
+      "name": "Utility Gimmick",
+      "description": "Utility form that grants temporary edge support.",
+      "dynamicEffect": ""
+    },
+    "75adddb9a0f3d82d": {
+      "name": "Dynamic Gimmick",
+      "description": "GM-defined gimmick effect.",
+      "dynamicEffect": ""
+    },
+    "7463a1a1209b94fc": {
+      "name": "Attack Kakuja Armor",
+      "description": "Reduces incoming damage and grants the selected armor benefit. The primary equipment rules use armor RCL reduction and double the selected attack stat. The world setting also supports the conflicting repeated chapter. Parasitic damage begins after five turns."
+    },
+    "75f159f3d3d3221b": {
+      "name": "Speed Kakuja Armor",
+      "description": "Reduces incoming damage and grants the selected armor benefit. The primary equipment rules use armor RCL reduction and double the selected attack stat. The world setting also supports the conflicting repeated chapter. Parasitic damage begins after five turns."
+    }
+  }
+}

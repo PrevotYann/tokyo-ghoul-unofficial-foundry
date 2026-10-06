@@ -4,7 +4,8 @@ function numberOrZero(value) {
 }
 
 export function normalizeEdgeName(edge) {
-  const name = typeof edge === "string" ? edge : edge?.name;
+  const name = typeof edge === "string" ? edge : edge?.system?.ruleId
+    || edge?.flags?.babele?.originalPayload?.name || edge?.flags?.babele?.originalName || edge?.name;
   return String(name ?? "")
     .trim()
     .toLowerCase()
@@ -21,7 +22,7 @@ export function collectEdgeNames({ actorItems = [], sourceItem = null } = {}) {
   const utilityEdges = actorItems.filter(i => i.type === "gimmick" && i.system?.active && i.system.gimmickType === "utility").flatMap(i => i.system.grantedEdges.slice(0,2));
   const ownedEdges = Array.from(actorItems)
     .filter((item) => item.type === "edge")
-    .map((item) => item.name);
+    .map(normalizeEdgeName);
   return [...new Set([...sourceEdges, ...ownedEdges, ...utilityEdges].map(normalizeEdgeName).filter(Boolean))];
 }
 

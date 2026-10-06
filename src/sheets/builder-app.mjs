@@ -1,5 +1,5 @@
 import { createCharacterDraft, STAT_PRESETS } from "../rules/character-builder.mjs";
-import { validateEdgeLoadout } from "../rules/edges.mjs";
+import { normalizeEdgeName, validateEdgeLoadout } from "../rules/edges.mjs";
 
 function getCenteredPosition({ width = 560, height = 520 } = {}) {
   const viewportWidth = globalThis.window?.innerWidth ?? width + 160;
@@ -72,8 +72,8 @@ export class CharacterBuilderApp extends foundry.applications.api.HandlebarsAppl
     return {
       ...context,
       presets: Object.keys(STAT_PRESETS),
-      kaguneEdges: edges.filter(i => i.system.category === "ghoul" && i.name !== "Ghoul Regeneration"),
-      quinqueEdges: edges.filter(i => i.system.category === "investigator"),
+      kaguneEdges: edges.filter(i => i.system.category === "ghoul" && normalizeEdgeName(i) !== "ghoul-regeneration").map(i => ({ name: i.name, system: { slots: i.system.slots, ruleId: normalizeEdgeName(i) } })),
+      quinqueEdges: edges.filter(i => i.system.category === "investigator").map(i => ({ name: i.name, system: { slots: i.system.slots, ruleId: normalizeEdgeName(i) } })),
       stats: ["str","acc","per","end","spd","crl"]
     };
   }
@@ -84,7 +84,7 @@ export class CharacterBuilderApp extends foundry.applications.api.HandlebarsAppl
     const kaguneEdges = selected("kaguneEdges"), quinqueEdges = selected("quinqueEdges");
     const records = await game.packs.get("tokyo-ghoul-unofficial.edges")?.getDocuments() ?? [];
     for (const [names, type, category, max] of [[kaguneEdges,data.kaguneType,"ghoul",data.actorClass==="quinx"?1:3],[quinqueEdges,data.quinqueType,"investigator",data.actorClass==="quinx"?2:3]]) {
-      const edgeItems = names.map(name => records.find(i=>i.name===name&&i.system.category===category)).filter(Boolean);
+      const edgeItems = names.map(name => records.find(i=>normalizeEdgeName(i)===normalizeEdgeName(name)&&i.system.category===category)).filter(Boolean);
       const validation=validateEdgeLoadout({edgeItems,sourceType:type,phase:"creation"});
       if (!validation.valid || edgeItems.length!==names.length || validation.usedSlots > max+(category==="ghoul"&&type==="bikaku"?1:0)) {
         ui.notifications.warn(game.i18n.localize("TG.notifications.invalidEdges")); return;

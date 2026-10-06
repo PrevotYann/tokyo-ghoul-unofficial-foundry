@@ -1,10 +1,8 @@
+import { normalizeEdgeName } from "./edges.mjs";
+
 function numberOrZero(value) {
   const number = Number(value);
   return Number.isFinite(number) ? number : 0;
-}
-
-function hasEdge(edges = [], edgeName) {
-  return edges.some((edge) => edge === edgeName || edge?.name === edgeName);
 }
 
 export function canFullKakuja(actor) {
@@ -12,7 +10,7 @@ export function canFullKakuja(actor) {
 }
 
 export function getKakujaEligibility({ actorClass = "ghoul", rcl = 0, edges = [], masteredHalf = false } = {}) {
-  const normalized = edges.map(edge => String(edge?.name ?? edge).toLowerCase().replace(/[^a-z0-9]+/g, "-"));
+  const normalized = edges.map(normalizeEdgeName);
   const cannibalistic = normalized.includes("cannibalistic") && !normalized.includes("inner-peace");
   const canHalf = (actorClass === "ghoul" || actorClass === "quinx") && cannibalistic && numberOrZero(rcl) >= 50;
   const canFull = actorClass === "ghoul" && cannibalistic && (masteredHalf || normalized.includes("rampant")) && numberOrZero(rcl) >= 150;

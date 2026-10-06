@@ -1,6 +1,6 @@
 # Tokyo Ghoul: Unofficial TTRPG for Foundry VTT
 
-An unofficial system for Foundry **v14**, verified locally on **14.368**. Version 0.2.1 restores window header icons and makes item sheets more compact, with content-sized windows and automation controls in the item header. Combat/effect workflows and populated compendiums from 0.2.0 are included.
+An unofficial system for Foundry **v14**, verified locally on **14.368**. Version 0.3.0 adds original Tokyo Ghoul TTRPG artwork for the system thumbnail and new-world background, English Babele translation templates, stable Edge identities and migrations, and corrected popup icon fonts.
 
 ## Install
 
@@ -18,6 +18,12 @@ Target one token per attack. Dialogs choose the weapon, mode and modifiers; chat
 
 Progression tools cover stat spending, consumption, evolution, Kakuhou forging and upgrading. Native Active Effects support numeric stat bonuses. Advance Foundry world time for daily Meal Score and out-of-combat Hunger. Compendium entries show automation status. [The audit](docs/qa/v14-rule-audit.md) describes GM-managed rules and additional QA; [clarifications](docs/qa/rule-clarifications.md) document conflicting PDF passages.
 
+## Translation modules
+
+English is the base language for UI strings and all compendium content. Babele support is optional and includes ID-keyed English templates for every pack, folder labels and mappings for descriptions and rule notes. Edge automation uses stable rule IDs, so translated names preserve mechanics.
+
+Create a translation module starter with `npm run build:translations -- --module --lang fr --output artifacts/translation-module/fr`, then translate its English values. [Translation instructions and Foundry QA](docs/qa/translations.md) explain installation, mappings, compatibility and updates. The existing French UI remains available.
+
 ## Development
 
 Node 24/npm; runtime JavaScript has no external dependencies. Run npm ci, npm test, npm run test:ui, npm run test:packs and npm run build:packs. Stop Foundry before building native LevelDB packs because the databases have exclusive locks. Sources are in src/packs-source/.
@@ -32,6 +38,6 @@ Run npm run release:package to create the installable archive and manifests in a
 
 ## Attribution and limitations
 
-The developer rulebook is expected locally at docs/rulebook/Tokyo Ghoul Tabletop RPG - Unofficial.pdf and is excluded from releases. Mechanics use formulas and concise paraphrases. The placeholder SVG is original; no official Tokyo Ghoul artwork, panels, music, logos or fonts are shipped. Tokyo Ghoul belongs to its respective rights holders.
+The developer rulebook is expected locally at docs/rulebook/Tokyo Ghoul Tabletop RPG - Unofficial.pdf and is excluded from releases. Mechanics use formulas and concise paraphrases. The placeholder SVG is original. The background and custom wordmark were generated with the built-in image tool; the generation prompt is included beside the image in assets/. No official Tokyo Ghoul artwork, panels, music, logos or fonts are shipped. Tokyo Ghoul belongs to its respective rights holders.
 
 French localization includes English stubs for newer controls. Spatial movement, cover, area membership, Dynamic abilities and narrative triggers require GM judgment; consult the audit rather than assuming complete automation.

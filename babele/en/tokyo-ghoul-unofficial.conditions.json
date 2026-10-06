@@ -1,0 +1,50 @@
+{
+  "label": "Conditions",
+  "mapping": {
+    "name": "name",
+    "description": "system.description"
+  },
+  "folders": {},
+  "entries": {
+    "95fc4c3224594a3a": {
+      "name": "Bleeding",
+      "description": "Stacking Vitality loss at turn start; regeneration can remove stacks."
+    },
+    "fc36a7072713788d": {
+      "name": "Burning",
+      "description": "Stacking fire condition with END check to clear."
+    },
+    "9ff93b28731648ec": {
+      "name": "Grappled",
+      "description": "Restricts movement and attacks until broken."
+    },
+    "9eb9ed2fbb7a7920": {
+      "name": "Hunger Active",
+      "description": "Hunger consequences are active and regeneration is suppressed."
+    },
+    "533548df08f5d0ab": {
+      "name": "Rage Active",
+      "description": "Rage state with temporary stat budget and stamina costs."
+    },
+    "0863a72a0630d459": {
+      "name": "Regeneration Suppressed",
+      "description": "Prevents regeneration while active."
+    },
+    "018f23e439512e10": {
+      "name": "Kakuja Active",
+      "description": "Tracks active Kakuja state."
+    },
+    "a4cc4ce88aad7afd": {
+      "name": "Lost Control",
+      "description": "Kakuja loss of control state."
+    },
+    "c039c40d96e5d2d3": {
+      "name": "RC Limiter Cloud",
+      "description": "Area effect that suppresses RC-based features."
+    },
+    "ab3cc84fdd4779f3": {
+      "name": "Quinque Broken",
+      "description": "Marks a Quinque as broken until repaired."
+    }
+  }
+}

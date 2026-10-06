@@ -2,6 +2,7 @@ import { promptFields } from "../sheets/roll-dialogs.mjs";
 import { calculateForgeQuinqueRcl, validateForgeEdges, calculateKaguneStatPurchase, calculateKaguneEdgeSwap, calculateChimeraEvolution } from "../rules/progression.mjs";
 import { createQuinqueDraft } from "../rules/character-builder.mjs";
 import { normalizeEdgeName, validateEdgeLoadout, hasEdge } from "../rules/edges.mjs";
+import { edgeLabel } from "../localization/labels.mjs";
 
 export async function progressionDialog(actor, action) {
   if (!actor.isOwner) return;
@@ -50,15 +51,15 @@ export async function progressionDialog(actor, action) {
     if (!weapon || weapon.type!=="quinque") return;
     if (data.mode==="swap") {
       const catalog=await game.packs.get("tokyo-ghoul-unofficial.edges").getDocuments();
-      const allowed=catalog.filter(i=>i.system.category==="investigator"&&hasEdge(source.system.sourceEdges,i.name));
+      const allowed=catalog.filter(i=>i.system.category==="investigator"&&hasEdge(source.system.sourceEdges,i));
       if (!weapon.system.edges.length || !allowed.length) return actor.notify("TG.notifications.invalidEdges");
       const selection=await promptFields("TG.actions.swapEdge",[
-        {name:"from",label:"TG.sheet.fromEdge",value:weapon.system.edges[0],options:weapon.system.edges.map(value=>({value,label:value}))},
+        {name:"from",label:"TG.sheet.fromEdge",value:weapon.system.edges[0],options:weapon.system.edges.map(value=>({value,label:edgeLabel(value)}))},
         {name:"to",label:"TG.sheet.toEdge",value:allowed[0].id,options:allowed.map(i=>({value:i.id,label:i.name}))}
       ]);
       if (!selection) return;
-      const edge=allowed.find(i=>i.id===selection.to), edges=weapon.system.edges.map(e=>e===selection.from?edge?.name:e);
-      const records=edges.map(name=>catalog.find(i=>i.name===name&&i.system.category==="investigator")).filter(Boolean);
+      const edge=allowed.find(i=>i.id===selection.to), edges=weapon.system.edges.map(e=>e===selection.from?normalizeEdgeName(edge):e);
+      const records=edges.map(name=>catalog.find(i=>normalizeEdgeName(i)===normalizeEdgeName(name)&&i.system.category==="investigator")).filter(Boolean);
       const validation=validateEdgeLoadout({edgeItems:records,sourceType:weapon.system.primaryType,phase:"creation"});
       if (!edge || !validation.valid || records.length!==edges.length || validation.usedSlots>weapon.system.edgeSlots.max) return actor.notify("TG.notifications.invalidEdges");
       await weapon.update({"system.edges":edges});
@@ -73,12 +74,12 @@ export async function progressionDialog(actor, action) {
     }
     return;
   }
-  const edges=String(data.edges??"").split(",").map(s=>s.trim()).filter(Boolean);
+  const catalog=await game.packs.get("tokyo-ghoul-unofficial.edges").getDocuments();
+  const edges=String(data.edges??"").split(",").map(s=>s.trim()).filter(Boolean).map(name => normalizeEdgeName(catalog.find(i=>i.system.category==="investigator"&&(i.name===name||normalizeEdgeName(i)===normalizeEdgeName(name))) ?? name));
   const validation=validateForgeEdges({chosenEdges:edges.map(normalizeEdgeName),sourceEdges:source.system.sourceEdges.map(normalizeEdgeName)});
   if (!validation.valid) return actor.notify("TG.notifications.invalidEdges");
   const draft=createQuinqueDraft({name:data.name,actorClass:actor.system.identity.class,quinqueType:source.system.sourceKaguneType,edges});
-  const catalog=await game.packs.get("tokyo-ghoul-unofficial.edges").getDocuments();
-  const records=edges.map(name=>catalog.find(i=>normalizeEdgeName(i.name)===normalizeEdgeName(name)&&i.system.category==="investigator")).filter(Boolean);
+  const records=edges.map(name=>catalog.find(i=>normalizeEdgeName(i)===normalizeEdgeName(name)&&i.system.category==="investigator")).filter(Boolean);
   const loadout=validateEdgeLoadout({edgeItems:records,sourceType:source.system.sourceKaguneType,phase:"creation"});
   if (!loadout.valid || records.length!==edges.length || loadout.usedSlots>draft.system.edgeSlots.max) return actor.notify("TG.notifications.invalidEdges");
   draft.system.rcl=calculateForgeQuinqueRcl({sourceRank:source.system.sourceRank,chosenEdges:edges,maxEdges:draft.system.edgeSlots.max}).rcl;
@@ -92,19 +93,19 @@ async function evolveEdge(actor, mode) {
   if (!weapon) return actor.notify("TG.notifications.requiredClass");
   const catalog=await game.packs.get("tokyo-ghoul-unofficial.edges").getDocuments();
   const allowed=catalog.filter(i=>i.system.category==="ghoul"&&i.system.canTakeAfterCreation&&!i.system.mustChooseAtCreation);
-  const fields=[{name:"from",label:"TG.sheet.fromEdge",value:weapon.system.edges[0]??"",options:[{value:"",key:"TG.sheet.openSlot"},...weapon.system.edges.map(value=>({value,label:value}))]}];
+  const fields=[{name:"from",label:"TG.sheet.fromEdge",value:weapon.system.edges[0]??"",options:[{value:"",key:"TG.sheet.openSlot"},...weapon.system.edges.map(value=>({value,label:edgeLabel(value)}))]}];
   if (mode==="swap") fields.push({name:"to",label:"TG.sheet.toEdge",value:allowed[0].id,options:allowed.map(i=>({value:i.id,label:i.name}))});
   else fields.push({name:"secondaryType",label:"TG.sheet.secondaryType",value:"bikaku",options:["ukaku","koukaku","rinkaku","bikaku"].map(value=>({value,key:`TG.kagune.${value}`}))});
   const data=await promptFields(mode==="swap"?"TG.actions.swapEdge":"TG.actions.chimeraEvolution",fields);
   if (!data) return;
-  const old=catalog.find(i=>normalizeEdgeName(i.name)===normalizeEdgeName(data.from)&&i.system.category==="ghoul");
-  const selected=mode==="swap"?allowed.find(i=>i.id===data.to):catalog.find(i=>i.name==="Chimera"&&i.system.category==="ghoul");
-  if (!selected || (mode==="swap"&&(!data.from||!weapon.system.edges.includes(data.from))) || old?.system.incompatibleWith.some(e=>normalizeEdgeName(e)===normalizeEdgeName(selected.name))) return actor.notify("TG.notifications.invalidEdges");
+  const old=catalog.find(i=>normalizeEdgeName(i)===normalizeEdgeName(data.from)&&i.system.category==="ghoul");
+  const selected=mode==="swap"?allowed.find(i=>i.id===data.to):catalog.find(i=>normalizeEdgeName(i)==="chimera"&&i.system.category==="ghoul");
+  if (!selected || (mode==="swap"&&(!data.from||!weapon.system.edges.includes(data.from))) || old?.system.incompatibleWith.some(e=>normalizeEdgeName(e)===normalizeEdgeName(selected))) return actor.notify("TG.notifications.invalidEdges");
   if (mode==="chimera" && (actor.system.identity.class!=="ghoul"||hasEdge(weapon.system.edges,"chimera"))) return actor.notify("TG.notifications.requiredClass");
   const result=mode==="swap"?calculateKaguneEdgeSwap({currentRcl:weapon.system.rcl}):calculateChimeraEvolution({currentRcl:weapon.system.rcl,hasCannibalistic:hasEdge(weapon.system.edges,"cannibalistic"),hasOpenSlot:weapon.system.edgeSlots.used<weapon.system.edgeSlots.max,swappingEdge:!!data.from});
   if (!result.affordable) return actor.notify("TG.notifications.insufficientPoints");
-  const edges=data.from?weapon.system.edges.map(e=>e===data.from?selected.name:e):[...weapon.system.edges,selected.name];
-  const records=edges.map(name=>catalog.find(i=>i.name===name&&i.system.category==="ghoul")).filter(Boolean);
+  const edges=data.from?weapon.system.edges.map(e=>e===data.from?normalizeEdgeName(selected):e):[...weapon.system.edges,normalizeEdgeName(selected)];
+  const records=edges.map(name=>catalog.find(i=>normalizeEdgeName(i)===normalizeEdgeName(name)&&i.system.category==="ghoul")).filter(Boolean);
   const validation=validateEdgeLoadout({edgeItems:records,sourceType:weapon.system.primaryType,phase:"creation"});
   if (!validation.valid) return actor.notify("TG.notifications.invalidEdges");
   await weapon.update({"system.rcl":result.remainingRcl,"system.edges":edges,...(mode==="chimera"?{"system.secondaryType":data.secondaryType,"system.edgeSlots.max":weapon.system.edgeSlots.max+3}:{})});

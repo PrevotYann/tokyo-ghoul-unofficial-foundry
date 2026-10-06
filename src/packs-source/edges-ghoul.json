@@ -23,7 +23,8 @@
         }
       ],
       "formula": "END + CRL or END",
-      "notes": "Rinkaku regeneration upgrade with special wound handling."
+      "notes": "Rinkaku regeneration upgrade with special wound handling.",
+      "ruleId": "high-speed-regeneration"
     }
   },
   {
@@ -50,7 +51,8 @@
         }
       ],
       "formula": "END",
-      "notes": "Default Ghoul and Quinx regeneration."
+      "notes": "Default Ghoul and Quinx regeneration.",
+      "ruleId": "ghoul-regeneration"
     }
   },
   {
@@ -80,7 +82,8 @@
       "automation": "assisted",
       "effects": [],
       "formula": "STR + RCL for grapple uses",
-      "notes": "Extends grapple options for suitable Kagune."
+      "notes": "Extends grapple options for suitable Kagune.",
+      "ruleId": "prehensile"
     }
   },
   {
@@ -107,7 +110,8 @@
         }
       ],
       "formula": "+1 range band",
-      "notes": "Extends effective Kagune range."
+      "notes": "Extends effective Kagune range.",
+      "ruleId": "massive"
     }
   },
   {
@@ -136,7 +140,8 @@
         }
       ],
       "formula": "",
-      "notes": "Can apply Bleeding on eligible hits."
+      "notes": "Can apply Bleeding on eligible hits.",
+      "ruleId": "sharpened"
     }
   },
   {
@@ -161,7 +166,8 @@
       "automation": "full",
       "effects": [],
       "formula": "+floor(END / 2) damage",
-      "notes": "Adds impact damage."
+      "notes": "Adds impact damage.",
+      "ruleId": "blunt"
     }
   },
   {
@@ -191,7 +197,8 @@
         }
       ],
       "formula": "",
-      "notes": "Auto-passes CRL control checks but blocks Kakuja."
+      "notes": "Auto-passes CRL control checks but blocks Kakuja.",
+      "ruleId": "inner-peace"
     }
   },
   {
@@ -220,7 +227,8 @@
         }
       ],
       "formula": "+10 temporary stat points while hungry",
-      "notes": "Changes Hunger and mastery behavior."
+      "notes": "Changes Hunger and mastery behavior.",
+      "ruleId": "rampant"
     }
   },
   {
@@ -246,7 +254,8 @@
       "automation": "full",
       "effects": [],
       "formula": "",
-      "notes": "Unlocks Grab and Throw maneuvers."
+      "notes": "Unlocks Grab and Throw maneuvers.",
+      "ruleId": "grappler"
     }
   },
   {
@@ -280,7 +289,8 @@
         }
       ],
       "formula": "+3 Dodge",
-      "notes": "Improves Dodge."
+      "notes": "Improves Dodge.",
+      "ruleId": "preemptive"
     }
   },
   {
@@ -314,7 +324,8 @@
         }
       ],
       "formula": "+3 Block",
-      "notes": "Improves Block."
+      "notes": "Improves Block.",
+      "ruleId": "hardy"
     }
   },
   {
@@ -343,7 +354,8 @@
         }
       ],
       "formula": "attacks * 3",
-      "notes": "Improves All-Out Offensive cost and damage."
+      "notes": "Improves All-Out Offensive cost and damage.",
+      "ruleId": "quick-strikes"
     }
   },
   {
@@ -374,7 +386,8 @@
         }
       ],
       "formula": "END * 2 recovery",
-      "notes": "Improves Take a Breather recovery."
+      "notes": "Improves Take a Breather recovery.",
+      "ruleId": "breathing-exercises"
     }
   },
   {
@@ -401,7 +414,8 @@
       "automation": "full",
       "effects": [],
       "formula": "STR * 2 cost",
-      "notes": "Unlocks Heavy Strike."
+      "notes": "Unlocks Heavy Strike.",
+      "ruleId": "heavy-strikes"
     }
   },
   {
@@ -428,7 +442,8 @@
         }
       ],
       "formula": "",
-      "notes": "Enables Kakuja paths and improves Ghoul meal restoration."
+      "notes": "Enables Kakuja paths and improves Ghoul meal restoration.",
+      "ruleId": "cannibalistic"
     }
   },
   {
@@ -457,7 +472,8 @@
         }
       ],
       "formula": "CRL cap 15",
-      "notes": "Dual Kagune support with special progression and Kakuja handling."
+      "notes": "Dual Kagune support with special progression and Kakuja handling.",
+      "ruleId": "chimera"
     }
   },
   {
@@ -482,7 +498,8 @@
       "automation": "manual",
       "effects": [],
       "formula": "custom",
-      "notes": "GM-defined custom effect."
+      "notes": "GM-defined custom effect.",
+      "ruleId": "dynamic-edge"
     }
   }
 ]

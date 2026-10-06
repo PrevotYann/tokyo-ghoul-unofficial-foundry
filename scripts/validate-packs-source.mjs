@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { normalizeEdgeName } from "../src/rules/edges.mjs";
 
 const sourceDir = path.resolve("src/packs-source");
 const allowedTypes = new Set([
@@ -42,6 +43,7 @@ for (const file of files) {
     if (!allowedTypes.has(record.type)) errors.push(`${prefix}: unsupported type ${record.type}`);
     if (!record.system || typeof record.system !== "object" || Array.isArray(record.system)) errors.push(`${prefix}: missing system object`);
     if (typeof record.system?.automation !== "string") errors.push(`${prefix}: missing system.automation`);
+    if (record.type === "edge" && record.system.ruleId !== normalizeEdgeName(record.name)) errors.push(`${prefix}: missing or inconsistent stable Edge rule ID`);
   });
 }
 

@@ -1,4 +1,5 @@
 import { TG_CONFIG } from "../config.mjs";
+import { normalizeEdgeName } from "./edges.mjs";
 
 export const GHOUL_RANK_FORGE_RCL = {
   C: 10,
@@ -39,7 +40,7 @@ function clampNumber(value, min = 0, max = Number.POSITIVE_INFINITY) {
 }
 
 function normalizeEdges(edges = []) {
-  return edges.map((edge) => typeof edge === "string" ? edge : edge?.name).filter(Boolean);
+  return edges.map(normalizeEdgeName).filter(Boolean);
 }
 
 export function calculateConsumptionReward({

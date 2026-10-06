@@ -146,3 +146,9 @@ Expected:
 
 ## Regression notes
 Every bug fix must add a test or a QA checklist item. If a rule cannot be automated, add a manual acceptance scenario.
+
+`test/ui/window-icons.test.mjs` reproduces Foundry v14's layered Font Awesome loading and checks UUID, Close, menu, expand, regular and duotone icons, normal text labels, and the native resize grip. Set `TG_FOUNDRY_PUBLIC` to a local v14 `public/` directory to run outside the developer's default installation. It uses installed Foundry assets without copying them into the repository.
+
+## Translation regression checks
+
+`test/unit/localization.test.mjs` covers translated Edge identity, defense bonuses, duplicate validation, Kakuja prerequisites, character creation, Healer slot costs, Sidearm, forging, translated drops, schema v3 migrations, optional Babele bootstrap, complete English templates and UI key coverage. [Foundry translation QA](docs/qa/translations.md) covers runtime pack overlays, folders, language switching and imported documents.

@@ -12,6 +12,7 @@
 9. Open each Item sheet.
    - A new consumable window should fit its content at roughly 520px wide, with automation in the header and the description visible without scrolling on a 1366px desktop.
    - Header controls on actor, item and builder windows must show recognizable icons; check tooltips, the controls menu and Close, including keyboard focus.
+   - Check Copy UUID and the resize grip too. Check native roll dialogs and Active Effect popups. Icons must use the appropriate Font Awesome family/weight rather than the sheet text font; normal button labels must remain readable text.
    - Resize an item window to 360px wide: fields must remain readable without horizontal overflow. Longer weapon/Edge descriptions must remain scrollable, and textareas must still resize.
    - Change automation, quantity and description; close and reopen the item to confirm changes are saved.
 10. Use Strike from an actor sheet with a target selected; confirm the attack card lists target, range, roll, damage, and stamina cost.

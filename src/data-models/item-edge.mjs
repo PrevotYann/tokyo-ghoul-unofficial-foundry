@@ -5,6 +5,7 @@ export class EdgeDataModel extends foundry.abstract.TypeDataModel {
     const { ArrayField, BooleanField, HTMLField, NumberField, ObjectField, StringField } = fields();
     return {
       ...baseItemSchema(),
+      ruleId: new StringField({ required: true, initial: "" }),
       category: new StringField({ required: true, initial: "universal" }),
       appliesTo: new ArrayField(new StringField()),
       allowedTypes: new ArrayField(new StringField()),

@@ -101,7 +101,7 @@ try {
     const edge = (await game.packs.get("tokyo-ghoul-unofficial.edges").getDocuments()).find(i=>i.name==="Blunt"&&i.system.category==="ghoul");
     const [dropWeapon]=await ghoul.createEmbeddedDocuments("Item",[{name:"Drop weapon",type:"kagune",system:{primaryType:"bikaku",rcl:10}}]);
     const event={preventDefault(){},dataTransfer:{getData(){return JSON.stringify({type:"Item",uuid:edge.uuid});}}};
-    assert(await dropWeapon.sheet._onDrop(event) && dropWeapon.system.edges.includes("Blunt"),"Edge drop assigns to weapon and updates its slots");
+    assert(await dropWeapon.sheet._onDrop(event) && dropWeapon.system.edges.includes("blunt"),"Edge drop assigns its stable rule ID to weapon and updates its slots");
     assert(!await dropWeapon.sheet._onDrop(event),"duplicate Edge drop is rejected");
     await dropWeapon.delete();
     await ghoul.update({"system.stats.per.base":1000});await investigator.update({"system.stats.spd.base":0});
@@ -138,7 +138,7 @@ try {
   // Create through the actual builder form, including empty custom-stat fields.
   await page.evaluate(async()=>{await game.tokyoGhoul.openCharacterBuilder();});
   await page.locator("#tg-character-builder [name=name]").fill("[TG QA] Builder UI");
-  await page.locator("#tg-character-builder [name=kaguneEdges]").selectOption(["Sharpened"]);
+  await page.locator("#tg-character-builder [name=kaguneEdges]").selectOption(["sharpened"]);
   await page.locator("#tg-character-builder button[type=submit]").click();
   await page.waitForFunction(()=>game.actors.some(a=>a.name==="[TG QA] Builder UI"));
   result.checks.push("builder form creates a valid character with selected Edges");
