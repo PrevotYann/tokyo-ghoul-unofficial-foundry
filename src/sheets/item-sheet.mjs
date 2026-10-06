@@ -4,7 +4,7 @@ import { parseDropData } from "../ui/drag-drop.mjs";
 export class TokyoGhoulItemSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
   static DEFAULT_OPTIONS = {
     classes: ["tg-system", "tg-sheet", "tg-item-sheet"],
-    position: { width: 620, height: 560 },
+    position: { width: 520, height: "auto" },
     window: { resizable: true },
     form: {
       handler: TokyoGhoulItemSheet.#onSubmit,

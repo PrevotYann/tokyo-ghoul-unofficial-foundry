@@ -16,7 +16,8 @@
   box-sizing: border-box;
 }
 
-.tg-system button,
+/* Foundry icon buttons render glyphs using their own font family. */
+.tg-system button:not(.icon),
 .tg-system input,
 .tg-system select,
 .tg-system textarea {

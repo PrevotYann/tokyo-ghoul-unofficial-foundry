@@ -333,3 +333,22 @@
  .tg-sheet-header {grid-template-columns:1fr;}
  .tg-tabs button {flex:1 1 30%;}
 }
+
+/* Item editors fit their fields instead of inheriting actor-sized spacing. */
+.tg-system.tg-item-sheet .tg-form {padding:12px; gap:10px;}
+.tg-system.tg-item-sheet .tg-sheet-header {grid-template-columns:48px minmax(0,1fr); padding:10px; gap:10px; border-radius:10px;}
+.tg-system.tg-item-sheet .tg-portrait {width:48px; height:48px; border-radius:8px;}
+.tg-system.tg-item-sheet .tg-header-main {gap:6px;}
+.tg-system.tg-item-sheet .tg-chip-row {align-items:center; gap:8px;}
+.tg-system.tg-item-sheet .tg-name {font-size:18px; letter-spacing:0;}
+.tg-system.tg-item-sheet .tg-item-automation {display:flex; align-items:center; gap:6px; font-size:12px; min-width:0;}
+.tg-system.tg-item-sheet .tg-item-automation select {width:auto; min-height:28px; padding:2px 6px;}
+.tg-system.tg-item-sheet .tg-panel {padding:12px; border-radius:10px;}
+.tg-system.tg-item-sheet .tg-panel h2 {margin-bottom:8px;}
+.tg-system.tg-item-sheet textarea {min-height:4rem;}
+.tg-system.tg-item-sheet .tg-grid-2 {grid-template-columns:repeat(2,minmax(0,1fr));}
+.tg-system.tg-item-sheet .tg-grid-3 {grid-template-columns:repeat(3,minmax(0,1fr));}
+@container tg-sheet (max-width:420px) {
+ .tg-system.tg-item-sheet .tg-grid-2, .tg-system.tg-item-sheet .tg-grid-3 {grid-template-columns:1fr;}
+ .tg-system.tg-item-sheet .tg-item-automation {flex-wrap:wrap;}
+}

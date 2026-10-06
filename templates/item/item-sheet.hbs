@@ -5,24 +5,17 @@
       <input class="tg-name" name="name" type="text" value="{{item.name}}" aria-label="{{localize 'TG.sheet.name'}}">
       <div class="tg-chip-row">
         <span class="tg-chip">{{localize (concat "TG.itemTypes." item.type)}}</span>
-        <span class="tg-chip">{{localize (concat "TG.automation." system.automation)}}</span>
+        <label class="tg-item-automation">
+          <span>{{localize 'TG.sheet.automation'}}</span>
+          <select name="system.automation">
+            <option value="full" {{#if (eq system.automation "full")}}selected{{/if}}>{{localize 'TG.automation.full'}}</option>
+            <option value="assisted" {{#if (eq system.automation "assisted")}}selected{{/if}}>{{localize 'TG.automation.assisted'}}</option>
+            <option value="manual" {{#if (eq system.automation "manual")}}selected{{/if}}>{{localize 'TG.automation.manual'}}</option>
+          </select>
+        </label>
       </div>
     </div>
   </header>
-
-  <section class="tg-panel">
-    <h2>{{localize 'TG.sheet.coreFields'}}</h2>
-    <div class="tg-grid tg-grid-2">
-      <label>
-        <span>{{localize 'TG.sheet.automation'}}</span>
-        <select name="system.automation">
-          <option value="full" {{#if (eq system.automation "full")}}selected{{/if}}>{{localize 'TG.automation.full'}}</option>
-          <option value="assisted" {{#if (eq system.automation "assisted")}}selected{{/if}}>{{localize 'TG.automation.assisted'}}</option>
-          <option value="manual" {{#if (eq system.automation "manual")}}selected{{/if}}>{{localize 'TG.automation.manual'}}</option>
-        </select>
-      </label>
-    </div>
-  </section>
 
   {{#if typeFlags.isKagune}}
     <section class="tg-panel">

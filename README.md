@@ -1,6 +1,6 @@
 # Tokyo Ghoul: Unofficial TTRPG for Foundry VTT
 
-An unofficial system for Foundry **v14**, verified locally on **14.368**. Version 0.2.0 repairs native v14 integration, connects combat/effect workflows, ships populated compendiums and provides responsive charcoal/crimson sheets with readable dialogs.
+An unofficial system for Foundry **v14**, verified locally on **14.368**. Version 0.2.1 restores window header icons and makes item sheets more compact, with content-sized windows and automation controls in the item header. Combat/effect workflows and populated compendiums from 0.2.0 are included.
 
 ## Install
 
