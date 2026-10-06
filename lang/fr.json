@@ -335,5 +335,6 @@
   "TG.edges.healer": "Healer",
   "TG.edges.grenadier": "Grenadier",
   "TG.edges.gimmick": "Gimmick",
-  "TG.control.manualTrigger": "Manual"
+  "TG.control.manualTrigger": "Manual",
+  "TG.dice.redBlack": "Tokyo Ghoul - Rouge et noir"
 }

@@ -9,7 +9,7 @@ import { buildGimmickActivationSummary } from "../rules/gimmicks.mjs";
 import { calculateHungerTargetNumber, calculateRageTargetNumber } from "../rules/hunger-rage.mjs";
 import { calculateKakujaUpkeep, getKakujaBonusOptions } from "../rules/kakuja.mjs";
 import { calculateConsumptionReward, calculateQuinqueGimmickAddition, calculateQuinqueUpgrade } from "../rules/progression.mjs";
-import { rollD20Check } from "../rules/rolls.mjs";
+import { rollD20Check, getMessageRolls } from "../rules/rolls.mjs";
 import { validateCharacterSystemData } from "../rules/validation.mjs";
 
 export class TokyoGhoulActor extends actorAutomation(Actor) {
@@ -116,6 +116,7 @@ export class TokyoGhoulActor extends actorAutomation(Actor) {
     await ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content,
+      rolls: getMessageRolls(result),
       flags: {
         "tokyo-ghoul-unofficial": {
           roll: result
@@ -177,6 +178,7 @@ export class TokyoGhoulActor extends actorAutomation(Actor) {
   async processStartTurnConditions(options = {}) {
     const conditionItems = Array.from(this.items ?? []).filter((item) => item.type === "condition");
     const results = [];
+    const rolls = [];
     const edgeModifiers = this.getEdgeModifiers();
 
     for (const condition of conditionItems) {
@@ -184,6 +186,7 @@ export class TokyoGhoulActor extends actorAutomation(Actor) {
       if (condition.system?.conditionId === "burning" && endRollTotal === undefined) {
         const roll = await rollD20Check({ actor: this, stat: "end" });
         endRollTotal = roll.total;
+        rolls.push(...getMessageRolls(roll));
       }
 
       const result = resolveConditionStartTurn({
@@ -203,6 +206,7 @@ export class TokyoGhoulActor extends actorAutomation(Actor) {
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
         content: game.i18n.format("TG.chat.conditionTurn", { actor: this.name, count: results.length }),
+        rolls,
         flags: { "tokyo-ghoul-unofficial": { conditionTurn: results.map(({ item, ...result }) => ({ itemId: item.id, ...result })) } }
       });
     }

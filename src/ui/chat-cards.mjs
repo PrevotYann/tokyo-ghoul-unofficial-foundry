@@ -1,6 +1,6 @@
 import { resolveDefense } from "../rules/damage.mjs";
 import { resolveQuinqueInterposeBlock, getTypeAdvantageBonus, getAntiGhoulQuinqueBonus } from "../rules/kagune-quinque.mjs";
-import { rollD20Check } from "../rules/rolls.mjs";
+import { rollD20Check, getMessageRolls } from "../rules/rolls.mjs";
 import { SYSTEM_ID } from "../config.mjs";
 
 let queue = Promise.resolve();
@@ -75,7 +75,7 @@ export async function resolveDefenseRequest(request, user) {
   const counter = resolution.counter.damageMultiplier > 0 && !flags.counterAttack && game.settings.get(SYSTEM_ID,"counterRewards");
   const raidFollowUp = defender.system.resources.vitality.value===0 && flags.attack.modeRules?.grantsDefeatFollowUpAttack;
   const content=await foundry.applications.handlebars.renderTemplate("systems/tokyo-ghoul-unofficial/templates/chat/defense-card.hbs",{defender,action,defenseRoll,resolution,canCounter:counter,raidFollowUp});
-  await ChatMessage.create({speaker:ChatMessage.getSpeaker({actor:defender}),content,flags:{[SYSTEM_ID]:{defenderActorUuid:defender.uuid,attackerActorUuid:flags.attackerActorUuid,defense:{action,defenseRoll,resolution},canCounter:counter,raidFollowUp}}});
+  await ChatMessage.create({speaker:ChatMessage.getSpeaker({actor:defender}),content,rolls:getMessageRolls(defenseRoll),flags:{[SYSTEM_ID]:{defenderActorUuid:defender.uuid,attackerActorUuid:flags.attackerActorUuid,defense:{action,defenseRoll,resolution},canCounter:counter,raidFollowUp}}});
   return resolution;
 }
 

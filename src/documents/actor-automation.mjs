@@ -8,7 +8,7 @@ import { getKakujaEligibility, getKakujaSelections, getKakujaStatBonus, getKakuj
 import { getTypeAdvantageBonus, getAntiGhoulQuinqueBonus } from "../rules/kagune-quinque.mjs";
 import { calculateGimmickStaminaCost } from "../rules/gimmicks.mjs";
 import { calculateMedkitUse, getGrenadeProfile } from "../rules/consumables.mjs";
-import { rollD20Check } from "../rules/rolls.mjs";
+import { rollD20Check, getMessageRolls } from "../rules/rolls.mjs";
 import { clampResource } from "../rules/damage.mjs";
 import { promptFields, escapeHTML } from "../sheets/roll-dialogs.mjs";
 
@@ -16,8 +16,8 @@ export const actorAutomation = Base => class extends Base {
   get inCombat() { return !!game.combat?.started && game.combat.combatants.some(c => c.actor?.uuid === this.uuid); }
   get turnState() { return this.getFlag(SYSTEM_ID, "turn") ?? {}; }
   notify(key) { ui.notifications.warn(game.i18n.localize(key)); return null; }
-  async log(key, data = {}) {
-    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), content: `<section class="tg-system tg-chat-card"><p>${escapeHTML(game.i18n.format(key, {actor:this.name,...data}))}</p></section>` });
+  async log(key, data = {}, result = null) {
+    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), rolls: getMessageRolls(result), content: `<section class="tg-system tg-chat-card"><p>${escapeHTML(game.i18n.format(key, {actor:this.name,...data}))}</p></section>` });
   }
 
   async beginTurn() {
@@ -118,7 +118,7 @@ export const actorAutomation = Base => class extends Base {
     if (options.damageMultiplier) attack.damage=counterDamage(attack.damage,options.damageMultiplier);
     const data = {actor:this,attack,targets,rangeValidation,roll,resourceSpend,maneuverSpend};
     const content = await foundry.applications.handlebars.renderTemplate("systems/tokyo-ghoul-unofficial/templates/chat/attack-card.hbs",data);
-    const message = await ChatMessage.create({speaker:ChatMessage.getSpeaker({actor:this}),content,flags:{[SYSTEM_ID]:{attackerActorUuid:this.uuid,attack,targets,rangeValidation,roll,resourceSpend,maneuverSpend,automatic:options.automatic??false}}});
+    const message = await ChatMessage.create({speaker:ChatMessage.getSpeaker({actor:this}),content,rolls:getMessageRolls(roll),flags:{[SYSTEM_ID]:{attackerActorUuid:this.uuid,attack,targets,rangeValidation,roll,resourceSpend,maneuverSpend,automatic:options.automatic??false}}});
     return {...data,message};
   }
 
@@ -166,7 +166,7 @@ export const actorAutomation = Base => class extends Base {
         const eligibility=getKakujaEligibility({actorClass:cls,rcl:this.items.find(i=>i.type==="kagune")?.system.rcl,edges:this.getEdgeNames(this.getDefaultAttackItem()),masteredHalf:this.system.kakuja.masteredHalf});
         if (eligibility.canHalf) await this.update({"system.kakuja.eligible":true});
       }
-      await this.log("TG.chat.controlCheck",{kind:game.i18n.localize(`TG.control.${kind}`),trigger:trigger==="manual"?game.i18n.localize("TG.control.manualTrigger"):trigger,total:roll.total,target:targetNumber});
+      await this.log("TG.chat.controlCheck",{kind:game.i18n.localize(`TG.control.${kind}`),trigger:trigger==="manual"?game.i18n.localize("TG.control.manualTrigger"):trigger,total:roll.total,target:targetNumber},roll);
       if (kind==="hunger" && this.system.kakuja.active) await this.resolveKakujaMasteryRoll(roll);
       results.push({kind,targetNumber,roll});
     }

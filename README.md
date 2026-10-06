@@ -2,7 +2,7 @@
 
 **Included one-shot: The Last Delivery.** An original 4–6 player Tokyo Ghoul investigation with six pregens, NPCs, weapons, evidence handouts and three generated top-down battlemaps. Open its Adventure compendium and import all content, then read **00 • GM Start Here**. [Contents, setup and validation](docs/qa/last-delivery.md).
 
-An unofficial system for Foundry **v14**, verified locally on **14.368**. Version 0.4.1 fixes formatted sheet text and checkbox layout. Version 0.4.0 added **The Last Delivery**, a complete native Adventure with original characters, equipment, journals, illustrated battlemaps, working walls/doors, lighting, vision and preplaced tokens.
+An unofficial system for Foundry **v14**, verified locally on **14.368**. Version 0.4.2 fixes stat rolls, adapts Character/NPC sheets to each class and adds optional Dice So Nice! animations with a red/black default theme. Version 0.4.0 added **The Last Delivery**, a complete native Adventure with original characters, equipment, journals, illustrated battlemaps, working walls/doors, lighting, vision and preplaced tokens.
 
 ## Install
 
@@ -45,3 +45,9 @@ The developer rulebook is expected locally at docs/rulebook/Tokyo Ghoul Tabletop
 French localization includes English stubs for newer controls. Spatial movement, cover, area membership, Dynamic abilities and narrative triggers require GM judgment; consult the audit rather than assuming complete automation.
 
 Rich text on Actor and Item sheets is rendered as formatted content by default. Owners can use the pencil button to edit and save it; read-only sheets hide that control. Run `npm run test:sheet-content` against the disposable `tg-qa` v14 world to verify rich text display, editing, saving, permissions, weapon checkboxes and narrow layouts.
+
+Character and NPC sheets adapt to their identity class: Ghouls use Hunger, consumption, Kagune evolution and Kakuja; Investigators (humans) use Rage, forging and Quinque upgrades; Quinx use both with half-Kakuja only. Reload and Gimmick controls appear when the relevant equipment is owned. Existing equipment and saved data remain available when changing class.
+
+Dice So Nice! is optional. Activate it in your world to animate stat, attack, defense, control, mastery and Burning rolls, including the extra d20 on a natural 20. The system registers **Tokyo Ghoul - Red & Black** as the default theme through the module's basic dice role; saved player customization takes precedence. Versions without the role API still offer the theme in the module's settings. Integration uses native chat `rolls`, without a second dice throw or duplicate animation calls. API references: [integration](https://riccisi.gitlab.io/foundryvtt-dice-so-nice/api/integration/) and [themes](https://riccisi.gitlab.io/foundryvtt-dice-so-nice/api/customization/).
+
+Run `npm run test:actor-rolls` against `tg-qa` to check all six Character/NPC and class combinations, all six stat buttons with delayed dialogs, cancellation, tab navigation, derived updates and class-specific controls. Run `npm run test:dice-so-nice` with Dice So Nice! installed and activated in that QA world to verify the default theme and real ordinary/critical/fumble animations.

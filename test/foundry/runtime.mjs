@@ -65,6 +65,7 @@ try {
     assert(ghoul.system.resources.maneuverBudget.value===2,"combat start resets squad budget");
     const attack=await ghoul.rollAttack(kagune,{targets:[{name:investigator.name,uuid:investigator.uuid}],targetRangeBand:"melee"});
     assert(attack?.message && ghoul.system.resources.maneuverBudget.value===1,"attack spends a maneuver and creates card");
+    assert(attack.message.isRoll && attack.message.rolls[0].total===attack.roll.natural,"attack card retains native dice for DsN");
     const request={messageId:attack.message.id,defenderUuid:investigator.uuid,action:"dodge"};
     const illegal=await resolveDefenseRequest(request,game.user);assert(!illegal,"first-turn defender cannot dodge");
     const before=investigator.system.resources.vitality.value;
@@ -93,6 +94,7 @@ try {
     const blockAttack=await ghoul.rollAttack(kagune,{targets:[{name:investigator.name,uuid:investigator.uuid}]});
     const blockResult=await resolveDefenseRequest({messageId:blockAttack.message.id,defenderUuid:investigator.uuid,action:"block"},game.user);
     assert(blockResult.success && blockResult.vitalityDamage===0 && blockResult.counter.automatic,"successful Block prevents damage and grants automatic counter tier");
+    assert(game.messages.contents.at(-1).isRoll,"block defense card retains native dice for DsN");
     const interposeAttack=await ghoul.rollAttack(kagune,{targets:[{name:investigator.name,uuid:investigator.uuid}]});
     const quinque=investigator.items.find(i=>i.type==="quinque");const bonds=quinque.system.rcBonds.value;
     const interpose=await resolveDefenseRequest({messageId:interposeAttack.message.id,defenderUuid:investigator.uuid,action:"interpose"},game.user);
@@ -110,6 +112,7 @@ try {
     assert(!dodge.success && dodge.staminaDamage===Math.floor(dodgeAttack.attack.damage/2),"failed Dodge applies stamina damage");
     await ghoul.update({"system.combat.mode":"raid"});await ghoul.beginTurn();
     assert(ghoul.system.resources.maneuverBudget.value===3,"Raid grants three maneuvers");
+    assert(game.messages.contents.at(-1).isRoll,"dodge defense card retains native dice for DsN");
     const raid=await ghoul.rollAttack(kagune,{targets:[{name:investigator.name,uuid:investigator.uuid}]});
     assert(raid.attack.damage===raid.attack.baseDamage*3,"Raid multiplies final damage");await ghoul.update({"system.combat.mode":"squad"});
     const [gear]=await ghoul.createEmbeddedDocuments("Item",[{name:"Effect gear",type:"loot",effects:[{name:"PER bonus",transfer:true,system:{changes:[{key:"system.stats.per.temp",type:"add",value:2,phase:"initial"}]}}]}]);

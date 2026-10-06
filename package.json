@@ -1,6 +1,6 @@
 {
   "name": "tokyo-ghoul-unofficial-foundry",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,6 +8,8 @@
     "test:packs": "node scripts/validate-packs-source.mjs",
     "build:packs": "node scripts/build-packs-source.mjs",
     "build:adventure": "node scripts/build-adventure-pack.mjs",
+    "test:actor-rolls": "node test/foundry/actor-rolls.mjs",
+    "test:dice-so-nice": "node test/foundry/dice-so-nice.mjs",
     "test:sheet-content": "node test/foundry/sheet-content.mjs",
     "test:adventure": "node test/foundry/adventure.mjs",
     "build:translations": "node scripts/generate-babele.mjs",

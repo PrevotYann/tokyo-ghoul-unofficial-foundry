@@ -82,7 +82,7 @@
 
     <div class="tg-panel">
       <h2>{{localize 'TG.sheet.resources'}}</h2>
-      <div class="tg-action-row"><button type="button" data-actor-action="rage">{{localize 'TG.actions.rage'}}</button><button type="button" data-actor-action="assignStats">{{localize 'TG.actions.assignStats'}}</button>{{#if usesMealScore}}<button type="button" data-actor-action="feed">{{localize 'TG.actions.feed'}}</button>{{/if}}</div>
+      <div class="tg-action-row">{{#if usesRage}}<button type="button" data-actor-action="rage">{{localize 'TG.actions.rage'}}</button>{{/if}}<button type="button" data-actor-action="assignStats">{{localize 'TG.actions.assignStats'}}</button>{{#if usesMealScore}}<button type="button" data-actor-action="feed">{{localize 'TG.actions.feed'}}</button>{{/if}}</div>
       <div class="tg-resource-grid">
         <label>
           <span>{{localize 'TG.resources.vitality.label'}}</span>
@@ -141,7 +141,7 @@
       <div class="tg-action-row tg-panel-actions">
         <button type="button" data-actor-action="reserveReaction">{{localize 'TG.actions.reserveReaction'}}</button>
         {{#each maneuverActions}}<button type="button" data-actor-action="{{this}}">{{localize (concat "TG.actions." this)}}</button>{{/each}}
-        <button type="button" data-actor-action="toggleGimmick">{{localize 'TG.actions.toggleGimmick'}}</button>
+        {{#if hasGimmicks}}<button type="button" data-actor-action="toggleGimmick">{{localize 'TG.actions.toggleGimmick'}}</button>{{/if}}
       </div>
     </div>
     {{> "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs" group=(lookup itemGroups 2)}}
@@ -163,26 +163,30 @@
           <span>{{localize 'TG.sheet.statPoints'}}</span>
           <input name="system.progression.statPoints" type="number" value="{{system.progression.statPoints}}" min="0" step="1">
         </label>
+        {{#if usesKakuja}}
         <label>
           <span>{{localize 'TG.sheet.kakujaStage'}}</span>
           <select name="system.kakuja.stage">{{#each kakujaStages}}<option value="{{this}}" {{#if (eq this ../system.kakuja.stage)}}selected{{/if}}>{{localize (concat "TG.kakuja." this)}}</option>{{/each}}</select>
         </label>
+        {{/if}}
       </div>
+      {{#if usesKakuja}}
       <div class="tg-grid tg-grid-3">
         <label class="tg-inline-check"><span>{{localize 'TG.sheet.kakujaUnlocked'}}</span><input name="system.kakuja.eligible" type="checkbox" {{#if system.kakuja.eligible}}checked{{/if}}></label>
         <label class="tg-inline-check"><span>{{localize 'TG.sheet.masteredHalf'}}</span><input name="system.kakuja.masteredHalf" type="checkbox" {{#if system.kakuja.masteredHalf}}checked{{/if}}></label>
-        <label class="tg-inline-check"><span>{{localize 'TG.sheet.masteredFull'}}</span><input name="system.kakuja.masteredFull" type="checkbox" {{#if system.kakuja.masteredFull}}checked{{/if}}></label>
+        {{#if (eq system.identity.class "ghoul")}}<label class="tg-inline-check"><span>{{localize 'TG.sheet.masteredFull'}}</span><input name="system.kakuja.masteredFull" type="checkbox" {{#if system.kakuja.masteredFull}}checked{{/if}}></label>{{/if}}
       </div>
       <p class="tg-muted">{{localize 'TG.sheet.masteryProgress'}}: {{system.kakuja.masterySuccesses}} ? {{system.kakuja.selectedBonus}}</p>
+      {{/if}}
       <div class="tg-action-row tg-panel-actions">
-        <button type="button" data-actor-action="mastery">{{localize 'TG.actions.mastery'}}</button>
-        <button type="button" data-actor-action="consume">{{localize 'TG.actions.consume'}}</button>
+        {{#if usesKakuja}}<button type="button" data-actor-action="mastery">{{localize 'TG.actions.mastery'}}</button>{{/if}}
+        {{#if usesMealScore}}<button type="button" data-actor-action="consume">{{localize 'TG.actions.consume'}}</button>{{/if}}
         <button type="button" data-actor-action="spendPoints">{{localize 'TG.actions.spendPoints'}}</button>
-        <button type="button" data-actor-action="evolve">{{localize 'TG.actions.evolve'}}</button>
-        <button type="button" data-actor-action="forge">{{localize 'TG.actions.forge'}}</button>
-        <button type="button" data-actor-action="upgrade">{{localize 'TG.actions.upgrade'}}</button>
-        <button type="button" data-actor-action="activateKakuja">{{localize 'TG.actions.activateKakuja'}}</button>
-        <button type="button" data-actor-action="deactivateKakuja">{{localize 'TG.actions.deactivateKakuja'}}</button>
+        {{#if usesMealScore}}<button type="button" data-actor-action="evolve">{{localize 'TG.actions.evolve'}}</button>{{/if}}
+        {{#if usesQuinque}}<button type="button" data-actor-action="forge">{{localize 'TG.actions.forge'}}</button>{{/if}}
+        {{#if usesQuinque}}<button type="button" data-actor-action="upgrade">{{localize 'TG.actions.upgrade'}}</button>{{/if}}
+        {{#if usesKakuja}}<button type="button" data-actor-action="activateKakuja">{{localize 'TG.actions.activateKakuja'}}</button>{{/if}}
+        {{#if usesKakuja}}<button type="button" data-actor-action="deactivateKakuja">{{localize 'TG.actions.deactivateKakuja'}}</button>{{/if}}
       </div>
       <div class="tg-rich-field">
         <span>{{localize 'TG.sheet.notes'}}</span>

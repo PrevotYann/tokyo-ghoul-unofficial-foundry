@@ -9,7 +9,7 @@
           {{#if (eq item.type "kagune")}}<button type="button" data-item-action="toggle">{{#if item.system.manifested}}{{localize 'TG.actions.withdraw'}}{{else}}{{localize 'TG.actions.manifest'}}{{/if}}</button>{{/if}}
           {{#if (eq item.type "quinque")}}<button type="button" data-item-action="toggle">{{#if item.system.equipped}}{{localize 'TG.actions.unequip'}}{{else}}{{localize 'TG.actions.equip'}}{{/if}}</button>{{/if}}
           {{#if (eq item.type "kakuja-armor")}}<button type="button" data-item-action="toggle">{{localize 'TG.actions.toggleArmor'}}</button>{{/if}}
-          {{#unless (eq item.type "edge")}}<button type="button" data-item-action="use">{{localize 'TG.actions.use'}}</button>{{/unless}}
+          {{#if (or (or (eq item.type "kagune") (eq item.type "quinque")) (or (eq item.type "maneuver") (or (eq item.type "consumable") (eq item.type "gimmick"))))}}<button type="button" data-item-action="use">{{localize 'TG.actions.use'}}</button>{{/if}}
           <button type="button" data-item-action="delete" aria-label="{{localize 'TG.actions.delete'}}"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
         </div>
         <span class="tg-chip">{{localize (concat "TG.itemTypes." item.type)}}</span>

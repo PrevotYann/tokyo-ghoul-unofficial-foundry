@@ -9,9 +9,10 @@ function getActorStatValue(actor, stat) {
   return numberOrZero(actor.system?.stats?.[stat]?.total ?? actor.system?.stats?.[stat]?.base);
 }
 
-async function rollDie(sides = 20) {
+async function rollDie(sides = 20, rolls = []) {
   if (globalThis.Roll) {
     const roll = await new Roll(`1d${sides}`).evaluate();
+    rolls.push(roll);
     return roll.total;
   }
   return Math.floor(Math.random() * sides) + 1;
@@ -31,8 +32,9 @@ export async function rollD20Check({
   opponentTotal = null,
   dieResults = null
 } = {}) {
-  const natural = dieResults?.[0] ?? await rollDie(20);
-  const extra = natural === 20 ? dieResults?.[1] ?? await rollDie(20) : 0;
+  const foundryRolls = [];
+  const natural = dieResults?.[0] ?? await rollDie(20, foundryRolls);
+  const extra = natural === 20 ? dieResults?.[1] ?? await rollDie(20, foundryRolls) : 0;
   const resolvedStat = statValue ?? getActorStatValue(actor, stat);
   const modifierTotal = numberOrZero(resolvedStat) + numberOrZero(bonus) - numberOrZero(penalty);
   const preCriticalTotal = natural + modifierTotal;
@@ -40,7 +42,7 @@ export async function rollD20Check({
   const hasContest = opponentTotal != null;
   const target = hasContest ? opponentTotal : targetNumber;
 
-  return {
+  const result = {
     stat,
     natural,
     extra,
@@ -53,6 +55,13 @@ export async function rollD20Check({
     success: target == null ? null : hasContest ? total > numberOrZero(target) : total >= numberOrZero(target),
     formula: buildD20Formula({ stat, statValue: resolvedStat, bonus, penalty, natural, extra })
   };
+  // Keep live Roll instances out of the serializable rule summary stored in flags.
+  Object.defineProperty(result, "foundryRolls", { value: foundryRolls });
+  return result;
+}
+
+export function getMessageRolls(result) {
+  return result?.foundryRolls ?? [];
 }
 
 export function buildD20Formula({ stat = null, statValue = 0, bonus = 0, penalty = 0, natural = "1d20", extra = 0 } = {}) {

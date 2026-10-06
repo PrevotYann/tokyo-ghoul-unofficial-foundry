@@ -34,11 +34,15 @@ export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApp
       actor,
       system: actor.system,
       enriched: await enrichSheetFields(actor, ["biography.appearance", "biography.personality", "biography.backstory", "biography.goals", "progression.notes", "automation.ruleNotes"]),
-      usesMealScore: actor.system.identity?.class === "ghoul" || actor.system.identity?.class === "quinx",
+      usesMealScore: ["ghoul", "quinx"].includes(actor.system.identity?.class),
+      usesRage: ["investigator", "quinx"].includes(actor.system.identity?.class),
+      usesKakuja: ["ghoul", "quinx"].includes(actor.system.identity?.class),
+      usesQuinque: ["investigator", "quinx"].includes(actor.system.identity?.class),
+      hasGimmicks: items.some(item => item.type === "gimmick"),
       effects: actor.effects.contents,
       rangeBands: ["melee","close","mid","long","far"],
-      kakujaStages: ["none","half","full"],
-      maneuverActions: ["move","ready","reload","allOut","counter","overextend","heavyStrike","grab","throw","breakGrapple"],
+      kakujaStages: actor.system.identity?.class === "quinx" ? ["none", "half"] : ["none", "half", "full"],
+      maneuverActions: ["move","ready","allOut","counter","overextend","heavyStrike","grab","throw","breakGrapple", ...(items.some(item => item.type === "quinque" && item.system.sidearm?.enabled) ? ["reload"] : [])],
       stats: Object.entries(actor.system.stats ?? {}).map(([key, data]) => ({ key, data })),
       itemGroups: this.#groupItems(items),
       validation: validateCharacterSystemData(actor.system, items),
@@ -125,9 +129,10 @@ export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApp
     event.preventDefault();
     const actor = this.actor ?? this.document;
     if (!this.isEditable) return;
+    const stat = event.currentTarget.dataset.rollStat;
     const options = await promptRollOptions();
     if (!options) return;
-    await actor.rollCheck(event.currentTarget.dataset.rollStat, {bonus:Number(options.bonus),penalty:Number(options.penalty), ...(options.targetNumber !== "" ? {targetNumber:Number(options.targetNumber)} : {})});
+    await actor.rollCheck(stat, {bonus:Number(options.bonus),penalty:Number(options.penalty), ...(options.targetNumber !== "" ? {targetNumber:Number(options.targetNumber)} : {})});
   }
 
   async #onActorAction(event) {

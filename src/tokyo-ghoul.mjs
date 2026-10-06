@@ -22,8 +22,10 @@ import { registerMigrationSettings, runMigrations } from "./rules/migrations.mjs
 import { registerChatCardListeners } from "./ui/chat-cards.mjs";
 import { registerHandlebarsHelpers } from "./ui/handlebars-helpers.mjs";
 import { registerBabeleHooks } from "./localization/babele.mjs";
+import { registerDiceSoNiceHooks } from "./ui/dice-so-nice.mjs";
 
 registerBabeleHooks();
+registerDiceSoNiceHooks();
 
 const ACTOR_DATA_MODELS = {
   character: CharacterDataModel,
