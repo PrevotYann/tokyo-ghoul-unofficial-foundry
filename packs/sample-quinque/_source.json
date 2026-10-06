@@ -37,8 +37,16 @@
         "freeGimmick": false,
         "dynamicEdge": null
       },
-      "automation": "manual",
+      "automation": "full",
       "description": "Light ranged Quinque template."
+    },
+    "_id": "18d6e5bc63760da1",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -79,8 +87,16 @@
         "freeGimmick": false,
         "dynamicEdge": null
       },
-      "automation": "manual",
+      "automation": "full",
       "description": "Heavy defensive Quinque template."
+    },
+    "_id": "0c744b7abc79250e",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -121,8 +137,16 @@
         "freeGimmick": false,
         "dynamicEdge": null
       },
-      "automation": "manual",
+      "automation": "full",
       "description": "Specialized mid-range Quinque template."
+    },
+    "_id": "122e2a46968d6843",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -163,8 +187,16 @@
         "freeGimmick": false,
         "dynamicEdge": null
       },
-      "automation": "manual",
+      "automation": "full",
       "description": "Balanced mid-range Quinque template."
+    },
+    "_id": "698f097f7a2d513d",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -207,8 +239,16 @@
         "freeGimmick": false,
         "dynamicEdge": null
       },
-      "automation": "manual",
+      "automation": "full",
       "description": "Generic sidearm-enabled Quinque template."
+    },
+    "_id": "664e9c97468096d4",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   }
 ]

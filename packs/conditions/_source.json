@@ -6,11 +6,19 @@
       "conditionId": "bleeding",
       "stacks": 1,
       "stackable": true,
-      "automation": "manual",
+      "automation": "full",
       "effect": {
         "timing": "startTurn"
       },
       "description": "Stacking Vitality loss at turn start; regeneration can remove stacks."
+    },
+    "_id": "95fc4c3224594a3a",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -20,12 +28,20 @@
       "conditionId": "burning",
       "stacks": 1,
       "stackable": true,
-      "automation": "manual",
+      "automation": "full",
       "effect": {
         "timing": "startTurn",
         "check": "END"
       },
       "description": "Stacking fire condition with END check to clear."
+    },
+    "_id": "fc36a7072713788d",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -35,12 +51,20 @@
       "conditionId": "grappled",
       "stacks": 1,
       "stackable": false,
-      "automation": "manual",
+      "automation": "assisted",
       "effect": {
         "movement": false,
         "attacks": false
       },
       "description": "Restricts movement and attacks until broken."
+    },
+    "_id": "9ff93b28731648ec",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -50,11 +74,19 @@
       "conditionId": "hunger-active",
       "stacks": 1,
       "stackable": false,
-      "automation": "manual",
+      "automation": "assisted",
       "effect": {
         "suppressesRegeneration": true
       },
       "description": "Hunger consequences are active and regeneration is suppressed."
+    },
+    "_id": "9eb9ed2fbb7a7920",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -64,11 +96,19 @@
       "conditionId": "rage-active",
       "stacks": 1,
       "stackable": false,
-      "automation": "manual",
+      "automation": "assisted",
       "effect": {
         "tempStatBudget": 10
       },
       "description": "Rage state with temporary stat budget and stamina costs."
+    },
+    "_id": "533548df08f5d0ab",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -78,11 +118,19 @@
       "conditionId": "regeneration-suppressed",
       "stacks": 1,
       "stackable": false,
-      "automation": "manual",
+      "automation": "full",
       "effect": {
         "suppressesRegeneration": true
       },
       "description": "Prevents regeneration while active."
+    },
+    "_id": "0863a72a0630d459",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -97,6 +145,14 @@
         "kakuja": true
       },
       "description": "Tracks active Kakuja state."
+    },
+    "_id": "018f23e439512e10",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -106,11 +162,19 @@
       "conditionId": "lost-control",
       "stacks": 1,
       "stackable": false,
-      "automation": "manual",
+      "automation": "assisted",
       "effect": {
         "gmControl": true
       },
       "description": "Kakuja loss of control state."
+    },
+    "_id": "a4cc4ce88aad7afd",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -120,11 +184,19 @@
       "conditionId": "rc-limiter-cloud",
       "stacks": 1,
       "stackable": false,
-      "automation": "manual",
+      "automation": "assisted",
       "effect": {
         "suppressesRcFeatures": true
       },
       "description": "Area effect that suppresses RC-based features."
+    },
+    "_id": "c039c40d96e5d2d3",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -139,6 +211,14 @@
         "usable": false
       },
       "description": "Marks a Quinque as broken until repaired."
+    },
+    "_id": "ab3cc84fdd4779f3",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   }
 ]

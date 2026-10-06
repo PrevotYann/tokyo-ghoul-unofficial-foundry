@@ -8,11 +8,22 @@
       "secondaryType": null,
       "rcl": 10,
       "manifested": false,
-      "range": { "melee": "close", "projectile": "long" },
-      "edgeSlots": { "max": 3, "used": 0, "bonusFromType": 0 },
+      "range": {
+        "melee": "close",
+        "projectile": "long"
+      },
+      "edgeSlots": {
+        "max": 3,
+        "used": 0,
+        "bonusFromType": 0
+      },
       "edges": [],
-      "evolution": { "spentRcl": 0, "statPurchases": [], "swappedEdges": [] },
-      "automation": "manual",
+      "evolution": {
+        "spentRcl": 0,
+        "statPurchases": [],
+        "swappedEdges": []
+      },
+      "automation": "full",
       "description": "Fast projectile-focused Kagune template.",
       "dynamicNotes": ""
     }
@@ -26,11 +37,22 @@
       "secondaryType": null,
       "rcl": 10,
       "manifested": false,
-      "range": { "melee": "close", "projectile": null },
-      "edgeSlots": { "max": 3, "used": 0, "bonusFromType": 0 },
+      "range": {
+        "melee": "close",
+        "projectile": null
+      },
+      "edgeSlots": {
+        "max": 3,
+        "used": 0,
+        "bonusFromType": 0
+      },
       "edges": [],
-      "evolution": { "spentRcl": 0, "statPurchases": [], "swappedEdges": [] },
-      "automation": "manual",
+      "evolution": {
+        "spentRcl": 0,
+        "statPurchases": [],
+        "swappedEdges": []
+      },
+      "automation": "full",
       "description": "Heavy close-range Kagune template.",
       "dynamicNotes": ""
     }
@@ -44,11 +66,22 @@
       "secondaryType": null,
       "rcl": 10,
       "manifested": false,
-      "range": { "melee": "mid", "projectile": null },
-      "edgeSlots": { "max": 3, "used": 0, "bonusFromType": 0 },
+      "range": {
+        "melee": "mid",
+        "projectile": null
+      },
+      "edgeSlots": {
+        "max": 3,
+        "used": 0,
+        "bonusFromType": 0
+      },
       "edges": [],
-      "evolution": { "spentRcl": 0, "statPurchases": [], "swappedEdges": [] },
-      "automation": "manual",
+      "evolution": {
+        "spentRcl": 0,
+        "statPurchases": [],
+        "swappedEdges": []
+      },
+      "automation": "full",
       "description": "Flexible mid-range Kagune template.",
       "dynamicNotes": ""
     }
@@ -62,11 +95,22 @@
       "secondaryType": null,
       "rcl": 10,
       "manifested": false,
-      "range": { "melee": "mid", "projectile": null },
-      "edgeSlots": { "max": 4, "used": 0, "bonusFromType": 1 },
+      "range": {
+        "melee": "mid",
+        "projectile": null
+      },
+      "edgeSlots": {
+        "max": 4,
+        "used": 0,
+        "bonusFromType": 1
+      },
       "edges": [],
-      "evolution": { "spentRcl": 0, "statPurchases": [], "swappedEdges": [] },
-      "automation": "manual",
+      "evolution": {
+        "spentRcl": 0,
+        "statPurchases": [],
+        "swappedEdges": []
+      },
+      "automation": "full",
       "description": "Balanced mid-range Kagune template.",
       "dynamicNotes": ""
     }

@@ -1,4 +1,4 @@
-<form class="tg-system tg-form tg-builder-form" autocomplete="off">
+<div class="tg-system tg-form tg-builder-form" autocomplete="off">
   <section class="tg-panel">
     <h2>{{localize 'TG.builder.title'}}</h2>
     <div class="tg-grid tg-grid-2">
@@ -42,7 +42,12 @@
       </label>
     </div>
   </section>
+  <section class="tg-panel"><h2>{{localize 'TG.sheet.edges'}}</h2><div class="tg-grid tg-grid-2">
+    <label><span>{{localize 'TG.builder.kaguneEdges'}}</span><select name="kaguneEdges" multiple size="6">{{#each kaguneEdges}}<option value="{{name}}">{{name}} ({{system.slots}})</option>{{/each}}</select></label>
+    <label><span>{{localize 'TG.builder.quinqueEdges'}}</span><select name="quinqueEdges" multiple size="6">{{#each quinqueEdges}}<option value="{{name}}">{{name}} ({{system.slots}})</option>{{/each}}</select></label>
+  </div><p class="tg-muted">{{localize 'TG.builder.edgeHint'}}</p></section>
+  <section class="tg-panel"><h2>{{localize 'TG.builder.customStats'}}</h2><p class="tg-muted">{{localize 'TG.builder.customStatsHint'}}</p><div class="tg-grid tg-grid-3">{{#each stats}}<label><span>{{localize (concat "TG.stats." this ".label")}}</span><input name="stats.{{this}}" type="number" min="0" placeholder="10"></label>{{/each}}</div></section>
   <footer class="tg-action-row">
     <button type="submit">{{localize 'TG.builder.createActor'}}</button>
   </footer>
-</form>
+</div>

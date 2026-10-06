@@ -1,5 +1,6 @@
 import { TG_CONFIG } from "../config.mjs";
-import { calculateDerivedResources, calculateStatTotal } from "../rules/derived-stats.mjs";
+import { calculateDerivedResources, calculateStatTotal, calculateStaminaMax, calculateVitalityMax, calculateMealScoreMax } from "../rules/derived-stats.mjs";
+import { getKakujaStatBonus } from "../rules/kakuja.mjs";
 
 export function fields() {
   return foundry.data.fields;
@@ -42,13 +43,40 @@ export function statsSchema() {
 }
 
 export function applyCharacterDerivedData(model) {
+  const conditions = model.parent?.items?.filter(i=>i.type==="condition").map(i=>i.system.conditionId) ?? [];
+  if (conditions.includes("hunger-active")) model.hunger.active = true;
+  if (conditions.some(id=>["hunger-active","regeneration-suppressed","rc-limiter-cloud"].includes(id))) model.hunger.regenerationSuppressed = true;
+  if (conditions.includes("rage-active")) model.resources.rage.active = true;
+  if (conditions.includes("lost-control")) model.kakuja.lostControl = true;
   for (const key of TG_CONFIG.stats) {
     model.stats[key].total = calculateStatTotal(model.stats[key]);
   }
 
-  const activeKagune = model.parent?.items?.find((item) => item.type === "kagune" && item.system?.manifested);
-  const kaguneType = activeKagune?.system?.primaryType || activeKagune?.system?.type || null;
-  const derived = calculateDerivedResources({ stats: model.stats, kaguneType });
+  const kagune = model.parent?.items?.find(item => item.type === "kagune");
+  const kaguneType = model.identity.class !== "investigator" ? kagune?._source?.system.primaryType ?? kagune?.system.primaryType ?? null : null;
+  const inputStats = Object.fromEntries(TG_CONFIG.stats.map(key => [key, {...model.stats[key]}]));
+  if (kaguneType === "bikaku") {
+    const penalty = kagune?.system.evolution.bikakuPenalty ?? "crl";
+    if (["crl","per"].includes(penalty)) inputStats[penalty].edge -= 2;
+  }
+  const rage = model.resources.rage;
+  const hunger = model.parent?.getFlag?.("tokyo-ghoul-unofficial", "hungerAssigned") ?? {};
+  for (const key of TG_CONFIG.stats) {
+    inputStats[key].temp += rage?.active ? Number(rage.assigned[key] ?? 0) : 0;
+    inputStats[key].temp += model.hunger?.active ? Number(hunger[key] ?? 0) : 0;
+    // Kakuja bonuses derive from activation, never mutate persisted base stats.
+    inputStats[key].kakuja = 0;
+    if (model.kakuja?.active) inputStats[key].kakuja = getKakujaStatBonus(model.kakuja.selectedBonus,key);
+  }
+  const derived = calculateDerivedResources({ stats: inputStats, kaguneType });
+  if (kagune?.system.edges.some(e => String(e).toLowerCase() === "chimera")) derived.statTotals.crl = Math.min(15, derived.statTotals.crl);
+  const armor = model.parent?.items?.find(i => i.type === "kakuja-armor" && i.system.manifested);
+  if (armor?.system.armorType === "speed") {
+    derived.statTotals.spd *= 2;
+    derived.staminaMax = calculateStaminaMax(derived.statTotals.end,derived.statTotals.spd,{staminaPenalty:kaguneType === "ukaku"?derived.statTotals.spd:0});
+  }
+  derived.vitalityMax = calculateVitalityMax(derived.statTotals.end,derived.statTotals.crl,{vitalityPenalty:kaguneType === "rinkaku"?derived.statTotals.end:0});
+  derived.mealScoreMax = calculateMealScoreMax(derived.statTotals.crl);
 
   for (const key of TG_CONFIG.stats) {
     model.stats[key].total = derived.statTotals[key];

@@ -71,3 +71,14 @@ test("Kakuja Quinque helpers cover weapon slots, armor reduction, parasitic dama
   });
   assert.equal(calculateQuinxKaguneCostUnderArmor({ baseCost: 7, armorActive: true }), 14);
 });
+
+ test("PDF armor variants preserve both duplicated chapters and Rampant can reach full Kakuja without mastery", () => {
+ assert.deepEqual(getKakujaArmorTypeEffect({armorType:"attack"}).statMultipliers,{str:2});
+ assert.equal(getKakujaEligibility({rcl:150,edges:["cannibalistic","rampant"]}).canFull,true);
+ assert.equal(getKakujaEligibility({rcl:150,edges:["cannibalistic","inner-peace"]}).canHalf,false);
+ });
+
+test("repeated armor variant uses twice END and triples the selected stat", () => {
+ assert.equal(calculateKakujaArmorDamageReduction({incomingDamage:40,armorRcl:45,end:10,variant:"repeated"}),20);
+ assert.deepEqual(getKakujaArmorTypeEffect({variant:"repeated"}).statMultipliers,{str:3});
+});

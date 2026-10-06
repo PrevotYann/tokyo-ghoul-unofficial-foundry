@@ -1,0 +1,29 @@
+name: Publish Foundry system
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Verify tag and rules
+        run: |
+          node --input-type=module -e 'import fs from "node:fs"; if (process.env.GITHUB_REF_NAME !== "v"+JSON.parse(fs.readFileSync("system.json")).version) process.exit(1);'
+          npm test
+          npm run test:ui
+          npm run test:packs
+      - run: npm run build:packs
+      - run: npm run release:package
+      - name: Publish release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" artifacts/release/tokyo-ghoul-unofficial.zip artifacts/release/system.json artifacts/release/manifest.json --verify-tag --title "Tokyo Ghoul: Unofficial TTRPG $GITHUB_REF_NAME" --notes-file docs/qa/release-0.2.0.md

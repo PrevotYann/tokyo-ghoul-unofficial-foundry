@@ -75,6 +75,7 @@ test("starting stat validation expects 60 base points", () => {
     difference: 0
   });
   assert.equal(validateStartingStatTotal({ ...balancedStats, str: { base: 11 } }).valid, false);
+  assert.equal(validateStartingStatTotal({ ...balancedStats, str: { base: -10 }, acc: {base:30} }).valid, false);
 });
 
 test("Meal Score derived max is hidden for investigators at the data layer", () => {

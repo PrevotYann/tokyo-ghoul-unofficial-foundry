@@ -65,7 +65,7 @@ export function buildGimmickActivationSummary({
 
 export function calculateAttackGimmick({ rcl = 0, selectedStatValue = 0 } = {}) {
   return {
-    attackBonus: numberOrZero(rcl) + numberOrZero(selectedStatValue),
+    damage: numberOrZero(rcl) + numberOrZero(selectedStatValue),
     formula: "RCL + selected stat"
   };
 }

@@ -1,19 +1,488 @@
 [
-  { "name": "High-Speed Regeneration", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["kagune"], "allowedTypes": ["rinkaku"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": true, "canTakeAfterCreation": false, "automation": "manual", "effects": [{ "hook": "regeneration.highSpeed" }], "formula": "END + CRL or END", "notes": "Rinkaku regeneration upgrade with special wound handling." } },
-  { "name": "Ghoul Regeneration", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["actor"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 0, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "regeneration.normal" }], "formula": "END", "notes": "Default Ghoul and Quinx regeneration." } },
-  { "name": "Prehensile", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["kagune"], "allowedTypes": ["koukaku", "rinkaku", "bikaku"], "forbiddenTypes": ["ukaku"], "slots": 1, "grantsManeuvers": ["Grab", "Throw"], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [], "formula": "STR + RCL for grapple uses", "notes": "Extends grapple options for suitable Kagune." } },
-  { "name": "Massive", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["kagune"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "range.extend" }], "formula": "+1 range band", "notes": "Extends effective Kagune range." } },
-  { "name": "Sharpened", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["kagune"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Blunt"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "condition": "bleeding" }], "formula": "", "notes": "Can apply Bleeding on eligible hits." } },
-  { "name": "Blunt", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["kagune"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Sharpened"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [], "formula": "+floor(END / 2) damage", "notes": "Adds impact damage." } },
-  { "name": "Inner Peace", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["actor"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Rampant", "Chimera"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "crl.autoPass" }], "formula": "", "notes": "Auto-passes CRL control checks but blocks Kakuja." } },
-  { "name": "Rampant", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["actor"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Inner Peace"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "crl.autoFail" }], "formula": "+10 temporary stat points while hungry", "notes": "Changes Hunger and mastery behavior." } },
-  { "name": "Grappler", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["kagune"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": ["Grab", "Throw"], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [], "formula": "", "notes": "Unlocks Grab and Throw maneuvers." } },
-  { "name": "Preemptive", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["kagune"], "allowedTypes": ["ukaku", "rinkaku", "bikaku"], "forbiddenTypes": ["koukaku"], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Hardy"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "bonus": "dodge", "value": 3 }], "formula": "+3 Dodge", "notes": "Improves Dodge." } },
-  { "name": "Hardy", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["kagune"], "allowedTypes": ["koukaku", "rinkaku", "bikaku"], "forbiddenTypes": ["ukaku"], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Preemptive"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "bonus": "block", "value": 3 }], "formula": "+3 Block", "notes": "Improves Block." } },
-  { "name": "Quick Strikes", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["kagune"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Heavy Strikes"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "allOut.quick" }], "formula": "attacks * 3", "notes": "Improves All-Out Offensive cost and damage." } },
-  { "name": "Breathing Exercises", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["actor"], "allowedTypes": ["ukaku", "koukaku", "bikaku"], "forbiddenTypes": ["rinkaku"], "slots": 1, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "breather.double" }], "formula": "END * 2 recovery", "notes": "Improves Take a Breather recovery." } },
-  { "name": "Heavy Strikes", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["kagune"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": ["Heavy Strike"], "incompatibleWith": ["Quick Strikes"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [], "formula": "STR * 2 cost", "notes": "Unlocks Heavy Strike." } },
-  { "name": "Cannibalistic", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["actor"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "kakuja.prerequisite" }], "formula": "", "notes": "Enables Kakuja paths and improves Ghoul meal restoration." } },
-  { "name": "Chimera", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["kagune"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Inner Peace"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "kagune.chimera" }], "formula": "CRL cap 15", "notes": "Dual Kagune support with special progression and Kakuja handling." } },
-  { "name": "Dynamic Edge", "type": "edge", "system": { "category": "ghoul", "appliesTo": ["actor", "kagune", "kakuja"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [], "formula": "custom", "notes": "GM-defined custom effect." } }
+  {
+    "name": "High-Speed Regeneration",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "kagune"
+      ],
+      "allowedTypes": [
+        "rinkaku"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": true,
+      "canTakeAfterCreation": false,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "regeneration.highSpeed"
+        }
+      ],
+      "formula": "END + CRL or END",
+      "notes": "Rinkaku regeneration upgrade with special wound handling."
+    }
+  },
+  {
+    "name": "Ghoul Regeneration",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "actor"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 0,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "regeneration.normal"
+        }
+      ],
+      "formula": "END",
+      "notes": "Default Ghoul and Quinx regeneration."
+    }
+  },
+  {
+    "name": "Prehensile",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "kagune"
+      ],
+      "allowedTypes": [
+        "koukaku",
+        "rinkaku",
+        "bikaku"
+      ],
+      "forbiddenTypes": [
+        "ukaku"
+      ],
+      "slots": 1,
+      "grantsManeuvers": [
+        "Grab",
+        "Throw"
+      ],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "assisted",
+      "effects": [],
+      "formula": "STR + RCL for grapple uses",
+      "notes": "Extends grapple options for suitable Kagune."
+    }
+  },
+  {
+    "name": "Massive",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "kagune"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "range.extend"
+        }
+      ],
+      "formula": "+1 range band",
+      "notes": "Extends effective Kagune range."
+    }
+  },
+  {
+    "name": "Sharpened",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "kagune"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Blunt"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "condition": "bleeding"
+        }
+      ],
+      "formula": "",
+      "notes": "Can apply Bleeding on eligible hits."
+    }
+  },
+  {
+    "name": "Blunt",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "kagune"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Sharpened"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [],
+      "formula": "+floor(END / 2) damage",
+      "notes": "Adds impact damage."
+    }
+  },
+  {
+    "name": "Inner Peace",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "actor"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Rampant",
+        "Chimera"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "crl.autoPass"
+        }
+      ],
+      "formula": "",
+      "notes": "Auto-passes CRL control checks but blocks Kakuja."
+    }
+  },
+  {
+    "name": "Rampant",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "actor"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Inner Peace"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "crl.autoFail"
+        }
+      ],
+      "formula": "+10 temporary stat points while hungry",
+      "notes": "Changes Hunger and mastery behavior."
+    }
+  },
+  {
+    "name": "Grappler",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "kagune"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [
+        "Grab",
+        "Throw"
+      ],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [],
+      "formula": "",
+      "notes": "Unlocks Grab and Throw maneuvers."
+    }
+  },
+  {
+    "name": "Preemptive",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "kagune"
+      ],
+      "allowedTypes": [
+        "ukaku",
+        "rinkaku",
+        "bikaku"
+      ],
+      "forbiddenTypes": [
+        "koukaku"
+      ],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Hardy"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "bonus": "dodge",
+          "value": 3
+        }
+      ],
+      "formula": "+3 Dodge",
+      "notes": "Improves Dodge."
+    }
+  },
+  {
+    "name": "Hardy",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "kagune"
+      ],
+      "allowedTypes": [
+        "koukaku",
+        "rinkaku",
+        "bikaku"
+      ],
+      "forbiddenTypes": [
+        "ukaku"
+      ],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Preemptive"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "bonus": "block",
+          "value": 3
+        }
+      ],
+      "formula": "+3 Block",
+      "notes": "Improves Block."
+    }
+  },
+  {
+    "name": "Quick Strikes",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "kagune"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Heavy Strikes"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "allOut.quick"
+        }
+      ],
+      "formula": "attacks * 3",
+      "notes": "Improves All-Out Offensive cost and damage."
+    }
+  },
+  {
+    "name": "Breathing Exercises",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "actor"
+      ],
+      "allowedTypes": [
+        "ukaku",
+        "koukaku",
+        "bikaku"
+      ],
+      "forbiddenTypes": [
+        "rinkaku"
+      ],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "breather.double"
+        }
+      ],
+      "formula": "END * 2 recovery",
+      "notes": "Improves Take a Breather recovery."
+    }
+  },
+  {
+    "name": "Heavy Strikes",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "kagune"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [
+        "Heavy Strike"
+      ],
+      "incompatibleWith": [
+        "Quick Strikes"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [],
+      "formula": "STR * 2 cost",
+      "notes": "Unlocks Heavy Strike."
+    }
+  },
+  {
+    "name": "Cannibalistic",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "actor"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "kakuja.prerequisite"
+        }
+      ],
+      "formula": "",
+      "notes": "Enables Kakuja paths and improves Ghoul meal restoration."
+    }
+  },
+  {
+    "name": "Chimera",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "kagune"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Inner Peace"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "assisted",
+      "effects": [
+        {
+          "hook": "kagune.chimera"
+        }
+      ],
+      "formula": "CRL cap 15",
+      "notes": "Dual Kagune support with special progression and Kakuja handling."
+    }
+  },
+  {
+    "name": "Dynamic Edge",
+    "type": "edge",
+    "system": {
+      "category": "ghoul",
+      "appliesTo": [
+        "actor",
+        "kagune",
+        "kakuja"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "manual",
+      "effects": [],
+      "formula": "custom",
+      "notes": "GM-defined custom effect."
+    }
+  }
 ]

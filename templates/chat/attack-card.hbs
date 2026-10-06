@@ -14,11 +14,12 @@
       {{/each}}
     </dd>
     <dt>{{localize 'TG.chat.range'}}</dt>
-    <dd>{{rangeValidation.targetRangeBand}} / {{rangeValidation.maxRangeBand}}</dd>
+    <dd>{{localize (concat "TG.ranges." rangeValidation.targetRangeBand)}} / {{localize (concat "TG.ranges." rangeValidation.maxRangeBand)}}</dd>
     <dt>{{localize 'TG.chat.damage'}}</dt>
     <dd>{{attack.damageFormula}} = <strong>{{attack.damage}}</strong></dd>
     <dt>{{localize 'TG.chat.staminaCost'}}</dt>
     <dd>{{attack.costFormula}} = <strong>{{attack.staminaCost}}</strong></dd>
+    {{#if maneuverSpend.staminaPaid}}<dt>{{localize 'TG.chat.maneuverCost'}}</dt><dd>{{maneuverSpend.staminaPaid}}</dd>{{/if}}
     {{#if resourceSpend.vitalityCost}}
       <dt>{{localize 'TG.chat.vitalityOverflow'}}</dt>
       <dd>{{resourceSpend.vitalityCost}}</dd>
@@ -31,8 +32,6 @@
     <button type="button" data-tg-chat-action="dodge">{{localize 'TG.actions.dodge'}}</button>
     <button type="button" data-tg-chat-action="block">{{localize 'TG.actions.block'}}</button>
     <button type="button" data-tg-chat-action="takeHit">{{localize 'TG.actions.takeHit'}}</button>
-    <button type="button" data-tg-chat-action="gmApplyDamage">{{localize 'TG.actions.gmApplyDamage'}}</button>
-    <button type="button" data-tg-chat-action="gmApplyHalfDamage">{{localize 'TG.actions.gmApplyHalfDamage'}}</button>
-    <button type="button" data-tg-chat-action="gmApplyStaminaDamage">{{localize 'TG.actions.gmApplyStaminaDamage'}}</button>
+    {{#unless attack.grenade}}<button type="button" data-tg-chat-action="interpose">{{localize 'TG.actions.interpose'}}</button>{{/unless}}
   </div>
 </section>

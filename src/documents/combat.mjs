@@ -1,19 +1,20 @@
-export function registerCombatHooks() {
-  Hooks.on("combatStart", (combat) => {
-    console.log("tokyo-ghoul-unofficial | Combat started.", combat.id);
-  });
+import { compareSquadInitiative } from "../rules/combat-workflow.mjs";
 
-  Hooks.on("combatTurn", async (combat) => {
-    const actor = combat?.combatant?.actor;
-    if (!actor?.processStartTurnConditions) return;
-    await actor.processStartTurnConditions({ trigger: "combatTurn" });
-  });
+// v14 awaits these lifecycle methods on the active GM, including skipped turns.
+export class TokyoGhoulCombat extends Combat {
+  _sortCombatants(a, b) {
+    return compareSquadInitiative(a, b) || super._sortCombatants(a, b);
+  }
 
-  Hooks.on("updateCombat", async (combat, changed) => {
-    if (!("turn" in changed) && !("round" in changed)) return;
-    const previousCombatantId = combat?.previous?.combatantId;
-    const actor = previousCombatantId ? combat.combatants.get(previousCombatantId)?.actor : null;
-    if (!actor?.processEndTurnConditions) return;
-    await actor.processEndTurnConditions({ trigger: "combatTurnEnd" });
-  });
+  async _onStartTurn(combatant, context) {
+    await super._onStartTurn(combatant, context);
+    await combatant.actor?.beginTurn?.();
+  }
+
+  async _onEndTurn(combatant, context) {
+    await super._onEndTurn(combatant, context);
+    await combatant.actor?.processEndTurnConditions?.();
+  }
 }
+
+export function registerCombatHooks() {}

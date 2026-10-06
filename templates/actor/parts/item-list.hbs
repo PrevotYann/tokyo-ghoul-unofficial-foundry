@@ -3,7 +3,15 @@
   <ol class="tg-item-list">
     {{#each group.items as |item|}}
       <li data-item-id="{{item.id}}">
-        <span>{{item.name}}</span>
+        <button type="button" class="tg-item-name" data-item-action="edit">{{item.name}}</button>
+        <div class="tg-item-controls">
+          {{#if item.system.secondaryType}}<button type="button" data-item-action="switchForm">{{localize 'TG.actions.switchForm'}}</button>{{/if}}
+          {{#if (eq item.type "kagune")}}<button type="button" data-item-action="toggle">{{#if item.system.manifested}}{{localize 'TG.actions.withdraw'}}{{else}}{{localize 'TG.actions.manifest'}}{{/if}}</button>{{/if}}
+          {{#if (eq item.type "quinque")}}<button type="button" data-item-action="toggle">{{#if item.system.equipped}}{{localize 'TG.actions.unequip'}}{{else}}{{localize 'TG.actions.equip'}}{{/if}}</button>{{/if}}
+          {{#if (eq item.type "kakuja-armor")}}<button type="button" data-item-action="toggle">{{localize 'TG.actions.toggleArmor'}}</button>{{/if}}
+          {{#unless (eq item.type "edge")}}<button type="button" data-item-action="use">{{localize 'TG.actions.use'}}</button>{{/unless}}
+          <button type="button" data-item-action="delete" aria-label="{{localize 'TG.actions.delete'}}"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+        </div>
         <span class="tg-chip">{{localize (concat "TG.itemTypes." item.type)}}</span>
       </li>
     {{else}}

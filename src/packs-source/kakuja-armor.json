@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Attack Kakuja Armor",
+    "type": "kakuja-armor",
+    "system": {
+      "armorType": "attack",
+      "rcl": 45,
+      "manifested": false,
+      "turnsActive": 0,
+      "automation": "full",
+      "description": "Reduces incoming damage and grants the selected armor benefit. The primary equipment rules use armor RCL reduction and double the selected attack stat. The world setting also supports the conflicting repeated chapter. Parasitic damage begins after five turns."
+    }
+  },
+  {
+    "name": "Speed Kakuja Armor",
+    "type": "kakuja-armor",
+    "system": {
+      "armorType": "speed",
+      "rcl": 45,
+      "manifested": false,
+      "turnsActive": 0,
+      "automation": "full",
+      "description": "Reduces incoming damage and grants the selected armor benefit. The primary equipment rules use armor RCL reduction and double the selected attack stat. The world setting also supports the conflicting repeated chapter. Parasitic damage begins after five turns."
+    }
+  }
+]

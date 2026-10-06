@@ -16,7 +16,7 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": true,
       "canTakeAfterCreation": false,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "regeneration.highSpeed"
@@ -24,6 +24,14 @@
       ],
       "formula": "END + CRL or END",
       "notes": "Rinkaku regeneration upgrade with special wound handling."
+    },
+    "_id": "91713da031d5939e",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -43,7 +51,7 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "regeneration.normal"
@@ -51,6 +59,14 @@
       ],
       "formula": "END",
       "notes": "Default Ghoul and Quinx regeneration."
+    },
+    "_id": "eb3c77f5f74c2a30",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -77,10 +93,18 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "assisted",
       "effects": [],
       "formula": "STR + RCL for grapple uses",
       "notes": "Extends grapple options for suitable Kagune."
+    },
+    "_id": "231485f5d36e0448",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -100,7 +124,7 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "range.extend"
@@ -108,6 +132,14 @@
       ],
       "formula": "+1 range band",
       "notes": "Extends effective Kagune range."
+    },
+    "_id": "a02c876f7deac764",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -129,7 +161,7 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "condition": "bleeding"
@@ -137,6 +169,14 @@
       ],
       "formula": "",
       "notes": "Can apply Bleeding on eligible hits."
+    },
+    "_id": "814adc493d0ca42c",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -158,10 +198,18 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [],
       "formula": "+floor(END / 2) damage",
       "notes": "Adds impact damage."
+    },
+    "_id": "bbcd434ade7a9660",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -184,7 +232,7 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "crl.autoPass"
@@ -192,6 +240,14 @@
       ],
       "formula": "",
       "notes": "Auto-passes CRL control checks but blocks Kakuja."
+    },
+    "_id": "ecf31f2c2e1e6b1a",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -213,7 +269,7 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "crl.autoFail"
@@ -221,6 +277,14 @@
       ],
       "formula": "+10 temporary stat points while hungry",
       "notes": "Changes Hunger and mastery behavior."
+    },
+    "_id": "dd97c66bc2098e91",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -243,10 +307,18 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [],
       "formula": "",
       "notes": "Unlocks Grab and Throw maneuvers."
+    },
+    "_id": "306f50bc5b702488",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -272,7 +344,7 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "bonus": "dodge",
@@ -281,6 +353,14 @@
       ],
       "formula": "+3 Dodge",
       "notes": "Improves Dodge."
+    },
+    "_id": "1823d715d7bd1848",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -306,7 +386,7 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "bonus": "block",
@@ -315,6 +395,14 @@
       ],
       "formula": "+3 Block",
       "notes": "Improves Block."
+    },
+    "_id": "bcb068a4ee8b679b",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -336,7 +424,7 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "allOut.quick"
@@ -344,6 +432,14 @@
       ],
       "formula": "attacks * 3",
       "notes": "Improves All-Out Offensive cost and damage."
+    },
+    "_id": "565c9b624ad962d8",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -367,7 +463,7 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "breather.double"
@@ -375,6 +471,14 @@
       ],
       "formula": "END * 2 recovery",
       "notes": "Improves Take a Breather recovery."
+    },
+    "_id": "609235dad1e31703",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -398,10 +502,18 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [],
       "formula": "STR * 2 cost",
       "notes": "Unlocks Heavy Strike."
+    },
+    "_id": "d5cf008b7f1b59b0",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -421,7 +533,7 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "kakuja.prerequisite"
@@ -429,6 +541,14 @@
       ],
       "formula": "",
       "notes": "Enables Kakuja paths and improves Ghoul meal restoration."
+    },
+    "_id": "3ccbf5ccaa06f87c",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -450,7 +570,7 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "assisted",
       "effects": [
         {
           "hook": "kagune.chimera"
@@ -458,6 +578,14 @@
       ],
       "formula": "CRL cap 15",
       "notes": "Dual Kagune support with special progression and Kakuja handling."
+    },
+    "_id": "a496ac1909f8a0b9",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -483,6 +611,14 @@
       "effects": [],
       "formula": "custom",
       "notes": "GM-defined custom effect."
+    },
+    "_id": "07e4c62ef33e66f1",
+    "folder": "1846bbd980065bbc",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -502,7 +638,7 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "quinque.selfRepair"
@@ -510,6 +646,14 @@
       ],
       "formula": "RC Bonds floor(RCL / 2)",
       "notes": "Rinkaku Quinque self-repair option."
+    },
+    "_id": "ee1fbc08ad0cb4da",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -529,7 +673,7 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "quinque.sidearm"
@@ -537,6 +681,14 @@
       ],
       "formula": "ACC damage",
       "notes": "Adds Q bullet sidearm configuration."
+    },
+    "_id": "5f8325fac2459f9c",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -563,10 +715,18 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "assisted",
       "effects": [],
       "formula": "STR + RCL for grapple uses",
       "notes": "Extends grapple options for suitable Quinque."
+    },
+    "_id": "f56e1ce0c6127eb9",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -586,7 +746,7 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "range.extend"
@@ -594,6 +754,14 @@
       ],
       "formula": "+1 range band",
       "notes": "Extends effective Quinque range."
+    },
+    "_id": "0ad159b075b4ef1b",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -615,7 +783,7 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "condition": "bleeding"
@@ -623,6 +791,14 @@
       ],
       "formula": "",
       "notes": "Can apply Bleeding on eligible hits."
+    },
+    "_id": "1b0f9748b67f802d",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -644,10 +820,18 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [],
       "formula": "+floor(END / 2) damage",
       "notes": "Adds impact damage."
+    },
+    "_id": "dff3cb1ab8da5d7d",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -669,7 +853,7 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "rage.prevent"
@@ -677,6 +861,14 @@
       ],
       "formula": "",
       "notes": "Prevents Rage."
+    },
+    "_id": "abd5210a902926b0",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -698,7 +890,7 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "rage.rampant"
@@ -706,6 +898,14 @@
       ],
       "formula": "reduced Rage costs",
       "notes": "Changes Rage checks and costs."
+    },
+    "_id": "fec62598d272d373",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -728,10 +928,18 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [],
       "formula": "",
       "notes": "Unlocks Grab and Throw maneuvers."
+    },
+    "_id": "17ced0dca0cda525",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -757,7 +965,7 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "bonus": "dodge",
@@ -766,6 +974,14 @@
       ],
       "formula": "+3 Dodge",
       "notes": "Improves Dodge."
+    },
+    "_id": "331939b60da9a8b0",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -791,7 +1007,7 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "bonus": "block",
@@ -800,6 +1016,14 @@
       ],
       "formula": "+3 Block",
       "notes": "Improves Block."
+    },
+    "_id": "102eff74ac1aeb35",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -821,7 +1045,7 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "allOut.quick"
@@ -829,6 +1053,14 @@
       ],
       "formula": "attacks * 3",
       "notes": "Improves All-Out Offensive cost and damage."
+    },
+    "_id": "806b91c37d12a920",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -854,7 +1086,7 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "damage.useSpd"
@@ -862,6 +1094,14 @@
       ],
       "formula": "SPD melee damage/cost basis",
       "notes": "Uses SPD for melee Quinque damage and cost calculations."
+    },
+    "_id": "d5a07dc6282ef1de",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -886,10 +1126,18 @@
       ],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [],
       "formula": "discounted Heavy Strike cost",
       "notes": "Unlocks discounted Heavy Strike."
+    },
+    "_id": "f032fa7280637e3f",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -909,7 +1157,7 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "quinque.rclMultiplier"
@@ -917,6 +1165,14 @@
       ],
       "formula": "RCL * 1.5",
       "notes": "Raises effective Quinque RCL."
+    },
+    "_id": "5062d7c1463c0024",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -936,7 +1192,7 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "assisted",
       "effects": [
         {
           "hook": "quinque.chimera"
@@ -944,6 +1200,14 @@
       ],
       "formula": "dual type",
       "notes": "Two-in-one Quinque support."
+    },
+    "_id": "e9fbcaf7811e68d9",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -964,7 +1228,7 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "full",
       "effects": [
         {
           "hook": "typeAdvantage.predator"
@@ -972,6 +1236,14 @@
       ],
       "formula": "type advantage +4",
       "notes": "Improves Quinque type advantage against Ghouls."
+    },
+    "_id": "45e8ddf2b75712ed",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -992,7 +1264,7 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "assisted",
       "effects": [
         {
           "hook": "consumable.medkit"
@@ -1000,6 +1272,14 @@
       ],
       "formula": "PER + target END healing",
       "notes": "Adds medkit support."
+    },
+    "_id": "f2a300216b986c50",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -1020,7 +1300,7 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "assisted",
       "effects": [
         {
           "hook": "consumable.grenades"
@@ -1028,6 +1308,14 @@
       ],
       "formula": "10 grenade carry limit",
       "notes": "Adds grenade support."
+    },
+    "_id": "00872e12a43a023d",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -1049,7 +1337,7 @@
       "incompatibleWith": [],
       "mustChooseAtCreation": false,
       "canTakeAfterCreation": true,
-      "automation": "manual",
+      "automation": "assisted",
       "effects": [
         {
           "hook": "quinque.gimmick"
@@ -1057,6 +1345,14 @@
       ],
       "formula": "by gimmick type",
       "notes": "Adds a Quinque gimmick."
+    },
+    "_id": "68901292caaf9993",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -1081,6 +1377,14 @@
       "effects": [],
       "formula": "custom",
       "notes": "GM-defined custom effect."
+    },
+    "_id": "bde23b2d1bed04b0",
+    "folder": "85f4aff440746df8",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   }
 ]

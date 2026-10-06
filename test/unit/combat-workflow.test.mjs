@@ -78,7 +78,7 @@ test("reaction reservation consumes a maneuver and can be spent", () => {
     reactionsReserved: 1,
     reserved: true
   });
-  assert.equal(reserveReaction({ maneuversRemaining: 1, reactionsReserved: 1 }).reserved, false);
+  assert.equal(reserveReaction({ maneuversRemaining: 1, reactionsReserved: 1 }).reserved, true);
   assert.deepEqual(consumeReaction({ reactionsReserved: 1 }), { reactionsReserved: 0, consumed: true });
   assert.deepEqual(consumeReaction({ reactionsReserved: 0 }), { reactionsReserved: 0, consumed: false });
 });

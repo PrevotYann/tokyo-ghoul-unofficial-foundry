@@ -20,4 +20,6 @@
       <dd>{{resolution.counter.damageMultiplier}}x</dd>
     {{/if}}
   </dl>
+  {{#if canCounter}}<div class="tg-action-row"><button type="button" data-tg-chat-action="counterAttack">{{localize 'TG.actions.counterAttack'}}</button></div>{{/if}}
+  {{#if raidFollowUp}}<div class="tg-action-row"><button type="button" data-tg-chat-action="raidFollowUp">{{localize 'TG.actions.raidFollowUp'}}</button></div>{{/if}}
 </section>

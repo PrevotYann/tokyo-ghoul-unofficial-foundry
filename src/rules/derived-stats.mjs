@@ -91,7 +91,7 @@ export function calculateDerivedResources({ stats = {}, kaguneType = null } = {}
 export function validateStartingStatTotal(stats = {}, expectedTotal = 60) {
   const total = TG_CONFIG.stats.reduce((sum, key) => sum + numberOrZero(stats[key]?.base), 0);
   return {
-    valid: total === expectedTotal,
+    valid: total === expectedTotal && TG_CONFIG.stats.every(key => Number.isInteger(Number(stats[key]?.base)) && Number(stats[key]?.base) >= 0),
     total,
     expected: expectedTotal,
     difference: total - expectedTotal

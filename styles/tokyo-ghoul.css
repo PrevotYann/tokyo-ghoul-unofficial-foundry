@@ -50,3 +50,49 @@
 .tg-muted {
   color: var(--tg-muted);
 }
+/* Original urban palette: charcoal, steel, paper white, and kakugan crimson. */
+.tg-system {
+  --tg-bg: #0c0e14;
+  --tg-panel: #171b25;
+  --tg-panel-strong: #222837;
+  --tg-text: #f5f6fa;
+  --tg-muted: #b8c2d4;
+  --tg-line: #647086;
+  --tg-accent: #a51c37;
+  --tg-accent-strong: #ff8498;
+  --tg-focus: #ffd479;
+  color-scheme: dark;
+  --color-text-primary: var(--tg-text);
+  --color-text-secondary: var(--tg-muted);
+  --color-text-emphatic: var(--tg-text);
+  --color-text-subtle: var(--tg-muted);
+  --color-border-light-primary: var(--tg-line);
+  --color-border-dark-primary: var(--tg-line);
+  --input-background-color: #0f131d;
+  --input-text-color: var(--tg-text);
+  --input-border-color: var(--tg-line);
+  --button-text-color: var(--tg-text);
+  --button-background-color: #222837;
+  --button-border-color: var(--tg-line);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+.tg-system h1, .tg-system h2, .tg-system h3 {font-family: inherit; text-shadow:none; border:0; color:var(--tg-text);}
+.tg-system button {height:auto; min-height:36px; color:var(--tg-text); background:#222837; border:1px solid var(--tg-line); border-radius:8px; padding:6px 12px; box-shadow:none; text-shadow:none; line-height:1.4; cursor:pointer;}
+.tg-system button:hover {background:#353d50; border-color:var(--tg-accent-strong);}
+.tg-system button:disabled {cursor:default; opacity:.55;}
+.tg-system input:not([type=checkbox]), .tg-system select {min-height:36px; height:auto; line-height:1.5;}
+.tg-system input[type=checkbox] {width:18px; height:18px; padding:0; accent-color:var(--tg-accent-strong);}
+.tg-system :is(button, input, select, textarea):focus-visible {outline:2px solid var(--tg-focus); outline-offset:3px;}
+.tg-system label {color:var(--tg-muted);}
+.tg-system .window-header {background:#11151f; border-bottom:1px solid var(--tg-line); color:var(--tg-text);}
+.tg-system .window-header .window-title {color:var(--tg-text); font-family:inherit; font-size:14px;}
+.tg-system .window-header button {min-height:28px; padding:2px 6px; border:0; background:transparent;}
+.tg-system .window-content {background:var(--tg-bg); color:var(--tg-text); padding:0; overflow-y:auto;}
+.tg-dialog .window-content {padding:20px;}
+.tg-dialog label {display:flex; flex-direction:column; gap:6px;}
+.tg-dialog .form-footer {margin-top:18px;}
+.tg-chat-card {background:var(--tg-panel); color:var(--tg-text); padding:14px; border:1px solid var(--tg-line); border-top:3px solid var(--tg-accent-strong); border-radius:10px;}
+.tg-chat-card h3 {font-weight:700; font-size:16px; margin-top:0;}
+.tg-chat-card p {overflow-wrap:anywhere;}
+@media (prefers-reduced-motion:no-preference) {.tg-system button {transition:background-color .12s, border-color .12s;}}

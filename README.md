@@ -1,82 +1,37 @@
 # Tokyo Ghoul: Unofficial TTRPG for Foundry VTT
 
-A free, fan/unofficial Foundry VTT v14 system implementation for a Tokyo Ghoul tabletop RPG.
+An unofficial system for Foundry **v14**, verified locally on **14.368**. Version 0.2.0 repairs native v14 integration, connects combat/effect workflows, ships populated compendiums and provides responsive charcoal/crimson sheets with readable dialogs.
 
-Tokyo Ghoul is owned by its respective rights holders. This package does not include official artwork, manga panels, anime screenshots, music, logos, fonts, or paid content. Use only with materials you have permission to use.
+## Install
 
-## Status
+In Foundry Setup ? Game Systems ? Install System, paste:
 
-Current implementation status is tracked in `IMPLEMENTATION_PLAN.md`. The system currently includes:
+https://github.com/PrevotYann/tokyo-ghoul-unofficial-foundry/releases/latest/download/system.json
 
-- Foundry v14 `system.json`
-- ESM entrypoint
-- Actor and Item document types
-- DataModels for actor and item types
-- Actor and Item sheets with class setup, resource automation, attacks, and basic defenses
-- Pack source validation for Edges, Maneuvers, Conditions, equipment, Kagune, Quinque, Gimmicks, and Kakuja armor
-- Pure rules helpers and unit tests for derived stats, rolls, combat math, Hunger/Rage, conditions, gear, builder drafts, Gimmicks, progression/crafting, and Kakuja helpers
-- A simple in-world character builder
+Foundry uses system.json as its system manifest. Releases also provide an identical manifest.json alias. For manual installation, extract tokyo-ghoul-unofficial.zip into Data/systems/ so the manifest is Data/systems/tokyo-ghoul-unofficial/system.json. Reload Foundry and create a world using this system. Back up existing worlds before updating.
 
-## Manual Install
+## Use
 
-1. Copy or symlink this repository folder into your Foundry user data systems folder as `tokyo-ghoul-unofficial`.
-2. Confirm `system.json` is at the top level of that folder.
-3. Start Foundry VTT v14.
-4. Create a new world using `Tokyo Ghoul: Unofficial TTRPG`.
+Open the builder from the Actors directory or game.tokyoGhoul.openCharacterBuilder(). Choose a class, preset or 60-point custom allocation and starting Edges. Manifest a Kagune or equip a Quinque before attacking. Drop Edges onto a weapon or Actor sheet to assign them with validation.
 
-Example PowerShell symlink:
+Target one token per attack. Dialogs choose the weapon, mode and modifiers; chat buttons resolve Dodge, Block, Take Hit or Quinque interpose. The active GM applies player requests once. Reserve reactions during your turn; start combat to enforce budgets. Choose Squad or Raid on the Actor combat tab.
 
-```powershell
-New-Item -ItemType SymbolicLink `
-  -Path "$env:LOCALAPPDATA\FoundryVTT\Data\systems\tokyo-ghoul-unofficial" `
-  -Target "C:\git\tokyo-ghoul-unofficial-foundry"
-```
+Progression tools cover stat spending, consumption, evolution, Kakuhou forging and upgrading. Native Active Effects support numeric stat bonuses. Advance Foundry world time for daily Meal Score and out-of-combat Hunger. Compendium entries show automation status. [The audit](docs/qa/v14-rule-audit.md) describes GM-managed rules and additional QA; [clarifications](docs/qa/rule-clarifications.md) document conflicting PDF passages.
 
 ## Development
 
-Run pure unit tests outside Foundry:
+Node 24/npm; runtime JavaScript has no external dependencies. Run npm ci, npm test, npm run test:ui, npm run test:packs and npm run build:packs. Stop Foundry before building native LevelDB packs because the databases have exclusive locks. Sources are in src/packs-source/.
 
-```powershell
-npm test
-```
+For live tests, create a separate disposable world with id tg-qa, an unpassworded Gamemaster and this system installed. Run a valid local Foundry v14 server on port 30014, install Chromium with npx playwright install chromium, then run npm run test:foundry. Override the URL with TG_QA_URL. The suite refuses other world IDs, creates/deletes [TG QA] fixtures, and creates a test player. Screenshots/results go to ignored artifacts/.
 
-Validate pack source records:
+Live checks cover document/sheet creation, pack loading, builder submission, effects, combat, conditions, healing, Edge drops, two clients, duplicate resolution and narrow-sheet overflow. Palette checks verify AA normal-text and control/focus contrast; they are not a complete accessibility certification.
 
-```powershell
-npm run test:packs
-```
+## Release
 
-Build source bundles for the declared packs:
+Run npm run release:package to create the installable archive and manifests in artifacts/release/. Pushing a v* tag runs validation, builds packs and publishes assets through GitHub Actions. Packages exclude the developer PDF, tests, dependencies and database lock/log files.
 
-```powershell
-npm run build:packs
-```
+## Attribution and limitations
 
-Open the simple in-world character builder from the Foundry console:
+The developer rulebook is expected locally at docs/rulebook/Tokyo Ghoul Tabletop RPG - Unofficial.pdf and is excluded from releases. Mechanics use formulas and concise paraphrases. The placeholder SVG is original; no official Tokyo Ghoul artwork, panels, music, logos or fonts are shipped. Tokyo Ghoul belongs to its respective rights holders.
 
-```js
-game.tokyoGhoul.openCharacterBuilder()
-```
-
-If a test window ever renders in a bad position while developing, reload the browser tab. The builder is designed to reopen centered and closes any prior builder instance first.
-
-## Smoke Test
-
-In a clean Foundry v14 world:
-
-1. Enable the system by creating a world with it.
-2. Create a `character` Actor.
-3. Open the Actor sheet and edit class, stats, and current resources.
-4. Change class setup between Ghoul, Investigator, and Quinx and confirm starting items/resources update.
-5. Run `game.tokyoGhoul.openCharacterBuilder()` and confirm it opens as a centered framed window.
-6. Create one Item of each declared type.
-7. Open the Item sheets and confirm the fields render.
-8. Confirm the browser console has no system load errors.
-
-## Rulebook Source
-
-The rulebook PDF is expected locally at:
-
-`docs/rulebook/Tokyo Ghoul Tabletop RPG - Unofficial.pdf`
-
-Do not paste long verbatim rulebook text into source files or compendiums. Encode mechanics as formulas, data, and concise paraphrased help.
+French localization includes English stubs for newer controls. Spatial movement, cover, area membership, Dynamic abilities and narrative triggers require GM judgment; consult the audit rather than assuming complete automation.

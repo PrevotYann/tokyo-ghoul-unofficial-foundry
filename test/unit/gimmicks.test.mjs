@@ -34,7 +34,7 @@ test("activation summary toggles state and charges only on activation", () => {
 
 test("attack, defense, form, and utility gimmick helpers expose expected effects", () => {
   assert.deepEqual(calculateAttackGimmick({ rcl: 10, selectedStatValue: 6 }), {
-    attackBonus: 16,
+    damage: 16,
     formula: "RCL + selected stat"
   });
 

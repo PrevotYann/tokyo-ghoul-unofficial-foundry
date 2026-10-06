@@ -12,9 +12,10 @@ export function canFullKakuja(actor) {
 }
 
 export function getKakujaEligibility({ actorClass = "ghoul", rcl = 0, edges = [], masteredHalf = false } = {}) {
-  const cannibalistic = hasEdge(edges, "Cannibalistic");
+  const normalized = edges.map(edge => String(edge?.name ?? edge).toLowerCase().replace(/[^a-z0-9]+/g, "-"));
+  const cannibalistic = normalized.includes("cannibalistic") && !normalized.includes("inner-peace");
   const canHalf = (actorClass === "ghoul" || actorClass === "quinx") && cannibalistic && numberOrZero(rcl) >= 50;
-  const canFull = actorClass === "ghoul" && cannibalistic && masteredHalf && numberOrZero(rcl) >= 150;
+  const canFull = actorClass === "ghoul" && cannibalistic && (masteredHalf || normalized.includes("rampant")) && numberOrZero(rcl) >= 150;
 
   return { canHalf, canFull };
 }
@@ -31,6 +32,21 @@ export function getKakujaBonusOptions(kaguneType = "ukaku", stage = "half") {
   };
 
   return map[kaguneType] ?? [];
+}
+
+export function getKakujaSelections(primaryType, secondaryType = null, stage = "half") {
+  const primary = getKakujaBonusOptions(primaryType, stage);
+  const combinations = secondaryType
+    ? primary.flatMap(a => getKakujaBonusOptions(secondaryType,stage).map(b => [{...a,value:a.value/2},{...b,value:b.value/2}]))
+    : primary.map(a => [a]);
+  return combinations.map(entries => ({entries,key:entries.map(e=>`${e.stat}:${e.value}`).join(",")}));
+}
+
+export function getKakujaStatBonus(selection, stat) {
+  return String(selection??"").split(",").reduce((total,entry)=>{
+    const [key,value]=entry.split(":");
+    return total+(key===stat ? numberOrZero(value) : 0);
+  },0);
 }
 
 export function calculateKakujaUpkeep({ stage = "half", rcl = 0, mastered = false } = {}) {
@@ -59,8 +75,8 @@ export function calculateKakujaWeaponEdgeSlots(baseSlots = 0) {
   return Math.max(0, numberOrZero(baseSlots)) * 2;
 }
 
-export function calculateKakujaArmorDamageReduction({ incomingDamage = 0, armorRcl = 0 } = {}) {
-  return Math.max(0, numberOrZero(incomingDamage) - numberOrZero(armorRcl));
+export function calculateKakujaArmorDamageReduction({ incomingDamage = 0, armorRcl = 0, end = 0, variant = "primary" } = {}) {
+  return Math.max(0, numberOrZero(incomingDamage) - (variant === "repeated" ? numberOrZero(end) * 2 : numberOrZero(armorRcl)));
 }
 
 export function calculateKakujaArmorParasiticDamage({ armorRcl = 0, weaponRcl = 0, turnsActive = 0 } = {}) {
@@ -68,7 +84,7 @@ export function calculateKakujaArmorParasiticDamage({ armorRcl = 0, weaponRcl = 
   return Math.floor(numberOrZero(armorRcl) / 2) + Math.floor(numberOrZero(weaponRcl) / 2);
 }
 
-export function getKakujaArmorTypeEffect({ armorType = "attack", selectedAttackStat = "str" } = {}) {
+export function getKakujaArmorTypeEffect({ armorType = "attack", selectedAttackStat = "str", variant = "primary" } = {}) {
   if (armorType === "speed") {
     return {
       statMultipliers: { spd: 2 },
@@ -79,7 +95,7 @@ export function getKakujaArmorTypeEffect({ armorType = "attack", selectedAttackS
 
   if (armorType === "attack") {
     return {
-      statMultipliers: { [selectedAttackStat === "acc" ? "acc" : "str"]: 2 },
+      statMultipliers: { [selectedAttackStat === "acc" ? "acc" : "str"]: variant === "repeated" ? 3 : 2 },
       extraManeuvers: 0,
       removesDamageManeuverCosts: true
     };

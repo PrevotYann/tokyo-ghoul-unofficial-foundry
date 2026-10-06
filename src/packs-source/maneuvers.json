@@ -8,7 +8,7 @@
       "staminaFormula": "",
       "damageFormula": "by attack source",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "strike",
       "description": "Make a basic attack with an eligible source."
     }
@@ -22,7 +22,7 @@
       "staminaFormula": "",
       "damageFormula": "",
       "rangeModifier": "1 band",
-      "automation": "manual",
+      "automation": "assisted",
       "chatAction": "move",
       "description": "Move one range band."
     }
@@ -36,7 +36,7 @@
       "staminaFormula": "",
       "damageFormula": "",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "assisted",
       "chatAction": "ready",
       "description": "Reserve one clear triggered action."
     }
@@ -50,7 +50,7 @@
       "staminaFormula": "-END recovery",
       "damageFormula": "",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "breather",
       "description": "Recover Stamina and limit the other maneuver this turn."
     }
@@ -64,7 +64,7 @@
       "staminaFormula": "attacks * 5",
       "damageFormula": "by attack source",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "allOut",
       "description": "Spend both maneuvers to make up to five attacks."
     }
@@ -78,7 +78,7 @@
       "staminaFormula": "max(SPD * 3 - PER, 0)",
       "damageFormula": "by counter tier",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "counter",
       "description": "Declare a counter stance until next turn."
     }
@@ -92,7 +92,7 @@
       "staminaFormula": "by feature",
       "damageFormula": "",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "assisted",
       "chatAction": "enhance",
       "description": "Activate or deactivate a feature such as a gimmick or Kakuja."
     }
@@ -106,7 +106,7 @@
       "staminaFormula": "SPD",
       "damageFormula": "by attack source",
       "rangeModifier": "1 band",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "overextend",
       "description": "Push a melee attack one range band farther with a SPD penalty."
     }
@@ -120,7 +120,7 @@
       "staminaFormula": "",
       "damageFormula": "",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "assisted",
       "chatAction": "grab",
       "description": "Opposed STR action to grapple a target."
     }
@@ -134,7 +134,7 @@
       "staminaFormula": "STR * 2",
       "damageFormula": "collision distance",
       "rangeModifier": "floor(STR / 2)",
-      "automation": "manual",
+      "automation": "assisted",
       "chatAction": "throw",
       "description": "Throw a grappled target."
     }
@@ -148,7 +148,7 @@
       "staminaFormula": "STR * 2",
       "damageFormula": "double STR portion",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "heavyStrike",
       "description": "A costly melee strike that doubles the STR damage portion."
     }
@@ -162,7 +162,7 @@
       "staminaFormula": "",
       "damageFormula": "",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "dodge",
       "description": "Reaction defense using SPD."
     }
@@ -176,7 +176,7 @@
       "staminaFormula": "",
       "damageFormula": "",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "block",
       "description": "Reaction defense using END."
     }
@@ -190,7 +190,7 @@
       "staminaFormula": "",
       "damageFormula": "full incoming damage",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "takeHit",
       "description": "Accept the incoming hit without a defense roll."
     }

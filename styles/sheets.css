@@ -291,3 +291,45 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+.tg-sheet, .tg-builder-window {max-width:calc(100vw - 24px); max-height:calc(100vh - 24px); min-width:min(360px, calc(100vw - 24px));}
+.tg-sheet .window-content {container:tg-sheet / inline-size;}
+.tg-form {padding:20px; gap:16px; background:radial-gradient(ellipse at 95% 0, #35132180, transparent 50%), var(--tg-bg); min-height:0;}
+.tg-sheet-header {border-radius:14px; border-top:3px solid var(--tg-accent-strong); padding:18px; background:linear-gradient(125deg,#222837,#121620);}
+.tg-portrait {border-radius:12px; border-color:var(--tg-accent-strong);}
+.tg-name {font-size:24px; font-weight:750; letter-spacing:-.5px;}
+.tg-chip {border-color:var(--tg-line); border-radius:6px; line-height:1.3; background:#222837; font-size:12px; font-weight:600; padding:5px 8px;}
+.tg-action-row {gap:8px; margin-block:8px;}
+.tg-action-row [data-actor-action=strike], .tg-builder-form [type=submit], .tg-dialog .form-footer button {background:#a51c37; color:#fff; border-color:#ff8498;}
+.tg-tabs {gap:4px; border:0; padding:6px; border-radius:12px; background:#171b25;}
+.tg-tabs button {flex:1 1 auto; border-color:transparent; background:transparent; font-size:13px;}
+.tg-tabs button.active {background:#a51c37; border-color:#ff8498; color:#fff;}
+.tg-panel {background:var(--tg-panel); padding:16px; border-radius:12px; border-color:#3a4457;}
+.tg-panel h2 {font-size:14px; font-weight:750; letter-spacing:.06em; text-transform:uppercase; margin-bottom:14px;}
+.tg-character > section {display:grid; gap:14px;}
+.tg-stat-grid {grid-template-columns:repeat(6,minmax(0,1fr)); gap:10px;}
+.tg-stat-card {padding:12px; min-height:126px; border-color:var(--tg-line); border-radius:10px;}
+.tg-stat-card strong {font-size:28px; font-variant-numeric:tabular-nums;}
+.tg-grid label, .tg-stat-card label, .tg-resource-grid label {font-size:13px; font-weight:550; gap:6px;}
+.tg-resource-grid label {background:#222837; padding:12px; border-radius:10px;}
+.tg-resource-grid meter {height:12px; margin-top:4px;}
+.tg-item-list li {flex-wrap:wrap; padding:10px; border-color:#465168; background:#121620;}
+.tg-item-list .tg-item-name {flex:1 1 150px; text-align:left; color:var(--tg-text); font-weight:650; background:transparent; border:0;}
+.tg-item-controls {display:flex; flex-wrap:wrap; gap:6px;}
+.tg-item-controls button {font-size:12px; padding:5px 8px;}
+.tg-item-list .tg-chip {font-size:11px;}
+.tg-panel-actions {margin-top:14px;}
+.tg-chat-grid {font-size:13px;}
+.tg-chat-grid dd {overflow-wrap:anywhere; white-space:normal; min-width:0;}
+@container tg-sheet (max-width:700px) {
+ .tg-stat-grid {grid-template-columns:repeat(3,minmax(0,1fr));}
+ .tg-grid-4 {grid-template-columns:repeat(2,minmax(0,1fr));}
+ .tg-sheet-header {grid-template-columns:64px minmax(0,1fr);}
+ .tg-portrait {width:64px;height:64px;}
+ .tg-form {padding:12px;}
+}
+@container tg-sheet (max-width:460px) {
+ .tg-resource-grid, .tg-grid-2, .tg-grid-3, .tg-grid-4 {grid-template-columns:1fr;}
+ .tg-stat-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
+ .tg-sheet-header {grid-template-columns:1fr;}
+ .tg-tabs button {flex:1 1 30%;}
+}

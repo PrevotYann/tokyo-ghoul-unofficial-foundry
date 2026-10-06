@@ -15,8 +15,16 @@
         ],
         "healingFormula": "PER + target END"
       },
-      "automation": "manual",
+      "automation": "assisted",
       "description": "Medical kit for assisted healing and condition removal."
+    },
+    "_id": "d39c1ef79213532c",
+    "folder": "988aeb8fbf413175",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -31,8 +39,16 @@
       "effect": {
         "damageFormula": "ACC * 3"
       },
-      "automation": "manual",
+      "automation": "assisted",
       "description": "Explosive grenade with close-area damage."
+    },
+    "_id": "991127809b4dd7d2",
+    "folder": "988aeb8fbf413175",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -49,8 +65,16 @@
           "burning"
         ]
       },
-      "automation": "manual",
+      "automation": "assisted",
       "description": "Area grenade that applies Burning."
+    },
+    "_id": "70eda0a47ecb23f6",
+    "folder": "988aeb8fbf413175",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -68,8 +92,16 @@
         ],
         "durationTurns": 3
       },
-      "automation": "manual",
+      "automation": "assisted",
       "description": "Creates a temporary RC limiter cloud."
+    },
+    "_id": "6b1e8797d15703d6",
+    "folder": "988aeb8fbf413175",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -86,6 +118,14 @@
       },
       "automation": "manual",
       "description": "Sidearm ammunition for assisted Quinque attacks."
+    },
+    "_id": "464c09eae9b5983a",
+    "folder": "988aeb8fbf413175",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -99,8 +139,16 @@
       "selectedBenefit": null,
       "grantedEdges": [],
       "dynamicEffect": "",
-      "automation": "manual",
+      "automation": "full",
       "description": "Signature attack using RCL and a selected stat."
+    },
+    "_id": "ca5f87508bf8b903",
+    "folder": "a914262371d873e2",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -114,8 +162,16 @@
       "selectedBenefit": null,
       "grantedEdges": [],
       "dynamicEffect": "",
-      "automation": "manual",
+      "automation": "full",
       "description": "Defensive form that can assist Dodge or Block timing."
+    },
+    "_id": "1c2a735a480951ed",
+    "folder": "a914262371d873e2",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -129,8 +185,16 @@
       "selectedBenefit": null,
       "grantedEdges": [],
       "dynamicEffect": "",
-      "automation": "manual",
+      "automation": "full",
       "description": "Alternate form with attack or damage benefit."
+    },
+    "_id": "046c6570f1406442",
+    "folder": "a914262371d873e2",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -144,8 +208,16 @@
       "selectedBenefit": null,
       "grantedEdges": [],
       "dynamicEffect": "",
-      "automation": "manual",
+      "automation": "assisted",
       "description": "Utility form that grants temporary edge support."
+    },
+    "_id": "a413befe06acdcc6",
+    "folder": "a914262371d873e2",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -161,6 +233,54 @@
       "dynamicEffect": "",
       "automation": "manual",
       "description": "GM-defined gimmick effect."
+    },
+    "_id": "75adddb9a0f3d82d",
+    "folder": "a914262371d873e2",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
+    }
+  },
+  {
+    "name": "Attack Kakuja Armor",
+    "type": "kakuja-armor",
+    "system": {
+      "armorType": "attack",
+      "rcl": 45,
+      "manifested": false,
+      "turnsActive": 0,
+      "automation": "full",
+      "description": "Reduces incoming damage and grants the selected armor benefit. The primary equipment rules use armor RCL reduction and double the selected attack stat. The world setting also supports the conflicting repeated chapter. Parasitic damage begins after five turns."
+    },
+    "_id": "7463a1a1209b94fc",
+    "folder": "c8c519fc474bfdf2",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
+    }
+  },
+  {
+    "name": "Speed Kakuja Armor",
+    "type": "kakuja-armor",
+    "system": {
+      "armorType": "speed",
+      "rcl": 45,
+      "manifested": false,
+      "turnsActive": 0,
+      "automation": "full",
+      "description": "Reduces incoming damage and grants the selected armor benefit. The primary equipment rules use armor RCL reduction and double the selected attack stat. The world setting also supports the conflicting repeated chapter. Parasitic damage begins after five turns."
+    },
+    "_id": "75f159f3d3d3221b",
+    "folder": "c8c519fc474bfdf2",
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   }
 ]

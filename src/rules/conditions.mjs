@@ -9,6 +9,15 @@ export function calculateRegenerationAmount({ type = "normal", end = 0, crl = 0,
   return damageWasRc ? 0 : numberOrZero(end);
 }
 
+export function resolveRegeneration({ injury = {}, type = "normal", end = 0, crl = 0, suppressed = false } = {}) {
+  let normalDamage = numberOrZero(injury.normalDamage ?? (injury.rc ? 0 : injury.amount));
+  let rcDamage = numberOrZero(injury.rcDamage ?? (injury.rc ? injury.amount : 0));
+  const capacity = calculateRegenerationAmount({type,end,crl,damageWasRc:type === "highSpeed" && rcDamage>0,suppressed});
+  const rcHealing = type === "highSpeed" ? Math.min(rcDamage,capacity) : 0;
+  const normalHealing = Math.min(normalDamage,Math.max(0,capacity-rcHealing));
+  return {healing:rcHealing+normalHealing,injury:{rcDamage:rcDamage-rcHealing,normalDamage:normalDamage-normalHealing}};
+}
+
 export function removeBleedingStacksByRegeneration(stacks = 0, regenerationType = "normal") {
   const removal = regenerationType === "highSpeed" ? 2 : regenerationType === "normal" ? 1 : 0;
   return Math.max(0, numberOrZero(stacks) - removal);

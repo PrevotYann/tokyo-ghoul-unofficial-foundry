@@ -14,7 +14,7 @@ import { LootDataModel } from "./data-models/item-loot.mjs";
 import { TokyoGhoulActor } from "./documents/actor.mjs";
 import { TokyoGhoulItem } from "./documents/item.mjs";
 import { TokyoGhoulActiveEffect } from "./documents/active-effect.mjs";
-import { registerCombatHooks } from "./documents/combat.mjs";
+import { TokyoGhoulCombat, registerCombatHooks } from "./documents/combat.mjs";
 import { TokyoGhoulActorSheet } from "./sheets/actor-sheet.mjs";
 import { CharacterBuilderApp, createActorFromCharacterDraft, openCharacterBuilder } from "./sheets/builder-app.mjs";
 import { TokyoGhoulItemSheet } from "./sheets/item-sheet.mjs";
@@ -78,6 +78,10 @@ Hooks.once("init", async () => {
   CONFIG.Actor.documentClass = TokyoGhoulActor;
   CONFIG.Item.documentClass = TokyoGhoulItem;
   CONFIG.ActiveEffect.documentClass = TokyoGhoulActiveEffect;
+  CONFIG.Combat.documentClass = TokyoGhoulCombat;
+  game.settings.register(SYSTEM_ID, "harshDefenses", {name:"TG.settings.harshDefenses", hint:"TG.settings.harshDefensesHint",scope:"world",config:true,type:Boolean,default:true});
+  game.settings.register(SYSTEM_ID, "counterRewards", {name:"TG.settings.counterRewards",scope:"world",config:true,type:Boolean,default:true});
+  game.settings.register(SYSTEM_ID, "armorRules", {name:"TG.settings.armorRules",hint:"TG.settings.armorRulesHint",scope:"world",config:true,type:String,default:"primary",choices:{primary:"TG.settings.armorPrimary",repeated:"TG.settings.armorRepeated"}});
   CONFIG.Actor.dataModels = { ...CONFIG.Actor.dataModels, ...ACTOR_DATA_MODELS };
   CONFIG.Item.dataModels = { ...CONFIG.Item.dataModels, ...ITEM_DATA_MODELS };
   CONFIG.Actor.trackableAttributes = {
@@ -106,4 +110,44 @@ Hooks.once("ready", async () => {
   registerCombatHooks();
   registerChatCardListeners();
   await runMigrations();
+});
+
+Hooks.on("renderActorDirectory", (_app, element) => {
+  const root = element instanceof HTMLElement ? element : element?.[0];
+  if (!root || root.querySelector(".tg-builder-launch") || !game.user.can("ACTOR_CREATE")) return;
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "tg-builder-launch";
+  button.textContent = game.i18n.localize("TG.builder.title");
+  button.addEventListener("click", () => openCharacterBuilder());
+  (root.querySelector(".header-actions") ?? root).prepend(button);
+});
+
+Hooks.on("updateWorldTime", async (time, delta) => {
+  if (!game.user.isActiveGM || delta <= 0) return;
+  const days = Math.floor(time / 86400) - Math.floor((time - delta) / 86400);
+  const intervals = Math.floor(time / 600) - Math.floor((time - delta) / 600);
+  for (const actor of game.actors) {
+    if (!["ghoul", "quinx"].includes(actor.system.identity?.class)) continue;
+    if (days > 0) {
+      const meal = actor.system.resources.mealScore;
+      const previous = meal.value;
+      await actor.update({"system.resources.mealScore.value":Math.max(0,previous-days)});
+      await actor.checkThresholds("hunger", previous, actor.system.resources.mealScore);
+    }
+    if (intervals > 0 && !actor.inCombat && actor.system.hunger.active && !actor.getEdgeModifiers().autoFailCrl) await actor.applyDamage(intervals, {quiet:true,bypassArmor:true});
+  }
+});
+
+Hooks.on("deleteCombat", async combat => {
+  if (!game.user.isActiveGM) return;
+  for (const actor of new Set(combat.combatants.map(c=>c.actor).filter(Boolean))) {
+    for (const weapon of actor.items.filter(i=>i.type==="quinque"&&i.system.sidearm.enabled)) await weapon.update({"system.sidearm.ammo.value":weapon.system.rcl});
+  }
+});
+
+for (const hook of ["renderDialogV2", "renderActiveEffectConfig"]) Hooks.on(hook, (app, element) => {
+  if (game.system.id !== SYSTEM_ID) return;
+  if (hook === "renderActiveEffectConfig" && !["Actor","Item"].includes(app.document?.parent?.documentName)) return;
+  element.classList.add("tg-system", "tg-dialog");
 });

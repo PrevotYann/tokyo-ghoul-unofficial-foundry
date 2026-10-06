@@ -8,9 +8,17 @@
       "staminaFormula": "",
       "damageFormula": "by attack source",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "strike",
       "description": "Make a basic attack with an eligible source."
+    },
+    "_id": "b6d4244618c7fc18",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -22,9 +30,17 @@
       "staminaFormula": "",
       "damageFormula": "",
       "rangeModifier": "1 band",
-      "automation": "manual",
+      "automation": "assisted",
       "chatAction": "move",
       "description": "Move one range band."
+    },
+    "_id": "564ac202f07915e8",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -36,9 +52,17 @@
       "staminaFormula": "",
       "damageFormula": "",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "assisted",
       "chatAction": "ready",
       "description": "Reserve one clear triggered action."
+    },
+    "_id": "16e183ca15f5b215",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -50,9 +74,17 @@
       "staminaFormula": "-END recovery",
       "damageFormula": "",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "breather",
       "description": "Recover Stamina and limit the other maneuver this turn."
+    },
+    "_id": "2491d3be64232a16",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -64,9 +96,17 @@
       "staminaFormula": "attacks * 5",
       "damageFormula": "by attack source",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "allOut",
       "description": "Spend both maneuvers to make up to five attacks."
+    },
+    "_id": "6c078c2a81186597",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -78,9 +118,17 @@
       "staminaFormula": "max(SPD * 3 - PER, 0)",
       "damageFormula": "by counter tier",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "counter",
       "description": "Declare a counter stance until next turn."
+    },
+    "_id": "7db3792a7c0a32e9",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -92,9 +140,17 @@
       "staminaFormula": "by feature",
       "damageFormula": "",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "assisted",
       "chatAction": "enhance",
       "description": "Activate or deactivate a feature such as a gimmick or Kakuja."
+    },
+    "_id": "8f9a1f3b38a881f8",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -106,9 +162,17 @@
       "staminaFormula": "SPD",
       "damageFormula": "by attack source",
       "rangeModifier": "1 band",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "overextend",
       "description": "Push a melee attack one range band farther with a SPD penalty."
+    },
+    "_id": "70e016dff6ef9bba",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -120,9 +184,17 @@
       "staminaFormula": "",
       "damageFormula": "",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "assisted",
       "chatAction": "grab",
       "description": "Opposed STR action to grapple a target."
+    },
+    "_id": "b774765393012fc1",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -134,9 +206,17 @@
       "staminaFormula": "STR * 2",
       "damageFormula": "collision distance",
       "rangeModifier": "floor(STR / 2)",
-      "automation": "manual",
+      "automation": "assisted",
       "chatAction": "throw",
       "description": "Throw a grappled target."
+    },
+    "_id": "510145f647aa3d1a",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -148,9 +228,17 @@
       "staminaFormula": "STR * 2",
       "damageFormula": "double STR portion",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "heavyStrike",
       "description": "A costly melee strike that doubles the STR damage portion."
+    },
+    "_id": "c588c2eed2464e6c",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -162,9 +250,17 @@
       "staminaFormula": "",
       "damageFormula": "",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "dodge",
       "description": "Reaction defense using SPD."
+    },
+    "_id": "c48ded3ca69a75df",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -176,9 +272,17 @@
       "staminaFormula": "",
       "damageFormula": "",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "block",
       "description": "Reaction defense using END."
+    },
+    "_id": "6bdcc7fa3ff11b3d",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -190,9 +294,17 @@
       "staminaFormula": "",
       "damageFormula": "full incoming damage",
       "rangeModifier": "0",
-      "automation": "manual",
+      "automation": "full",
       "chatAction": "takeHit",
       "description": "Accept the incoming hit without a defense roll."
+    },
+    "_id": "b6e675d72997f3f1",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   }
 ]

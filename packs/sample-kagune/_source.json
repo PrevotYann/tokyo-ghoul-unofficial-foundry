@@ -23,9 +23,17 @@
         "statPurchases": [],
         "swappedEdges": []
       },
-      "automation": "manual",
+      "automation": "full",
       "description": "Fast projectile-focused Kagune template.",
       "dynamicNotes": ""
+    },
+    "_id": "53a68de271e21a67",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -52,9 +60,17 @@
         "statPurchases": [],
         "swappedEdges": []
       },
-      "automation": "manual",
+      "automation": "full",
       "description": "Heavy close-range Kagune template.",
       "dynamicNotes": ""
+    },
+    "_id": "5231a58a82cdce0d",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -81,9 +97,17 @@
         "statPurchases": [],
         "swappedEdges": []
       },
-      "automation": "manual",
+      "automation": "full",
       "description": "Flexible mid-range Kagune template.",
       "dynamicNotes": ""
+    },
+    "_id": "5bc18eb9726cef9e",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   },
   {
@@ -110,9 +134,17 @@
         "statPurchases": [],
         "swappedEdges": []
       },
-      "automation": "manual",
+      "automation": "full",
       "description": "Balanced mid-range Kagune template.",
       "dynamicNotes": ""
+    },
+    "_id": "2fe1e6523c5c84e0",
+    "folder": null,
+    "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+    "effects": [],
+    "flags": {},
+    "ownership": {
+      "default": 0
     }
   }
 ]

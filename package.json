@@ -1,11 +1,18 @@
 {
   "name": "tokyo-ghoul-unofficial-foundry",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
     "test": "node --test test/unit/**/*.test.mjs",
     "test:packs": "node scripts/validate-packs-source.mjs",
-    "build:packs": "node scripts/build-packs-source.mjs"
+    "build:packs": "node scripts/build-packs-source.mjs",
+    "test:foundry": "node test/foundry/runtime.mjs",
+    "test:ui": "node --test test/ui/*.test.mjs",
+    "release:package": "node scripts/package-release.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "classic-level": "^3.0.0"
   }
 }

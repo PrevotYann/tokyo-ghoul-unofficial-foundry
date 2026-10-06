@@ -123,7 +123,7 @@ export function calculateQuinqueGimmickAddition({ currentRcl = 0, kakuhouType = 
 
 export function calculateForgeQuinqueRcl({ sourceRank = "C", chosenEdges = [], maxEdges = QUINQUE_UPGRADE_COSTS.maxForgeEdges } = {}) {
   const baseRcl = GHOUL_RANK_FORGE_RCL[sourceRank] ?? GHOUL_RANK_FORGE_RCL.C;
-  const chosenCount = clampNumber(normalizeEdges(chosenEdges).length, 0, maxEdges);
+  const chosenCount = clampNumber(normalizeEdges(chosenEdges).reduce((n,edge)=>n+(edge.toLowerCase()==="healer"?2:1),0), 0, maxEdges);
   const unusedEdgeBonus = (maxEdges - chosenCount) * TG_CONFIG.edgeSlotRclBonus;
   return {
     baseRcl,

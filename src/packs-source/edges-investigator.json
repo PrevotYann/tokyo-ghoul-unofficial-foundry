@@ -1,23 +1,600 @@
 [
-  { "name": "High-Speed Regeneration", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["rinkaku"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "quinque.selfRepair" }], "formula": "RC Bonds floor(RCL / 2)", "notes": "Rinkaku Quinque self-repair option." } },
-  { "name": "Sidearm", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "quinque.sidearm" }], "formula": "ACC damage", "notes": "Adds Q bullet sidearm configuration." } },
-  { "name": "Prehensile", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["koukaku", "rinkaku", "bikaku"], "forbiddenTypes": ["ukaku"], "slots": 1, "grantsManeuvers": ["Grab", "Throw"], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [], "formula": "STR + RCL for grapple uses", "notes": "Extends grapple options for suitable Quinque." } },
-  { "name": "Massive", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "range.extend" }], "formula": "+1 range band", "notes": "Extends effective Quinque range." } },
-  { "name": "Sharpened", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Blunt"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "condition": "bleeding" }], "formula": "", "notes": "Can apply Bleeding on eligible hits." } },
-  { "name": "Blunt", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Sharpened"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [], "formula": "+floor(END / 2) damage", "notes": "Adds impact damage." } },
-  { "name": "Inner Peace", "type": "edge", "system": { "category": "investigator", "appliesTo": ["actor"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Rampant"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "rage.prevent" }], "formula": "", "notes": "Prevents Rage." } },
-  { "name": "Rampant", "type": "edge", "system": { "category": "investigator", "appliesTo": ["actor"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Inner Peace"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "rage.rampant" }], "formula": "reduced Rage costs", "notes": "Changes Rage checks and costs." } },
-  { "name": "Grappler", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": ["Grab", "Throw"], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [], "formula": "", "notes": "Unlocks Grab and Throw maneuvers." } },
-  { "name": "Preemptive", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["ukaku", "rinkaku", "bikaku"], "forbiddenTypes": ["koukaku"], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Hardy"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "bonus": "dodge", "value": 3 }], "formula": "+3 Dodge", "notes": "Improves Dodge." } },
-  { "name": "Hardy", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["koukaku", "rinkaku", "bikaku"], "forbiddenTypes": ["ukaku"], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Preemptive"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "bonus": "block", "value": 3 }], "formula": "+3 Block", "notes": "Improves Block." } },
-  { "name": "Quick Strikes", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Heavy Strikes"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "allOut.quick" }], "formula": "attacks * 3", "notes": "Improves All-Out Offensive cost and damage." } },
-  { "name": "Lightweight", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["ukaku", "rinkaku", "bikaku"], "forbiddenTypes": ["koukaku"], "slots": 1, "grantsManeuvers": [], "incompatibleWith": ["Heavy Strikes"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "damage.useSpd" }], "formula": "SPD melee damage/cost basis", "notes": "Uses SPD for melee Quinque damage and cost calculations." } },
-  { "name": "Heavy Strikes", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": ["Heavy Strike"], "incompatibleWith": ["Quick Strikes", "Lightweight"], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [], "formula": "discounted Heavy Strike cost", "notes": "Unlocks discounted Heavy Strike." } },
-  { "name": "Cannibalistic", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "quinque.rclMultiplier" }], "formula": "RCL * 1.5", "notes": "Raises effective Quinque RCL." } },
-  { "name": "Chimera", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "quinque.chimera" }], "formula": "dual type", "notes": "Two-in-one Quinque support." } },
-  { "name": "Natural Predator", "type": "edge", "system": { "category": "investigator", "appliesTo": ["actor", "quinque"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "typeAdvantage.predator" }], "formula": "type advantage +4", "notes": "Improves Quinque type advantage against Ghouls." } },
-  { "name": "Healer", "type": "edge", "system": { "category": "investigator", "appliesTo": ["actor", "quinque"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 2, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "consumable.medkit" }], "formula": "PER + target END healing", "notes": "Adds medkit support." } },
-  { "name": "Grenadier", "type": "edge", "system": { "category": "investigator", "appliesTo": ["actor", "quinque"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "consumable.grenades" }], "formula": "10 grenade carry limit", "notes": "Adds grenade support." } },
-  { "name": "Gimmick", "type": "edge", "system": { "category": "investigator", "appliesTo": ["quinque"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": ["Enhance"], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [{ "hook": "quinque.gimmick" }], "formula": "by gimmick type", "notes": "Adds a Quinque gimmick." } },
-  { "name": "Dynamic Edge", "type": "edge", "system": { "category": "investigator", "appliesTo": ["actor", "quinque"], "allowedTypes": ["any"], "forbiddenTypes": [], "slots": 1, "grantsManeuvers": [], "incompatibleWith": [], "mustChooseAtCreation": false, "canTakeAfterCreation": true, "automation": "manual", "effects": [], "formula": "custom", "notes": "GM-defined custom effect." } }
+  {
+    "name": "High-Speed Regeneration",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "rinkaku"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "quinque.selfRepair"
+        }
+      ],
+      "formula": "RC Bonds floor(RCL / 2)",
+      "notes": "Rinkaku Quinque self-repair option."
+    }
+  },
+  {
+    "name": "Sidearm",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "quinque.sidearm"
+        }
+      ],
+      "formula": "ACC damage",
+      "notes": "Adds Q bullet sidearm configuration."
+    }
+  },
+  {
+    "name": "Prehensile",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "koukaku",
+        "rinkaku",
+        "bikaku"
+      ],
+      "forbiddenTypes": [
+        "ukaku"
+      ],
+      "slots": 1,
+      "grantsManeuvers": [
+        "Grab",
+        "Throw"
+      ],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "assisted",
+      "effects": [],
+      "formula": "STR + RCL for grapple uses",
+      "notes": "Extends grapple options for suitable Quinque."
+    }
+  },
+  {
+    "name": "Massive",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "range.extend"
+        }
+      ],
+      "formula": "+1 range band",
+      "notes": "Extends effective Quinque range."
+    }
+  },
+  {
+    "name": "Sharpened",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Blunt"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "condition": "bleeding"
+        }
+      ],
+      "formula": "",
+      "notes": "Can apply Bleeding on eligible hits."
+    }
+  },
+  {
+    "name": "Blunt",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Sharpened"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [],
+      "formula": "+floor(END / 2) damage",
+      "notes": "Adds impact damage."
+    }
+  },
+  {
+    "name": "Inner Peace",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "actor"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Rampant"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "rage.prevent"
+        }
+      ],
+      "formula": "",
+      "notes": "Prevents Rage."
+    }
+  },
+  {
+    "name": "Rampant",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "actor"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Inner Peace"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "rage.rampant"
+        }
+      ],
+      "formula": "reduced Rage costs",
+      "notes": "Changes Rage checks and costs."
+    }
+  },
+  {
+    "name": "Grappler",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [
+        "Grab",
+        "Throw"
+      ],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [],
+      "formula": "",
+      "notes": "Unlocks Grab and Throw maneuvers."
+    }
+  },
+  {
+    "name": "Preemptive",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "ukaku",
+        "rinkaku",
+        "bikaku"
+      ],
+      "forbiddenTypes": [
+        "koukaku"
+      ],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Hardy"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "bonus": "dodge",
+          "value": 3
+        }
+      ],
+      "formula": "+3 Dodge",
+      "notes": "Improves Dodge."
+    }
+  },
+  {
+    "name": "Hardy",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "koukaku",
+        "rinkaku",
+        "bikaku"
+      ],
+      "forbiddenTypes": [
+        "ukaku"
+      ],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Preemptive"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "bonus": "block",
+          "value": 3
+        }
+      ],
+      "formula": "+3 Block",
+      "notes": "Improves Block."
+    }
+  },
+  {
+    "name": "Quick Strikes",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Heavy Strikes"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "allOut.quick"
+        }
+      ],
+      "formula": "attacks * 3",
+      "notes": "Improves All-Out Offensive cost and damage."
+    }
+  },
+  {
+    "name": "Lightweight",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "ukaku",
+        "rinkaku",
+        "bikaku"
+      ],
+      "forbiddenTypes": [
+        "koukaku"
+      ],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [
+        "Heavy Strikes"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "damage.useSpd"
+        }
+      ],
+      "formula": "SPD melee damage/cost basis",
+      "notes": "Uses SPD for melee Quinque damage and cost calculations."
+    }
+  },
+  {
+    "name": "Heavy Strikes",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [
+        "Heavy Strike"
+      ],
+      "incompatibleWith": [
+        "Quick Strikes",
+        "Lightweight"
+      ],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [],
+      "formula": "discounted Heavy Strike cost",
+      "notes": "Unlocks discounted Heavy Strike."
+    }
+  },
+  {
+    "name": "Cannibalistic",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "quinque.rclMultiplier"
+        }
+      ],
+      "formula": "RCL * 1.5",
+      "notes": "Raises effective Quinque RCL."
+    }
+  },
+  {
+    "name": "Chimera",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "assisted",
+      "effects": [
+        {
+          "hook": "quinque.chimera"
+        }
+      ],
+      "formula": "dual type",
+      "notes": "Two-in-one Quinque support."
+    }
+  },
+  {
+    "name": "Natural Predator",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "actor",
+        "quinque"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "full",
+      "effects": [
+        {
+          "hook": "typeAdvantage.predator"
+        }
+      ],
+      "formula": "type advantage +4",
+      "notes": "Improves Quinque type advantage against Ghouls."
+    }
+  },
+  {
+    "name": "Healer",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "actor",
+        "quinque"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 2,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "assisted",
+      "effects": [
+        {
+          "hook": "consumable.medkit"
+        }
+      ],
+      "formula": "PER + target END healing",
+      "notes": "Adds medkit support."
+    }
+  },
+  {
+    "name": "Grenadier",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "actor",
+        "quinque"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "assisted",
+      "effects": [
+        {
+          "hook": "consumable.grenades"
+        }
+      ],
+      "formula": "10 grenade carry limit",
+      "notes": "Adds grenade support."
+    }
+  },
+  {
+    "name": "Gimmick",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "quinque"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [
+        "Enhance"
+      ],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "assisted",
+      "effects": [
+        {
+          "hook": "quinque.gimmick"
+        }
+      ],
+      "formula": "by gimmick type",
+      "notes": "Adds a Quinque gimmick."
+    }
+  },
+  {
+    "name": "Dynamic Edge",
+    "type": "edge",
+    "system": {
+      "category": "investigator",
+      "appliesTo": [
+        "actor",
+        "quinque"
+      ],
+      "allowedTypes": [
+        "any"
+      ],
+      "forbiddenTypes": [],
+      "slots": 1,
+      "grantsManeuvers": [],
+      "incompatibleWith": [],
+      "mustChooseAtCreation": false,
+      "canTakeAfterCreation": true,
+      "automation": "manual",
+      "effects": [],
+      "formula": "custom",
+      "notes": "GM-defined custom effect."
+    }
+  }
 ]

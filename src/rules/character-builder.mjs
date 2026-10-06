@@ -56,7 +56,7 @@ export function calculateBuilderRcl({ baseRcl, maxEdges, chosenEdges = [] } = {}
   return calculateStartingRcl({
     baseRcl,
     maxStartingEdges: maxEdges,
-    chosenStartingEdges: chosenEdges.length
+    chosenStartingEdges: chosenEdges.reduce((n,edge)=>n+(String(edge).toLowerCase()==="healer"?2:1),0)
   });
 }
 
@@ -73,7 +73,7 @@ export function createKaguneDraft({ name = "Kagune", actorClass = "ghoul", kagun
       rcl,
       manifested: false,
       range: getDefaultTypeRange(kaguneType),
-      edgeSlots: { max: profile.kaguneEdgeSlots, used: edges.length, bonusFromType: kaguneType === "bikaku" ? 1 : 0 },
+      edgeSlots: { max: profile.kaguneEdgeSlots + (kaguneType === "bikaku" ? 1 : 0), used: edges.length, bonusFromType: kaguneType === "bikaku" ? 1 : 0 },
       edges,
       evolution: { spentRcl: 0, statPurchases: [], swappedEdges: [] },
       automation: "manual",
@@ -100,7 +100,7 @@ export function createQuinqueDraft({ name = "Quinque", actorClass = "investigato
       edgeSlots: { max: profile.quinqueEdgeSlots, used: edges.length },
       edges,
       gimmick: null,
-      sidearm: { enabled: edges.includes("Sidearm"), ammoType: quinqueType, ammo: { value: 0, max: 0 } },
+      sidearm: { enabled: edges.includes("Sidearm"), ammoType: quinqueType, ammo: { value: edges.includes("Sidearm") ? rcl : 0, max: rcl } },
       kakuja: { isKakujaWeapon: false, freeGimmick: false, dynamicEdge: null },
       automation: "manual",
       description: ""
@@ -121,10 +121,11 @@ export function createCharacterDraft({
   kaguneType = "ukaku",
   quinqueType = "ukaku",
   kaguneEdges = [],
-  quinqueEdges = []
+  quinqueEdges = [],
+  customStats = null
 } = {}) {
   const profile = getClassStartingProfile(actorClass);
-  const stats = buildStatsFromPreset(statPreset);
+  const stats = customStats ? Object.fromEntries(TG_CONFIG.stats.map(key => [key, statObject(Number(customStats[key]))])) : buildStatsFromPreset(statPreset);
   const items = [];
   if (profile.needsKagune) items.push(createKaguneDraft({ actorClass, kaguneType, edges: kaguneEdges }));
   if (profile.needsQuinque) items.push(createQuinqueDraft({ actorClass, quinqueType, edges: quinqueEdges }));

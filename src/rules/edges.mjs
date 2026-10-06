@@ -18,10 +18,11 @@ export function getUsedEdgeSlots(items = []) {
 
 export function collectEdgeNames({ actorItems = [], sourceItem = null } = {}) {
   const sourceEdges = Array.from(sourceItem?.system?.edges ?? []);
+  const utilityEdges = actorItems.filter(i => i.type === "gimmick" && i.system?.active && i.system.gimmickType === "utility").flatMap(i => i.system.grantedEdges.slice(0,2));
   const ownedEdges = Array.from(actorItems)
     .filter((item) => item.type === "edge")
     .map((item) => item.name);
-  return [...new Set([...sourceEdges, ...ownedEdges].map(normalizeEdgeName).filter(Boolean))];
+  return [...new Set([...sourceEdges, ...ownedEdges, ...utilityEdges].map(normalizeEdgeName).filter(Boolean))];
 }
 
 export function hasEdge(edgeNames = [], edgeName) {
@@ -29,7 +30,7 @@ export function hasEdge(edgeNames = [], edgeName) {
   return edgeNames.map(normalizeEdgeName).includes(normalized);
 }
 
-export function calculateEdgeCombatModifiers(edgeNames = [], { actorClass = null, end = 0, spd = 0 } = {}) {
+export function calculateEdgeCombatModifiers(edgeNames = [], { actorClass = null, kaguneType = null, end = 0, spd = 0 } = {}) {
   const edges = edgeNames.map(normalizeEdgeName);
   const has = (name) => edges.includes(normalizeEdgeName(name));
 
@@ -47,7 +48,7 @@ export function calculateEdgeCombatModifiers(edgeNames = [], { actorClass = null
     autoFailCrl: has("Rampant"),
     preventsRage: actorClass !== "ghoul" && has("Inner Peace"),
     hungerTempStatBudget: has("Rampant") ? 10 : 0,
-    regenerationType: has("High-Speed Regeneration") ? "highSpeed" : has("Ghoul Regeneration") ? "normal" : "none",
+    regenerationType: actorClass === "investigator" ? "none" : (has("High-Speed Regeneration") || kaguneType === "rinkaku") ? "highSpeed" : (has("Ghoul Regeneration") || actorClass === "ghoul" || actorClass === "quinx") ? "normal" : "none",
     grantsManeuvers: [
       ...(has("Grappler") || has("Prehensile") ? ["Grab", "Throw"] : []),
       ...(has("Heavy Strikes") ? ["Heavy Strike"] : [])
@@ -62,6 +63,9 @@ export function validateEdgeLoadout({ edgeItems = [], sourceType = "any", phase 
   const errors = [];
   const normalizedNames = edgeItems.map((item) => normalizeEdgeName(item));
   const usedSlots = getUsedEdgeSlots(edgeItems);
+  for (const name of new Set(normalizedNames)) {
+    if (name !== "dynamic-edge" && normalizedNames.filter(n=>n===name).length>1) errors.push({code:"edge.duplicate",edge:name});
+  }
 
   edgeItems.forEach((edge) => {
     const name = normalizeEdgeName(edge);

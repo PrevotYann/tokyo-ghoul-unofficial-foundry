@@ -8,6 +8,10 @@ import {
   validateEdgeLoadout
 } from "../../src/rules/edges.mjs";
 
+test("a regenerating Quinque does not grant its Investigator biological regeneration", () => {
+  assert.equal(calculateEdgeCombatModifiers(["High-Speed Regeneration"], {actorClass:"investigator"}).regenerationType,"none");
+});
+
 test("edge names normalize consistently across owned and source data", () => {
   assert.equal(normalizeEdgeName("High-Speed Regeneration"), "high-speed-regeneration");
   assert.deepEqual(collectEdgeNames({

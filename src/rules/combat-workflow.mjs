@@ -101,7 +101,7 @@ export function buildAttackSummary({ stats = {}, item = null, attackMode = "mele
 }
 
 export function canReserveReaction({ maneuversRemaining = 0, reactionsReserved = 0 } = {}) {
-  return numberOrZero(maneuversRemaining) > numberOrZero(reactionsReserved);
+  return numberOrZero(maneuversRemaining) > 0;
 }
 
 export function reserveReaction({ maneuversRemaining = 0, reactionsReserved = 0 } = {}) {
