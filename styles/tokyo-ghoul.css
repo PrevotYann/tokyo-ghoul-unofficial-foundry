@@ -12,6 +12,24 @@
   font-family: var(--font-primary, "Signika", sans-serif);
 }
 
+/* Adventure journal pages retain contrast in both native Foundry themes. */
+.tg-system.tg-adventure {
+  background: radial-gradient(ellipse at top right, #35202c 0, transparent 32rem), var(--tg-bg);
+  border: 1px solid var(--tg-line);
+  border-radius: 10px;
+  padding: clamp(1rem, 3vw, 2rem);
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.tg-system.tg-adventure :is(h1, h2) { color: var(--tg-text); font-family: inherit; }
+.tg-system.tg-adventure h1 { border-bottom: 2px solid var(--tg-accent-strong); padding-bottom: 0.6rem; }
+.tg-system.tg-adventure h2 { margin-top: 1.6rem; font-size: 1.2em; }
+.tg-system.tg-adventure blockquote { border-left: 3px solid var(--tg-accent-strong); background: var(--tg-panel); margin: 1rem 0; padding: 0.75rem 1rem; }
+.tg-system.tg-adventure :is(a, a.content-link) { color: #a7e4ec; background: #222b38; border-color: #506377; }
+.tg-system.tg-adventure table { color: var(--tg-text); background: var(--tg-panel); font-size: 0.9em; }
+.tg-system.tg-adventure :is(th, td) { padding: 0.5rem; border-bottom: 1px solid var(--tg-line); vertical-align: top; }
+.tg-system.tg-adventure th { background: #303647; color: #fff; }
+
 .tg-system * {
   box-sizing: border-box;
 }

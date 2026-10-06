@@ -32,3 +32,4 @@ for (const [packName, files] of Object.entries(packMap)) {
     console.log(`${packName}: ${records.length} native Item records`);
   } finally {await database.close();}
 }
+await import('./build-adventure-pack.mjs');

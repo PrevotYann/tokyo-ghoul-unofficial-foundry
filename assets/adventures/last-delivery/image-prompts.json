@@ -1,0 +1,18 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "transparent_background": false,
+  "assets": [
+    {
+      "file": "sazanami-alley.png",
+      "prompt": "Use case: stylized-concept. Asset type: original gridless Foundry VTT battlemap, landscape 1536x1024. True orthographic overhead floor plan, camera perpendicular to ground, NO perspective, NO isometric, NO roofs hiding interiors. Dark urban fantasy contemporary Tokyo backstreet at rainy midnight, restrained charcoal, teal neon and crimson reflections. Playable geometry: entire outer boundary, small coffee shop cutaway at northwest with tables and rear exit; central wide wet alley with delivery van at center; small loading yard at northeast; open pedestrian street along bottom; bins, AC units and crates as sparse cover, generous clear movement paths. Fine detailed realistic painted textures, visible floor plans, no people, no monsters, no tokens, no writing, no labels, no grid, no watermark. This is an original location for an unofficial Tokyo Ghoul investigation, not official artwork. Save the generated image locally and return its path."
+    },
+    {
+      "file": "aobane-clinic.png",
+      "prompt": "Use case: stylized-concept. Asset type: original Foundry VTT gridless tactical battlemap, 1536x1024 landscape. True orthographic 90-degree top down floor plan of an abandoned contemporary Tokyo clandestine medical clinic, roof removed, no perspective. Rectangular building with clearly visible walkable corridors and rooms, four main rooms: northwest reception with desks, northeast treatment room with beds and chair, southwest cold storage with metal drawers and body bags closed, southeast office with desk printer and files. Broad central corridor connects all four rooms, doors visible, front entrance south and service exit east. Surrounding narrow wet exterior pavement. Dark urban fantasy, charcoal concrete, cool fluorescent teal pools and small crimson warning light, detailed painted realistic textures and readable play surfaces. No gore, no people, no tokens, no labels or text, no grid, no official franchise art, no watermark. Generous clear floor spaces for combat. Save locally."
+    },
+    {
+      "file": "shigure-station.png",
+      "prompt": "Use case: stylized-concept. Asset type: original gridless Foundry VTT battlemap 1536x1024 landscape. Strict perpendicular 90-degree overhead orthographic floor plan, no isometric or perspective. Abandoned contemporary Tokyo freight station at rainy midnight in dark urban fantasy. Horizontal rail tracks across northern third, dark tunnel mouth at far east. Broad loading platform central band with sparse crates, a ledger desk and white delivery van northeast, walkable west entrance. Southern third service yard with a clearly visible small chain-link captive holding enclosure in southeast containing two EMPTY chairs, access gate, and open south service passage. Everything roofless with entire playable floor visible. Detailed realistic painted asphalt, concrete, metal textures; cool teal industrial pools of baked light and restrained red emergency lamps, readable paths and contrast. No trains moving, no people, no creatures, no tokens, no gore, no text, no labels, no grid, no watermark, no official artwork. Save locally."
+    }
+  ]
+}

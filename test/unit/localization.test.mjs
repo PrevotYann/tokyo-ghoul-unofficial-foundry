@@ -72,10 +72,10 @@ test("Babele is optional and integration registers at its bootstrap hook", () =>
   assert.equal(dir, "babele");
 });
 
-test("English Babele templates cover every pack and remain in sync with English source content", async () => {
+test("English Babele templates cover every Item pack and remain in sync with English source content", async () => {
   const files = await translationFiles(root);
   const manifest = JSON.parse(await fs.readFile(path.join(root, "system.json"), "utf8"));
-  for (const pack of manifest.packs) {
+  for (const pack of manifest.packs.filter(p => p.type === "Item")) {
     const name = `${manifest.id}.${pack.name}.json`;
     const checkedIn = JSON.parse(await fs.readFile(path.join(root, "babele/en", name), "utf8"));
     assert.deepEqual(checkedIn, files[name], `Regenerate ${name} with npm run build:translations`);
@@ -86,6 +86,7 @@ test("English Babele templates cover every pack and remain in sync with English 
   const edgeEntries = files[`${manifest.id}.edges.json`].entries;
   assert.equal(Object.values(edgeEntries).filter(e => e.name === "Cannibalistic").length, 2, "same-name Ghoul and Investigator Edges must have separate IDs");
   assert.deepEqual(JSON.parse(await fs.readFile(path.join(root, "babele/en", `${manifest.id}._packs-folders.json`), "utf8")), files[`${manifest.id}._packs-folders.json`]);
+  assert.ok(Object.values(files[`${manifest.id}._packs-folders.json`].entries).every(name => typeof name === "string"), "Babele pack folder translations must be strings for Foundry sorting");
 });
 
 test("translation module generator includes UI language, mappings and bootstrap registration", async () => {

@@ -1,10 +1,7 @@
 {
   "entries": {
-    "Tokyo Ghoul - Rules": {
-      "name": "Tokyo Ghoul - Rules"
-    },
-    "Tokyo Ghoul - Arsenal": {
-      "name": "Tokyo Ghoul - Arsenal"
-    }
+    "Tokyo Ghoul - Adventures": "Tokyo Ghoul - Adventures",
+    "Tokyo Ghoul - Rules": "Tokyo Ghoul - Rules",
+    "Tokyo Ghoul - Arsenal": "Tokyo Ghoul - Arsenal"
   }
 }

@@ -1,6 +1,8 @@
 # Tokyo Ghoul: Unofficial TTRPG for Foundry VTT
 
-An unofficial system for Foundry **v14**, verified locally on **14.368**. Version 0.3.0 adds original Tokyo Ghoul TTRPG artwork for the system thumbnail and new-world background, English Babele translation templates, stable Edge identities and migrations, and corrected popup icon fonts.
+**Included one-shot: The Last Delivery.** An original 4–6 player Tokyo Ghoul investigation with six pregens, NPCs, weapons, evidence handouts and three generated top-down battlemaps. Open its Adventure compendium and import all content, then read **00 • GM Start Here**. [Contents, setup and validation](docs/qa/last-delivery.md).
+
+An unofficial system for Foundry **v14**, verified locally on **14.368**. Version 0.4.0 adds **The Last Delivery**, a complete native Adventure with original characters, equipment, journals, illustrated battlemaps, working walls/doors, lighting, vision and preplaced tokens.
 
 ## Install
 
@@ -20,7 +22,7 @@ Progression tools cover stat spending, consumption, evolution, Kakuhou forging a
 
 ## Translation modules
 
-English is the base language for UI strings and all compendium content. Babele support is optional and includes ID-keyed English templates for every pack, folder labels and mappings for descriptions and rule notes. Edge automation uses stable rule IDs, so translated names preserve mechanics.
+English is the base language for UI strings and all compendium content. Babele support is optional and includes ID-keyed English templates for all Item packs, folder labels and mappings for descriptions and rule notes. The Adventure's story content is English. Edge automation uses stable rule IDs, so translated names preserve mechanics.
 
 Create a translation module starter with `npm run build:translations -- --module --lang fr --output artifacts/translation-module/fr`, then translate its English values. [Translation instructions and Foundry QA](docs/qa/translations.md) explain installation, mappings, compatibility and updates. The existing French UI remains available.
 

@@ -4,6 +4,8 @@ These JSON files are source records for future Foundry compendium generation. Th
 
 Current status:
 
+- Adventure: `adventures/last-delivery.mjs` and its journal source build **The Last Delivery**, a complete native Adventure compendium. `npm run build:adventure` builds it separately; `build:packs` includes it. See [setup and validation](../../docs/qa/last-delivery.md).
+
 - Edges: source entries for Ghoul and Investigator/Quinque edge lists.
 - Maneuvers: source entries for the core combat maneuver list.
 - Conditions: source entries for baseline condition concepts.

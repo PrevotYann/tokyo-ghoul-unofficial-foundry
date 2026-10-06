@@ -26,7 +26,7 @@ export async function translationFiles(root) {
     };
   }
   files[`${manifest.id}._packs-folders.json`] = {
-    entries: Object.fromEntries(manifest.packFolders.map(folder => [folder.name, { name: folder.name }]))
+    entries: Object.fromEntries(manifest.packFolders.map(folder => [folder.name, folder.name]))
   };
   return files;
 }

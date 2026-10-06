@@ -47,7 +47,7 @@ try {
     for(const pack of game.packs) {
       const entries=await pack.getDocuments();
       assert(entries.length>0,`${pack.metadata.name} native pack populated`);
-      assert(entries.every(e=>e.type in CONFIG.Item.dataModels),`${pack.metadata.name} records have DataModels`);
+      if (pack.documentName === "Item") assert(entries.every(e=>e.type in CONFIG.Item.dataModels),`${pack.metadata.name} records have DataModels`);
     }
     for(const type of Object.keys(CONFIG.Item.dataModels)) {
       const item=await Item.create({name:`${prefix} ${type}`,type});

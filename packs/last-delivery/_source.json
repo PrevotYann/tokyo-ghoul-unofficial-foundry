@@ -1,0 +1,6028 @@
+[
+  {
+    "_id": "7f2ea9ed6ef913a8",
+    "name": "The Last Delivery",
+    "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/sazanami-alley.png",
+    "caption": "An original Tokyo Ghoul one-shot for 4–6 players.",
+    "description": "<p>A stolen delivery exposes a ghoul broker's human trafficking route. Six original pregens, three illustrated scenes, a full GM guide, private character dossiers, evidence handouts, NPCs and equipment. Import all content, then read 00 • GM Start Here. Story content is English.</p>",
+    "actors": [
+      {
+        "name": "Aya Teshima",
+        "type": "character",
+        "system": {
+          "identity": {
+            "class": "investigator",
+            "faction": "ccg",
+            "rankGhoul": "C",
+            "rankInvestigator": "rank3",
+            "alias": "",
+            "age": null,
+            "pronouns": "",
+            "notes": ""
+          },
+          "stats": {
+            "str": {
+              "base": 6,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 6
+            },
+            "acc": {
+              "base": 14,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 14
+            },
+            "per": {
+              "base": 14,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 14
+            },
+            "end": {
+              "base": 8,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 8
+            },
+            "spd": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "crl": {
+              "base": 8,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 8
+            }
+          },
+          "resources": {
+            "vitality": {
+              "value": 48,
+              "max": 48,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "stamina": {
+              "value": 54,
+              "max": 54,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "mealScore": {
+              "value": 0,
+              "max": 0,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            }
+          },
+          "biography": {
+            "appearance": "<p>Witness protection and ranged support</p>",
+            "personality": "<p>Yui is your childhood neighbor. Daichi is your mentor.</p>",
+            "backstory": "<p>You contacted Yui before reporting the case. Bring her home alive.</p>",
+            "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
+          },
+          "automation": {
+            "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
+          }
+        },
+        "items": [
+          {
+            "name": "Signal Nine",
+            "type": "quinque",
+            "system": {
+              "type": "ukaku",
+              "primaryType": "ukaku",
+              "secondaryType": null,
+              "rcl": 16,
+              "rcBonds": {
+                "value": 16,
+                "max": 16,
+                "broken": false,
+                "repairDaysRemaining": 0
+              },
+              "equipped": true,
+              "range": {
+                "melee": "close",
+                "projectile": "long"
+              },
+              "edgeSlots": {
+                "max": 3,
+                "used": 0
+              },
+              "edges": [],
+              "gimmick": null,
+              "sidearm": {
+                "enabled": false,
+                "ammoType": "ukaku",
+                "ammo": {
+                  "value": 0,
+                  "max": 16
+                }
+              },
+              "kakuja": {
+                "isKakujaWeapon": false,
+                "freeGimmick": false,
+                "dynamicEdge": null
+              },
+              "automation": "full",
+              "description": "<p>Witness protection and ranged support's original ukaku quinque. No optional Edges; unused starting slots convert to RCL through the character builder.</p>"
+            },
+            "_id": "22e63be8ccffabc1",
+            "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+            "effects": [],
+            "flags": {}
+          },
+          {
+            "_id": "37e877c7dcc94f35",
+            "name": "Field Medical Kit",
+            "type": "consumable",
+            "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+            "system": {
+              "consumableType": "medkit",
+              "quantity": 1,
+              "maxCarry": 5,
+              "range": "melee",
+              "area": "none",
+              "effect": {
+                "removes": [
+                  "bleeding",
+                  "burning"
+                ],
+                "healingFormula": "PER + target END"
+              },
+              "automation": "assisted",
+              "description": "Use the system's medkit workflow; follow the target's class restrictions."
+            },
+            "effects": [],
+            "flags": {}
+          }
+        ],
+        "_id": "b3fc16e43dfb0cf4",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.svg",
+        "folder": "874df816581951ac",
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        },
+        "effects": [],
+        "prototypeToken": {
+          "name": "Aya Teshima",
+          "actorLink": true,
+          "texture": {
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.svg"
+          },
+          "width": 1,
+          "height": 1,
+          "disposition": 1,
+          "displayName": 30,
+          "displayBars": 30,
+          "bar1": {
+            "attribute": "resources.vitality"
+          },
+          "bar2": {
+            "attribute": "resources.stamina"
+          },
+          "sight": {
+            "enabled": true,
+            "range": 0,
+            "angle": 360,
+            "visionMode": "basic"
+          }
+        }
+      },
+      {
+        "name": "Ren Kisaragi",
+        "type": "character",
+        "system": {
+          "identity": {
+            "class": "ghoul",
+            "faction": "ghoul",
+            "rankGhoul": "C",
+            "rankInvestigator": "rank3",
+            "alias": "",
+            "age": null,
+            "pronouns": "",
+            "notes": ""
+          },
+          "stats": {
+            "str": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "acc": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "per": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "end": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "spd": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "crl": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            }
+          },
+          "resources": {
+            "vitality": {
+              "value": 54,
+              "max": 54,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "stamina": {
+              "value": 60,
+              "max": 60,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "mealScore": {
+              "value": 12,
+              "max": 12,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            }
+          },
+          "biography": {
+            "appearance": "<p>Courier and local guide</p>",
+            "personality": "<p>Emi sheltered you; Mio repairs your gear.</p>",
+            "backstory": "<p>You ignored a suspicious tag on your last delivery. Tell the truth before someone else pays.</p>",
+            "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
+          },
+          "automation": {
+            "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
+          }
+        },
+        "items": [
+          {
+            "name": "Switchback",
+            "type": "kagune",
+            "system": {
+              "type": "bikaku",
+              "primaryType": "bikaku",
+              "secondaryType": null,
+              "rcl": 16,
+              "manifested": false,
+              "range": {
+                "melee": "mid",
+                "projectile": null
+              },
+              "edgeSlots": {
+                "max": 4,
+                "used": 0,
+                "bonusFromType": 1
+              },
+              "edges": [],
+              "evolution": {
+                "spentRcl": 0,
+                "statPurchases": [],
+                "swappedEdges": []
+              },
+              "automation": "full",
+              "description": "<p>Courier and local guide's original bikaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
+              "dynamicNotes": ""
+            },
+            "_id": "01431f4becba9659",
+            "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+            "effects": [],
+            "flags": {}
+          }
+        ],
+        "_id": "dcbf3bc4e6e3f452",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.svg",
+        "folder": "874df816581951ac",
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        },
+        "effects": [],
+        "prototypeToken": {
+          "name": "Ren Kisaragi",
+          "actorLink": true,
+          "texture": {
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.svg"
+          },
+          "width": 1,
+          "height": 1,
+          "disposition": 1,
+          "displayName": 30,
+          "displayBars": 30,
+          "bar1": {
+            "attribute": "resources.vitality"
+          },
+          "bar2": {
+            "attribute": "resources.stamina"
+          },
+          "sight": {
+            "enabled": true,
+            "range": 0,
+            "angle": 360,
+            "visionMode": "basic"
+          }
+        }
+      },
+      {
+        "name": "Mio Naruse",
+        "type": "character",
+        "system": {
+          "identity": {
+            "class": "ghoul",
+            "faction": "ghoul",
+            "rankGhoul": "C",
+            "rankInvestigator": "rank3",
+            "alias": "",
+            "age": null,
+            "pronouns": "",
+            "notes": ""
+          },
+          "stats": {
+            "str": {
+              "base": 12,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 12
+            },
+            "acc": {
+              "base": 6,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 6
+            },
+            "per": {
+              "base": 8,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 8
+            },
+            "end": {
+              "base": 14,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 14
+            },
+            "spd": {
+              "base": 6,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 6
+            },
+            "crl": {
+              "base": 14,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 14
+            }
+          },
+          "resources": {
+            "vitality": {
+              "value": 93,
+              "max": 93,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "stamina": {
+              "value": 60,
+              "max": 60,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "mealScore": {
+              "value": 21,
+              "max": 21,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            }
+          },
+          "biography": {
+            "appearance": "<p>Protector and repairer</p>",
+            "personality": "<p>Ren brings supplies. Aya once let you walk away.</p>",
+            "backstory": "<p>Kurose knows where your younger ward lives. Protect them without betraying Emi.</p>",
+            "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
+          },
+          "automation": {
+            "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
+          }
+        },
+        "items": [
+          {
+            "name": "Rain Shelter",
+            "type": "kagune",
+            "system": {
+              "type": "koukaku",
+              "primaryType": "koukaku",
+              "secondaryType": null,
+              "rcl": 16,
+              "manifested": false,
+              "range": {
+                "melee": "close",
+                "projectile": null
+              },
+              "edgeSlots": {
+                "max": 3,
+                "used": 0,
+                "bonusFromType": 0
+              },
+              "edges": [],
+              "evolution": {
+                "spentRcl": 0,
+                "statPurchases": [],
+                "swappedEdges": []
+              },
+              "automation": "full",
+              "description": "<p>Protector and repairer's original koukaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
+              "dynamicNotes": ""
+            },
+            "_id": "ed0a4712f45918a7",
+            "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+            "effects": [],
+            "flags": {}
+          }
+        ],
+        "_id": "e265cdcde8fcd05d",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.svg",
+        "folder": "874df816581951ac",
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        },
+        "effects": [],
+        "prototypeToken": {
+          "name": "Mio Naruse",
+          "actorLink": true,
+          "texture": {
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.svg"
+          },
+          "width": 1,
+          "height": 1,
+          "disposition": 1,
+          "displayName": 30,
+          "displayBars": 30,
+          "bar1": {
+            "attribute": "resources.vitality"
+          },
+          "bar2": {
+            "attribute": "resources.stamina"
+          },
+          "sight": {
+            "enabled": true,
+            "range": 0,
+            "angle": 360,
+            "visionMode": "basic"
+          }
+        }
+      },
+      {
+        "name": "Daichi Ueno",
+        "type": "character",
+        "system": {
+          "identity": {
+            "class": "investigator",
+            "faction": "ccg",
+            "rankGhoul": "C",
+            "rankInvestigator": "rank3",
+            "alias": "",
+            "age": null,
+            "pronouns": "",
+            "notes": ""
+          },
+          "stats": {
+            "str": {
+              "base": 14,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 14
+            },
+            "acc": {
+              "base": 6,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 6
+            },
+            "per": {
+              "base": 12,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 12
+            },
+            "end": {
+              "base": 12,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 12
+            },
+            "spd": {
+              "base": 8,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 8
+            },
+            "crl": {
+              "base": 8,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 8
+            }
+          },
+          "resources": {
+            "vitality": {
+              "value": 60,
+              "max": 60,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "stamina": {
+              "value": 60,
+              "max": 60,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "mealScore": {
+              "value": 0,
+              "max": 0,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            }
+          },
+          "biography": {
+            "appearance": "<p>Case officer and close defense</p>",
+            "personality": "<p>Aya is your junior. Nao deserves to be treated as a person.</p>",
+            "backstory": "<p>Your supervisor wants a simple arrest. Secure evidence that can survive an honest report.</p>",
+            "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
+          },
+          "automation": {
+            "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
+          }
+        },
+        "items": [
+          {
+            "name": "Bridgekeeper",
+            "type": "quinque",
+            "system": {
+              "type": "koukaku",
+              "primaryType": "koukaku",
+              "secondaryType": null,
+              "rcl": 16,
+              "rcBonds": {
+                "value": 16,
+                "max": 16,
+                "broken": false,
+                "repairDaysRemaining": 0
+              },
+              "equipped": true,
+              "range": {
+                "melee": "close",
+                "projectile": null
+              },
+              "edgeSlots": {
+                "max": 3,
+                "used": 0
+              },
+              "edges": [],
+              "gimmick": null,
+              "sidearm": {
+                "enabled": false,
+                "ammoType": "koukaku",
+                "ammo": {
+                  "value": 0,
+                  "max": 16
+                }
+              },
+              "kakuja": {
+                "isKakujaWeapon": false,
+                "freeGimmick": false,
+                "dynamicEdge": null
+              },
+              "automation": "full",
+              "description": "<p>Case officer and close defense's original koukaku quinque. No optional Edges; unused starting slots convert to RCL through the character builder.</p>"
+            },
+            "_id": "851e55f097631e89",
+            "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+            "effects": [],
+            "flags": {}
+          },
+          {
+            "_id": "c68c75df886422ff",
+            "name": "Field Medical Kit",
+            "type": "consumable",
+            "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+            "system": {
+              "consumableType": "medkit",
+              "quantity": 1,
+              "maxCarry": 5,
+              "range": "melee",
+              "area": "none",
+              "effect": {
+                "removes": [
+                  "bleeding",
+                  "burning"
+                ],
+                "healingFormula": "PER + target END"
+              },
+              "automation": "assisted",
+              "description": "Use the system's medkit workflow; follow the target's class restrictions."
+            },
+            "effects": [],
+            "flags": {}
+          }
+        ],
+        "_id": "6f1d242fa0b3469f",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.svg",
+        "folder": "874df816581951ac",
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        },
+        "effects": [],
+        "prototypeToken": {
+          "name": "Daichi Ueno",
+          "actorLink": true,
+          "texture": {
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.svg"
+          },
+          "width": 1,
+          "height": 1,
+          "disposition": 1,
+          "displayName": 30,
+          "displayBars": 30,
+          "bar1": {
+            "attribute": "resources.vitality"
+          },
+          "bar2": {
+            "attribute": "resources.stamina"
+          },
+          "sight": {
+            "enabled": true,
+            "range": 0,
+            "angle": 360,
+            "visionMode": "basic"
+          }
+        }
+      },
+      {
+        "name": "Nao Fushimi",
+        "type": "character",
+        "system": {
+          "identity": {
+            "class": "quinx",
+            "faction": "ccg",
+            "rankGhoul": "C",
+            "rankInvestigator": "rank3",
+            "alias": "",
+            "age": null,
+            "pronouns": "",
+            "notes": ""
+          },
+          "stats": {
+            "str": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "acc": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "per": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "end": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "spd": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "crl": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            }
+          },
+          "resources": {
+            "vitality": {
+              "value": 50,
+              "max": 50,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "stamina": {
+              "value": 60,
+              "max": 60,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "mealScore": {
+              "value": 15,
+              "max": 15,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            }
+          },
+          "biography": {
+            "appearance": "<p>Liaison and flexible rescue support</p>",
+            "personality": "<p>Daichi checks on you without asking for test results.</p>",
+            "backstory": "<p>You fear losing control will discredit the truce. Ask for help before that happens.</p>",
+            "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
+          },
+          "automation": {
+            "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
+          }
+        },
+        "items": [
+          {
+            "name": "Suture",
+            "type": "kagune",
+            "system": {
+              "type": "rinkaku",
+              "primaryType": "rinkaku",
+              "secondaryType": null,
+              "rcl": 7,
+              "manifested": false,
+              "range": {
+                "melee": "mid",
+                "projectile": null
+              },
+              "edgeSlots": {
+                "max": 1,
+                "used": 0,
+                "bonusFromType": 0
+              },
+              "edges": [],
+              "evolution": {
+                "spentRcl": 0,
+                "statPurchases": [],
+                "swappedEdges": []
+              },
+              "automation": "full",
+              "description": "<p>Liaison and flexible rescue support's original rinkaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
+              "dynamicNotes": ""
+            },
+            "_id": "a4fbf958ca2eefee",
+            "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+            "effects": [],
+            "flags": {}
+          },
+          {
+            "name": "Quiet Line",
+            "type": "quinque",
+            "system": {
+              "type": "bikaku",
+              "primaryType": "bikaku",
+              "secondaryType": null,
+              "rcl": 14,
+              "rcBonds": {
+                "value": 14,
+                "max": 14,
+                "broken": false,
+                "repairDaysRemaining": 0
+              },
+              "equipped": true,
+              "range": {
+                "melee": "mid",
+                "projectile": null
+              },
+              "edgeSlots": {
+                "max": 2,
+                "used": 0
+              },
+              "edges": [],
+              "gimmick": null,
+              "sidearm": {
+                "enabled": false,
+                "ammoType": "bikaku",
+                "ammo": {
+                  "value": 0,
+                  "max": 14
+                }
+              },
+              "kakuja": {
+                "isKakujaWeapon": false,
+                "freeGimmick": false,
+                "dynamicEdge": null
+              },
+              "automation": "full",
+              "description": "<p>Liaison and flexible rescue support's original bikaku quinque. No optional Edges; unused starting slots convert to RCL through the character builder.</p>"
+            },
+            "_id": "77f1396df8945b82",
+            "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+            "effects": [],
+            "flags": {}
+          },
+          {
+            "_id": "985d6d03153174b1",
+            "name": "Field Medical Kit",
+            "type": "consumable",
+            "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+            "system": {
+              "consumableType": "medkit",
+              "quantity": 1,
+              "maxCarry": 5,
+              "range": "melee",
+              "area": "none",
+              "effect": {
+                "removes": [
+                  "bleeding",
+                  "burning"
+                ],
+                "healingFormula": "PER + target END"
+              },
+              "automation": "assisted",
+              "description": "Use the system's medkit workflow; follow the target's class restrictions."
+            },
+            "effects": [],
+            "flags": {}
+          }
+        ],
+        "_id": "d9d1cabae5a178c8",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.svg",
+        "folder": "874df816581951ac",
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        },
+        "effects": [],
+        "prototypeToken": {
+          "name": "Nao Fushimi",
+          "actorLink": true,
+          "texture": {
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.svg"
+          },
+          "width": 1,
+          "height": 1,
+          "disposition": 1,
+          "displayName": 30,
+          "displayBars": 30,
+          "bar1": {
+            "attribute": "resources.vitality"
+          },
+          "bar2": {
+            "attribute": "resources.stamina"
+          },
+          "sight": {
+            "enabled": true,
+            "range": 0,
+            "angle": 360,
+            "visionMode": "basic"
+          }
+        }
+      },
+      {
+        "name": "Sora Amemiya",
+        "type": "character",
+        "system": {
+          "identity": {
+            "class": "ghoul",
+            "faction": "ghoul",
+            "rankGhoul": "C",
+            "rankInvestigator": "rank3",
+            "alias": "",
+            "age": null,
+            "pronouns": "",
+            "notes": ""
+          },
+          "stats": {
+            "str": {
+              "base": 6,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 6
+            },
+            "acc": {
+              "base": 14,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 14
+            },
+            "per": {
+              "base": 12,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 12
+            },
+            "end": {
+              "base": 8,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 8
+            },
+            "spd": {
+              "base": 14,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 14
+            },
+            "crl": {
+              "base": 6,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 6
+            }
+          },
+          "resources": {
+            "vitality": {
+              "value": 42,
+              "max": 42,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "stamina": {
+              "value": 58,
+              "max": 58,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "mealScore": {
+              "value": 9,
+              "max": 9,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            }
+          },
+          "biography": {
+            "appearance": "<p>Scout and photographer</p>",
+            "personality": "<p>Yui carried film that exposed an earlier abduction.</p>",
+            "backstory": "<p>A reporter already has one blurred photo. Rescue the subjects before deciding what to publish.</p>",
+            "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
+          },
+          "automation": {
+            "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
+          }
+        },
+        "items": [
+          {
+            "name": "Featherlight",
+            "type": "kagune",
+            "system": {
+              "type": "ukaku",
+              "primaryType": "ukaku",
+              "secondaryType": null,
+              "rcl": 16,
+              "manifested": false,
+              "range": {
+                "melee": "close",
+                "projectile": "long"
+              },
+              "edgeSlots": {
+                "max": 3,
+                "used": 0,
+                "bonusFromType": 0
+              },
+              "edges": [],
+              "evolution": {
+                "spentRcl": 0,
+                "statPurchases": [],
+                "swappedEdges": []
+              },
+              "automation": "full",
+              "description": "<p>Scout and photographer's original ukaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
+              "dynamicNotes": ""
+            },
+            "_id": "a921db1335b99e78",
+            "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+            "effects": [],
+            "flags": {}
+          }
+        ],
+        "_id": "603f09339dce02cc",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.svg",
+        "folder": "874df816581951ac",
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        },
+        "effects": [],
+        "prototypeToken": {
+          "name": "Sora Amemiya",
+          "actorLink": true,
+          "texture": {
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.svg"
+          },
+          "width": 1,
+          "height": 1,
+          "disposition": 1,
+          "displayName": 30,
+          "displayBars": 30,
+          "bar1": {
+            "attribute": "resources.vitality"
+          },
+          "bar2": {
+            "attribute": "resources.stamina"
+          },
+          "sight": {
+            "enabled": true,
+            "range": 0,
+            "angle": 360,
+            "visionMode": "basic"
+          }
+        }
+      },
+      {
+        "name": "Emi Hayase • Coffee Shop Owner",
+        "type": "npc",
+        "system": {
+          "identity": {
+            "class": "ghoul",
+            "faction": "ghoul",
+            "rankGhoul": "C",
+            "rankInvestigator": "rank3",
+            "alias": "",
+            "age": null,
+            "pronouns": "",
+            "notes": ""
+          },
+          "stats": {
+            "str": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "acc": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "per": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "end": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "spd": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "crl": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            }
+          },
+          "resources": {
+            "vitality": {
+              "value": 60,
+              "max": 60,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "stamina": {
+              "value": 60,
+              "max": 60,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "mealScore": {
+              "value": 15,
+              "max": 15,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            }
+          },
+          "biography": {
+            "appearance": "<p>Noncombatant ally</p>",
+            "personality": "<p>Protects vulnerable ghouls and keeps the meeting neutral.</p>",
+            "backstory": "<p>Knows the clinic address and will give it freely.</p>",
+            "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
+          },
+          "automation": {
+            "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
+          }
+        },
+        "items": [],
+        "_id": "8e05d06cad5d2f11",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/emi.svg",
+        "folder": "e1134adae5cab728",
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        },
+        "effects": [],
+        "prototypeToken": {
+          "name": "Emi Hayase • Coffee Shop Owner",
+          "actorLink": false,
+          "texture": {
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/emi.svg"
+          },
+          "width": 1,
+          "height": 1,
+          "disposition": 0,
+          "displayName": 30,
+          "displayBars": 30,
+          "bar1": {
+            "attribute": "resources.vitality"
+          },
+          "bar2": {
+            "attribute": "resources.stamina"
+          },
+          "sight": {
+            "enabled": false,
+            "range": 0,
+            "angle": 360,
+            "visionMode": "basic"
+          }
+        }
+      },
+      {
+        "name": "Yui Matsuda • Missing Courier",
+        "type": "npc",
+        "system": {
+          "identity": {
+            "class": "investigator",
+            "faction": "ccg",
+            "rankGhoul": "C",
+            "rankInvestigator": "rank3",
+            "alias": "",
+            "age": null,
+            "pronouns": "",
+            "notes": ""
+          },
+          "stats": {
+            "str": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "acc": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "per": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "end": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "spd": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "crl": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            }
+          },
+          "resources": {
+            "vitality": {
+              "value": 60,
+              "max": 60,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "stamina": {
+              "value": 60,
+              "max": 60,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "mealScore": {
+              "value": 0,
+              "max": 0,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            }
+          },
+          "biography": {
+            "appearance": "<p>Human noncombatant witness</p>",
+            "personality": "<p>Trusts Aya and Ren.</p>",
+            "backstory": "<p>Copied the clinic ledger. Can identify Kurose and open the station cage.</p>",
+            "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
+          },
+          "automation": {
+            "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
+          }
+        },
+        "items": [],
+        "_id": "83bcc6b88a48e6b2",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/yui.svg",
+        "folder": "e1134adae5cab728",
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        },
+        "effects": [],
+        "prototypeToken": {
+          "name": "Yui Matsuda • Missing Courier",
+          "actorLink": false,
+          "texture": {
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/yui.svg"
+          },
+          "width": 1,
+          "height": 1,
+          "disposition": 0,
+          "displayName": 30,
+          "displayBars": 30,
+          "bar1": {
+            "attribute": "resources.vitality"
+          },
+          "bar2": {
+            "attribute": "resources.stamina"
+          },
+          "sight": {
+            "enabled": false,
+            "range": 0,
+            "angle": 360,
+            "visionMode": "basic"
+          }
+        }
+      },
+      {
+        "name": "Haru Watanabe • Captive",
+        "type": "npc",
+        "system": {
+          "identity": {
+            "class": "investigator",
+            "faction": "ccg",
+            "rankGhoul": "C",
+            "rankInvestigator": "rank3",
+            "alias": "",
+            "age": null,
+            "pronouns": "",
+            "notes": ""
+          },
+          "stats": {
+            "str": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "acc": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "per": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "end": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "spd": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "crl": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            }
+          },
+          "resources": {
+            "vitality": {
+              "value": 60,
+              "max": 60,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "stamina": {
+              "value": 60,
+              "max": 60,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "mealScore": {
+              "value": 0,
+              "max": 0,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            }
+          },
+          "biography": {
+            "appearance": "<p>Human noncombatant captive</p>",
+            "personality": "<p>Wants both patients rescued.</p>",
+            "backstory": "<p>Can walk with an escort; carries no weapon.</p>",
+            "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
+          },
+          "automation": {
+            "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
+          }
+        },
+        "items": [],
+        "_id": "9990effb4cbad3b4",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/patient.svg",
+        "folder": "e1134adae5cab728",
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        },
+        "effects": [],
+        "prototypeToken": {
+          "name": "Haru Watanabe • Captive",
+          "actorLink": false,
+          "texture": {
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/patient.svg"
+          },
+          "width": 1,
+          "height": 1,
+          "disposition": 0,
+          "displayName": 30,
+          "displayBars": 30,
+          "bar1": {
+            "attribute": "resources.vitality"
+          },
+          "bar2": {
+            "attribute": "resources.stamina"
+          },
+          "sight": {
+            "enabled": false,
+            "range": 0,
+            "angle": 360,
+            "visionMode": "basic"
+          }
+        }
+      },
+      {
+        "name": "Riku Inose • Clinic Enforcer",
+        "type": "npc",
+        "system": {
+          "identity": {
+            "class": "ghoul",
+            "faction": "ghoul",
+            "rankGhoul": "C",
+            "rankInvestigator": "rank3",
+            "alias": "",
+            "age": null,
+            "pronouns": "",
+            "notes": ""
+          },
+          "stats": {
+            "str": {
+              "base": 12,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 12
+            },
+            "acc": {
+              "base": 6,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 6
+            },
+            "per": {
+              "base": 8,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 8
+            },
+            "end": {
+              "base": 14,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 14
+            },
+            "spd": {
+              "base": 6,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 6
+            },
+            "crl": {
+              "base": 14,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 14
+            }
+          },
+          "resources": {
+            "vitality": {
+              "value": 93,
+              "max": 93,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "stamina": {
+              "value": 60,
+              "max": 60,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "mealScore": {
+              "value": 21,
+              "max": 21,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            }
+          },
+          "biography": {
+            "appearance": "<p>Coerced enforcer</p>",
+            "personality": "<p>Kurose threatens his household.</p>",
+            "backstory": "<p>Yields at half Vitality or accepts credible evacuation protection.</p>",
+            "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
+          },
+          "automation": {
+            "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
+          }
+        },
+        "items": [
+          {
+            "name": "Iron Wake",
+            "type": "kagune",
+            "system": {
+              "type": "koukaku",
+              "primaryType": "koukaku",
+              "secondaryType": null,
+              "rcl": 16,
+              "manifested": false,
+              "range": {
+                "melee": "close",
+                "projectile": null
+              },
+              "edgeSlots": {
+                "max": 3,
+                "used": 0,
+                "bonusFromType": 0
+              },
+              "edges": [],
+              "evolution": {
+                "spentRcl": 0,
+                "statPurchases": [],
+                "swappedEdges": []
+              },
+              "automation": "manual",
+              "description": "",
+              "dynamicNotes": ""
+            },
+            "_id": "1fa250c5f92e1ef7",
+            "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+            "effects": [],
+            "flags": {}
+          }
+        ],
+        "_id": "c9ed3f809b60fdf2",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.svg",
+        "folder": "e1134adae5cab728",
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        },
+        "effects": [],
+        "prototypeToken": {
+          "name": "Riku Inose • Clinic Enforcer",
+          "actorLink": false,
+          "texture": {
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.svg"
+          },
+          "width": 1,
+          "height": 1,
+          "disposition": 0,
+          "displayName": 30,
+          "displayBars": 30,
+          "bar1": {
+            "attribute": "resources.vitality"
+          },
+          "bar2": {
+            "attribute": "resources.stamina"
+          },
+          "sight": {
+            "enabled": false,
+            "range": 0,
+            "angle": 360,
+            "visionMode": "basic"
+          }
+        }
+      },
+      {
+        "name": "Chika Fuse • Freight Lookout",
+        "type": "npc",
+        "system": {
+          "identity": {
+            "class": "ghoul",
+            "faction": "ghoul",
+            "rankGhoul": "C",
+            "rankInvestigator": "rank3",
+            "alias": "",
+            "age": null,
+            "pronouns": "",
+            "notes": ""
+          },
+          "stats": {
+            "str": {
+              "base": 6,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 6
+            },
+            "acc": {
+              "base": 14,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 14
+            },
+            "per": {
+              "base": 12,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 12
+            },
+            "end": {
+              "base": 8,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 8
+            },
+            "spd": {
+              "base": 14,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 14
+            },
+            "crl": {
+              "base": 6,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 6
+            }
+          },
+          "resources": {
+            "vitality": {
+              "value": 42,
+              "max": 42,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "stamina": {
+              "value": 58,
+              "max": 58,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "mealScore": {
+              "value": 9,
+              "max": 9,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            }
+          },
+          "biography": {
+            "appearance": "<p>Coerced scout</p>",
+            "personality": "<p>Her brother is held as collateral.</p>",
+            "backstory": "<p>She knows the south service route and can be recruited.</p>",
+            "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
+          },
+          "automation": {
+            "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
+          }
+        },
+        "items": [
+          {
+            "name": "Feather Rain",
+            "type": "kagune",
+            "system": {
+              "type": "ukaku",
+              "primaryType": "ukaku",
+              "secondaryType": null,
+              "rcl": 16,
+              "manifested": false,
+              "range": {
+                "melee": "close",
+                "projectile": "long"
+              },
+              "edgeSlots": {
+                "max": 3,
+                "used": 0,
+                "bonusFromType": 0
+              },
+              "edges": [],
+              "evolution": {
+                "spentRcl": 0,
+                "statPurchases": [],
+                "swappedEdges": []
+              },
+              "automation": "manual",
+              "description": "",
+              "dynamicNotes": ""
+            },
+            "_id": "0d2f2f7263b81ad4",
+            "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+            "effects": [],
+            "flags": {}
+          }
+        ],
+        "_id": "bb3383b578af98c0",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.svg",
+        "folder": "e1134adae5cab728",
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        },
+        "effects": [],
+        "prototypeToken": {
+          "name": "Chika Fuse • Freight Lookout",
+          "actorLink": false,
+          "texture": {
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.svg"
+          },
+          "width": 1,
+          "height": 1,
+          "disposition": 0,
+          "displayName": 30,
+          "displayBars": 30,
+          "bar1": {
+            "attribute": "resources.vitality"
+          },
+          "bar2": {
+            "attribute": "resources.stamina"
+          },
+          "sight": {
+            "enabled": false,
+            "range": 0,
+            "angle": 360,
+            "visionMode": "basic"
+          }
+        }
+      },
+      {
+        "name": "Masato Kurose • Pallet",
+        "type": "npc",
+        "system": {
+          "identity": {
+            "class": "ghoul",
+            "faction": "ghoul",
+            "rankGhoul": "A",
+            "rankInvestigator": "rank3",
+            "alias": "",
+            "age": null,
+            "pronouns": "",
+            "notes": ""
+          },
+          "stats": {
+            "str": {
+              "base": 14,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 14
+            },
+            "acc": {
+              "base": 8,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 8
+            },
+            "per": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "end": {
+              "base": 12,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 12
+            },
+            "spd": {
+              "base": 16,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 16
+            },
+            "crl": {
+              "base": 24,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 24
+            }
+          },
+          "resources": {
+            "vitality": {
+              "value": 96,
+              "max": 96,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "stamina": {
+              "value": 84,
+              "max": 84,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "mealScore": {
+              "value": 36,
+              "max": 36,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            }
+          },
+          "biography": {
+            "appearance": "<p>Developed ghoul broker; original boss</p>",
+            "personality": "<p>Uses dependent ghouls as leverage.</p>",
+            "backstory": "<p>A murderer hiding behind falsified mortuary records. Bargains when exposed; yields at 24 Vitality if escape is blocked.</p>",
+            "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
+          },
+          "automation": {
+            "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
+          }
+        },
+        "items": [
+          {
+            "name": "Red Ledger",
+            "type": "kagune",
+            "system": {
+              "type": "rinkaku",
+              "primaryType": "rinkaku",
+              "secondaryType": null,
+              "rcl": 22,
+              "manifested": false,
+              "range": {
+                "melee": "mid",
+                "projectile": null
+              },
+              "edgeSlots": {
+                "max": 3,
+                "used": 0,
+                "bonusFromType": 0
+              },
+              "edges": [],
+              "evolution": {
+                "spentRcl": 0,
+                "statPurchases": [],
+                "swappedEdges": []
+              },
+              "automation": "manual",
+              "description": "",
+              "dynamicNotes": ""
+            },
+            "_id": "04a5dd9d101251ed",
+            "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+            "effects": [],
+            "flags": {}
+          }
+        ],
+        "_id": "1530b85c1ded8901",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/boss.svg",
+        "folder": "e1134adae5cab728",
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        },
+        "effects": [],
+        "prototypeToken": {
+          "name": "Masato Kurose • Pallet",
+          "actorLink": false,
+          "texture": {
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/boss.svg"
+          },
+          "width": 1,
+          "height": 1,
+          "disposition": 0,
+          "displayName": 30,
+          "displayBars": 30,
+          "bar1": {
+            "attribute": "resources.vitality"
+          },
+          "bar2": {
+            "attribute": "resources.stamina"
+          },
+          "sight": {
+            "enabled": false,
+            "range": 0,
+            "angle": 360,
+            "visionMode": "basic"
+          }
+        }
+      }
+    ],
+    "items": [
+      {
+        "name": "Signal Nine",
+        "type": "quinque",
+        "system": {
+          "type": "ukaku",
+          "primaryType": "ukaku",
+          "secondaryType": null,
+          "rcl": 16,
+          "rcBonds": {
+            "value": 16,
+            "max": 16,
+            "broken": false,
+            "repairDaysRemaining": 0
+          },
+          "equipped": true,
+          "range": {
+            "melee": "close",
+            "projectile": "long"
+          },
+          "edgeSlots": {
+            "max": 3,
+            "used": 0
+          },
+          "edges": [],
+          "gimmick": null,
+          "sidearm": {
+            "enabled": false,
+            "ammoType": "ukaku",
+            "ammo": {
+              "value": 0,
+              "max": 16
+            }
+          },
+          "kakuja": {
+            "isKakujaWeapon": false,
+            "freeGimmick": false,
+            "dynamicEdge": null
+          },
+          "automation": "full",
+          "description": "<p>Witness protection and ranged support's original ukaku quinque. No optional Edges; unused starting slots convert to RCL through the character builder.</p>"
+        },
+        "_id": "1156eb702d3460e5",
+        "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+        "effects": [],
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "folder": "a774041979abf6c5",
+        "ownership": {
+          "default": 0
+        }
+      },
+      {
+        "name": "Switchback",
+        "type": "kagune",
+        "system": {
+          "type": "bikaku",
+          "primaryType": "bikaku",
+          "secondaryType": null,
+          "rcl": 16,
+          "manifested": false,
+          "range": {
+            "melee": "mid",
+            "projectile": null
+          },
+          "edgeSlots": {
+            "max": 4,
+            "used": 0,
+            "bonusFromType": 1
+          },
+          "edges": [],
+          "evolution": {
+            "spentRcl": 0,
+            "statPurchases": [],
+            "swappedEdges": []
+          },
+          "automation": "full",
+          "description": "<p>Courier and local guide's original bikaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
+          "dynamicNotes": ""
+        },
+        "_id": "f154565489496572",
+        "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+        "effects": [],
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "folder": "a774041979abf6c5",
+        "ownership": {
+          "default": 0
+        }
+      },
+      {
+        "name": "Rain Shelter",
+        "type": "kagune",
+        "system": {
+          "type": "koukaku",
+          "primaryType": "koukaku",
+          "secondaryType": null,
+          "rcl": 16,
+          "manifested": false,
+          "range": {
+            "melee": "close",
+            "projectile": null
+          },
+          "edgeSlots": {
+            "max": 3,
+            "used": 0,
+            "bonusFromType": 0
+          },
+          "edges": [],
+          "evolution": {
+            "spentRcl": 0,
+            "statPurchases": [],
+            "swappedEdges": []
+          },
+          "automation": "full",
+          "description": "<p>Protector and repairer's original koukaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
+          "dynamicNotes": ""
+        },
+        "_id": "a9e3fc0ee389821d",
+        "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+        "effects": [],
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "folder": "a774041979abf6c5",
+        "ownership": {
+          "default": 0
+        }
+      },
+      {
+        "name": "Bridgekeeper",
+        "type": "quinque",
+        "system": {
+          "type": "koukaku",
+          "primaryType": "koukaku",
+          "secondaryType": null,
+          "rcl": 16,
+          "rcBonds": {
+            "value": 16,
+            "max": 16,
+            "broken": false,
+            "repairDaysRemaining": 0
+          },
+          "equipped": true,
+          "range": {
+            "melee": "close",
+            "projectile": null
+          },
+          "edgeSlots": {
+            "max": 3,
+            "used": 0
+          },
+          "edges": [],
+          "gimmick": null,
+          "sidearm": {
+            "enabled": false,
+            "ammoType": "koukaku",
+            "ammo": {
+              "value": 0,
+              "max": 16
+            }
+          },
+          "kakuja": {
+            "isKakujaWeapon": false,
+            "freeGimmick": false,
+            "dynamicEdge": null
+          },
+          "automation": "full",
+          "description": "<p>Case officer and close defense's original koukaku quinque. No optional Edges; unused starting slots convert to RCL through the character builder.</p>"
+        },
+        "_id": "aafdcb7b8b0dd5e9",
+        "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+        "effects": [],
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "folder": "a774041979abf6c5",
+        "ownership": {
+          "default": 0
+        }
+      },
+      {
+        "name": "Suture",
+        "type": "kagune",
+        "system": {
+          "type": "rinkaku",
+          "primaryType": "rinkaku",
+          "secondaryType": null,
+          "rcl": 7,
+          "manifested": false,
+          "range": {
+            "melee": "mid",
+            "projectile": null
+          },
+          "edgeSlots": {
+            "max": 1,
+            "used": 0,
+            "bonusFromType": 0
+          },
+          "edges": [],
+          "evolution": {
+            "spentRcl": 0,
+            "statPurchases": [],
+            "swappedEdges": []
+          },
+          "automation": "full",
+          "description": "<p>Liaison and flexible rescue support's original rinkaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
+          "dynamicNotes": ""
+        },
+        "_id": "ddbc671204042a55",
+        "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+        "effects": [],
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "folder": "a774041979abf6c5",
+        "ownership": {
+          "default": 0
+        }
+      },
+      {
+        "name": "Quiet Line",
+        "type": "quinque",
+        "system": {
+          "type": "bikaku",
+          "primaryType": "bikaku",
+          "secondaryType": null,
+          "rcl": 14,
+          "rcBonds": {
+            "value": 14,
+            "max": 14,
+            "broken": false,
+            "repairDaysRemaining": 0
+          },
+          "equipped": true,
+          "range": {
+            "melee": "mid",
+            "projectile": null
+          },
+          "edgeSlots": {
+            "max": 2,
+            "used": 0
+          },
+          "edges": [],
+          "gimmick": null,
+          "sidearm": {
+            "enabled": false,
+            "ammoType": "bikaku",
+            "ammo": {
+              "value": 0,
+              "max": 14
+            }
+          },
+          "kakuja": {
+            "isKakujaWeapon": false,
+            "freeGimmick": false,
+            "dynamicEdge": null
+          },
+          "automation": "full",
+          "description": "<p>Liaison and flexible rescue support's original bikaku quinque. No optional Edges; unused starting slots convert to RCL through the character builder.</p>"
+        },
+        "_id": "11780bb079111300",
+        "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+        "effects": [],
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "folder": "a774041979abf6c5",
+        "ownership": {
+          "default": 0
+        }
+      },
+      {
+        "name": "Featherlight",
+        "type": "kagune",
+        "system": {
+          "type": "ukaku",
+          "primaryType": "ukaku",
+          "secondaryType": null,
+          "rcl": 16,
+          "manifested": false,
+          "range": {
+            "melee": "close",
+            "projectile": "long"
+          },
+          "edgeSlots": {
+            "max": 3,
+            "used": 0,
+            "bonusFromType": 0
+          },
+          "edges": [],
+          "evolution": {
+            "spentRcl": 0,
+            "statPurchases": [],
+            "swappedEdges": []
+          },
+          "automation": "full",
+          "description": "<p>Scout and photographer's original ukaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
+          "dynamicNotes": ""
+        },
+        "_id": "2b206ef148dea92c",
+        "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+        "effects": [],
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "folder": "a774041979abf6c5",
+        "ownership": {
+          "default": 0
+        }
+      },
+      {
+        "name": "Iron Wake",
+        "type": "kagune",
+        "system": {
+          "type": "koukaku",
+          "primaryType": "koukaku",
+          "secondaryType": null,
+          "rcl": 16,
+          "manifested": false,
+          "range": {
+            "melee": "close",
+            "projectile": null
+          },
+          "edgeSlots": {
+            "max": 3,
+            "used": 0,
+            "bonusFromType": 0
+          },
+          "edges": [],
+          "evolution": {
+            "spentRcl": 0,
+            "statPurchases": [],
+            "swappedEdges": []
+          },
+          "automation": "manual",
+          "description": "",
+          "dynamicNotes": ""
+        },
+        "_id": "0d650993987d448c",
+        "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+        "effects": [],
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "folder": "a774041979abf6c5",
+        "ownership": {
+          "default": 0
+        }
+      },
+      {
+        "name": "Feather Rain",
+        "type": "kagune",
+        "system": {
+          "type": "ukaku",
+          "primaryType": "ukaku",
+          "secondaryType": null,
+          "rcl": 16,
+          "manifested": false,
+          "range": {
+            "melee": "close",
+            "projectile": "long"
+          },
+          "edgeSlots": {
+            "max": 3,
+            "used": 0,
+            "bonusFromType": 0
+          },
+          "edges": [],
+          "evolution": {
+            "spentRcl": 0,
+            "statPurchases": [],
+            "swappedEdges": []
+          },
+          "automation": "manual",
+          "description": "",
+          "dynamicNotes": ""
+        },
+        "_id": "04d96286a5b6337c",
+        "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+        "effects": [],
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "folder": "a774041979abf6c5",
+        "ownership": {
+          "default": 0
+        }
+      },
+      {
+        "name": "Red Ledger",
+        "type": "kagune",
+        "system": {
+          "type": "rinkaku",
+          "primaryType": "rinkaku",
+          "secondaryType": null,
+          "rcl": 22,
+          "manifested": false,
+          "range": {
+            "melee": "mid",
+            "projectile": null
+          },
+          "edgeSlots": {
+            "max": 3,
+            "used": 0,
+            "bonusFromType": 0
+          },
+          "edges": [],
+          "evolution": {
+            "spentRcl": 0,
+            "statPurchases": [],
+            "swappedEdges": []
+          },
+          "automation": "manual",
+          "description": "",
+          "dynamicNotes": ""
+        },
+        "_id": "ea6929cfacef11a8",
+        "img": "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg",
+        "effects": [],
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "folder": "a774041979abf6c5",
+        "ownership": {
+          "default": 0
+        }
+      },
+      {
+        "_id": "56a5a2e57669416c",
+        "name": "Kurose's Original Ledger",
+        "type": "loot",
+        "img": "icons/svg/item-bag.svg",
+        "folder": "a774041979abf6c5",
+        "system": {
+          "description": "<p>Original victim identities, dates and signed collection orders. Evidence only; no stat bonus.</p>",
+          "quantity": 1,
+          "automation": "manual"
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        }
+      },
+      {
+        "_id": "aa39bb9dac759635",
+        "name": "Shigure Service Keys",
+        "type": "loot",
+        "img": "icons/svg/item-bag.svg",
+        "folder": "a774041979abf6c5",
+        "system": {
+          "description": "<p>Opens the clinic service door and station latch. Cage access code: 0417. No combat effect.</p>",
+          "quantity": 1,
+          "automation": "manual"
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        }
+      },
+      {
+        "_id": "d51305936d832c77",
+        "name": "Yui's Cracked Phone",
+        "type": "loot",
+        "img": "icons/svg/item-bag.svg",
+        "folder": "a774041979abf6c5",
+        "system": {
+          "description": "<p>Recovered draft and location data pointing to Aobane Clinic. Evidence only.</p>",
+          "quantity": 1,
+          "automation": "manual"
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        }
+      },
+      {
+        "_id": "3068da20a39fe0d0",
+        "name": "Waterproof Camera",
+        "type": "loot",
+        "img": "icons/svg/item-bag.svg",
+        "folder": "a774041979abf6c5",
+        "system": {
+          "description": "<p>Can preserve photos of evidence through ordinary GM-adjudicated interaction. No automatic roll modifier.</p>",
+          "quantity": 1,
+          "automation": "manual"
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        }
+      },
+      {
+        "_id": "425f188fdf60742a",
+        "name": "Field Medical Kit",
+        "type": "consumable",
+        "img": "icons/svg/regen.svg",
+        "system": {
+          "consumableType": "medkit",
+          "quantity": 1,
+          "maxCarry": 5,
+          "range": "melee",
+          "area": "none",
+          "effect": {
+            "removes": [
+              "bleeding",
+              "burning"
+            ],
+            "healingFormula": "PER + target END"
+          },
+          "automation": "assisted",
+          "description": "Use the system's medkit workflow; follow the target's class restrictions."
+        },
+        "folder": "a774041979abf6c5",
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "ownership": {
+          "default": 0
+        }
+      }
+    ],
+    "journal": [
+      {
+        "_id": "cec81ce76f255661",
+        "name": "00 • GM Start Here",
+        "folder": "27988307f9195bd6",
+        "sort": 0,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "pages": [
+          {
+            "_id": "11b38792162eff29",
+            "name": "00 • GM Start Here",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>The Last Delivery</h1><p><strong>4–6 players · 4–5 hours · original unofficial Tokyo Ghoul scenario.</strong> Rain buries a small Tokyo neighborhood while a stolen mortuary van carries the only evidence that a ghoul food broker has started killing living people. A frightened courier has asked investigators and local ghouls to meet at the same coffee shop. Neither side knows the other is coming.</p><h2>Import and prepare</h2><ol><li>Open the Last Delivery Adventure compendium, open this adventure, and select Import All. Use a new world for an isolated run. Reimporting updates these scenes and overwrites imported adventure state; preserve ongoing play first.</li><li>Read @UUID[JournalEntry.ed896e8ae2396796]{01 • GM Truth and Cast}, then @UUID[JournalEntry.f1cc4fb026b06c1d]{03 • Rain at Sazanami}, @UUID[JournalEntry.0638daf13a1d24da]{04 • Aobane Clinic}, and @UUID[JournalEntry.f5e37f92aa4b0417]{05 • Shigure Last Freight}. Each scene has its matching journal and clickable GM pins.</li><li>Assign four core characters: @UUID[Actor.b3fc16e43dfb0cf4]{Aya Teshima}, @UUID[Actor.dcbf3bc4e6e3f452]{Ren Kisaragi}, @UUID[Actor.e265cdcde8fcd05d]{Mio Naruse}, @UUID[Actor.6f1d242fa0b3469f]{Daichi Ueno}. For five add @UUID[Actor.d9d1cabae5a178c8]{Nao Fushimi}; for six add @UUID[Actor.603f09339dce02cc]{Sora Amemiya}. Assign each actor to one player as Owner. Show that character's dossier privately.</li><li>All six PC tokens are preplaced at the southern entrance of each scene and linked to their actors. Aya, Ren, Mio and Daichi start visible; Nao and Sora start hidden. Reveal Nao for five players and Sora for six on each scene, or remove unused tokens. NPCs are preplaced; reinforcement tokens start hidden.</li><li>Activate 01 • Rain at Sazanami. Share @UUID[JournalEntry.decfd5e2a3742b63]{Handout • A Meeting in the Rain}. Keep all other journals GM-only until explicitly shared.</li></ol><p>Use Squad mode for all combat. The scenes are gridless with a 64-pixel measurement scale of 5 feet. Walls, working doors and gates, ambient lights, token vision and fog exploration are configured. Dim global illumination keeps outdoor routes usable while walls restrict line of sight. Standard doors can be opened and closed through their native controls; the clinic service door and captive gate start locked. The GM unlocks them when the key, code or story task succeeds. Platform-edge movement walls leave the stairs open; the GM can permit a climb by moving a token across the lip. Tactical ranges, attacks, defense, damage, regeneration and consumables use the system's existing workflows. Story clocks, NPC surrender, hazards, clue sharing and the nonlethal outcome require GM adjudication.</p><h2>Session rhythm</h2><p>Consent and introductions 15 minutes; alley and first decision 45 minutes; clinic 60 minutes; station 75 minutes; aftermath 20 minutes. Allow one Take a Breather between locations if the fiction permits. If running late, omit the clinic fight and give Yui's evidence through conversation.</p><p>Discuss body horror, hunger, coercion and institutional violence before play. Veil corpse handling and surgery as needed; civilian harm is never required to succeed. No canon characters appear. The CCG truce is a desperate, unofficial arrangement between individuals, not established institutional policy.</p><h2>Index</h2><p>@UUID[JournalEntry.ed896e8ae2396796]{01 • GM Truth and Cast} · @UUID[JournalEntry.6f265165d5891297]{02 • GM Encounters and Scaling} · @UUID[JournalEntry.f1cc4fb026b06c1d]{03 • Rain at Sazanami} · @UUID[JournalEntry.0638daf13a1d24da]{04 • Aobane Clinic} · @UUID[JournalEntry.f5e37f92aa4b0417]{05 • Shigure Last Freight} · @UUID[JournalEntry.4aa3af750aa11756]{06 • Dawn and Consequences} · @UUID[JournalEntry.decfd5e2a3742b63]{Handout • A Meeting in the Rain} · @UUID[JournalEntry.5e7fd050ce91fd02]{Handout • Mortuary Transfer AO-7} · @UUID[JournalEntry.1676ea2fa9c1325b]{Handout • Yui's Unsent Message} · @UUID[JournalEntry.ef018e084b248b7d]{Handout • The Duplicate Ledger} · @UUID[JournalEntry.73a9f6a8b5cbd561]{07 • Private Character Dossiers}</p></article>"
+            }
+          }
+        ]
+      },
+      {
+        "_id": "ed896e8ae2396796",
+        "name": "01 • GM Truth and Cast",
+        "folder": "27988307f9195bd6",
+        "sort": 100000,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "pages": [
+          {
+            "_id": "d5a3590fabfcd06e",
+            "name": "01 • GM Truth and Cast",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>What really happened</h1><p>The Sazanami coffee shop quietly connects isolated ghouls with a mortuary theft route run by human driver Yui Matsuda. The bodies are those of people already dead; that does not make the theft harmless, but it has kept these ghouls from hunting. Broker Masato Kurose, known as Pallet, recently took over the route. He murders vulnerable living people to fill shortfalls and disguises their remains as unclaimed mortuary transfers.</p><p>Three nights ago Yui found a living patient at the abandoned Aobane clinic. She copied the clinic ledger and stole tonight's van. She asked her human childhood friend Aya for protection and ghoul courier Ren for help rescuing the captives. She planned to meet at Sazanami at 22:10. Kurose intercepted her, but the van's dashcam and her hidden phone survived. She is now at the clinic; two abducted people await removal at the closed Shigure freight station.</p><h2>What each faction wants</h2><p><strong>PCs:</strong> recover the courier and stop the next killing. Ghouls also need a way to survive afterward; investigators need evidence they can defend.</p><p><strong>@UUID[Actor.1530b85c1ded8901]{Masato Kurose • Pallet}:</strong> recover the originals and leave with the captives. Speaks like a logistics manager: “You can be outraged, or you can keep your people fed.” He fears a public trail more than death. He is a developed rinkaku ghoul, not a Kakuja boss.</p><p><strong>@UUID[Actor.83bcc6b88a48e6b2]{Yui Matsuda • Missing Courier}:</strong> get both patients out; she admits her own thefts if promised a fair hearing. Nervously counts exits. “I thought the dead could feed the living. Then I heard someone breathing.”</p><p><strong>@UUID[Actor.8e05d06cad5d2f11]{Emi Hayase • Coffee Shop Owner}:</strong> ghoul owner of Sazanami; protects the meeting and shelters nonparticipants. Makes coffee she cannot eat normal food alongside. She will surrender the route to stop the murders, but asks who will feed the dependent ghouls tomorrow.</p><p><strong>@UUID[Actor.c9ed3f809b60fdf2]{Riku Inose • Clinic Enforcer}:</strong> clinic enforcer Riku Inose; fears Kurose, refuses to kill surrendered characters. <strong>@UUID[Actor.bb3383b578af98c0]{Chika Fuse • Freight Lookout}:</strong> ukaku scout Chika Fuse; her brother is held as collateral. <strong>@UUID[Actor.9990effb4cbad3b4]{Haru Watanabe • Captive}:</strong> human captive Haru Watanabe; alert, ambulatory, frightened. Duplicate Haru's token for the unnamed second captive if desired; do not invent a fighting role for either.</p><h2>Calendar</h2><p>22:10 meeting interrupted; 22:35 next freight pickup; 23:00 Kurose's escape window. These are pacing anchors, not mandatory real-time deadlines. Tell players when taking an extended detour risks a departure. Never make a clue vanish merely because a check failed.</p></article>"
+            }
+          }
+        ]
+      },
+      {
+        "_id": "6f265165d5891297",
+        "name": "02 • GM Encounters and Scaling",
+        "folder": "27988307f9195bd6",
+        "sort": 200000,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "pages": [
+          {
+            "_id": "555b743d0a10e469",
+            "name": "02 • GM Encounters and Scaling",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>Run a survivable one-shot</h1><p>Pregens use the existing 60-point creation rules, class-specific weapon RCL and unused Edge slot conversion. Starting weapons deliberately have no optional Edges: fewer triggers for first-time players, more RCL. All resources start at their derived maxima. Ghoul regeneration and type modifiers still apply. NPC values are scenario profiles, not player creation templates.</p><table><thead><tr><th>Players</th><th>Alley</th><th>Clinic</th><th>Station</th></tr></thead><tbody><tr><td>4</td><td>Chika alone; retreats after first wound</td><td>Riku alone, or talk him down</td><td>Kurose alone; Chika stays neutral</td></tr><tr><td>5</td><td>Chika alone</td><td>Riku + hidden Chika reinforcement only if alarm raised</td><td>Kurose + Riku if Riku escaped</td></tr><tr><td>6</td><td>Chika + hidden Riku, arriving round 2</td><td>Riku + Chika unless recruited</td><td>Kurose + Riku + Chika only if both remain loyal</td></tr></tbody></table><p>Reveal only the tokens justified by this table. A recruited, captured or incapacitated NPC does not reappear as an enemy. Reposition or remove its later token. Enemy copies are unlinked so injuries in one scene do not automatically propagate: carry wounds and spent resources forward manually, or drag the original token to the next scene. Do not reset an escaped foe.</p><p>Kurose has 96 Vitality, 84 Stamina and a 22-RCL rinkaku before play. He yields at 24 Vitality if the exit is blocked, or bargains if the original ledger is secured and copied. He prioritizes escape and evidence over optimal damage. Focus each attack on an active combatant, never an unconscious PC; use normal defenses and reactions. Enforcers surrender after losing half Vitality or when Kurose's coercion is exposed.</p><p>For struggling groups remove reinforcements, permit a breather before the station, and have Chika point out the service exit. For experienced groups retain enemies from the table and let them protect separate objectives; do not add unexplained extra turns, immunity or Kakuja transformations. These encounters have structural scaling, but have not been playtested for balance.</p><h2>Story pressure track (GM)</h2><p>Start at 0. Increase once for a loudly public fight, an abandoned witness, or an explicitly warned extended delay. At 1 the station is alerted; at 2 Chika guards the loading ramp; at 3 Kurose moves the ledger into his coat and begins loading the patients. The group always arrives before the van departs. Announce each escalation through sounds, messages or visible movement.</p><h2>Checks</h2><p>Use existing d20 + stat checks with the system's crit/fumble handling. Target 18 for an ordinary pressured task, 23 for a difficult task. These targets and time costs are scenario rulings, not new core rules. Obvious investigation clues require no roll; checks earn speed, detail or safety. A failed check advances pressure once only if there is a stated meaningful consequence, and still supplies the route forward.</p></article>"
+            }
+          }
+        ]
+      },
+      {
+        "_id": "f1cc4fb026b06c1d",
+        "name": "03 • Rain at Sazanami",
+        "folder": "27988307f9195bd6",
+        "sort": 300000,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "pages": [
+          {
+            "_id": "dc888fd632991f6f",
+            "name": "03 • Rain at Sazanami",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>Scene 1: the interrupted meeting</h1><p>@UUID[Scene.6e10d0826e112f4a]{Rain at Sazanami} · @UUID[Actor.8e05d06cad5d2f11]{Emi Hayase • Coffee Shop Owner} · @UUID[Actor.bb3383b578af98c0]{Chika Fuse • Freight Lookout}</p><blockquote>The last train rattles above the rain. A refrigerated van sits across the narrow alley, its doors hanging open. Inside the coffee shop, an untouched cup has gone cold. Your contact's phone vibrates under a chair. Someone on the loading yard roof watches without blinking.</blockquote><h2>Start with a truce</h2><p>Give every player one introduction: why did Yui trust you? Emi insists the contact will die if the meeting becomes a fight. Aya can offer temporary witness protection; Ren can promise no hunting during the operation. Ask each character for one concrete concession. The scenario assumes players accept cooperation; handle distrust through promises and evidence.</p><h2>Locations and clues</h2><p><strong>Coffee shop northwest:</strong> Emi has @UUID[JournalEntry.1676ea2fa9c1325b]{Handout • Yui's Unsent Message} under Yui's cup. The phone's cracked screen shows “AO-7 / SHIGURE / 23:00.” <strong>Van in the central alley:</strong> @UUID[JournalEntry.5e7fd050ce91fd02]{Handout • Mortuary Transfer AO-7} sits in the glove box. Cold mud on the pedals contains blue clinic glass. The dashcam shows Riku dragging Yui into a gray car; its navigation destination is Aobane Clinic. <strong>Northeast loading yard:</strong> Chika hides behind pallets, not inside the coffee shop. She warns that the delivery was stolen.</p><p>Any one of the phone, dashcam or Emi's route knowledge leads to the clinic. A PER 18 check recovers the uncut dashcam immediately; failure gives the destination but requires Emi to copy the footage during the next scene. CRL 18 or a sincere promise to rescue Chika's brother persuades her to describe the station's service route.</p><h2>Encounter</h2><p>Chika wants the phone, not a massacre. She offers an exchange first. If attacked or blocked, she manifests Feather Rain, makes one projectile attack through a clear alley lane, and tries to flee north. Let characters Dodge, Block or take the hit through normal system prompts. Reveal Riku's hidden token on round 2 only for six players. Enemies do not attack through building walls.</p><h2>Terrain</h2><p>The van and bins provide cover when they actually obstruct a line of attack; GM judges visibility. Coffee shop tables slow fiction-based movement but impose no automatic modifier. Neon, rain and wet pavement add atmosphere without arbitrary combat penalties. Players can rescue the driver from the clinic without winning this fight.</p><h2>Transition</h2><p>Emi opens the back door, gives each investigator the kit already on their sheet, and arranges a driver. Tell ghouls there is no immediate starvation trap; Meal Score starts full and the story lasts hours. Travel to @UUID[Scene.c26515ce9312f9bb]{Aobane Clinic}. Show the two recovered handouts separately; do not reveal GM pages.</p></article>"
+            }
+          }
+        ]
+      },
+      {
+        "_id": "0638daf13a1d24da",
+        "name": "04 • Aobane Clinic",
+        "folder": "27988307f9195bd6",
+        "sort": 400000,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "pages": [
+          {
+            "_id": "f1725a66008cca6a",
+            "name": "04 • Aobane Clinic",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>Scene 2: the route becomes a crime</h1><p>@UUID[Scene.c26515ce9312f9bb]{Aobane Clinic} · @UUID[Actor.83bcc6b88a48e6b2]{Yui Matsuda • Missing Courier} · @UUID[Actor.c9ed3f809b60fdf2]{Riku Inose • Clinic Enforcer}</p><blockquote>A clinic shutter trembles in the wind. Beyond it, fluorescent tubes light a reception desk with no receptionist. A refrigerated room hums behind thick glass. From the treatment room comes a human voice, asking whether the footsteps are yours.</blockquote><h2>Entry</h2><p>Front reception is unlocked. The side maintenance entrance can be opened with the service key from the van, a STR 18 check, or five minutes of careful work. Announce that prolonged forced entry could alert Riku. A PER 18 check identifies the rear route without crossing reception.</p><h2>Keyed areas</h2><p><strong>Northwest reception:</strong> a schedule reads SHIGURE—23:00; the station address is printed on shipping labels. <strong>Northeast treatment room:</strong> Yui is tied to a chair, conscious. Freeing her requires ordinary interaction, no attack roll. She saw two patients taken to the station and can describe Kurose. <strong>Southwest cold room:</strong> empty body bags and falsified mortuary tags expose the substitution; avoid graphic descriptions. <strong>Southeast office:</strong> @UUID[JournalEntry.ef018e084b248b7d]{Handout • The Duplicate Ledger} is a photocopy hidden beneath the printer. The originals and victim identities are at the station.</p><p>Yui's testimony, shipping labels, and ledger each independently reveal the station. A PER 23 check additionally proves several supposed deceased donors were alive when “collected”; failure leaves enough evidence to pursue the rescue, and Yui explains the discrepancy.</p><h2>Riku's choice</h2><p>Riku guards the corridor because Kurose threatens his household. He accepts a promise to evacuate them and proof from the dashcam; no roll is needed if both are offered credibly. Otherwise use CRL 23 to delay him long enough to free Yui. Failure leads to a fight, not Yui's death. Riku uses Iron Wake at close range and stands between the party and the office. Add Chika only as permitted by @UUID[JournalEntry.6f265165d5891297]{02 • GM Encounters and Scaling}; she can be recruited with proof that Haru is still alive.</p><h2>Alarm and escape</h2><p>The office alarm can be silenced at its exposed switch by one interaction. Leaving it ringing advances pressure once. This is a story objective, not an automatic new combat maneuver. Use normal GM-adjudicated interaction costs if combat is running. No corrosive gas or hidden instant damage is triggered.</p><h2>Recovery</h2><p>Yui can travel with the PCs or be escorted to Emi; decide openly. Let medical characters use their standard kits. Give a breather if time permits and explain the risk before any optional detour. Yui hands over the station's gate code, 0417. Proceed to @UUID[Scene.016a8d44020815ae]{Shigure Last Freight}.</p></article>"
+            }
+          }
+        ]
+      },
+      {
+        "_id": "f5e37f92aa4b0417",
+        "name": "05 • Shigure Last Freight",
+        "folder": "27988307f9195bd6",
+        "sort": 500000,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "pages": [
+          {
+            "_id": "47f65690bd46a090",
+            "name": "05 • Shigure Last Freight",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>Scene 3: people are not cargo</h1><p>@UUID[Scene.016a8d44020815ae]{Shigure Last Freight} · @UUID[Actor.1530b85c1ded8901]{Masato Kurose • Pallet} · @UUID[Actor.9990effb4cbad3b4]{Haru Watanabe • Captive}</p><blockquote>Two rails vanish into a dark tunnel. Work lights throw pale rectangles across the freight platform. A man in a spotless raincoat checks a paper ledger beside a delivery van. Behind the chained fence, two living people wait with luggage they did not pack.</blockquote><h2>Approaches</h2><p>The west entrance reaches the loading platform. The south service passage reaches the captives; Chika or Yui can point it out. The rail bed is accessible by stairs and has no moving trains. Let the group see Kurose, both patients and the van before initiative; do not spring a compulsory ambush.</p><h2>Three objectives</h2><ol><li><strong>Free the captives:</strong> open the cage with Yui's code, use the latch on the platform, or force it with STR 23. Failure bends the latch and allows a second attempt; do not damage patients. Escort them to the west or south exit.</li><li><strong>Secure the originals:</strong> the ledger rests on the loading desk, or in Kurose's coat at pressure 3. Obtain it by bargaining, distraction, theft with an appropriate stat check, or defeating its holder. A photo is enough to preserve evidence; confiscation is still preferable.</li><li><strong>Stop Kurose's departure:</strong> take his keys, block the van, or convince Chika to refuse driving. This requires physical access or a plausible negotiated concession, not an attack against a vehicle stat block.</li></ol><h2>Negotiation</h2><p>Kurose offers each ghoul a stable supply and each investigator an apparent easy arrest: sacrifice Yui as the only culprit. His threat is credible but his offer is false; the ledger names his victims. He will surrender the captives in exchange for passage if the party holds copies of the evidence. A persuasive CRL 23 check earns his silence long enough to complete an objective; clear leverage works without a roll. Do not force a check to honor a solid bargain.</p><h2>Combat</h2><p>Use @UUID[JournalEntry.6f265165d5891297]{02 • GM Encounters and Scaling}. Kurose manifests Red Ledger, grapples or strikes with normal maneuvers, and moves toward his van when the originals are lost. He has no Kakuja transformation, no extra boss action and no immunity to standard conditions. At 24 Vitality he offers surrender if escape is blocked; otherwise he flees. PCs may restrain a surrendered foe without rolling damage. The GM decides when defeat is nonlethal; the system's normal damage automation still applies.</p><h2>Readable terrain</h2><p>Platform crates obstruct lines only where artwork shows them. Moving between rail bed and platform uses the visible stairs or a GM-approved climb. The dark tunnel is an escape route, not a bottomless pit. Treat the van as stationary until the group has had at least three complete rounds or equivalent negotiation exchanges to intervene; announce each step toward departure. Do not kill patients on a timer.</p><h2>Aftermath</h2><p>Once the patients are safe, ask who receives the ledger, whether Yui is arrested, and what becomes of the ghoul dependents. Use @UUID[JournalEntry.4aa3af750aa11756]{06 • Dawn and Consequences}. Recovered @UUID[Item.56a5a2e57669416c]{Kurose's Original Ledger} and @UUID[Item.aa39bb9dac759635]{Shigure Service Keys} can be dragged onto sheets as evidence; neither grants combat bonuses.</p></article>"
+            }
+          }
+        ]
+      },
+      {
+        "_id": "4aa3af750aa11756",
+        "name": "06 • Dawn and Consequences",
+        "folder": "27988307f9195bd6",
+        "sort": 600000,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "pages": [
+          {
+            "_id": "d93cdaefb6af2449",
+            "name": "06 • Dawn and Consequences",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>Resolve three promises</h1><p><strong>Rescue:</strong> Haru and the second captive reach an ambulance under identities the players choose. If Kurose escapes, their testimony and copies still support a future case. If players fail to reach the cage before he begins moving it, offer pursuit or a trade; a failed fight does not demand an execution scene.</p><p><strong>Justice:</strong> Aya can submit original records while shielding witness locations; Daichi can insist on chain of custody. Yui admits corpse theft and receives legal jeopardy even if treated as a protected witness. Do not declare automatic CCG reform. If the ledger is destroyed, Yui, the patients and dashcam remain three independent sources of testimony.</p><p><strong>Hunger:</strong> closing the route leaves Emi's dependent ghouls in danger. Offer a short-term evacuation and mutual-aid plan, not magical human food or an effortlessly ethical supply. Ren may preserve the remaining stolen stock while destroying Kurose's organization. That choice has victims' families and institutional consequences.</p><h2>Possible endings</h2><p><strong>A difficult dawn:</strong> patients rescued, originals preserved, Kurose arrested. Individuals maintain their truce privately. <strong>A clean public lie:</strong> rescue succeeds but evidence is suppressed; the CCG reports a simpler story and the characters know its cost. <strong>The broker's price:</strong> patients traded for Kurose's passage; his route collapses, but another night may bring him back. <strong>No more deliveries:</strong> the party exposes everything publicly, forcing Emi's network to flee.</p><p>Ask each player one closing question: Who owes you trust? What will you eat tomorrow? Which truth did you keep? For continuation, use normal progression and upgrading rules; do not grant automatic rank increases, cannibalism rewards or free Kakuja eligibility. No mechanical reward is necessary for a self-contained one-shot.</p></article>"
+            }
+          }
+        ]
+      },
+      {
+        "_id": "decfd5e2a3742b63",
+        "name": "Handout • A Meeting in the Rain",
+        "folder": "68d1415520b75731",
+        "sort": 700000,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "pages": [
+          {
+            "_id": "965d8a268282dd80",
+            "name": "Handout • A Meeting in the Rain",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>A meeting in the rain</h1><p>22:10. Sazanami coffee shop, a quiet street near a shuttered freight branch. A courier named Yui Matsuda has asked for help. Her message is short:</p><blockquote>I found a person where there should only have been a body. Come tonight. I called someone from the other side too. Please listen before you draw anything.</blockquote><p>You each have a reason to trust Yui, or to need her alive. None of you has official permission to work together. Decide what promise makes cooperation possible. The city is still running around you: trains, convenience stores, people going home. Keeping those people out of this matters.</p></article>"
+            }
+          }
+        ]
+      },
+      {
+        "_id": "5e7fd050ce91fd02",
+        "name": "Handout • Mortuary Transfer AO-7",
+        "folder": "68d1415520b75731",
+        "sort": 800000,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "pages": [
+          {
+            "_id": "ed3c1943b91d0b2c",
+            "name": "Handout • Mortuary Transfer AO-7",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>Transfer AO-7</h1><p>Vehicle: refrigerated light van. Collection: Aobane Clinic annex. Destination: Shigure Freight Station, west gate. Departure: 23:00. Driver: Y. Matsuda.</p><p>Three listed transfers carry identical authorization numbers. One entry is amended from “patient intake” to “unclaimed remains” in different ink. The service-key tag says AOBANE. A written instruction beneath the stamp reads: “No scanners. No municipal receiving desk. Return originals to M.K.”</p><p>The paper establishes a route and a suspicious alteration. It does not by itself prove who killed anyone.</p></article>"
+            }
+          }
+        ]
+      },
+      {
+        "_id": "1676ea2fa9c1325b",
+        "name": "Handout • Yui's Unsent Message",
+        "folder": "68d1415520b75731",
+        "sort": 900000,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "pages": [
+          {
+            "_id": "e11c3aa21b13191d",
+            "name": "Handout • Yui's Unsent Message",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>Recovered draft, 21:48</h1><blockquote>Ren, I can't do the route again. Aobane has living people in it. I copied the numbers but Kurose has the names. I told Aya because I need a witness who can make an arrest. If I don't reach the shop, look in the office printer. Please don't let this turn into humans against ghouls. That is exactly what he wants.</blockquote><p>The last attached image shows a blue-glass medicine cabinet reflected in a metal door. Location data points to Aobane Clinic.</p></article>"
+            }
+          }
+        ]
+      },
+      {
+        "_id": "ef018e084b248b7d",
+        "name": "Handout • The Duplicate Ledger",
+        "folder": "68d1415520b75731",
+        "sort": 1000000,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "pages": [
+          {
+            "_id": "c6e1321dbda381b8",
+            "name": "Handout • The Duplicate Ledger",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>Office copy</h1><table><tr><th>Code</th><th>Intake</th><th>Recorded transfer</th></tr><tr><td>HW-14</td><td>Walking; sedated afterward</td><td>Deceased donor; no certificate</td></tr><tr><td>NK-09</td><td>Conscious; personal effects retained</td><td>Deceased donor; no certificate</td></tr><tr><td>AO-7</td><td>Freight preparation</td><td>Shigure; 23:00; M.K. signature</td></tr></table><p>A margin note says: “Original identities travel with manager. Patient keys: 0417.” On the reverse: “Chika: family collateral retained until successful departure.” The originals could identify the victims and connect them to Kurose. Preserve the copy.</p></article>"
+            }
+          }
+        ]
+      },
+      {
+        "_id": "73a9f6a8b5cbd561",
+        "name": "07 • Private Character Dossiers",
+        "folder": "27988307f9195bd6",
+        "sort": 1100000,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "pages": [
+          {
+            "_id": "3744b361b7d3c7f7",
+            "name": "07 • Private Character Dossiers",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>Share each section only with its player</h1><h2>Aya Teshima · investigator</h2><p>Yui was your neighbor before you joined the CCG. You believe evidence should survive the people who handle it. You carry Signal Nine, an ukaku quinque. Bond: Daichi taught you never to file a report you would not sign. Secret: you warned Yui before calling your superior; your career depends on finding her alive. Goal: rescue her and secure originals. Say: “Give me something I can prove.”</p><h2>Ren Kisaragi · ghoul courier</h2><p>You transport coffee by day and mortuary parcels at night. Your bikaku is Switchback. Bond: Mio once stitched your coat while refusing payment; Emi gave you work. Secret: your last delivery already contained a living victim, and you looked away from the suspicious tag. Goal: admit enough to help, and keep the dependents alive. Say: “There is a name behind every number.”</p><h2>Mio Naruse · ghoul repairer</h2><p>You repair vending machines and shelter people nobody notices. Your koukaku, Rain Shelter, resembles a folded dark canopy. Bond: Ren brings supplies; Aya once let you walk out of an interview. Secret: Kurose offered to feed your younger ward if you reveal Emi's clients. You refused, but he knows your address. Goal: protect captives and expose his leverage. Say: “Stand behind me until we know.”</p><h2>Daichi Ueno · investigator</h2><p>A cautious case officer with Bridgekeeper, a koukaku quinque. Bond: Aya is your junior and your responsibility. Secret: your supervisor wants an easy ghoul arrest, not a complicated supply investigation. Goal: get admissible evidence and bring everyone back. Say: “We can decide what to call this after they are safe.”</p><h2>Nao Fushimi · Quinx liaison (fifth player)</h2><p>You live with implanted ghoul biology while still eating human food; do not perform a full-ghoul starvation story. You carry the bikaku quinque Quiet Line and a rinkaku kagune named Suture. Bond: Daichi checks on you as a person rather than an experiment. Secret: you are afraid any loss of control will be used to end this truce. Goal: prove restraint and protect witnesses. Say: “Tell me what you need me to hold.”</p><h2>Sora Amemiya · ghoul night photographer (sixth player)</h2><p>You photograph wet streets because the city looks kinder without faces. Featherlight is your ukaku. Bond: Yui carried a roll of film that exposed a previous abduction. Secret: you have already sent one blurred image to a reporter, without naming the shop. Goal: save the subjects before choosing what to publish. Say: “A picture isn't the whole truth.”</p><p>All six are original characters. The core four provide two investigators and two ghouls. Add Nao, then Sora, for larger groups. Dossiers establish motives, never compulsory betrayal or PvP.</p></article>"
+            }
+          }
+        ]
+      }
+    ],
+    "scenes": [
+      {
+        "_id": "6e10d0826e112f4a",
+        "name": "01 • Rain at Sazanami",
+        "folder": "4236f423189c1e86",
+        "active": false,
+        "navigation": true,
+        "navOrder": 0,
+        "width": 1536,
+        "height": 1024,
+        "padding": 0,
+        "background": {
+          "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/sazanami-alley.png"
+        },
+        "backgroundColor": "#10141b",
+        "grid": {
+          "type": 0,
+          "size": 64,
+          "distance": 5,
+          "units": "ft"
+        },
+        "tokenVision": true,
+        "fog": {
+          "exploration": true
+        },
+        "environment": {
+          "darknessLevel": 0.35,
+          "globalLight": {
+            "enabled": true,
+            "bright": false,
+            "alpha": 0.2,
+            "luminosity": 0.2,
+            "color": "#9ab0c8"
+          }
+        },
+        "journal": "f1cc4fb026b06c1d",
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "tokens": [
+          {
+            "name": "Emi Hayase • Coffee Shop Owner",
+            "actorLink": false,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/emi.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 0,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": false,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "ce14a8ebaa14f4d7",
+            "actorId": "8e05d06cad5d2f11",
+            "x": 320,
+            "y": 240,
+            "hidden": false
+          },
+          {
+            "name": "Chika Fuse • Freight Lookout",
+            "actorLink": false,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": -1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": false,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "fad364ca1dc4f1cb",
+            "actorId": "bb3383b578af98c0",
+            "x": 1240,
+            "y": 170,
+            "hidden": false
+          },
+          {
+            "name": "Riku Inose • Clinic Enforcer",
+            "actorLink": false,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": -1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": false,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "c8b3cfa007a45f8f",
+            "actorId": "c9ed3f809b60fdf2",
+            "x": 1090,
+            "y": 330,
+            "hidden": true
+          },
+          {
+            "name": "Aya Teshima",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "2ddfcd51caa7211c",
+            "actorId": "b3fc16e43dfb0cf4",
+            "x": 660,
+            "y": 810,
+            "hidden": false
+          },
+          {
+            "name": "Ren Kisaragi",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "19d1e50c6156d8eb",
+            "actorId": "dcbf3bc4e6e3f452",
+            "x": 750,
+            "y": 810,
+            "hidden": false
+          },
+          {
+            "name": "Mio Naruse",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "eaf1cf03e1a2ac2c",
+            "actorId": "e265cdcde8fcd05d",
+            "x": 840,
+            "y": 810,
+            "hidden": false
+          },
+          {
+            "name": "Daichi Ueno",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "ca7ab16a8807412d",
+            "actorId": "6f1d242fa0b3469f",
+            "x": 660,
+            "y": 890,
+            "hidden": false
+          },
+          {
+            "name": "Nao Fushimi",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "5bf095dedad19b09",
+            "actorId": "d9d1cabae5a178c8",
+            "x": 750,
+            "y": 890,
+            "hidden": true
+          },
+          {
+            "name": "Sora Amemiya",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "31c09062792ed822",
+            "actorId": "603f09339dce02cc",
+            "x": 840,
+            "y": 890,
+            "hidden": true
+          }
+        ],
+        "notes": [
+          {
+            "_id": "f9753c574f579a48",
+            "entryId": "f1cc4fb026b06c1d",
+            "pageId": "dc888fd632991f6f",
+            "x": 350,
+            "y": 280,
+            "text": "Coffee shop",
+            "icon": "icons/svg/book.svg",
+            "iconSize": 32,
+            "global": false
+          },
+          {
+            "_id": "2516d559a0a15cae",
+            "entryId": "f1cc4fb026b06c1d",
+            "pageId": "dc888fd632991f6f",
+            "x": 780,
+            "y": 440,
+            "text": "Delivery van",
+            "icon": "icons/svg/book.svg",
+            "iconSize": 32,
+            "global": false
+          },
+          {
+            "_id": "819508cd912271fa",
+            "entryId": "f1cc4fb026b06c1d",
+            "pageId": "dc888fd632991f6f",
+            "x": 1230,
+            "y": 220,
+            "text": "Loading yard",
+            "icon": "icons/svg/book.svg",
+            "iconSize": 32,
+            "global": false
+          }
+        ],
+        "walls": [
+          {
+            "c": [
+              60,
+              320,
+              60,
+              16
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Coffee shop exterior"
+              }
+            },
+            "_id": "11cee594756752e1"
+          },
+          {
+            "c": [
+              60,
+              16,
+              530,
+              16
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Coffee shop exterior"
+              }
+            },
+            "_id": "dc8221f359ceb880"
+          },
+          {
+            "c": [
+              530,
+              16,
+              530,
+              90
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Coffee shop exterior"
+              }
+            },
+            "_id": "ed24bc54f1ad5ed5"
+          },
+          {
+            "c": [
+              530,
+              90,
+              530,
+              155
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 1,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Coffee shop rear service door"
+              }
+            },
+            "_id": "00a2744808e8d9d8"
+          },
+          {
+            "c": [
+              530,
+              155,
+              530,
+              320
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Coffee shop exterior"
+              }
+            },
+            "_id": "617ff2610d45d7f1"
+          },
+          {
+            "c": [
+              530,
+              320,
+              244,
+              320
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Coffee shop exterior"
+              }
+            },
+            "_id": "8f0461d62904ef5d"
+          },
+          {
+            "c": [
+              180,
+              320,
+              244,
+              320
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 1,
+            "ds": 1,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Coffee shop entrance"
+              }
+            },
+            "_id": "574ae964cf23604b"
+          },
+          {
+            "c": [
+              60,
+              320,
+              180,
+              320
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Coffee shop exterior"
+              }
+            },
+            "_id": "fad36c3f0e80ecca"
+          },
+          {
+            "c": [
+              50,
+              450,
+              550,
+              450
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Southwest building"
+              }
+            },
+            "_id": "283d45d296d805c0"
+          },
+          {
+            "c": [
+              550,
+              450,
+              550,
+              760
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Southwest building"
+              }
+            },
+            "_id": "af8c6ed392c14a39"
+          },
+          {
+            "c": [
+              550,
+              760,
+              50,
+              760
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Southwest building"
+              }
+            },
+            "_id": "2718749f035fc608"
+          },
+          {
+            "c": [
+              50,
+              760,
+              50,
+              450
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Southwest building"
+              }
+            },
+            "_id": "38b5fcbc2a9ad279"
+          },
+          {
+            "c": [
+              1020,
+              445,
+              1505,
+              445
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Southeast building"
+              }
+            },
+            "_id": "e5eacf8b2b8d7112"
+          },
+          {
+            "c": [
+              1505,
+              445,
+              1505,
+              760
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Southeast building"
+              }
+            },
+            "_id": "4e642c9b017c2994"
+          },
+          {
+            "c": [
+              1505,
+              760,
+              1020,
+              760
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Southeast building"
+              }
+            },
+            "_id": "4f32675fcffcea2b"
+          },
+          {
+            "c": [
+              1020,
+              760,
+              1020,
+              445
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Southeast building"
+              }
+            },
+            "_id": "0b5343286de722e2"
+          },
+          {
+            "c": [
+              758,
+              198,
+              851,
+              198
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Delivery van"
+              }
+            },
+            "_id": "0050d9c48a8d393d"
+          },
+          {
+            "c": [
+              851,
+              198,
+              851,
+              450
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Delivery van"
+              }
+            },
+            "_id": "28e63ec46458f1b0"
+          },
+          {
+            "c": [
+              851,
+              450,
+              758,
+              450
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Delivery van"
+              }
+            },
+            "_id": "2deb87a51e31500d"
+          },
+          {
+            "c": [
+              758,
+              450,
+              758,
+              198
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Delivery van"
+              }
+            },
+            "_id": "03ffc03ebb041185"
+          },
+          {
+            "c": [
+              1030,
+              20,
+              1030,
+              310
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Loading yard fence"
+              }
+            },
+            "_id": "8b947e2bcbef54bb"
+          },
+          {
+            "c": [
+              1030,
+              20,
+              1490,
+              20
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Loading yard boundary"
+              }
+            },
+            "_id": "77a6c1babed33286"
+          },
+          {
+            "c": [
+              1490,
+              20,
+              1490,
+              310
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Loading yard boundary"
+              }
+            },
+            "_id": "6a18a8266761725f"
+          },
+          {
+            "c": [
+              1030,
+              310,
+              1110,
+              310
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Loading yard fence"
+              }
+            },
+            "_id": "14e1e1b2ce76db11"
+          },
+          {
+            "c": [
+              1110,
+              310,
+              1190,
+              310
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 1,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Loading yard gate"
+              }
+            },
+            "_id": "bd263ca05bb2f6ff"
+          },
+          {
+            "c": [
+              1190,
+              310,
+              1490,
+              310
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Loading yard fence"
+              }
+            },
+            "_id": "b1482abcd5705dc7"
+          }
+        ],
+        "lights": [
+          {
+            "x": 325,
+            "y": 250,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 32,
+              "bright": 18,
+              "color": "#ffd5a0",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "1d67e7ed0c5b09a1"
+          },
+          {
+            "x": 185,
+            "y": 95,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 24,
+              "bright": 12,
+              "color": "#ffd5a0",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "a2394c1a514923ad"
+          },
+          {
+            "x": 680,
+            "y": 720,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 38,
+              "bright": 20,
+              "color": "#69cddd",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "d8d58a84f7b8d4e7"
+          },
+          {
+            "x": 910,
+            "y": 680,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 32,
+              "bright": 15,
+              "color": "#d04c64",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "a4c66a073c112d4d"
+          },
+          {
+            "x": 720,
+            "y": 950,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 42,
+              "bright": 24,
+              "color": "#69cddd",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "e5f2c06d23f05fbf"
+          },
+          {
+            "x": 1230,
+            "y": 200,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 32,
+              "bright": 16,
+              "color": "#80bdca",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "8ac5a38c6c238ecc"
+          }
+        ]
+      },
+      {
+        "_id": "c26515ce9312f9bb",
+        "name": "02 • Aobane Clinic",
+        "folder": "4236f423189c1e86",
+        "active": false,
+        "navigation": true,
+        "navOrder": 1,
+        "width": 1536,
+        "height": 1024,
+        "padding": 0,
+        "background": {
+          "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/aobane-clinic.png"
+        },
+        "backgroundColor": "#10141b",
+        "grid": {
+          "type": 0,
+          "size": 64,
+          "distance": 5,
+          "units": "ft"
+        },
+        "tokenVision": true,
+        "fog": {
+          "exploration": true
+        },
+        "environment": {
+          "darknessLevel": 0.35,
+          "globalLight": {
+            "enabled": true,
+            "bright": false,
+            "alpha": 0.2,
+            "luminosity": 0.2,
+            "color": "#9ab0c8"
+          }
+        },
+        "journal": "0638daf13a1d24da",
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "tokens": [
+          {
+            "name": "Yui Matsuda • Missing Courier",
+            "actorLink": false,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/yui.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 0,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": false,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "933130fcaa8fd03f",
+            "actorId": "83bcc6b88a48e6b2",
+            "x": 1100,
+            "y": 260,
+            "hidden": false
+          },
+          {
+            "name": "Riku Inose • Clinic Enforcer",
+            "actorLink": false,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": -1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": false,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "11c8c87b7e4eac2d",
+            "actorId": "c9ed3f809b60fdf2",
+            "x": 740,
+            "y": 450,
+            "hidden": false
+          },
+          {
+            "name": "Chika Fuse • Freight Lookout",
+            "actorLink": false,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": -1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": false,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "81385a7d6ef5984a",
+            "actorId": "bb3383b578af98c0",
+            "x": 1100,
+            "y": 660,
+            "hidden": true
+          },
+          {
+            "name": "Aya Teshima",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "2a7f1c6684be95fd",
+            "actorId": "b3fc16e43dfb0cf4",
+            "x": 660,
+            "y": 860,
+            "hidden": false
+          },
+          {
+            "name": "Ren Kisaragi",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "ef824f6c893b08c6",
+            "actorId": "dcbf3bc4e6e3f452",
+            "x": 740,
+            "y": 860,
+            "hidden": false
+          },
+          {
+            "name": "Mio Naruse",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "6b59af93de9d4500",
+            "actorId": "e265cdcde8fcd05d",
+            "x": 820,
+            "y": 860,
+            "hidden": false
+          },
+          {
+            "name": "Daichi Ueno",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "92715921ccc35106",
+            "actorId": "6f1d242fa0b3469f",
+            "x": 660,
+            "y": 940,
+            "hidden": false
+          },
+          {
+            "name": "Nao Fushimi",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "422e09dcb1424480",
+            "actorId": "d9d1cabae5a178c8",
+            "x": 740,
+            "y": 940,
+            "hidden": true
+          },
+          {
+            "name": "Sora Amemiya",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "8dc4a58423c4e683",
+            "actorId": "603f09339dce02cc",
+            "x": 820,
+            "y": 940,
+            "hidden": true
+          }
+        ],
+        "notes": [
+          {
+            "_id": "bb0a6b1392d509f7",
+            "entryId": "0638daf13a1d24da",
+            "pageId": "f1725a66008cca6a",
+            "x": 400,
+            "y": 280,
+            "text": "Reception",
+            "icon": "icons/svg/book.svg",
+            "iconSize": 32,
+            "global": false
+          },
+          {
+            "_id": "cc826fcdcf18cc0a",
+            "entryId": "0638daf13a1d24da",
+            "pageId": "f1725a66008cca6a",
+            "x": 1110,
+            "y": 280,
+            "text": "Treatment room",
+            "icon": "icons/svg/book.svg",
+            "iconSize": 32,
+            "global": false
+          },
+          {
+            "_id": "c84b853a790e29a5",
+            "entryId": "0638daf13a1d24da",
+            "pageId": "f1725a66008cca6a",
+            "x": 380,
+            "y": 690,
+            "text": "Cold room",
+            "icon": "icons/svg/book.svg",
+            "iconSize": 32,
+            "global": false
+          },
+          {
+            "_id": "2b39fe1856cf4abc",
+            "entryId": "0638daf13a1d24da",
+            "pageId": "f1725a66008cca6a",
+            "x": 1120,
+            "y": 680,
+            "text": "Office",
+            "icon": "icons/svg/book.svg",
+            "iconSize": 32,
+            "global": false
+          }
+        ],
+        "walls": [
+          {
+            "c": [
+              110,
+              750,
+              110,
+              80
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Clinic exterior"
+              }
+            },
+            "_id": "12b0b1f98038524d"
+          },
+          {
+            "c": [
+              110,
+              80,
+              1380,
+              80
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Clinic exterior"
+              }
+            },
+            "_id": "cf1327ee489ba189"
+          },
+          {
+            "c": [
+              1380,
+              80,
+              1380,
+              320
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Clinic exterior"
+              }
+            },
+            "_id": "b0673077035d2045"
+          },
+          {
+            "c": [
+              1380,
+              320,
+              1380,
+              400
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 1,
+            "ds": 2,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Clinic side service door"
+              }
+            },
+            "_id": "03ba51bb85e54d78"
+          },
+          {
+            "c": [
+              1380,
+              400,
+              1380,
+              750
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Clinic exterior"
+              }
+            },
+            "_id": "0921438927996f8a"
+          },
+          {
+            "c": [
+              1380,
+              750,
+              860,
+              750
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Clinic exterior"
+              }
+            },
+            "_id": "256ce412c28cc114"
+          },
+          {
+            "c": [
+              860,
+              750,
+              860,
+              835
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Clinic exterior"
+              }
+            },
+            "_id": "9ea182fe74d14ae3"
+          },
+          {
+            "c": [
+              685,
+              835,
+              860,
+              835
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 1,
+            "ds": 1,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Clinic front entrance"
+              }
+            },
+            "_id": "1b81abe85928413c"
+          },
+          {
+            "c": [
+              685,
+              835,
+              685,
+              750
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Clinic exterior"
+              }
+            },
+            "_id": "3e3288f18d3aee8f"
+          },
+          {
+            "c": [
+              685,
+              750,
+              110,
+              750
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Clinic exterior"
+              }
+            },
+            "_id": "7c553389e6373210"
+          },
+          {
+            "c": [
+              640,
+              80,
+              640,
+              300
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Reception corridor partition"
+              }
+            },
+            "_id": "df68791316994e51"
+          },
+          {
+            "c": [
+              640,
+              300,
+              640,
+              380
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 1,
+            "ds": 1,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Reception door"
+              }
+            },
+            "_id": "f05510d4caa0b741"
+          },
+          {
+            "c": [
+              110,
+              400,
+              640,
+              400
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Reception / cold room divider"
+              }
+            },
+            "_id": "d71125f7c1ba1d23"
+          },
+          {
+            "c": [
+              640,
+              380,
+              640,
+              400
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Reception corridor partition"
+              }
+            },
+            "_id": "c6938b6fd9b2d17d"
+          },
+          {
+            "c": [
+              595,
+              400,
+              595,
+              535
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Cold room corridor partition"
+              }
+            },
+            "_id": "bb6ae2592d5046f3"
+          },
+          {
+            "c": [
+              595,
+              535,
+              595,
+              615
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 1,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Cold room door"
+              }
+            },
+            "_id": "931891c5dc990f1a"
+          },
+          {
+            "c": [
+              595,
+              615,
+              595,
+              750
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Cold room corridor partition"
+              }
+            },
+            "_id": "0cec5dd2b0c8d638"
+          },
+          {
+            "c": [
+              850,
+              80,
+              850,
+              305
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Treatment corridor partition"
+              }
+            },
+            "_id": "bb62b7894fb85bd9"
+          },
+          {
+            "c": [
+              850,
+              305,
+              850,
+              385
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 1,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Treatment room door"
+              }
+            },
+            "_id": "e67d817f59df566c"
+          },
+          {
+            "c": [
+              850,
+              385,
+              850,
+              420
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Treatment corridor partition"
+              }
+            },
+            "_id": "1f1c4218de8d713b"
+          },
+          {
+            "c": [
+              850,
+              420,
+              1380,
+              420
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Treatment / office divider"
+              }
+            },
+            "_id": "1662069522937ef4"
+          },
+          {
+            "c": [
+              970,
+              420,
+              970,
+              540
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Office corridor partition"
+              }
+            },
+            "_id": "298e5eb457a34822"
+          },
+          {
+            "c": [
+              970,
+              540,
+              970,
+              620
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 1,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Office door"
+              }
+            },
+            "_id": "d590540138296c33"
+          },
+          {
+            "c": [
+              970,
+              620,
+              970,
+              750
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Office corridor partition"
+              }
+            },
+            "_id": "94fc28c09a12c5fc"
+          }
+        ],
+        "lights": [
+          {
+            "x": 385,
+            "y": 215,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 30,
+              "bright": 16,
+              "color": "#c4ece9",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "824ebbfb569fd743"
+          },
+          {
+            "x": 1100,
+            "y": 245,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 30,
+              "bright": 17,
+              "color": "#85d7df",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "f5eed2d666931ffc"
+          },
+          {
+            "x": 350,
+            "y": 570,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 30,
+              "bright": 15,
+              "color": "#85d7df",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "e5f9edeed3556864"
+          },
+          {
+            "x": 1170,
+            "y": 590,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 26,
+              "bright": 16,
+              "color": "#e9cd9e",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "81d1c645aa18f02c"
+          },
+          {
+            "x": 740,
+            "y": 150,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 25,
+              "bright": 14,
+              "color": "#85d7df",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "c4b66656b9c0fa6e"
+          },
+          {
+            "x": 745,
+            "y": 525,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 30,
+              "bright": 16,
+              "color": "#a6c9d1",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "8c9acdd6e53b2b1c"
+          },
+          {
+            "x": 773,
+            "y": 875,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 25,
+              "bright": 16,
+              "color": "#b6d0d8",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "4c17b406cc8b860b"
+          }
+        ]
+      },
+      {
+        "_id": "016a8d44020815ae",
+        "name": "03 • Shigure Last Freight",
+        "folder": "4236f423189c1e86",
+        "active": false,
+        "navigation": true,
+        "navOrder": 2,
+        "width": 1536,
+        "height": 1024,
+        "padding": 0,
+        "background": {
+          "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/shigure-station.png"
+        },
+        "backgroundColor": "#10141b",
+        "grid": {
+          "type": 0,
+          "size": 64,
+          "distance": 5,
+          "units": "ft"
+        },
+        "tokenVision": true,
+        "fog": {
+          "exploration": true
+        },
+        "environment": {
+          "darknessLevel": 0.35,
+          "globalLight": {
+            "enabled": true,
+            "bright": false,
+            "alpha": 0.2,
+            "luminosity": 0.2,
+            "color": "#9ab0c8"
+          }
+        },
+        "journal": "f5e37f92aa4b0417",
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 2
+          }
+        },
+        "tokens": [
+          {
+            "name": "Masato Kurose • Pallet",
+            "actorLink": false,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/boss.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": -1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": false,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "648aa420d08a4923",
+            "actorId": "1530b85c1ded8901",
+            "x": 950,
+            "y": 290,
+            "hidden": false
+          },
+          {
+            "name": "Haru Watanabe • Captive",
+            "actorLink": false,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/patient.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 0,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": false,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "3cda859abfaf1e0d",
+            "actorId": "9990effb4cbad3b4",
+            "x": 1190,
+            "y": 710,
+            "hidden": false
+          },
+          {
+            "name": "Haru Watanabe • Captive",
+            "actorLink": false,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/patient.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 0,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": false,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "8d803e3c781551b8",
+            "actorId": "9990effb4cbad3b4",
+            "x": 1270,
+            "y": 710,
+            "hidden": false
+          },
+          {
+            "name": "Riku Inose • Clinic Enforcer",
+            "actorLink": false,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": -1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": false,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "ce303a6bd1792dc2",
+            "actorId": "c9ed3f809b60fdf2",
+            "x": 800,
+            "y": 400,
+            "hidden": true
+          },
+          {
+            "name": "Chika Fuse • Freight Lookout",
+            "actorLink": false,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": -1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": false,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "867f2840b6e86668",
+            "actorId": "bb3383b578af98c0",
+            "x": 1100,
+            "y": 400,
+            "hidden": true
+          },
+          {
+            "name": "Aya Teshima",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "582f0d60267a44cd",
+            "actorId": "b3fc16e43dfb0cf4",
+            "x": 650,
+            "y": 880,
+            "hidden": false
+          },
+          {
+            "name": "Ren Kisaragi",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "e36136cfa481fc40",
+            "actorId": "dcbf3bc4e6e3f452",
+            "x": 730,
+            "y": 880,
+            "hidden": false
+          },
+          {
+            "name": "Mio Naruse",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "69cae33637ba3d8d",
+            "actorId": "e265cdcde8fcd05d",
+            "x": 810,
+            "y": 880,
+            "hidden": false
+          },
+          {
+            "name": "Daichi Ueno",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "fd3992372b259508",
+            "actorId": "6f1d242fa0b3469f",
+            "x": 650,
+            "y": 960,
+            "hidden": false
+          },
+          {
+            "name": "Nao Fushimi",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "bb7fbc98698942ca",
+            "actorId": "d9d1cabae5a178c8",
+            "x": 730,
+            "y": 960,
+            "hidden": true
+          },
+          {
+            "name": "Sora Amemiya",
+            "actorLink": true,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 1,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": true,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "ea69f0de379f2905",
+            "actorId": "603f09339dce02cc",
+            "x": 810,
+            "y": 960,
+            "hidden": true
+          }
+        ],
+        "notes": [
+          {
+            "_id": "af1257c090dedc63",
+            "entryId": "f5e37f92aa4b0417",
+            "pageId": "47f65690bd46a090",
+            "x": 970,
+            "y": 310,
+            "text": "Loading desk",
+            "icon": "icons/svg/book.svg",
+            "iconSize": 32,
+            "global": false
+          },
+          {
+            "_id": "9cc58b0f145aac77",
+            "entryId": "f5e37f92aa4b0417",
+            "pageId": "47f65690bd46a090",
+            "x": 1240,
+            "y": 700,
+            "text": "Captives",
+            "icon": "icons/svg/book.svg",
+            "iconSize": 32,
+            "global": false
+          },
+          {
+            "_id": "31da4a8c9c922f32",
+            "entryId": "f5e37f92aa4b0417",
+            "pageId": "47f65690bd46a090",
+            "x": 650,
+            "y": 890,
+            "text": "South service route",
+            "icon": "icons/svg/book.svg",
+            "iconSize": 32,
+            "global": false
+          }
+        ],
+        "walls": [
+          {
+            "c": [
+              100,
+              20,
+              1460,
+              20
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Northern station boundary"
+              }
+            },
+            "_id": "dd76c2d2152833d0"
+          },
+          {
+            "c": [
+              1460,
+              20,
+              1510,
+              170
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Tunnel boundary"
+              }
+            },
+            "_id": "ab1f8a5e0648ecda"
+          },
+          {
+            "c": [
+              1510,
+              170,
+              1510,
+              895
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Eastern station boundary"
+              }
+            },
+            "_id": "10c17e8df9fc9c88"
+          },
+          {
+            "c": [
+              45,
+              20,
+              45,
+              280
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Western retaining wall"
+              }
+            },
+            "_id": "a55e4ea89842f457"
+          },
+          {
+            "c": [
+              45,
+              280,
+              45,
+              410
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 1,
+            "ds": 1,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Western station gate"
+              }
+            },
+            "_id": "7e5a74abd97281bf"
+          },
+          {
+            "c": [
+              45,
+              410,
+              45,
+              870
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Western retaining wall"
+              }
+            },
+            "_id": "e26100ac63d05e5f"
+          },
+          {
+            "c": [
+              45,
+              870,
+              640,
+              870
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "South yard fence"
+              }
+            },
+            "_id": "36b4e0bb74dc0b00"
+          },
+          {
+            "c": [
+              900,
+              870,
+              1180,
+              870
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "South yard fence"
+              }
+            },
+            "_id": "0f1b065efd66dbef"
+          },
+          {
+            "c": [
+              1400,
+              870,
+              1510,
+              870
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "South yard fence"
+              }
+            },
+            "_id": "20b9465564e8564a"
+          },
+          {
+            "c": [
+              140,
+              605,
+              330,
+              605
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Freight containers"
+              }
+            },
+            "_id": "14003a232f2f1257"
+          },
+          {
+            "c": [
+              330,
+              605,
+              330,
+              810
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Freight containers"
+              }
+            },
+            "_id": "965681612be1cdaf"
+          },
+          {
+            "c": [
+              330,
+              810,
+              140,
+              810
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Freight containers"
+              }
+            },
+            "_id": "516b73015a30a9f0"
+          },
+          {
+            "c": [
+              140,
+              810,
+              140,
+              605
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Freight containers"
+              }
+            },
+            "_id": "87e7f1ab31888876"
+          },
+          {
+            "c": [
+              1260,
+              340,
+              1465,
+              340
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Station delivery van"
+              }
+            },
+            "_id": "f4a97c02c4fc1b8a"
+          },
+          {
+            "c": [
+              1465,
+              340,
+              1465,
+              440
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Station delivery van"
+              }
+            },
+            "_id": "fdf350884f939875"
+          },
+          {
+            "c": [
+              1465,
+              440,
+              1260,
+              440
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Station delivery van"
+              }
+            },
+            "_id": "da5cb49a6a56773d"
+          },
+          {
+            "c": [
+              1260,
+              440,
+              1260,
+              340
+            ],
+            "move": 20,
+            "sight": 20,
+            "light": 20,
+            "sound": 20,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Station delivery van"
+              }
+            },
+            "_id": "d2f449634888eead"
+          },
+          {
+            "c": [
+              1170,
+              635,
+              1390,
+              635
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Captive enclosure fence"
+              }
+            },
+            "_id": "1d3ae5dd19bdc7f2"
+          },
+          {
+            "c": [
+              1390,
+              635,
+              1390,
+              815
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Captive enclosure fence"
+              }
+            },
+            "_id": "d8f536f5a5df022e"
+          },
+          {
+            "c": [
+              1170,
+              635,
+              1170,
+              815
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Captive enclosure fence"
+              }
+            },
+            "_id": "035f3f818af60e23"
+          },
+          {
+            "c": [
+              1170,
+              815,
+              1220,
+              815
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Captive enclosure fence"
+              }
+            },
+            "_id": "48011b709c66ae23"
+          },
+          {
+            "c": [
+              1220,
+              815,
+              1300,
+              815
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 1,
+            "ds": 2,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Captive enclosure gate"
+              }
+            },
+            "_id": "69119a72e87b07f1"
+          },
+          {
+            "c": [
+              1300,
+              815,
+              1390,
+              815
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Captive enclosure fence"
+              }
+            },
+            "_id": "2accb42c744afee1"
+          },
+          {
+            "c": [
+              135,
+              550,
+              725,
+              550
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Platform edge — use the stairs"
+              }
+            },
+            "_id": "0aaa8b55a568618f"
+          },
+          {
+            "c": [
+              810,
+              550,
+              1490,
+              550
+            ],
+            "move": 20,
+            "sight": 0,
+            "light": 0,
+            "sound": 0,
+            "door": 0,
+            "ds": 0,
+            "dir": 0,
+            "flags": {
+              "tokyo-ghoul-unofficial": {
+                "name": "Platform edge — use the stairs"
+              }
+            },
+            "_id": "4e6002a36d8cbd12"
+          }
+        ],
+        "lights": [
+          {
+            "x": 205,
+            "y": 315,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 34,
+              "bright": 16,
+              "color": "#88d2de",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "196c9acf4394cc05"
+          },
+          {
+            "x": 595,
+            "y": 315,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 34,
+              "bright": 16,
+              "color": "#88d2de",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "c987a5bd0a4d026e"
+          },
+          {
+            "x": 965,
+            "y": 315,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 34,
+              "bright": 16,
+              "color": "#88d2de",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "f01824fd4a3a1dc4"
+          },
+          {
+            "x": 1340,
+            "y": 315,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 34,
+              "bright": 16,
+              "color": "#88d2de",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "d231a18f5f93038c"
+          },
+          {
+            "x": 1265,
+            "y": 700,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 24,
+              "bright": 12,
+              "color": "#e3c994",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "5b91b89984391dca"
+          },
+          {
+            "x": 770,
+            "y": 905,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 35,
+              "bright": 18,
+              "color": "#b7c9cf",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "865697847d7d6e43"
+          },
+          {
+            "x": 1090,
+            "y": 735,
+            "walls": true,
+            "hidden": false,
+            "config": {
+              "dim": 30,
+              "bright": 12,
+              "color": "#9bbac7",
+              "alpha": 0.2,
+              "luminosity": 0.4,
+              "attenuation": 0.5,
+              "angle": 360
+            },
+            "_id": "a6cab2dd7d3d3238"
+          }
+        ]
+      }
+    ],
+    "folders": [
+      {
+        "_id": "874df816581951ac",
+        "name": "Last Delivery • Playable Characters",
+        "type": "Actor",
+        "folder": null,
+        "sorting": "m",
+        "color": "#762b40"
+      },
+      {
+        "_id": "e1134adae5cab728",
+        "name": "Last Delivery • NPCs",
+        "type": "Actor",
+        "folder": null,
+        "sorting": "m",
+        "color": "#762b40"
+      },
+      {
+        "_id": "a774041979abf6c5",
+        "name": "Last Delivery • Arsenal and Evidence",
+        "type": "Item",
+        "folder": null,
+        "sorting": "m",
+        "color": "#762b40"
+      },
+      {
+        "_id": "27988307f9195bd6",
+        "name": "Last Delivery • GM Guide",
+        "type": "JournalEntry",
+        "folder": null,
+        "sorting": "m",
+        "color": "#762b40"
+      },
+      {
+        "_id": "68d1415520b75731",
+        "name": "Last Delivery • Handouts",
+        "type": "JournalEntry",
+        "folder": null,
+        "sorting": "m",
+        "color": "#762b40"
+      },
+      {
+        "_id": "4236f423189c1e86",
+        "name": "Last Delivery • Scenes",
+        "type": "Scene",
+        "folder": null,
+        "sorting": "m",
+        "color": "#762b40"
+      }
+    ],
+    "combats": [],
+    "tables": [],
+    "macros": [],
+    "cards": [],
+    "playlists": [],
+    "flags": {
+      "tokyo-ghoul-unofficial": {
+        "adventure": "last-delivery",
+        "contentVersion": 2
+      }
+    }
+  }
+]

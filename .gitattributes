@@ -1,0 +1,2 @@
+# Native LevelDB files, including CURRENT, must retain their exact bytes.
+packs/** -text
