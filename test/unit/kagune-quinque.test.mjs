@@ -45,3 +45,11 @@ test("Quinque interpose block succeeds, damages RC Bonds, and halves vitality da
     blockSucceeded: true
   });
 });
+import { resolveQuinqueRegeneration } from "../../src/rules/kagune-quinque.mjs";
+
+test("completely broken regenerating Quinque remains broken for one turn and restores on the second",()=>{
+  const first=resolveQuinqueRegeneration({currentRcBonds:0,maxRcBonds:30,end:12});
+  assert.deepEqual(first,{value:0,brokenTurns:1});
+  assert.deepEqual(resolveQuinqueRegeneration({currentRcBonds:first.value,maxRcBonds:30,end:12,brokenTurns:first.brokenTurns}),{value:30,brokenTurns:0});
+  assert.deepEqual(resolveQuinqueRegeneration({currentRcBonds:15,maxRcBonds:30,end:12,brokenTurns:1}),{value:27,brokenTurns:0});
+});

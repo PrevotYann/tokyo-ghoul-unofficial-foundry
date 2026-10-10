@@ -145,6 +145,9 @@ Expected:
 - Can use Kagune and Quinque attacks with correct RCL source.
 
 ## Regression notes
+
+`npm run test:combat` runs four distinct builds in the disposable `tg-qa` v14 world. It covers turn completion, combat-scoped first-turn reactions, bonuses and penalties, successful/failed defenses, native critical dice, the chat Counter button, ranges/Overextend/Massive, All-Out, Rage costs and allocations, Hunger thresholds, Breather, healing wound reconciliation, regeneration, all grenades, timed effects, Gimmick upkeep/cooldowns, Grab/Throw, RC Bonds, Sidearm refill, Kakuja mastery/control cleanup and Raid defeat rewards. Fixtures are removed even after failures; the transcript is saved in `artifacts/qa/four-actor-combat.json`.
+
 Every bug fix must add a test or a QA checklist item. If a rule cannot be automated, add a manual acceptance scenario.
 
 `test/ui/window-icons.test.mjs` reproduces Foundry v14's layered Font Awesome loading and checks UUID, Close, menu, expand, regular and duotone icons, normal text labels, and the native resize grip. Set `TG_FOUNDRY_PUBLIC` to a local v14 `public/` directory to run outside the developer's default installation. It uses installed Foundry assets without copying them into the repository.

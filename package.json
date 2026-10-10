@@ -1,6 +1,6 @@
 {
   "name": "tokyo-ghoul-unofficial-foundry",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,6 +14,7 @@
     "test:adventure": "node test/foundry/adventure.mjs",
     "build:translations": "node scripts/generate-babele.mjs",
     "test:foundry": "node test/foundry/runtime.mjs",
+    "test:combat": "node test/foundry/four-actor-combat.mjs",
     "test:ui": "node --test test/ui/*.test.mjs",
     "release:package": "node scripts/package-release.mjs"
   },

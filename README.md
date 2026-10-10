@@ -32,11 +32,13 @@ Node 24/npm; runtime JavaScript has no external dependencies. Run npm ci, npm te
 
 For live tests, create a separate disposable world with id tg-qa, an unpassworded Gamemaster and this system installed. Run a valid local Foundry v14 server on port 30014, install Chromium with npx playwright install chromium, then run npm run test:foundry. Override the URL with TG_QA_URL. The suite refuses other world IDs, creates/deletes [TG QA] fixtures, and creates a test player. Screenshots/results go to ignored artifacts/.
 
+Run `npm run test:combat` for reproducible four-character fights and recovery checks using real Foundry documents. The suite creates an Ukaku shooter, Koukaku bruiser, Investigator medic and Quinx hybrid, exercises Squad/Raid combat and equipment variants, and removes its fixtures. Deterministic native dice include natural 1/20 cases. Results and resource snapshots are saved to `artifacts/qa/four-actor-combat.json`; see [combat audit](docs/qa/four-actor-combat.md) for coverage and remaining GM decisions.
+
 Live checks cover document/sheet creation, pack loading, builder submission, effects, combat, conditions, healing, Edge drops, two clients, duplicate resolution and narrow-sheet overflow. Palette checks verify AA normal-text and control/focus contrast; they are not a complete accessibility certification.
 
 ## Release
 
-Run npm run release:package to create the installable archive and manifests in artifacts/release/. Pushing a v* tag runs validation, builds packs and publishes assets through GitHub Actions. Packages exclude the developer PDF, tests, dependencies and database lock/log files.
+Run npm run release:package to create the installable archive and manifests in artifacts/release/. Pushing a v* tag or a system.json version bump to main runs validation, builds packs and publishes assets through GitHub Actions. Already published versions are skipped. Packages exclude the developer PDF, tests, dependencies and database lock/log files.
 
 ## Attribution and limitations
 

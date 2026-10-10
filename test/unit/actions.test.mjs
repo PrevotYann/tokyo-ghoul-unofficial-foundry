@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { planManeuver, modifyAttack, distanceToRangeBand, counterDamage } from "../../src/rules/actions.mjs";
+import { planManeuver, modifyAttack, distanceToRangeBand, counterDamage, getThrowDistance } from "../../src/rules/actions.mjs";
 import { reserveReaction } from "../../src/rules/combat-workflow.mjs";
 
 test("both squad maneuvers can be reserved without counting the first twice", () => {
@@ -27,4 +27,9 @@ test("range boundaries and counter rounding match the PDF", () => {
   assert.deepEqual([5,15,30,45,46].map(distanceToRangeBand), ["melee","close","mid","long","far"]);
   assert.equal(counterDamage(11, 0.5), 5);
   assert.equal(counterDamage(11, 1.5), 17);
+});
+
+test("throw distance includes the weapon RCL without requiring Prehensile",()=>{
+  assert.equal(getThrowDistance({str:11}),5);
+  assert.equal(getThrowDistance({str:22,weaponRcl:10}),16);
 });

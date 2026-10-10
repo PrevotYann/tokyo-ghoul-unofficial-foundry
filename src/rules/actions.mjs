@@ -40,3 +40,7 @@ export function distanceToRangeBand(distance) {
 export function counterDamage(damage, multiplier) {
   return multiplier > 1 ? Math.ceil(damage * multiplier) : Math.floor(damage * multiplier);
 }
+
+export function getThrowDistance({ str = 0, weaponRcl = 0 } = {}) {
+  return Math.max(0, Math.floor((str + weaponRcl) / 2));
+}

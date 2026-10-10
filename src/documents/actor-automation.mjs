@@ -1,11 +1,11 @@
 import { SYSTEM_ID } from "../config.mjs";
 import { buildAttackSummary, getManeuverBudgetForMode, validateAttackRange } from "../rules/combat-workflow.mjs";
-import { planManeuver, modifyAttack, distanceToRangeBand, counterDamage } from "../rules/actions.mjs";
+import { planManeuver, modifyAttack, distanceToRangeBand, counterDamage, getThrowDistance } from "../rules/actions.mjs";
 import { hasEdge } from "../rules/edges.mjs";
-import { resolveRegeneration } from "../rules/conditions.mjs";
+import { resolveRegeneration, resolveHealing } from "../rules/conditions.mjs";
 import { getCrossedResourceThresholds, calculateHungerTargetNumber, calculateRageTargetNumber, resolveHungerFailure, resolveRageFailure, restoreMealScore } from "../rules/hunger-rage.mjs";
 import { getKakujaEligibility, getKakujaSelections, getKakujaStatBonus, getKakujaArmorTypeEffect, calculateKakujaUpkeep, advanceKakujaMastery, calculateKakujaArmorParasiticDamage, calculateKakujaArmorDamageReduction } from "../rules/kakuja.mjs";
-import { getTypeAdvantageBonus, getAntiGhoulQuinqueBonus } from "../rules/kagune-quinque.mjs";
+import { getTypeAdvantageBonus, getAntiGhoulQuinqueBonus, resolveQuinqueRegeneration } from "../rules/kagune-quinque.mjs";
 import { calculateGimmickStaminaCost } from "../rules/gimmicks.mjs";
 import { calculateMedkitUse, getGrenadeProfile } from "../rules/consumables.mjs";
 import { rollD20Check, getMessageRolls } from "../rules/rolls.mjs";
@@ -14,18 +14,21 @@ import { promptFields, escapeHTML } from "../sheets/roll-dialogs.mjs";
 
 export const actorAutomation = Base => class extends Base {
   get inCombat() { return !!game.combat?.started && game.combat.combatants.some(c => c.actor?.uuid === this.uuid); }
-  get turnState() { return this.getFlag(SYSTEM_ID, "turn") ?? {}; }
+  get turnState() {
+    const state=this.getFlag(SYSTEM_ID,"turn")??{};
+    return this.inCombat && state.combatUuid!==game.combat.uuid ? {} : state;
+  }
   notify(key) { ui.notifications.warn(game.i18n.localize(key)); return null; }
   async log(key, data = {}, result = null) {
     return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), rolls: getMessageRolls(result), content: `<section class="tg-system tg-chat-card"><p>${escapeHTML(game.i18n.format(key, {actor:this.name,...data}))}</p></section>` });
   }
 
-  async beginTurn() {
+  async beginTurn({combatUuid=this.inCombat?game.combat.uuid:null}={}) {
     const armor = this.getActiveKakujaArmor();
     const max = getManeuverBudgetForMode(this.system.combat.mode) + (armor?.system.armorType === "speed" ? 1 : 0);
     await this.update({ "system.resources.maneuverBudget.value": max, "system.resources.maneuverBudget.max": max,
       "system.resources.maneuverBudget.reactionsReserved": 0, "system.combat.counterDeclared": false,
-      [`flags.${SYSTEM_ID}.turn`]: { acted: true, breather: false, locked: false } });
+      [`flags.${SYSTEM_ID}.turn`]: { acted: true, breather: false, locked: false, sequence:(this.turnState.sequence??0)+1,combatUuid } });
     for (const gimmick of this.items.filter(i => i.type === "gimmick" && i.system.active)) {
       const cost = calculateGimmickStaminaCost({mode: gimmick.system.gimmickType === "utility" ? "tripleMaxEndSpd" : "maxEndSpd", end: this.getStat("end"), spd: this.getStat("spd"), free: this.getActiveQuinque()?.system.kakuja.freeGimmick});
       await this.spendStamina(cost, { quiet: true });
@@ -37,12 +40,16 @@ export const actorAutomation = Base => class extends Base {
     await this.processStartTurnConditions({quiet:false});
   }
 
-  async spendManeuver(action, { free = false, weapon = this.getDefaultAttackItem() } = {}) {
+  async spendManeuver(action, { free = false, weapon = this.getDefaultAttackItem(), chargeRage = true } = {}) {
+    if (this.inCombat && game.user.isActiveGM) await game.combat.turnProcessing;
     if (!this.isOwner) return this.notify("TG.notifications.noPermission");
     if (this.system.resources.vitality.value <= 0) return this.notify("TG.notifications.incapacitated");
     if (this.system.kakuja.lostControl && !game.user.isGM) return this.notify("TG.notifications.lostControl");
     if ((this.system.combat.grapple.grappledBy || this.items.some(i=>i.type==="condition"&&i.system.conditionId==="grappled")) && !["breather","breakGrapple"].includes(action)) return this.notify("TG.notifications.grappleRestricted");
-    if (free) return {allowed:true, stamina:0,staminaPaid:0};
+    if (free) {
+      if (chargeRage && action !== "breather" && this.system.resources.rage.active) await this.spendStamina(this.getEdgeModifiers().autoFailCrl ? 1 : 2, {quiet:true});
+      return {allowed:true, stamina:0,staminaPaid:0};
+    }
     if (this.inCombat && game.combat.combatant?.actor?.uuid !== this.uuid) return this.notify("TG.notifications.notYourTurn");
     const plan = planManeuver({ action, remaining:this.inCombat?this.system.resources.maneuverBudget.value:3, breather:this.inCombat&&this.turnState.breather, counter:this.inCombat&&this.system.combat.counterDeclared,
       grappling:this.inCombat&&this.turnState.locked, grappled:!!this.system.combat.grapple.grappledBy || this.items.some(i=>i.type==="condition"&&i.system.conditionId==="grappled"), edges:this.getEdgeNames(weapon),
@@ -104,7 +111,7 @@ export const actorAutomation = Base => class extends Base {
     if (!rangeValidation.valid) return this.notify(rangeValidation.message);
     if (options.preview) return {attack:await this.buildAttack(source,options),targets,rangeValidation};
     const action = options.action ?? "strike";
-    const maneuverSpend=await this.spendManeuver(action,{free:options.free,weapon:source});
+    const maneuverSpend=await this.spendManeuver(action,{free:options.free,weapon:source,chargeRage:!options.allOut});
     if (!maneuverSpend) return null;
     const attack = await this.buildAttack(source, options);
     if (source?.type === "kagune" && this.system.identity.class === "quinx" && this.getActiveKakujaArmor()) attack.staminaCost *= 2;
@@ -221,8 +228,8 @@ export const actorAutomation = Base => class extends Base {
       if (damage) await this.applyDamage(damage,{quiet:false,bypassArmor:true});
     }
     for (const weapon of this.items.filter(i=>i.type==="quinque"&&hasEdge(i.system.edges,"high-speed-regeneration"))) {
-      const brokenTurns=(weapon.getFlag(SYSTEM_ID,"brokenTurns")??0)+(weapon.system.rcBonds.broken?1:0);
-      await weapon.update({"system.rcBonds.value":brokenTurns>=2?weapon.system.rcBonds.max:Math.min(weapon.system.rcBonds.max,weapon.system.rcBonds.value+this.getStat("end")),[`flags.${SYSTEM_ID}.brokenTurns`]:brokenTurns>=2?0:brokenTurns});
+      const repair=resolveQuinqueRegeneration({currentRcBonds:weapon.system.rcBonds.value,maxRcBonds:weapon.system.rcBonds.max,end:this.getStat("end"),brokenTurns:weapon.getFlag(SYSTEM_ID,"brokenTurns")??0});
+      await weapon.update({"system.rcBonds.value":repair.value,"system.rcBonds.repairDaysRemaining":0,[`flags.${SYSTEM_ID}.brokenTurns`]:repair.brokenTurns});
     }
     const actors = new Set([this,...game.actors,...(game.combat?.combatants.map(c=>c.actor).filter(Boolean)??[])]);
     for (const actor of actors) for (const condition of actor.items.filter(i=>i.type==="condition"&&Number.isFinite(i.system.effect.remainingTurns))) {
@@ -247,7 +254,7 @@ export const actorAutomation = Base => class extends Base {
     const selected=remembered??selectedStat;
     const bonus=choices.find(c=>c.key===selected || (c.entries.length===1&&c.entries[0].stat===selected));
     if (!bonus || !await this.spendManeuver("enhance")) return;
-    await this.update({"system.kakuja.active":true,"system.kakuja.stage":stage,"system.kakuja.selectedBonus":bonus.key,[`flags.${SYSTEM_ID}.kakujaChoice.${stage}`]:bonus.key});
+    await this.update({"system.kakuja.active":true,"system.kakuja.stage":stage,"system.kakuja.lostControl":false,"system.kakuja.masterySuccesses":0,"system.kakuja.selectedBonus":bonus.key,[`flags.${SYSTEM_ID}.kakujaChoice.${stage}`]:bonus.key});
     return bonus;
   }
 
@@ -296,7 +303,7 @@ export const actorAutomation = Base => class extends Base {
       return this.takeBreather();
     }
     if (action==="reserveReaction") return this.reserveReactionManeuver();
-    if (["grab","breakGrapple","throw"].includes(action)) return this.grappleAction(action);
+    if (["grab","breakGrapple","throw"].includes(action)) return this.grappleAction(action,options);
     if (action==="enhance") return this.toggleGimmick();
     if (action==="ready") {
       const data=await promptFields("TG.actions.ready",[{name:"trigger",label:"TG.sheet.trigger",type:"text",value:""}]);
@@ -308,19 +315,31 @@ export const actorAutomation = Base => class extends Base {
     await this.log(action==="move"?"TG.chat.move":"TG.chat.maneuver",{action:game.i18n.localize(`TG.actions.${action}`)});
   }
 
-  async grappleAction(action) {
+  async grappleAction(action,options={}) {
     // Opposed rolls and cross-owner writes are GM-mediated; never roll on another client's behalf.
     if (!game.user.isGM) return this.notify("TG.notifications.gmGrapple");
-    const target=action==="breakGrapple" ? await fromUuid(this.system.combat.grapple.grappledBy) : Array.from(game.user.targets)[0]?.actor;
-    if (!target) return;
+    const target=action==="breakGrapple" ? await fromUuid(this.system.combat.grapple.grappledBy) : options.target ?? Array.from(game.user.targets)[0]?.actor;
+    if (!target || target.uuid===this.uuid) return;
+    if (action==="grab") {
+      const weapon=this.getDefaultAttackItem();
+      let band=options.targetRangeBand??this.system.combat.rangeBand;
+      const ownToken=this.getActiveTokens()[0], targetToken=target.getActiveTokens()[0];
+      if (ownToken && targetToken && canvas.grid?.measurePath) band=distanceToRangeBand(canvas.grid.measurePath([ownToken.center,targetToken.center]).distance)??band;
+      const rangeItem=hasEdge(this.getEdgeNames(weapon),"prehensile")?weapon:null;
+      const range=validateAttackRange({item:rangeItem,targetRangeBand:band});
+      if (!range.valid) return this.notify(range.message);
+    }
     if (action==="throw") {
       if (target.system.combat.grapple.grappledBy!==this.uuid) return;
-      const distance=Math.floor((this.getStat("str")+(hasEdge(this.getEdgeNames(this.getDefaultAttackItem()),"prehensile")?this.getDefaultAttackItem()?.system.rcl??0:0))/2);
+      const weapon=this.system.combat.grapple.weaponUuid ? await fromUuid(this.system.combat.grapple.weaponUuid) : this.getDefaultAttackItem();
+      const distance=getThrowDistance({str:this.getStat("str"),weaponRcl:weapon?.system.rcl??0});
       const data=await promptFields("TG.actions.throw",[{name:"travelled",label:"TG.sheet.throwDistance",value:distance,min:0,max:distance}]);
       if (!data) return;
       const free = !!this.turnState.locked;
       if (!await this.spendManeuver(action,{free})) return;
-      if (free) await this.spendStamina(this.getStat("str")*2);
+      const armor=this.getActiveKakujaArmor();
+      const quinxKagune=!!armor && this.system.identity.class==="quinx" && weapon?.type==="kagune";
+      if (free && (armor?.system.armorType!=="attack" || quinxKagune)) await this.spendStamina(this.getStat("str")*2*(quinxKagune?2:1));
       await target.applyDamage(Math.max(0,distance-Number(data.travelled)));
       await target.update({"system.combat.grapple.grappledBy":null});
       await target.deleteEmbeddedDocuments("Item",target.items.filter(i=>i.type==="condition"&&i.system.conditionId==="grappled").map(i=>i.id));
@@ -337,7 +356,7 @@ export const actorAutomation = Base => class extends Base {
       await target.update({"system.combat.grapple.isGrappling":false});
     } else {
       await target.update({"system.combat.grapple.grappledBy":this.uuid});
-      await this.update({"system.combat.grapple.isGrappling":true,[`flags.${SYSTEM_ID}.turn.locked`]:true});
+      await this.update({"system.combat.grapple.isGrappling":true,"system.combat.grapple.weaponUuid":this.getDefaultAttackItem()?.uuid??null,[`flags.${SYSTEM_ID}.turn.locked`]:true});
       await target.applyCondition("grappled");
     }
   }
@@ -357,9 +376,10 @@ export const actorAutomation = Base => class extends Base {
       }
       if (!await this.spendManeuver("medkit")) return;
       const result=calculateMedkitUse({per:this.getStat("per"),targetEnd:target.getStat("end")});
-      await target.update({"system.resources.vitality.value":clampResource(target.system.resources.vitality.value+result.healing,0,target.getVitalityMax())});
+      const healing=resolveHealing({vitality:target.system.resources.vitality.value,maxVitality:target.getVitalityMax(),amount:result.healing,injury:target.getFlag(SYSTEM_ID,"injury")??{}});
+      await target.update({"system.resources.vitality.value":healing.vitality,[`flags.${SYSTEM_ID}.injury`]:healing.injury});
       await target.deleteEmbeddedDocuments("Item",target.items.filter(i=>i.type==="condition"&&result.removes.includes(i.system.conditionId)).map(i=>i.id));
-      await this.log("TG.chat.healing",{target:target.name,amount:result.healing});
+      await this.log("TG.chat.healing",{target:target.name,amount:healing.healing});
     } else {
       const profile=getGrenadeProfile(type,{acc:this.getStat("acc")});
       if (!profile || !targets.length) return this.notify("TG.notifications.oneTarget");

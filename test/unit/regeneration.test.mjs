@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {resolveRegeneration} from "../../src/rules/conditions.mjs";
+import {resolveRegeneration,resolveHealing} from "../../src/rules/conditions.mjs";
 import {getKakujaSelections,getKakujaStatBonus} from "../../src/rules/kakuja.mjs";
 import {calculateBuilderRcl} from "../../src/rules/character-builder.mjs";
 
@@ -21,4 +21,18 @@ test("Chimera Kakuja selections draw one split bonus from each Kagune",()=>{
 });
 test("Healer uses two starting slots when calculating unused-slot RCL",()=>{
   assert.equal(calculateBuilderRcl({baseRcl:10,maxEdges:3,chosenEdges:["Healer"]}),12);
+});
+
+test("medkit healing removes RC wounds first and caps recovery at missing Vitality",()=>{
+  assert.deepEqual(resolveHealing({vitality:30,maxVitality:50,amount:9,injury:{normalDamage:8,rcDamage:12}}),{
+    healing:9,vitality:39,injury:{normalDamage:8,rcDamage:3}
+  });
+  assert.deepEqual(resolveHealing({vitality:30,maxVitality:50,amount:26,injury:{normalDamage:8,rcDamage:12}}),{
+    healing:20,vitality:50,injury:{normalDamage:0,rcDamage:0}
+  });
+});
+
+test("healing reconciles stale and legacy wound pools without leaving phantom regeneration",()=>{
+  assert.deepEqual(resolveHealing({vitality:48,maxVitality:50,amount:2,injury:{normalDamage:20,rcDamage:20}}).injury,{normalDamage:0,rcDamage:0});
+  assert.deepEqual(resolveHealing({vitality:40,maxVitality:50,amount:4,injury:{amount:10,rc:true}}).injury,{normalDamage:0,rcDamage:6});
 });

@@ -251,6 +251,9 @@ export class TokyoGhoulActor extends actorAutomation(Actor) {
   }
 
   async reserveReactionManeuver() {
+    if (this.inCombat && game.user.isActiveGM) await game.combat.turnProcessing;
+    if (!this.isOwner) return this.notify("TG.notifications.noPermission");
+    if (this.system.resources.vitality.value <= 0) return this.notify("TG.notifications.incapacitated");
     if (this.inCombat && game.combat.combatant?.actor?.uuid !== this.uuid) return this.notify("TG.notifications.notYourTurn");
     if (this.system.combat.counterDeclared || this.system.combat.grapple.grappledBy) return this.notify("TG.notifications.stanceLocked");
     const budget = this.system.resources.maneuverBudget;
@@ -273,14 +276,18 @@ export class TokyoGhoulActor extends actorAutomation(Actor) {
     await this.update({
       "system.resources.maneuverBudget.reactionsReserved": result.reactionsReserved
     });
+    if (this.system.resources.rage.active) await this.spendStamina(this.getEdgeModifiers().autoFailCrl ? 1 : 2, {quiet:true});
     return result;
   }
 
 
 
   async deactivateKakuja() {
+    if (this.system.kakuja.lostControl && this.system.resources.vitality.value > 0 && !game.user.isGM) return this.notify("TG.notifications.lostControl");
     const update = {
       "system.kakuja.active": false,
+      "system.kakuja.lostControl": false,
+      "system.kakuja.masterySuccesses": 0,
       "system.kakuja.selectedBonus": null
     };
 
@@ -296,7 +303,6 @@ export class TokyoGhoulActor extends actorAutomation(Actor) {
     const currentRcl = Number(kagune?.system?.rcl ?? this.system?.rcl?.ghoul?.value ?? 0);
     const reward = calculateConsumptionReward({
       actorClass: this.system?.identity?.class,
-      kaguneType: sourceItem?.type === "kagune" ? sourceItem.system.primaryType : this.items.find(i => i.type === "kagune")?.system.primaryType,
       currentStatPoints: this.system?.progression?.statPoints,
       currentRcl,
       targetHighestRcl,

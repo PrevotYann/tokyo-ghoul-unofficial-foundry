@@ -2,28 +2,55 @@ name: Publish Foundry system
 on:
   push:
     tags: ["v*"]
+    branches: ["main"]
+    paths: ["system.json", ".github/workflows/release.yml"]
 permissions:
   contents: write
+concurrency:
+  group: release-${{ github.sha }}
+  cancel-in-progress: false
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - name: Select unpublished version
+        id: version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag=$(node --input-type=module -e 'import fs from "node:fs"; console.log("v"+JSON.parse(fs.readFileSync("system.json")).version);')
+          if [[ "$GITHUB_REF" == refs/tags/* && "$GITHUB_REF_NAME" != "$tag" ]]; then
+            echo "Tag does not match system version" >&2
+            exit 1
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/setup-node@v6
+        if: steps.version.outputs.publish == 'true'
         with:
           node-version: "24"
           cache: npm
       - run: npm ci
+        if: steps.version.outputs.publish == 'true'
       - name: Verify tag and rules
+        if: steps.version.outputs.publish == 'true'
         run: |
-          node --input-type=module -e 'import fs from "node:fs"; if (process.env.GITHUB_REF_NAME !== "v"+JSON.parse(fs.readFileSync("system.json")).version) process.exit(1);'
           npm test
           npm run test:ui
           npm run test:packs
       - run: npm run build:packs
+        if: steps.version.outputs.publish == 'true'
       - run: npm run release:package
+        if: steps.version.outputs.publish == 'true'
       - name: Publish release assets
+        if: steps.version.outputs.publish == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
         run: |
-          gh release create "$GITHUB_REF_NAME" artifacts/release/tokyo-ghoul-unofficial.zip artifacts/release/system.json artifacts/release/manifest.json --verify-tag --title "Tokyo Ghoul: Unofficial TTRPG $GITHUB_REF_NAME" --notes-file "docs/qa/release-${GITHUB_REF_NAME#v}.md"
+          gh release create "$RELEASE_TAG" artifacts/release/tokyo-ghoul-unofficial.zip artifacts/release/system.json artifacts/release/manifest.json --target "$GITHUB_SHA" --title "Tokyo Ghoul: Unofficial TTRPG $RELEASE_TAG" --notes-file "docs/qa/release-${RELEASE_TAG#v}.md"

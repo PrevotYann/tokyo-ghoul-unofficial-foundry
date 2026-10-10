@@ -12,6 +12,7 @@ async function actorFromUuid(uuid) {
 }
 
 export async function resolveDefenseRequest(request, user) {
+  if (game.user.isActiveGM) await game.combat?.turnProcessing;
   const message = game.messages.get(request.messageId);
   const flags = message?.flags?.[SYSTEM_ID];
   if (!flags?.attack || !flags.rangeValidation?.valid) return;
@@ -23,7 +24,7 @@ export async function resolveDefenseRequest(request, user) {
   const action = request.action;
   if (!["takeHit", "dodge", "block", "interpose"].includes(action)) return;
   const automatic = flags.automatic || !!defender.system.combat.grapple.grappledBy || defender.items.some(i=>i.type==="condition"&&i.system.conditionId==="grappled");
-  if (action !== "takeHit" && !defender.system.combat.counterDeclared && (automatic || (defender.inCombat && (!defender.turnState.acted || defender.system.resources.maneuverBudget.reactionsReserved < 1)))) {
+  if (action !== "takeHit" && (automatic || defender.system.resources.vitality.value <= 0 || (!defender.system.combat.counterDeclared && defender.inCombat && (!defender.turnState.acted || defender.system.resources.maneuverBudget.reactionsReserved < 1)))) {
     ui.notifications.warn(game.i18n.localize("TG.notifications.noReservedReaction")); return;
   }
   const weapon = defender.getActiveQuinque();
@@ -31,7 +32,8 @@ export async function resolveDefenseRequest(request, user) {
   const grenade = flags.attack.grenade;
   if (action === "interpose" && grenade) return;
   let resolution, defenseRoll = null;
-  if (defender.system.combat.counterDeclared && !grenade) {
+  const vitalityBefore = defender.system.resources.vitality.value;
+  if (defender.system.combat.counterDeclared && !grenade && !automatic) {
     resolution = {success:true,vitalityDamage:0,staminaDamage:0,counter:{damageMultiplier:1,automatic:true}};
   } else if (action === "interpose") {
     const result = resolveQuinqueInterposeBlock({currentRcBonds:weapon.system.rcBonds.value,incomingDamage:flags.attack.damage});
@@ -45,18 +47,18 @@ export async function resolveDefenseRequest(request, user) {
     const typeBonus=getTypeAdvantageBonus({attackerSource:source?.type,attackerType:source?.system.primaryType,defenderType:flags.attack.primaryType,naturalPredator:edges.naturalPredator});
     const antiGhoul=getAntiGhoulQuinqueBonus({attackerClass:defender.system.identity.class,defenderClass:attacker?.system.identity.class,source:source?.type});
     const defenseGimmick=defender.items.find(i=>i.type==="gimmick"&&i.system.active&&i.system.gimmickType==="defense");
-    const turnIndex=game.combat ? game.combat.round*10000+game.combat.turn : 0;
-    const lastUse=defenseGimmick?.getFlag(SYSTEM_ID,"lastDefenseRound")??-2;
-    if (action !== "takeHit") {
-      if (defenseGimmick && (game.combat?.round??0)-lastUse>=2) {
-        defenseRoll={total:flags.roll.total+1,formula:game.i18n.localize("TG.chat.defenseGimmick")};
-        await defenseGimmick.setFlag(SYSTEM_ID,"lastDefenseRound",game.combat?.round??0);
-      } else defenseRoll=await rollD20Check({actor:defender,stat,bonus:(action==="dodge"?edges.dodgeBonus:edges.blockBonus)+typeBonus+antiGhoul, penalty:grenade ? attacker?.getStat("acc") ?? 0 : 0});
-    }
+    const lastUse=defenseGimmick?.getFlag(SYSTEM_ID,"lastDefenseUse");
+    const clock={combatUuid:game.combat?.uuid??null,turn:defender.turnState.sequence??0};
     let attackTotal=flags.roll.total;
     if (grenade) {
       attackTotal=action==="block"?grenade.blockTargetNumber:grenade.dodgeTargetNumber;
       if ((action==="block" && (grenade.blockRestriction==="cannotBlock" || defender.getDefaultAttackItem()?.system.primaryType!=="koukaku")) || attackTotal===null) attackTotal=Number.MAX_SAFE_INTEGER;
+    }
+    if (action !== "takeHit") {
+      if (defenseGimmick && attackTotal!==Number.MAX_SAFE_INTEGER && (!lastUse || lastUse.combatUuid!==clock.combatUuid || clock.turn-lastUse.turn>=2)) {
+        defenseRoll={total:attackTotal+1,formula:game.i18n.localize("TG.chat.defenseGimmick")};
+        await defenseGimmick.setFlag(SYSTEM_ID,"lastDefenseUse",clock);
+      } else defenseRoll=await rollD20Check({actor:defender,stat,bonus:(action==="dodge"?edges.dodgeBonus:edges.blockBonus)+typeBonus+antiGhoul, penalty:grenade ? attacker?.getStat("acc") ?? 0 : 0});
     }
     resolution=resolveDefense({defense:action,defenseTotal:defenseRoll?.total??0,attackTotal,damage:flags.attack.damage,harshConsequences:game.settings.get(SYSTEM_ID,"harshDefenses")});
     if (grenade) resolution.counter={damageMultiplier:0};
@@ -73,7 +75,7 @@ export async function resolveDefenseRequest(request, user) {
     await defender.deactivateKakuja();
   }
   const counter = resolution.counter.damageMultiplier > 0 && !flags.counterAttack && game.settings.get(SYSTEM_ID,"counterRewards");
-  const raidFollowUp = defender.system.resources.vitality.value===0 && flags.attack.modeRules?.grantsDefeatFollowUpAttack;
+  const raidFollowUp = vitalityBefore>0 && defender.system.resources.vitality.value===0 && flags.attack.modeRules?.grantsDefeatFollowUpAttack;
   const content=await foundry.applications.handlebars.renderTemplate("systems/tokyo-ghoul-unofficial/templates/chat/defense-card.hbs",{defender,action,defenseRoll,resolution,canCounter:counter,raidFollowUp});
   await ChatMessage.create({speaker:ChatMessage.getSpeaker({actor:defender}),content,rolls:getMessageRolls(defenseRoll),flags:{[SYSTEM_ID]:{defenderActorUuid:defender.uuid,attackerActorUuid:flags.attackerActorUuid,defense:{action,defenseRoll,resolution},canCounter:counter,raidFollowUp}}});
   return resolution;

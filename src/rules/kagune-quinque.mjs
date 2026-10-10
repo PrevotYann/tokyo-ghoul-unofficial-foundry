@@ -43,3 +43,13 @@ export function resolveQuinqueInterposeBlock({ currentRcBonds = 0, incomingDamag
     blockSucceeded: true
   };
 }
+
+export function resolveQuinqueRegeneration({ currentRcBonds = 0, maxRcBonds = 0, end = 0, brokenTurns = 0 } = {}) {
+  const max = Math.max(0, numberOrZero(maxRcBonds));
+  const current = Math.min(max, Math.max(0, numberOrZero(currentRcBonds)));
+  if (current === 0 && max > 0) {
+    const turns = numberOrZero(brokenTurns) + 1;
+    return {value: turns >= 2 ? max : 0, brokenTurns: turns >= 2 ? 0 : turns};
+  }
+  return {value: Math.min(max, current + Math.max(0, numberOrZero(end))), brokenTurns: 0};
+}

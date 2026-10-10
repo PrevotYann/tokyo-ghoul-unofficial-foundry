@@ -18,6 +18,19 @@ export function resolveRegeneration({ injury = {}, type = "normal", end = 0, crl
   return {healing:rcHealing+normalHealing,injury:{rcDamage:rcDamage-rcHealing,normalDamage:normalDamage-normalHealing}};
 }
 
+// Healing treats RC wounds first. Reconcile legacy/stale pools against actual missing VIT.
+export function resolveHealing({ vitality = 0, maxVitality = 0, amount = 0, injury = {} } = {}) {
+  const missing = Math.max(0, numberOrZero(maxVitality) - numberOrZero(vitality));
+  const healing = Math.min(missing, Math.max(0, numberOrZero(amount)));
+  const rcDamage = Math.min(missing, Math.max(0, numberOrZero(injury.rcDamage ?? (injury.rc ? injury.amount : 0))));
+  const normalDamage = Math.min(missing - rcDamage, Math.max(0, numberOrZero(injury.normalDamage ?? (injury.rc ? 0 : injury.amount))));
+  const rcHealing = Math.min(rcDamage, healing);
+  return {healing, vitality: numberOrZero(vitality) + healing, injury: {
+    rcDamage: rcDamage - rcHealing,
+    normalDamage: Math.max(0, normalDamage - (healing - rcHealing))
+  }};
+}
+
 export function removeBleedingStacksByRegeneration(stacks = 0, regenerationType = "normal") {
   const removal = regenerationType === "highSpeed" ? 2 : regenerationType === "normal" ? 1 : 0;
   return Math.max(0, numberOrZero(stacks) - removal);
