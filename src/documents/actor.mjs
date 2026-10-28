@@ -3,7 +3,7 @@ import { progressionDialog } from "./progression-workflows.mjs";
 import { calculateDerivedResources } from "../rules/derived-stats.mjs";
 import { buildAttackSummary, consumeReaction, reserveReaction, validateAttackRange } from "../rules/combat-workflow.mjs";
 import { resolveConditionStartTurn } from "../rules/conditions.mjs";
-import { clampResource } from "../rules/damage.mjs";
+import { clampResource, getVitalityTransition } from "../rules/damage.mjs";
 import { calculateEdgeCombatModifiers, collectEdgeNames, normalizeEdgeName } from "../rules/edges.mjs";
 import { buildGimmickActivationSummary } from "../rules/gimmicks.mjs";
 import { calculateHungerTargetNumber, calculateRageTargetNumber } from "../rules/hunger-rage.mjs";
@@ -11,6 +11,8 @@ import { calculateKakujaUpkeep, getKakujaBonusOptions } from "../rules/kakuja.mj
 import { calculateConsumptionReward, calculateQuinqueGimmickAddition, calculateQuinqueUpgrade } from "../rules/progression.mjs";
 import { rollD20Check, getMessageRolls } from "../rules/rolls.mjs";
 import { validateCharacterSystemData } from "../rules/validation.mjs";
+import { escapeHTML } from "../sheets/roll-dialogs.mjs";
+import { logCardHTML, rollTone } from "../ui/sheet-view.mjs";
 
 export class TokyoGhoulActor extends actorAutomation(Actor) {
   progressionDialog(action) { return progressionDialog(this, action); }
@@ -23,6 +25,37 @@ export class TokyoGhoulActor extends actorAutomation(Actor) {
     super.prepareDerivedData();
     this.system.validation = validateCharacterSystemData(this.system, Array.from(this.items ?? []));
     this.edgeModifiers = this.getEdgeModifiers();
+  }
+
+  async _preUpdate(changes, options, user) {
+    const allowed = await super._preUpdate(changes, options, user);
+    if (allowed === false) return false;
+    if (foundry.utils.hasProperty(changes, "system.resources.vitality.value")) options.tgPreviousVitality = this.system.resources.vitality.value;
+  }
+
+  _onUpdate(changed, options, userId) {
+    super._onUpdate(changed, options, userId);
+    if (userId !== game.user.id || options.tgPreviousVitality === undefined) return;
+    this.#onVitalityChanged(options.tgPreviousVitality).catch(error => console.error("tokyo-ghoul-unofficial | Vitality transition failed", error));
+  }
+
+  /** Mark incapacitation at 0 Vitality and prompt the GM at a configured yield threshold. */
+  async #onVitalityChanged(previous) {
+    const transition = getVitalityTransition({ previous, current: this.system.resources.vitality.value, yieldAt: this.system.combat.yieldAt });
+    if (transition.downed || transition.revived) {
+      const down = transition.downed;
+      if (this.statuses.has("unconscious") !== down && CONFIG.statusEffects.some(effect => effect.id === "unconscious")) await this.toggleStatusEffect("unconscious", { active: down, overlay: down });
+      for (const combatant of game.combat?.combatants.filter(c => c.actor?.uuid === this.uuid && c.isOwner) ?? []) await combatant.update({ defeated: down });
+      await this.log(down ? "TG.chat.incapacitated" : "TG.chat.revived");
+    }
+    if (transition.yields) {
+      const gms = game.users.filter(user => user.isGM).map(user => user.id);
+      await ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        whisper: gms,
+        content: `<section class="tg-system tg-chat-card tg-card-alert"><header class="tg-card-head"><h3>${escapeHTML(game.i18n.localize("TG.chat.yieldTitle"))}</h3></header><p>${escapeHTML(game.i18n.format("TG.chat.yieldPrompt", { actor: this.name, value: this.system.resources.vitality.value }))}</p></section>`
+      });
+    }
   }
 
   getStat(key) {
@@ -110,7 +143,11 @@ export class TokyoGhoulActor extends actorAutomation(Actor) {
       total: result.total,
       natural: result.natural,
       extra: result.extra,
-      success: result.success
+      success: result.success,
+      targetNumber: result.targetNumber,
+      tone: rollTone(result.natural),
+      img: this.img,
+      actorName: this.name
     });
 
     await ChatMessage.create({
@@ -169,7 +206,7 @@ export class TokyoGhoulActor extends actorAutomation(Actor) {
     if (!options.quiet) {
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
-        content: game.i18n.format("TG.chat.takeBreather", { actor: this.name, amount: recovery })
+        content: logCardHTML(game.i18n.format("TG.chat.takeBreather", { actor: this.name, amount: recovery }), "fa-lungs")
       });
     }
     return recovery;
@@ -205,7 +242,7 @@ export class TokyoGhoulActor extends actorAutomation(Actor) {
     if (!options.quiet && results.length) {
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
-        content: game.i18n.format("TG.chat.conditionTurn", { actor: this.name, count: results.length }),
+        content: logCardHTML(game.i18n.format("TG.chat.conditionTurn", { actor: this.name, count: results.length }), "fa-triangle-exclamation", "alert"),
         rolls,
         flags: { "tokyo-ghoul-unofficial": { conditionTurn: results.map(({ item, ...result }) => ({ itemId: item.id, ...result })) } }
       });
@@ -238,12 +275,12 @@ export class TokyoGhoulActor extends actorAutomation(Actor) {
     if (!options.quiet) {
       await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
-        content: game.i18n.format("TG.chat.gimmickToggle", {
+        content: logCardHTML(game.i18n.format("TG.chat.gimmickToggle", {
           actor: this.name,
           gimmick: item.name,
           state: game.i18n.localize(summary.active ? "TG.states.active" : "TG.states.inactive"),
           cost: summary.staminaCost
-        })
+        }), "fa-gears")
       });
     }
 

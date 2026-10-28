@@ -89,10 +89,18 @@ export const sceneLayouts = {
   }
 };
 
+// Stable keys for GM-controlled locks; wall names are translated by Babele.
+export const lockedDoorKeys = { "Clinic side service door": "serviceDoor", "Captive enclosure gate": "captiveGate" };
+
 export function buildSceneLayout(key, makeId) {
   const layout = sceneLayouts[key];
+  const keyed = entry => {
+    const doorKey = lockedDoorKeys[entry.flags["tokyo-ghoul-unofficial"].name];
+    if (doorKey) entry.flags["tokyo-ghoul-unofficial"].key = doorKey;
+    return entry;
+  };
   return {
-    walls: layout.walls.map((entry, i) => ({ ...structuredClone(entry), _id: makeId(`wall:${key}:${i}`) })),
+    walls: layout.walls.map((entry, i) => ({ ...keyed(structuredClone(entry)), _id: makeId(`wall:${key}:${i}`) })),
     lights: layout.lights.map((entry, i) => ({ ...structuredClone(entry), _id: makeId(`light:${key}:${i}`) }))
   };
 }

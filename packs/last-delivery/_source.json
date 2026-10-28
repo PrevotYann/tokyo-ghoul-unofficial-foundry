@@ -4,7 +4,7 @@
     "name": "The Last Delivery",
     "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/sazanami-alley.png",
     "caption": "An original Tokyo Ghoul one-shot for 4–6 players.",
-    "description": "<p>A stolen delivery exposes a ghoul broker's human trafficking route. Six original pregens, three illustrated scenes, a full GM guide, private character dossiers, evidence handouts, NPCs and equipment. Import all content, then read 00 • GM Start Here. Story content is English.</p>",
+    "description": "<p>A stolen delivery exposes a ghoul broker's human trafficking route. Six original pregens, three illustrated scenes, a full GM guide, private character dossiers, evidence handouts, NPCs and equipment. Includes a GM control panel macro for party size, story pressure, locks, NPC recruitment, wound carry-over and encounters. Import all content, then read 00 • GM Start Here. French text is provided by the tokyo-ghoul-unofficial-fr module.</p>",
     "actors": [
       {
         "name": "Aya Teshima",
@@ -93,6 +93,9 @@
             "backstory": "<p>You contacted Yui before reporting the case. Bring her home alive.</p>",
             "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
           },
+          "combat": {
+            "yieldAt": null
+          },
           "automation": {
             "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
           }
@@ -175,7 +178,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "aya"
           }
         },
         "ownership": {
@@ -294,6 +298,9 @@
             "backstory": "<p>You ignored a suspicious tag on your last delivery. Tell the truth before someone else pays.</p>",
             "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
           },
+          "combat": {
+            "yieldAt": null
+          },
           "automation": {
             "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
           }
@@ -321,7 +328,8 @@
               "evolution": {
                 "spentRcl": 0,
                 "statPurchases": [],
-                "swappedEdges": []
+                "swappedEdges": [],
+                "bikakuPenalty": "crl"
               },
               "automation": "full",
               "description": "<p>Courier and local guide's original bikaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
@@ -339,7 +347,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "ren"
           }
         },
         "ownership": {
@@ -458,6 +467,9 @@
             "backstory": "<p>Kurose knows where your younger ward lives. Protect them without betraying Emi.</p>",
             "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
           },
+          "combat": {
+            "yieldAt": null
+          },
           "automation": {
             "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
           }
@@ -485,7 +497,8 @@
               "evolution": {
                 "spentRcl": 0,
                 "statPurchases": [],
-                "swappedEdges": []
+                "swappedEdges": [],
+                "bikakuPenalty": "crl"
               },
               "automation": "full",
               "description": "<p>Protector and repairer's original koukaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
@@ -503,7 +516,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "mio"
           }
         },
         "ownership": {
@@ -622,6 +636,9 @@
             "backstory": "<p>Your supervisor wants a simple arrest. Secure evidence that can survive an honest report.</p>",
             "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
           },
+          "combat": {
+            "yieldAt": null
+          },
           "automation": {
             "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
           }
@@ -704,7 +721,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "daichi"
           }
         },
         "ownership": {
@@ -823,6 +841,9 @@
             "backstory": "<p>You fear losing control will discredit the truce. Ask for help before that happens.</p>",
             "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
           },
+          "combat": {
+            "yieldAt": null
+          },
           "automation": {
             "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
           }
@@ -850,7 +871,8 @@
               "evolution": {
                 "spentRcl": 0,
                 "statPurchases": [],
-                "swappedEdges": []
+                "swappedEdges": [],
+                "bikakuPenalty": "crl"
               },
               "automation": "full",
               "description": "<p>Liaison and flexible rescue support's original rinkaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
@@ -938,7 +960,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "nao"
           }
         },
         "ownership": {
@@ -1057,6 +1080,9 @@
             "backstory": "<p>A reporter already has one blurred photo. Rescue the subjects before deciding what to publish.</p>",
             "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
           },
+          "combat": {
+            "yieldAt": null
+          },
           "automation": {
             "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
           }
@@ -1084,7 +1110,8 @@
               "evolution": {
                 "spentRcl": 0,
                 "statPurchases": [],
-                "swappedEdges": []
+                "swappedEdges": [],
+                "bikakuPenalty": "crl"
               },
               "automation": "full",
               "description": "<p>Scout and photographer's original ukaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
@@ -1102,7 +1129,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "sora"
           }
         },
         "ownership": {
@@ -1221,6 +1249,9 @@
             "backstory": "<p>Knows the clinic address and will give it freely.</p>",
             "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
           },
+          "combat": {
+            "yieldAt": null
+          },
           "automation": {
             "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
           }
@@ -1232,7 +1263,9 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "emi",
+            "noncombatant": true
           }
         },
         "ownership": {
@@ -1351,6 +1384,9 @@
             "backstory": "<p>Copied the clinic ledger. Can identify Kurose and open the station cage.</p>",
             "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
           },
+          "combat": {
+            "yieldAt": null
+          },
           "automation": {
             "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
           }
@@ -1362,7 +1398,9 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "yui",
+            "noncombatant": true
           }
         },
         "ownership": {
@@ -1481,6 +1519,9 @@
             "backstory": "<p>Can walk with an escort; carries no weapon.</p>",
             "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
           },
+          "combat": {
+            "yieldAt": null
+          },
           "automation": {
             "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
           }
@@ -1492,7 +1533,9 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "patient",
+            "noncombatant": true
           }
         },
         "ownership": {
@@ -1611,6 +1654,9 @@
             "backstory": "<p>Yields at half Vitality or accepts credible evacuation protection.</p>",
             "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
           },
+          "combat": {
+            "yieldAt": 46
+          },
           "automation": {
             "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
           }
@@ -1638,7 +1684,8 @@
               "evolution": {
                 "spentRcl": 0,
                 "statPurchases": [],
-                "swappedEdges": []
+                "swappedEdges": [],
+                "bikakuPenalty": "crl"
               },
               "automation": "manual",
               "description": "",
@@ -1656,7 +1703,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "guard"
           }
         },
         "ownership": {
@@ -1775,6 +1823,9 @@
             "backstory": "<p>She knows the south service route and can be recruited.</p>",
             "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
           },
+          "combat": {
+            "yieldAt": 41
+          },
           "automation": {
             "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
           }
@@ -1802,7 +1853,8 @@
               "evolution": {
                 "spentRcl": 0,
                 "statPurchases": [],
-                "swappedEdges": []
+                "swappedEdges": [],
+                "bikakuPenalty": "crl"
               },
               "automation": "manual",
               "description": "",
@@ -1820,7 +1872,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "lookout"
           }
         },
         "ownership": {
@@ -1939,6 +1992,9 @@
             "backstory": "<p>A murderer hiding behind falsified mortuary records. Bargains when exposed; yields at 24 Vitality if escape is blocked.</p>",
             "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
           },
+          "combat": {
+            "yieldAt": 24
+          },
           "automation": {
             "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
           }
@@ -1966,7 +2022,8 @@
               "evolution": {
                 "spentRcl": 0,
                 "statPurchases": [],
-                "swappedEdges": []
+                "swappedEdges": [],
+                "bikakuPenalty": "crl"
               },
               "automation": "manual",
               "description": "",
@@ -1984,7 +2041,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "boss"
           }
         },
         "ownership": {
@@ -1996,6 +2054,141 @@
           "actorLink": false,
           "texture": {
             "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/boss.svg"
+          },
+          "width": 1,
+          "height": 1,
+          "disposition": 0,
+          "displayName": 30,
+          "displayBars": 30,
+          "bar1": {
+            "attribute": "resources.vitality"
+          },
+          "bar2": {
+            "attribute": "resources.stamina"
+          },
+          "sight": {
+            "enabled": false,
+            "range": 0,
+            "angle": 360,
+            "visionMode": "basic"
+          }
+        }
+      },
+      {
+        "name": "Kaito Fuse • Collateral",
+        "type": "npc",
+        "system": {
+          "identity": {
+            "class": "ghoul",
+            "faction": "ghoul",
+            "rankGhoul": "C",
+            "rankInvestigator": "rank3",
+            "alias": "",
+            "age": null,
+            "pronouns": "",
+            "notes": ""
+          },
+          "stats": {
+            "str": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "acc": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "per": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "end": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "spd": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            },
+            "crl": {
+              "base": 10,
+              "temp": 0,
+              "edge": 0,
+              "kakuja": 0,
+              "total": 10
+            }
+          },
+          "resources": {
+            "vitality": {
+              "value": 60,
+              "max": 60,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "stamina": {
+              "value": 60,
+              "max": 60,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            },
+            "mealScore": {
+              "value": 15,
+              "max": 15,
+              "min": 0,
+              "temp": 0,
+              "tempMaxPenalty": 0
+            }
+          },
+          "biography": {
+            "appearance": "<p>Chika's fifteen-year-old brother; noncombatant</p>",
+            "personality": "<p>Trusts his sister and nobody else.</p>",
+            "backstory": "<p>Locked in the cab of Kurose's van at the station. Freeing him ends Kurose's hold over Chika.</p>",
+            "goals": "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>"
+          },
+          "combat": {
+            "yieldAt": null
+          },
+          "automation": {
+            "ruleNotes": "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>"
+          }
+        },
+        "items": [],
+        "_id": "2512613989b984c9",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/kaito.svg",
+        "folder": "e1134adae5cab728",
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 3,
+            "key": "kaito",
+            "noncombatant": true
+          }
+        },
+        "ownership": {
+          "default": 0
+        },
+        "effects": [],
+        "prototypeToken": {
+          "name": "Kaito Fuse • Collateral",
+          "actorLink": false,
+          "texture": {
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/kaito.svg"
           },
           "width": 1,
           "height": 1,
@@ -2065,7 +2258,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "folder": "a774041979abf6c5",
@@ -2095,7 +2288,8 @@
           "evolution": {
             "spentRcl": 0,
             "statPurchases": [],
-            "swappedEdges": []
+            "swappedEdges": [],
+            "bikakuPenalty": "crl"
           },
           "automation": "full",
           "description": "<p>Courier and local guide's original bikaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
@@ -2107,7 +2301,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "folder": "a774041979abf6c5",
@@ -2137,7 +2331,8 @@
           "evolution": {
             "spentRcl": 0,
             "statPurchases": [],
-            "swappedEdges": []
+            "swappedEdges": [],
+            "bikakuPenalty": "crl"
           },
           "automation": "full",
           "description": "<p>Protector and repairer's original koukaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
@@ -2149,7 +2344,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "folder": "a774041979abf6c5",
@@ -2204,7 +2399,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "folder": "a774041979abf6c5",
@@ -2234,7 +2429,8 @@
           "evolution": {
             "spentRcl": 0,
             "statPurchases": [],
-            "swappedEdges": []
+            "swappedEdges": [],
+            "bikakuPenalty": "crl"
           },
           "automation": "full",
           "description": "<p>Liaison and flexible rescue support's original rinkaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
@@ -2246,7 +2442,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "folder": "a774041979abf6c5",
@@ -2301,7 +2497,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "folder": "a774041979abf6c5",
@@ -2331,7 +2527,8 @@
           "evolution": {
             "spentRcl": 0,
             "statPurchases": [],
-            "swappedEdges": []
+            "swappedEdges": [],
+            "bikakuPenalty": "crl"
           },
           "automation": "full",
           "description": "<p>Scout and photographer's original ukaku kagune. No optional Edges; unused starting slots convert to RCL through the character builder.</p>",
@@ -2343,7 +2540,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "folder": "a774041979abf6c5",
@@ -2373,7 +2570,8 @@
           "evolution": {
             "spentRcl": 0,
             "statPurchases": [],
-            "swappedEdges": []
+            "swappedEdges": [],
+            "bikakuPenalty": "crl"
           },
           "automation": "manual",
           "description": "",
@@ -2385,7 +2583,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "folder": "a774041979abf6c5",
@@ -2415,7 +2613,8 @@
           "evolution": {
             "spentRcl": 0,
             "statPurchases": [],
-            "swappedEdges": []
+            "swappedEdges": [],
+            "bikakuPenalty": "crl"
           },
           "automation": "manual",
           "description": "",
@@ -2427,7 +2626,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "folder": "a774041979abf6c5",
@@ -2457,7 +2656,8 @@
           "evolution": {
             "spentRcl": 0,
             "statPurchases": [],
-            "swappedEdges": []
+            "swappedEdges": [],
+            "bikakuPenalty": "crl"
           },
           "automation": "manual",
           "description": "",
@@ -2469,7 +2669,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "folder": "a774041979abf6c5",
@@ -2491,7 +2691,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "ownership": {
@@ -2512,7 +2712,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "ownership": {
@@ -2533,7 +2733,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "ownership": {
@@ -2554,7 +2754,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "ownership": {
@@ -2586,7 +2786,7 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3
           }
         },
         "ownership": {
@@ -2606,7 +2806,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "start"
           }
         },
         "pages": [
@@ -2620,7 +2821,7 @@
             },
             "text": {
               "format": 1,
-              "content": "<article class=\"tg-system tg-adventure\"><h1>The Last Delivery</h1><p><strong>4–6 players · 4–5 hours · original unofficial Tokyo Ghoul scenario.</strong> Rain buries a small Tokyo neighborhood while a stolen mortuary van carries the only evidence that a ghoul food broker has started killing living people. A frightened courier has asked investigators and local ghouls to meet at the same coffee shop. Neither side knows the other is coming.</p><h2>Import and prepare</h2><ol><li>Open the Last Delivery Adventure compendium, open this adventure, and select Import All. Use a new world for an isolated run. Reimporting updates these scenes and overwrites imported adventure state; preserve ongoing play first.</li><li>Read @UUID[JournalEntry.ed896e8ae2396796]{01 • GM Truth and Cast}, then @UUID[JournalEntry.f1cc4fb026b06c1d]{03 • Rain at Sazanami}, @UUID[JournalEntry.0638daf13a1d24da]{04 • Aobane Clinic}, and @UUID[JournalEntry.f5e37f92aa4b0417]{05 • Shigure Last Freight}. Each scene has its matching journal and clickable GM pins.</li><li>Assign four core characters: @UUID[Actor.b3fc16e43dfb0cf4]{Aya Teshima}, @UUID[Actor.dcbf3bc4e6e3f452]{Ren Kisaragi}, @UUID[Actor.e265cdcde8fcd05d]{Mio Naruse}, @UUID[Actor.6f1d242fa0b3469f]{Daichi Ueno}. For five add @UUID[Actor.d9d1cabae5a178c8]{Nao Fushimi}; for six add @UUID[Actor.603f09339dce02cc]{Sora Amemiya}. Assign each actor to one player as Owner. Show that character's dossier privately.</li><li>All six PC tokens are preplaced at the southern entrance of each scene and linked to their actors. Aya, Ren, Mio and Daichi start visible; Nao and Sora start hidden. Reveal Nao for five players and Sora for six on each scene, or remove unused tokens. NPCs are preplaced; reinforcement tokens start hidden.</li><li>Activate 01 • Rain at Sazanami. Share @UUID[JournalEntry.decfd5e2a3742b63]{Handout • A Meeting in the Rain}. Keep all other journals GM-only until explicitly shared.</li></ol><p>Use Squad mode for all combat. The scenes are gridless with a 64-pixel measurement scale of 5 feet. Walls, working doors and gates, ambient lights, token vision and fog exploration are configured. Dim global illumination keeps outdoor routes usable while walls restrict line of sight. Standard doors can be opened and closed through their native controls; the clinic service door and captive gate start locked. The GM unlocks them when the key, code or story task succeeds. Platform-edge movement walls leave the stairs open; the GM can permit a climb by moving a token across the lip. Tactical ranges, attacks, defense, damage, regeneration and consumables use the system's existing workflows. Story clocks, NPC surrender, hazards, clue sharing and the nonlethal outcome require GM adjudication.</p><h2>Session rhythm</h2><p>Consent and introductions 15 minutes; alley and first decision 45 minutes; clinic 60 minutes; station 75 minutes; aftermath 20 minutes. Allow one Take a Breather between locations if the fiction permits. If running late, omit the clinic fight and give Yui's evidence through conversation.</p><p>Discuss body horror, hunger, coercion and institutional violence before play. Veil corpse handling and surgery as needed; civilian harm is never required to succeed. No canon characters appear. The CCG truce is a desperate, unofficial arrangement between individuals, not established institutional policy.</p><h2>Index</h2><p>@UUID[JournalEntry.ed896e8ae2396796]{01 • GM Truth and Cast} · @UUID[JournalEntry.6f265165d5891297]{02 • GM Encounters and Scaling} · @UUID[JournalEntry.f1cc4fb026b06c1d]{03 • Rain at Sazanami} · @UUID[JournalEntry.0638daf13a1d24da]{04 • Aobane Clinic} · @UUID[JournalEntry.f5e37f92aa4b0417]{05 • Shigure Last Freight} · @UUID[JournalEntry.4aa3af750aa11756]{06 • Dawn and Consequences} · @UUID[JournalEntry.decfd5e2a3742b63]{Handout • A Meeting in the Rain} · @UUID[JournalEntry.5e7fd050ce91fd02]{Handout • Mortuary Transfer AO-7} · @UUID[JournalEntry.1676ea2fa9c1325b]{Handout • Yui's Unsent Message} · @UUID[JournalEntry.ef018e084b248b7d]{Handout • The Duplicate Ledger} · @UUID[JournalEntry.73a9f6a8b5cbd561]{07 • Private Character Dossiers}</p></article>"
+              "content": "<article class=\"tg-system tg-adventure\"><h1>The Last Delivery</h1><p><strong>4–6 players · 4–5 hours · original unofficial Tokyo Ghoul scenario.</strong> Rain buries a small Tokyo neighborhood while a stolen mortuary van carries the only evidence that a ghoul food broker has started killing living people. A frightened courier has asked investigators and local ghouls to meet at the same coffee shop. Neither side knows the other is coming.</p><h2>Import and prepare</h2><ol><li>Open the Last Delivery Adventure compendium, open this adventure, and select Import All. Use a new world for an isolated run. Reimporting updates these scenes and overwrites imported adventure state; preserve ongoing play first.</li><li>Read @UUID[JournalEntry.ed896e8ae2396796]{01 • GM Truth and Cast}, then @UUID[JournalEntry.f1cc4fb026b06c1d]{03 • Rain at Sazanami}, @UUID[JournalEntry.0638daf13a1d24da]{04 • Aobane Clinic}, and @UUID[JournalEntry.f5e37f92aa4b0417]{05 • Shigure Last Freight}. Each scene has its matching journal and clickable GM pins.</li><li>Assign four core characters: @UUID[Actor.b3fc16e43dfb0cf4]{Aya Teshima}, @UUID[Actor.dcbf3bc4e6e3f452]{Ren Kisaragi}, @UUID[Actor.e265cdcde8fcd05d]{Mio Naruse}, @UUID[Actor.6f1d242fa0b3469f]{Daichi Ueno}. For five add @UUID[Actor.d9d1cabae5a178c8]{Nao Fushimi}; for six add @UUID[Actor.603f09339dce02cc]{Sora Amemiya}. Assign each actor to one player as Owner. Show that character's dossier privately.</li><li>All six PC tokens are preplaced at the southern entrance of each scene and linked to their actors. Aya, Ren, Mio and Daichi start visible; Nao and Sora start hidden. Reveal Nao for five players and Sora for six on each scene, or remove unused tokens. NPCs are preplaced; reinforcement tokens start hidden.</li><li>Activate 01 • Rain at Sazanami. Share @UUID[JournalEntry.decfd5e2a3742b63]{Handout • A Meeting in the Rain}. Keep all other journals GM-only until explicitly shared.</li><li>Drag the imported macro “Last Delivery • GM Control Panel” to your hotbar. It sets the party size, tracks story pressure, unlocks doors, recruits NPCs, carries NPC wounds between scenes and starts Squad encounters. Read @UUID[JournalEntry.70bf127255de0fd6]{08 • GM Control Panel and Quick Reference}.</li></ol><p>Use Squad mode for all combat. The scenes are gridless with a 64-pixel measurement scale of 5 feet. Walls, working doors and gates, ambient lights, token vision and fog exploration are configured. Dim global illumination keeps outdoor routes usable while walls restrict line of sight. Standard doors can be opened and closed through their native controls; the clinic service door and captive gate start locked. The GM unlocks them when the key, code or story task succeeds. Platform-edge movement walls leave the stairs open; the GM can permit a climb by moving a token across the lip. Tactical ranges, attacks, defense, damage, regeneration and consumables use the system's existing workflows. Story clocks, NPC surrender, hazards, clue sharing and the nonlethal outcome require GM adjudication.</p><h2>Session rhythm</h2><p>Consent and introductions 15 minutes; alley and first decision 45 minutes; clinic 60 minutes; station 75 minutes; aftermath 20 minutes. Allow one Take a Breather between locations if the fiction permits. If running late, omit the clinic fight and give Yui's evidence through conversation.</p><p>Discuss body horror, hunger, coercion and institutional violence before play. Veil corpse handling and surgery as needed; civilian harm is never required to succeed. No canon characters appear. The CCG truce is a desperate, unofficial arrangement between individuals, not established institutional policy.</p><h2>Index</h2><p>@UUID[JournalEntry.ed896e8ae2396796]{01 • GM Truth and Cast} · @UUID[JournalEntry.6f265165d5891297]{02 • GM Encounters and Scaling} · @UUID[JournalEntry.f1cc4fb026b06c1d]{03 • Rain at Sazanami} · @UUID[JournalEntry.0638daf13a1d24da]{04 • Aobane Clinic} · @UUID[JournalEntry.f5e37f92aa4b0417]{05 • Shigure Last Freight} · @UUID[JournalEntry.4aa3af750aa11756]{06 • Dawn and Consequences} · @UUID[JournalEntry.decfd5e2a3742b63]{Handout • A Meeting in the Rain} · @UUID[JournalEntry.5e7fd050ce91fd02]{Handout • Mortuary Transfer AO-7} · @UUID[JournalEntry.1676ea2fa9c1325b]{Handout • Yui's Unsent Message} · @UUID[JournalEntry.ef018e084b248b7d]{Handout • The Duplicate Ledger} · @UUID[JournalEntry.73a9f6a8b5cbd561]{07 • Private Character Dossiers} · @UUID[JournalEntry.70bf127255de0fd6]{08 • GM Control Panel and Quick Reference} · @UUID[JournalEntry.9475c6ffc7940eba]{09 • Interludes and Continuation} · @UUID[JournalEntry.ccb2392738ea43dd]{Handout • Chika's Photo}</p></article>"
             }
           }
         ]
@@ -2636,7 +2837,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "truth"
           }
         },
         "pages": [
@@ -2666,7 +2868,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "scaling"
           }
         },
         "pages": [
@@ -2696,7 +2899,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "alley"
           }
         },
         "pages": [
@@ -2726,7 +2930,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "clinic"
           }
         },
         "pages": [
@@ -2756,7 +2961,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "station"
           }
         },
         "pages": [
@@ -2770,7 +2976,7 @@
             },
             "text": {
               "format": 1,
-              "content": "<article class=\"tg-system tg-adventure\"><h1>Scene 3: people are not cargo</h1><p>@UUID[Scene.016a8d44020815ae]{Shigure Last Freight} · @UUID[Actor.1530b85c1ded8901]{Masato Kurose • Pallet} · @UUID[Actor.9990effb4cbad3b4]{Haru Watanabe • Captive}</p><blockquote>Two rails vanish into a dark tunnel. Work lights throw pale rectangles across the freight platform. A man in a spotless raincoat checks a paper ledger beside a delivery van. Behind the chained fence, two living people wait with luggage they did not pack.</blockquote><h2>Approaches</h2><p>The west entrance reaches the loading platform. The south service passage reaches the captives; Chika or Yui can point it out. The rail bed is accessible by stairs and has no moving trains. Let the group see Kurose, both patients and the van before initiative; do not spring a compulsory ambush.</p><h2>Three objectives</h2><ol><li><strong>Free the captives:</strong> open the cage with Yui's code, use the latch on the platform, or force it with STR 23. Failure bends the latch and allows a second attempt; do not damage patients. Escort them to the west or south exit.</li><li><strong>Secure the originals:</strong> the ledger rests on the loading desk, or in Kurose's coat at pressure 3. Obtain it by bargaining, distraction, theft with an appropriate stat check, or defeating its holder. A photo is enough to preserve evidence; confiscation is still preferable.</li><li><strong>Stop Kurose's departure:</strong> take his keys, block the van, or convince Chika to refuse driving. This requires physical access or a plausible negotiated concession, not an attack against a vehicle stat block.</li></ol><h2>Negotiation</h2><p>Kurose offers each ghoul a stable supply and each investigator an apparent easy arrest: sacrifice Yui as the only culprit. His threat is credible but his offer is false; the ledger names his victims. He will surrender the captives in exchange for passage if the party holds copies of the evidence. A persuasive CRL 23 check earns his silence long enough to complete an objective; clear leverage works without a roll. Do not force a check to honor a solid bargain.</p><h2>Combat</h2><p>Use @UUID[JournalEntry.6f265165d5891297]{02 • GM Encounters and Scaling}. Kurose manifests Red Ledger, grapples or strikes with normal maneuvers, and moves toward his van when the originals are lost. He has no Kakuja transformation, no extra boss action and no immunity to standard conditions. At 24 Vitality he offers surrender if escape is blocked; otherwise he flees. PCs may restrain a surrendered foe without rolling damage. The GM decides when defeat is nonlethal; the system's normal damage automation still applies.</p><h2>Readable terrain</h2><p>Platform crates obstruct lines only where artwork shows them. Moving between rail bed and platform uses the visible stairs or a GM-approved climb. The dark tunnel is an escape route, not a bottomless pit. Treat the van as stationary until the group has had at least three complete rounds or equivalent negotiation exchanges to intervene; announce each step toward departure. Do not kill patients on a timer.</p><h2>Aftermath</h2><p>Once the patients are safe, ask who receives the ledger, whether Yui is arrested, and what becomes of the ghoul dependents. Use @UUID[JournalEntry.4aa3af750aa11756]{06 • Dawn and Consequences}. Recovered @UUID[Item.56a5a2e57669416c]{Kurose's Original Ledger} and @UUID[Item.aa39bb9dac759635]{Shigure Service Keys} can be dragged onto sheets as evidence; neither grants combat bonuses.</p></article>"
+              "content": "<article class=\"tg-system tg-adventure\"><h1>Scene 3: people are not cargo</h1><p>@UUID[Scene.016a8d44020815ae]{Shigure Last Freight} · @UUID[Actor.1530b85c1ded8901]{Masato Kurose • Pallet} · @UUID[Actor.9990effb4cbad3b4]{Haru Watanabe • Captive}</p><blockquote>Two rails vanish into a dark tunnel. Work lights throw pale rectangles across the freight platform. A man in a spotless raincoat checks a paper ledger beside a delivery van. Behind the chained fence, two living people wait with luggage they did not pack.</blockquote><h2>Approaches</h2><p>The west entrance reaches the loading platform. The south service passage reaches the captives; Chika or Yui can point it out. The rail bed is accessible by stairs and has no moving trains. Let the group see Kurose, both patients and the van before initiative; do not spring a compulsory ambush.</p><h2>Three objectives</h2><ol><li><strong>Free the captives:</strong> open the cage with Yui's code, use the latch on the platform, or force it with STR 23. Failure bends the latch and allows a second attempt; do not damage patients. Escort them to the west or south exit.</li><li><strong>Secure the originals:</strong> the ledger rests on the loading desk, or in Kurose's coat at pressure 3. Obtain it by bargaining, distraction, theft with an appropriate stat check, or defeating its holder. A photo is enough to preserve evidence; confiscation is still preferable.</li><li><strong>Stop Kurose's departure:</strong> take his keys, block the van, or convince Chika to refuse driving. This requires physical access or a plausible negotiated concession, not an attack against a vehicle stat block. @UUID[Actor.2512613989b984c9]{Kaito Fuse • Collateral}, Chika's brother, is locked in the van's cab (hidden token); opening the cab with the service keys or a STR 18 check frees him and ends Kurose's hold over Chika.</li></ol><h2>Negotiation</h2><p>Kurose offers each ghoul a stable supply and each investigator an apparent easy arrest: sacrifice Yui as the only culprit. His threat is credible but his offer is false; the ledger names his victims. He will surrender the captives in exchange for passage if the party holds copies of the evidence. A persuasive CRL 23 check earns his silence long enough to complete an objective; clear leverage works without a roll. Do not force a check to honor a solid bargain.</p><h2>Combat</h2><p>Use @UUID[JournalEntry.6f265165d5891297]{02 • GM Encounters and Scaling}. Kurose manifests Red Ledger, grapples or strikes with normal maneuvers, and moves toward his van when the originals are lost. He has no Kakuja transformation, no extra boss action and no immunity to standard conditions. At 24 Vitality he offers surrender if escape is blocked; otherwise he flees. PCs may restrain a surrendered foe without rolling damage. The GM decides when defeat is nonlethal; the system's normal damage automation still applies.</p><h2>Readable terrain</h2><p>Platform crates obstruct lines only where artwork shows them. Moving between rail bed and platform uses the visible stairs or a GM-approved climb. The dark tunnel is an escape route, not a bottomless pit. Treat the van as stationary until the group has had at least three complete rounds or equivalent negotiation exchanges to intervene; announce each step toward departure. Do not kill patients on a timer.</p><h2>Aftermath</h2><p>Once the patients are safe, ask who receives the ledger, whether Yui is arrested, and what becomes of the ghoul dependents. Use @UUID[JournalEntry.4aa3af750aa11756]{06 • Dawn and Consequences}. Recovered @UUID[Item.56a5a2e57669416c]{Kurose's Original Ledger} and @UUID[Item.aa39bb9dac759635]{Shigure Service Keys} can be dragged onto sheets as evidence; neither grants combat bonuses.</p></article>"
             }
           }
         ]
@@ -2786,7 +2992,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "endings"
           }
         },
         "pages": [
@@ -2816,7 +3023,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "briefing"
           }
         },
         "pages": [
@@ -2846,7 +3054,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "manifest"
           }
         },
         "pages": [
@@ -2876,7 +3085,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "message"
           }
         },
         "pages": [
@@ -2906,7 +3116,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "ledger"
           }
         },
         "pages": [
@@ -2936,7 +3147,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "dossiers"
           }
         },
         "pages": [
@@ -2951,6 +3163,99 @@
             "text": {
               "format": 1,
               "content": "<article class=\"tg-system tg-adventure\"><h1>Share each section only with its player</h1><h2>Aya Teshima · investigator</h2><p>Yui was your neighbor before you joined the CCG. You believe evidence should survive the people who handle it. You carry Signal Nine, an ukaku quinque. Bond: Daichi taught you never to file a report you would not sign. Secret: you warned Yui before calling your superior; your career depends on finding her alive. Goal: rescue her and secure originals. Say: “Give me something I can prove.”</p><h2>Ren Kisaragi · ghoul courier</h2><p>You transport coffee by day and mortuary parcels at night. Your bikaku is Switchback. Bond: Mio once stitched your coat while refusing payment; Emi gave you work. Secret: your last delivery already contained a living victim, and you looked away from the suspicious tag. Goal: admit enough to help, and keep the dependents alive. Say: “There is a name behind every number.”</p><h2>Mio Naruse · ghoul repairer</h2><p>You repair vending machines and shelter people nobody notices. Your koukaku, Rain Shelter, resembles a folded dark canopy. Bond: Ren brings supplies; Aya once let you walk out of an interview. Secret: Kurose offered to feed your younger ward if you reveal Emi's clients. You refused, but he knows your address. Goal: protect captives and expose his leverage. Say: “Stand behind me until we know.”</p><h2>Daichi Ueno · investigator</h2><p>A cautious case officer with Bridgekeeper, a koukaku quinque. Bond: Aya is your junior and your responsibility. Secret: your supervisor wants an easy ghoul arrest, not a complicated supply investigation. Goal: get admissible evidence and bring everyone back. Say: “We can decide what to call this after they are safe.”</p><h2>Nao Fushimi · Quinx liaison (fifth player)</h2><p>You live with implanted ghoul biology while still eating human food; do not perform a full-ghoul starvation story. You carry the bikaku quinque Quiet Line and a rinkaku kagune named Suture. Bond: Daichi checks on you as a person rather than an experiment. Secret: you are afraid any loss of control will be used to end this truce. Goal: prove restraint and protect witnesses. Say: “Tell me what you need me to hold.”</p><h2>Sora Amemiya · ghoul night photographer (sixth player)</h2><p>You photograph wet streets because the city looks kinder without faces. Featherlight is your ukaku. Bond: Yui carried a roll of film that exposed a previous abduction. Secret: you have already sent one blurred image to a reporter, without naming the shop. Goal: save the subjects before choosing what to publish. Say: “A picture isn't the whole truth.”</p><p>All six are original characters. The core four provide two investigators and two ghouls. Add Nao, then Sora, for larger groups. Dossiers establish motives, never compulsory betrayal or PvP.</p></article>"
+            }
+          }
+        ]
+      },
+      {
+        "_id": "70bf127255de0fd6",
+        "name": "08 • GM Control Panel and Quick Reference",
+        "folder": "27988307f9195bd6",
+        "sort": 1200000,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 3,
+            "key": "gmtools"
+          }
+        },
+        "pages": [
+          {
+            "_id": "23ea1918244c857b",
+            "name": "08 • GM Control Panel and Quick Reference",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>Run the night at a glance</h1><p>Run the imported macro <strong>Last Delivery • GM Control Panel</strong> (GM only). Every button posts a private reminder to the GM in chat; nothing is shown to players.</p>\n<h2>Panel controls</h2><ul><li><strong>Party size 4 / 5 / 6:</strong> reveals or hides Nao and Sora on all three scenes and recalls the matching row of @UUID[JournalEntry.6f265165d5891297]{02 • GM Encounters and Scaling}.</li><li><strong>Story pressure:</strong> raises or lowers the track from 0 to 3 and reminds you of its consequence. At 2 the system reveals Chika's station token unless she was recruited or captured.</li><li><strong>Scenes:</strong> activates a scene. Moving to the clinic or station also copies Vitality and Stamina from each unlinked NPC token of the previous scene, so a wounded Riku or Chika stays wounded. Incapacitated carriers are hidden.</li><li><strong>Start Squad encounter:</strong> creates a combat from visible tokens with Vitality, skipping noncombatants (Emi, Yui, Haru, Kaito and anyone recruited or captured), rolls SPD initiative and starts round 1.</li><li><strong>Locks:</strong> toggle the clinic service door and the captive gate.</li><li><strong>NPCs:</strong> recruit (friendly disposition, removed from encounters) or capture (hidden from later scenes) Riku, Chika or Kurose. Recruiting Chika also makes Kaito friendly.</li><li><strong>Hidden tokens:</strong> reveal the reinforcements of the current scene that your party size allows.</li></ul>\n<h2>Automatic GM prompts</h2><p>Each enemy has a <em>yield threshold</em> (Settings tab of its sheet). When system damage drops it to that Vitality, the GM receives a private morale prompt: Riku at 46, Chika at 41 (her first wound), Kurose at 24. Any character reaching 0 Vitality is marked unconscious and defeated in the tracker; the GM still decides whether a foe is pacified, unconscious or killed.</p>\n<h2>Opposition</h2><table><thead><tr><th>NPC</th><th>Vitality / Stamina</th><th>Weapon</th><th>Typical attack</th></tr></thead><tbody><tr><td>@UUID[Actor.c9ed3f809b60fdf2]{Riku Inose • Clinic Enforcer}</td><td>93 / 60 · SPD 3</td><td>Iron Wake, koukaku RCL 16, close</td><td>Strike: PER 8, 28 damage, 1 Stamina; Block bonus END 17</td></tr><tr><td>@UUID[Actor.bb3383b578af98c0]{Chika Fuse • Freight Lookout}</td><td>42 / 58 · SPD 17</td><td>Feather Rain, ukaku RCL 16, close / long projectiles</td><td>Ranged Strike: PER 12, 30 damage, 1 Stamina; Dodge SPD 17</td></tr><tr><td>@UUID[Actor.1530b85c1ded8901]{Masato Kurose • Pallet}</td><td>96 / 84 · SPD 16</td><td>Red Ledger, rinkaku RCL 22, mid</td><td>Strike: PER 10, 36 damage, 1 Stamina; High-Speed Regeneration heals 12 from Kagune/Quinque wounds each turn</td></tr></tbody></table><p>These figures come from the system's ordinary formulas and update automatically on the sheets. Chika's ukaku drawback lowers her maximum Stamina by her SPD; Riku's koukaku costs 3 SPD; Kurose's rinkaku lowers maximum Vitality by his END but grants High-Speed Regeneration.</p>\n<h2>Scenario checks</h2><p>Ordinary pressured task: 18. Difficult task: 23. Clues never depend on a roll; checks buy speed, detail or safety.</p></article>"
+            }
+          }
+        ]
+      },
+      {
+        "_id": "9475c6ffc7940eba",
+        "name": "09 • Interludes and Continuation",
+        "folder": "27988307f9195bd6",
+        "sort": 1300000,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 3,
+            "key": "interlude"
+          }
+        },
+        "pages": [
+          {
+            "_id": "471bb589b6d71b6e",
+            "name": "09 • Interludes and Continuation",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>Between rain and glass</h1><p>Use these short beats between scenes. Each takes five to ten minutes, gives the players a breather and makes the truce personal. None of them requires a roll.</p>\n<h2>Interlude 1 · Emi's back seat (alley → clinic)</h2><blockquote>Emi drives with both hands on the wheel. The wipers count time. Somebody's phone lights up with a message nobody wants to read aloud.</blockquote><p>Ask one ghoul and one investigator to describe what they will refuse to do tonight, even if ordered. If Chika was talked down in the alley, she rides along in silence and finally shows @UUID[JournalEntry.ccb2392738ea43dd]{Handout • Chika's Photo}: her brother, Kaito, is the leverage that keeps her loyal. If Chika fled, Emi recognizes her and mentions the brother herself. Each character may Take a Breather.</p>\n<h2>Interlude 2 · The phone that keeps ringing (clinic → station)</h2><blockquote>Yui's cracked phone buzzes in an evidence bag. The caller ID reads M.K. It rings five times, stops, then rings again.</blockquote><p>If a character answers, Kurose speaks calmly: he offers money for the copies and says the trains wait for no one. He does not threaten Haru directly; he talks about inventory. Any player who stays on the line learns the van leaves from the west gate. Hanging up is also a choice. If pressure is already 2 or more, Kurose ends the call himself. Use the panel to raise pressure only if the group decides to delay.</p>\n<h2>Kaito Fuse</h2><p>@UUID[Actor.2512613989b984c9]{Kaito Fuse • Collateral} is fifteen, hungry, frightened and furious at being a bargaining chip. He sits in the cab of Kurose's van at the station. If he is freed before the fight ends, Chika stops attacking and covers the captives instead; record it with the panel's recruit button. Kaito never fights. If the van leaves with him inside, Chika follows it into the tunnel and the group may pursue her afterward.</p>\n<h2>After dawn: threads for a campaign</h2><ul><li><strong>The supplier:</strong> the ledger's signature list includes a municipal records clerk who still issues blank transfer forms. Investigators can pursue a paper trail; ghouls can warn the people it endangers.</li><li><strong>Emi's dependents:</strong> eleven ghouls relied on the route. Finding them a safe source without killing anyone is a long, morally hard campaign goal.</li><li><strong>Chika and Kaito:</strong> grateful, hunted and owed nothing by anyone. They can become informants, rivals or a family the party protects.</li><li><strong>Riku's household:</strong> evacuating them leaves the party with a ghoul who owes them his life and fears the CCG.</li><li><strong>An honest report:</strong> Daichi's supervisor buries the case unless someone pushes. Who pays the career cost?</li></ul><p>Continuation uses the normal progression rules: consumption rewards for ghouls and Quinx, Kakuhou upgrades for investigators and Quinx. The Kakuhou of a defeated Kurose (A-rank, rinkaku, RCL 22) can forge a 20-RCL Quinque, but only if the table decides that harvesting it fits the ending they chose.</p></article>"
+            }
+          }
+        ]
+      },
+      {
+        "_id": "ccb2392738ea43dd",
+        "name": "Handout • Chika's Photo",
+        "folder": "68d1415520b75731",
+        "sort": 1400000,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 3,
+            "key": "photo"
+          }
+        },
+        "pages": [
+          {
+            "_id": "5d268072abde5c41",
+            "name": "Handout • Chika's Photo",
+            "type": "text",
+            "title": {
+              "show": false,
+              "level": 1
+            },
+            "text": {
+              "format": 1,
+              "content": "<article class=\"tg-system tg-adventure\"><h1>A creased photo</h1><p>A teenage boy in an oversized school jacket squints at the camera from a rooftop. On the back, in careful handwriting: “Kaito — 15. Kurose says he's safe as long as I drive. Don't let me drive.”</p><p>The paper is soft from being folded and unfolded many times.</p></article>"
             }
           }
         ]
@@ -2998,7 +3303,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "alley"
           }
         },
         "tokens": [
@@ -3987,7 +4293,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "clinic"
           }
         },
         "tokens": [
@@ -4961,7 +5268,8 @@
         "flags": {
           "tokyo-ghoul-unofficial": {
             "adventure": "last-delivery",
-            "contentVersion": 2
+            "contentVersion": 3,
+            "key": "station"
           }
         },
         "tokens": [
@@ -5108,6 +5416,35 @@
             "actorId": "bb3383b578af98c0",
             "x": 1100,
             "y": 400,
+            "hidden": true
+          },
+          {
+            "name": "Kaito Fuse • Collateral",
+            "actorLink": false,
+            "texture": {
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/kaito.svg"
+            },
+            "width": 1,
+            "height": 1,
+            "disposition": 0,
+            "displayName": 30,
+            "displayBars": 30,
+            "bar1": {
+              "attribute": "resources.vitality"
+            },
+            "bar2": {
+              "attribute": "resources.stamina"
+            },
+            "sight": {
+              "enabled": false,
+              "range": 0,
+              "angle": 360,
+              "visionMode": "basic"
+            },
+            "_id": "12e760febcd862c4",
+            "actorId": "2512613989b984c9",
+            "x": 1300,
+            "y": 360,
             "hidden": true
           },
           {
@@ -5315,6 +5652,17 @@
             "x": 650,
             "y": 890,
             "text": "South service route",
+            "icon": "icons/svg/book.svg",
+            "iconSize": 32,
+            "global": false
+          },
+          {
+            "_id": "7d3eb0c3970bfffd",
+            "entryId": "f5e37f92aa4b0417",
+            "pageId": "47f65690bd46a090",
+            "x": 1380,
+            "y": 330,
+            "text": "Van cab",
             "icon": "icons/svg/book.svg",
             "iconSize": 32,
             "global": false
@@ -6015,13 +6363,33 @@
     ],
     "combats": [],
     "tables": [],
-    "macros": [],
+    "macros": [
+      {
+        "_id": "67dc4b8fbe240b07",
+        "name": "Last Delivery • GM Control Panel",
+        "type": "script",
+        "scope": "global",
+        "img": "icons/svg/clockwork.svg",
+        "folder": null,
+        "ownership": {
+          "default": 0
+        },
+        "flags": {
+          "tokyo-ghoul-unofficial": {
+            "adventure": "last-delivery",
+            "contentVersion": 3,
+            "key": "panel"
+          }
+        },
+        "command": "game.tokyoGhoul.adventures.lastDelivery.openPanel();"
+      }
+    ],
     "cards": [],
     "playlists": [],
     "flags": {
       "tokyo-ghoul-unofficial": {
         "adventure": "last-delivery",
-        "contentVersion": 2
+        "contentVersion": 3
       }
     }
   }

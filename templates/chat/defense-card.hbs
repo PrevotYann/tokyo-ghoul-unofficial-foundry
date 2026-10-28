@@ -1,25 +1,33 @@
-<section class="tg-system tg-chat-card">
-  <h3>{{localize 'TG.chat.defense'}}</h3>
-  <dl class="tg-chat-grid">
-    <dt>{{localize 'TG.chat.defender'}}</dt>
-    <dd>{{defender.name}}</dd>
-    <dt>{{localize 'TG.chat.defenseAction'}}</dt>
-    <dd>{{localize (concat "TG.actions." action)}}</dd>
-    {{#if defenseRoll}}
-      <dt>{{localize 'TG.chat.defenseRoll'}}</dt>
-      <dd>{{defenseRoll.formula}} = <strong>{{defenseRoll.total}}</strong></dd>
-    {{/if}}
-    <dt>{{localize 'TG.chat.result'}}</dt>
-    <dd>{{#if resolution.success}}{{localize 'TG.chat.success'}}{{else}}{{localize 'TG.chat.failure'}}{{/if}}</dd>
-    <dt>{{localize 'TG.resources.vitality.label'}}</dt>
-    <dd>-{{resolution.vitalityDamage}}</dd>
-    <dt>{{localize 'TG.resources.stamina.label'}}</dt>
-    <dd>-{{resolution.staminaDamage}}</dd>
-    {{#if resolution.counter.damageMultiplier}}
-      <dt>{{localize 'TG.chat.counter'}}</dt>
-      <dd>{{resolution.counter.damageMultiplier}}x</dd>
-    {{/if}}
-  </dl>
-  {{#if canCounter}}<div class="tg-action-row"><button type="button" data-tg-chat-action="counterAttack">{{localize 'TG.actions.counterAttack'}}</button></div>{{/if}}
-  {{#if raidFollowUp}}<div class="tg-action-row"><button type="button" data-tg-chat-action="raidFollowUp">{{localize 'TG.actions.raidFollowUp'}}</button></div>{{/if}}
+<section class="tg-system tg-chat-card tg-card-defense{{#if resolution.success}} is-success{{/if}}">
+  <header class="tg-card-head">
+    <img src="{{defender.img}}" alt="">
+    <div>
+      <h3>{{localize (concat "TG.actions." action)}}</h3>
+      <small>{{defender.name}}</small>
+    </div>
+  </header>
+  {{#if defenseRoll}}
+    <div class="tg-card-roll{{#if (eq defenseRoll.natural 20)}} is-critical{{else if (eq defenseRoll.natural 1)}} is-fumble{{/if}}">
+      <span class="tg-card-total">{{defenseRoll.total}}</span>
+      <div class="tg-card-formula">
+        <strong>{{localize "TG.chat.defenseRoll"}}</strong>
+        <span>{{defenseRoll.formula}}</span>
+        {{#if resolution.success}}<span class="tg-card-tag is-success">{{localize "TG.chat.success"}}</span>{{else}}<span class="tg-card-tag is-failure">{{localize "TG.chat.failure"}}</span>{{/if}}
+      </div>
+    </div>
+  {{else}}
+    <p>{{#if resolution.success}}<span class="tg-card-tag is-success">{{localize "TG.chat.success"}}</span>{{else}}<span class="tg-card-tag is-failure">{{localize "TG.chat.hitTaken"}}</span>{{/if}}</p>
+  {{/if}}
+  <div class="tg-card-stats">
+    <div class="tg-card-stat is-damage"><span>{{localize "TG.resources.vitality.label"}}</span><strong>−{{resolution.vitalityDamage}}</strong></div>
+    <div class="tg-card-stat is-stamina"><span>{{localize "TG.resources.stamina.label"}}</span><strong>−{{resolution.staminaDamage}}</strong></div>
+    {{#if resolution.rcBondDamage}}<div class="tg-card-stat"><span>{{localize "TG.resources.rcBonds.label"}}</span><strong>−{{resolution.rcBondDamage}}</strong></div>{{/if}}
+    {{#if resolution.counter.damageMultiplier}}<div class="tg-card-stat"><span>{{localize "TG.chat.counter"}}</span><strong>×{{resolution.counter.damageMultiplier}}</strong>{{#if resolution.counter.automatic}}<small>{{localize "TG.chat.automatic"}}</small>{{/if}}</div>{{/if}}
+  </div>
+  {{#if (or canCounter raidFollowUp)}}
+    <footer class="tg-card-actions">
+      {{#if canCounter}}<button type="button" data-tg-chat-action="counterAttack"><i class="fa-solid fa-reply" aria-hidden="true"></i>{{localize "TG.actions.counterAttack"}}</button>{{/if}}
+      {{#if raidFollowUp}}<button type="button" data-tg-chat-action="raidFollowUp"><i class="fa-solid fa-forward" aria-hidden="true"></i>{{localize "TG.actions.raidFollowUp"}}</button>{{/if}}
+    </footer>
+  {{/if}}
 </section>

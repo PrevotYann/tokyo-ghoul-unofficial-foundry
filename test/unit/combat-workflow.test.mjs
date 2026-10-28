@@ -91,3 +91,14 @@ test("squad initiative sorts by SPD, then ghoul before quinx before investigator
 
   assert.deepEqual([investigator, ghoul, quinx, fastInvestigator].sort(compareSquadInitiative), [fastInvestigator, ghoul, quinx, investigator]);
 });
+
+test("Raid damage and cost benefits apply to the players' side only", async () => {
+  const { getsRaidBenefits, getAttackCombatMode } = await import("../../src/rules/combat-workflow.mjs");
+  assert.equal(getsRaidBenefits({ actorType: "character", disposition: 1 }), true);
+  assert.equal(getsRaidBenefits({ actorType: "character", disposition: null }), true);
+  assert.equal(getsRaidBenefits({ actorType: "npc", disposition: 1 }), false);
+  assert.equal(getsRaidBenefits({ actorType: "character", disposition: -1 }), false);
+  assert.equal(getAttackCombatMode("raid", { actorType: "npc" }), "squad");
+  assert.equal(getAttackCombatMode("raid", { actorType: "character" }), "raid");
+  assert.equal(getAttackCombatMode("squad", { actorType: "character" }), "squad");
+});

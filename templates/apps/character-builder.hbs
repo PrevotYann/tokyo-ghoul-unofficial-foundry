@@ -1,53 +1,55 @@
-<div class="tg-system tg-form tg-builder-form" autocomplete="off">
-  <section class="tg-panel">
-    <h2>{{localize 'TG.builder.title'}}</h2>
-    <div class="tg-grid tg-grid-2">
-      <label>
-        <span>{{localize 'TG.sheet.name'}}</span>
-        <input name="name" type="text" value="{{localize 'TG.builder.defaultName'}}">
-      </label>
-      <label>
-        <span>{{localize 'TG.sheet.class'}}</span>
-        <select name="actorClass">
-          <option value="ghoul">{{localize 'TG.classes.ghoul'}}</option>
-          <option value="investigator">{{localize 'TG.classes.investigator'}}</option>
-          <option value="quinx">{{localize 'TG.classes.quinx'}}</option>
-        </select>
-      </label>
-      <label>
-        <span>{{localize 'TG.builder.statPreset'}}</span>
-        <select name="statPreset">
-          {{#each presets as |preset|}}
-            <option value="{{preset}}">{{localize (concat "TG.presets." preset)}}</option>
-          {{/each}}
-        </select>
-      </label>
-      <label>
-        <span>{{localize 'TG.builder.kaguneType'}}</span>
-        <select name="kaguneType">
-          <option value="ukaku">{{localize 'TG.kagune.ukaku'}}</option>
-          <option value="koukaku">{{localize 'TG.kagune.koukaku'}}</option>
-          <option value="rinkaku">{{localize 'TG.kagune.rinkaku'}}</option>
-          <option value="bikaku">{{localize 'TG.kagune.bikaku'}}</option>
-        </select>
-      </label>
-      <label>
-        <span>{{localize 'TG.builder.quinqueType'}}</span>
-        <select name="quinqueType">
-          <option value="ukaku">{{localize 'TG.kagune.ukaku'}}</option>
-          <option value="koukaku">{{localize 'TG.kagune.koukaku'}}</option>
-          <option value="rinkaku">{{localize 'TG.kagune.rinkaku'}}</option>
-          <option value="bikaku">{{localize 'TG.kagune.bikaku'}}</option>
-        </select>
-      </label>
-    </div>
-  </section>
-  <section class="tg-panel"><h2>{{localize 'TG.sheet.edges'}}</h2><div class="tg-grid tg-grid-2">
-    <label><span>{{localize 'TG.builder.kaguneEdges'}}</span><select name="kaguneEdges" multiple size="6">{{#each kaguneEdges}}<option value="{{system.ruleId}}">{{name}} ({{system.slots}})</option>{{/each}}</select></label>
-    <label><span>{{localize 'TG.builder.quinqueEdges'}}</span><select name="quinqueEdges" multiple size="6">{{#each quinqueEdges}}<option value="{{system.ruleId}}">{{name}} ({{system.slots}})</option>{{/each}}</select></label>
-  </div><p class="tg-muted">{{localize 'TG.builder.edgeHint'}}</p></section>
-  <section class="tg-panel"><h2>{{localize 'TG.builder.customStats'}}</h2><p class="tg-muted">{{localize 'TG.builder.customStatsHint'}}</p><div class="tg-grid tg-grid-3">{{#each stats}}<label><span>{{localize (concat "TG.stats." this ".label")}}</span><input name="stats.{{this}}" type="number" min="0" placeholder="10"></label>{{/each}}</div></section>
-  <footer class="tg-action-row">
-    <button type="submit">{{localize 'TG.builder.createActor'}}</button>
+<div class="tg-system tg-form tg-builder-form" data-class="ghoul" autocomplete="off">
+  <div class="tg-builder-steps">
+    <section class="tg-panel">
+      <div class="tg-step-head"><span class="tg-step-number">1</span><h2>{{localize "TG.builder.stepClass"}}</h2></div>
+      <label class="tg-builder-name"><span>{{localize "TG.sheet.name"}}</span><input name="name" type="text" value="{{localize "TG.builder.defaultName"}}"></label>
+      <div class="tg-class-cards" role="radiogroup" aria-label="{{localize "TG.sheet.class"}}">
+        {{#each classes as |entry|}}
+          <label class="tg-class-card" data-class="{{entry.key}}">
+            <input type="radio" name="actorClass" value="{{entry.key}}" {{#if @first}}checked{{/if}}>
+            <span><i class="fa-solid {{entry.icon}}" aria-hidden="true"></i><strong>{{localize (concat "TG.classes." entry.key)}}</strong><small>{{localize (concat "TG.builder.classHint." entry.key)}}</small></span>
+          </label>
+        {{/each}}
+      </div>
+    </section>
+
+    <section class="tg-panel" data-builder-part="kagune">
+      <div class="tg-step-head"><span class="tg-step-number">2</span><h2>{{localize "TG.itemTypes.kagune"}}</h2><span class="tg-hint" data-edge-count="kagune"></span></div>
+      <div class="tg-grid tg-grid-3">
+        <label><span>{{localize "TG.sheet.name"}}</span><input name="kaguneName" type="text" value="{{localize "TG.itemTypes.kagune"}}"></label>
+        <label><span>{{localize "TG.builder.kaguneType"}}</span><select name="kaguneType">{{#each rcTypes}}<option value="{{this}}">{{localize (concat "TG.kagune." this)}}</option>{{/each}}</select></label>
+        <label data-builder-part="bikaku"><span>{{localize "TG.sheet.bikakuPenalty"}}</span><select name="bikakuPenalty"><option value="crl">{{localize "TG.stats.crl.label"}}</option><option value="per">{{localize "TG.stats.per.label"}}</option><option value="rcl">{{localize "TG.resources.rcl.label"}}</option></select></label>
+      </div>
+      <p class="tg-hint" data-type-hint="kagune"></p>
+      <div class="tg-edge-picker">
+        {{#each kaguneEdges}}<label class="tg-edge-option"><input type="checkbox" name="kaguneEdges.{{system.ruleId}}" data-slots="{{system.slots}}"><span>{{name}}<small>{{system.slots}}</small></span></label>{{/each}}
+      </div>
+    </section>
+
+    <section class="tg-panel" data-builder-part="quinque">
+      <div class="tg-step-head"><span class="tg-step-number">3</span><h2>{{localize "TG.itemTypes.quinque"}}</h2><span class="tg-hint" data-edge-count="quinque"></span></div>
+      <div class="tg-grid tg-grid-2">
+        <label><span>{{localize "TG.sheet.name"}}</span><input name="quinqueName" type="text" value="{{localize "TG.itemTypes.quinque"}}"></label>
+        <label><span>{{localize "TG.builder.quinqueType"}}</span><select name="quinqueType">{{#each rcTypes}}<option value="{{this}}">{{localize (concat "TG.kagune." this)}}</option>{{/each}}</select></label>
+      </div>
+      <div class="tg-edge-picker">
+        {{#each quinqueEdges}}<label class="tg-edge-option"><input type="checkbox" name="quinqueEdges.{{system.ruleId}}" data-slots="{{system.slots}}"><span>{{name}}<small>{{system.slots}}</small></span></label>{{/each}}
+      </div>
+    </section>
+
+    <section class="tg-panel">
+      <div class="tg-step-head"><span class="tg-step-number">4</span><h2>{{localize "TG.sheet.stats"}}</h2><span class="tg-points" data-points>60 / 60</span></div>
+      <div class="tg-grid tg-grid-2">
+        <label><span>{{localize "TG.builder.statPreset"}}</span><select name="statPreset">{{#each presets as |preset|}}<option value="{{preset.key}}" data-values="{{preset.values}}">{{localize (concat "TG.presets." preset.key)}}</option>{{/each}}</select></label>
+      </div>
+      <p class="tg-hint">{{localize "TG.builder.customStatsHint"}}</p>
+      <div class="tg-builder-stats">
+        {{#each stats}}<label><span>{{localize (concat "TG.stats." this ".label")}}</span><input name="stats.{{this}}" type="number" min="0" step="1" value="10"></label>{{/each}}
+      </div>
+    </section>
+  </div>
+  <footer class="tg-builder-footer">
+    <span class="tg-hint">{{localize "TG.builder.edgeHint"}}</span>
+    <button type="submit" class="tg-primary"><i class="fa-solid fa-user-plus" aria-hidden="true"></i>{{localize "TG.builder.createActor"}}</button>
   </footer>
 </div>

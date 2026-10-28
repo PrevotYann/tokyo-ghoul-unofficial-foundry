@@ -79,3 +79,34 @@ test("every scene has blocking geometry, doors, light, fog and linked party toke
     assert.ok(scene.lights.every(l => l.walls && l.config.dim > 0));
   }
 });
+
+test("GM automation keys, yield thresholds, macro and quick reference match the built actors", async () => {
+  const { partyTokenVisibility, nextPressure, PRESSURE_MAX } = await import("../../src/adventures/last-delivery-gm.mjs");
+  const adventure = createLastDelivery();
+  const key = document => document.flags["tokyo-ghoul-unofficial"].key;
+  assert.deepEqual(adventure.scenes.map(key), ["alley", "clinic", "station"]);
+  const byKey = Object.fromEntries(adventure.actors.map(actor => [key(actor), actor]));
+  for (const npc of ["emi", "yui", "patient", "kaito"]) assert.equal(byKey[npc].flags["tokyo-ghoul-unofficial"].noncombatant, true, npc);
+  assert.equal(byKey.guard.system.combat.yieldAt, Math.floor(byKey.guard.system.resources.vitality.max / 2));
+  assert.equal(byKey.lookout.system.combat.yieldAt, byKey.lookout.system.resources.vitality.max - 1);
+  assert.equal(byKey.boss.system.combat.yieldAt, 24);
+  assert.ok(adventure.scenes[2].tokens.some(token => token.actorId === byKey.kaito._id && token.hidden));
+  assert.equal(adventure.macros.length, 1);
+  assert.match(adventure.macros[0].command, /lastDelivery\.openPanel\(\)/);
+  const reference = adventure.journal.find(journal => key(journal) === "gmtools").pages[0].text.content;
+  for (const npc of ["guard", "lookout", "boss"]) {
+    const { vitality, stamina } = byKey[npc].system.resources;
+    assert.ok(reference.includes(`${vitality.max} / ${stamina.max}`), `${npc} quick reference ${vitality.max} / ${stamina.max}`);
+  }
+  assert.deepEqual(partyTokenVisibility(4), { nao: false, sora: false });
+  assert.deepEqual(partyTokenVisibility(5), { nao: true, sora: false });
+  assert.deepEqual(partyTokenVisibility(6), { nao: true, sora: true });
+  assert.equal(nextPressure(0, -1), 0);
+  assert.equal(nextPressure(2, 5), PRESSURE_MAX);
+});
+
+test("locked doors carry stable keys independent of translated wall names", () => {
+  const adventure = createLastDelivery();
+  const keyed = adventure.scenes.flatMap(scene => scene.walls.filter(w => w.flags["tokyo-ghoul-unofficial"].key).map(w => [scene.flags["tokyo-ghoul-unofficial"].key, w.flags["tokyo-ghoul-unofficial"].key, w.ds]));
+  assert.deepEqual(keyed, [["clinic", "serviceDoor", 2], ["station", "captiveGate", 2]]);
+});

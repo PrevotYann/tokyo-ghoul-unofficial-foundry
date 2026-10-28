@@ -1,10 +1,10 @@
-<div class="tg-form tg-item" autocomplete="off">
-  <header class="tg-sheet-header">
+<div class="tg-form tg-item" {{#if rc}}data-rc="{{rc}}"{{/if}} autocomplete="off">
+  <header class="tg-item-hero" {{#if rc}}data-rc="{{rc}}"{{/if}}>
     <img class="tg-portrait" src="{{item.img}}" alt="{{item.name}}" data-action="editImage">
     <div class="tg-header-main">
       <input class="tg-name" name="name" type="text" value="{{item.name}}" aria-label="{{localize 'TG.sheet.name'}}">
-      <div class="tg-chip-row">
-        <span class="tg-chip">{{localize (concat "TG.itemTypes." item.type)}}</span>
+      <div class="tg-badges">
+        <span class="tg-badge tg-badge-class"><i class="fa-solid {{tgItemIcon item.type}}" aria-hidden="true"></i>{{localize (concat "TG.itemTypes." item.type)}}</span>
         <label class="tg-item-automation">
           <span>{{localize 'TG.sheet.automation'}}</span>
           <select name="system.automation">
@@ -15,28 +15,30 @@
         </label>
       </div>
     </div>
+    {{#if heroStat}}<div class="tg-item-hero-stat"><span>{{localize heroStat.label}}</span><strong>{{heroStat.value}}</strong></div>{{/if}}
   </header>
 
   {{#if typeFlags.isKagune}}
     <section class="tg-panel">
-      <h2>{{localize 'TG.itemTypes.kagune'}}</h2>
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-dragon" aria-hidden="true"></i>{{localize 'TG.itemTypes.kagune'}}</h2></header>
       <div class="tg-grid tg-grid-3">
         <label>
           <span>{{localize 'TG.sheet.type'}}</span>
           <select name="system.primaryType">
-            <option value="ukaku" {{#if (eq system.primaryType "ukaku")}}selected{{/if}}>{{localize 'TG.kagune.ukaku'}}</option>
-            <option value="koukaku" {{#if (eq system.primaryType "koukaku")}}selected{{/if}}>{{localize 'TG.kagune.koukaku'}}</option>
-            <option value="rinkaku" {{#if (eq system.primaryType "rinkaku")}}selected{{/if}}>{{localize 'TG.kagune.rinkaku'}}</option>
-            <option value="bikaku" {{#if (eq system.primaryType "bikaku")}}selected{{/if}}>{{localize 'TG.kagune.bikaku'}}</option>
+            {{#each weaponTypes}}<option value="{{this}}" {{#if (eq this ../system.primaryType)}}selected{{/if}}>{{localize (concat "TG.kagune." this)}}</option>{{/each}}
           </select>
         </label>
         <label>
           <span>{{localize 'TG.resources.rcl.label'}}</span>
           <input name="system.rcl" type="number" value="{{system.rcl}}" min="0" step="1">
         </label>
-        <label class="tg-inline-check">
-          <input name="system.manifested" type="checkbox" value="true" {{#if system.manifested}}checked{{/if}}>
-          <span>{{localize 'TG.sheet.manifested'}}</span>
+        <label>
+          <span>{{localize 'TG.sheet.bikakuPenalty'}}</span>
+          <select name="system.evolution.bikakuPenalty">
+            <option value="crl" {{#if (eq system.evolution.bikakuPenalty "crl")}}selected{{/if}}>{{localize 'TG.stats.crl.label'}}</option>
+            <option value="per" {{#if (eq system.evolution.bikakuPenalty "per")}}selected{{/if}}>{{localize 'TG.stats.per.label'}}</option>
+            <option value="rcl" {{#if (eq system.evolution.bikakuPenalty "rcl")}}selected{{/if}}>{{localize 'TG.resources.rcl.label'}}</option>
+          </select>
         </label>
         <label>
           <span>{{localize 'TG.sheet.edgeSlotsMax'}}</span>
@@ -46,35 +48,30 @@
           <span>{{localize 'TG.sheet.edgeSlotsUsed'}}</span>
           <input readonly name="system.edgeSlots.used" type="number" value="{{system.edgeSlots.used}}" min="0" step="1">
         </label>
+        <label class="tg-inline-check">
+          <input name="system.manifested" type="checkbox" value="true" {{#if system.manifested}}checked{{/if}}>
+          <span>{{localize 'TG.sheet.manifested'}}</span>
+        </label>
       </div>
     </section>
   {{/if}}
 
-  {{#if typeFlags.isKagune}}<section class="tg-panel"><label><span>{{localize 'TG.sheet.bikakuPenalty'}}</span><select name="system.evolution.bikakuPenalty"><option value="crl" {{#if (eq system.evolution.bikakuPenalty "crl")}}selected{{/if}}>{{localize 'TG.stats.crl.label'}}</option><option value="per" {{#if (eq system.evolution.bikakuPenalty "per")}}selected{{/if}}>{{localize 'TG.stats.per.label'}}</option><option value="rcl" {{#if (eq system.evolution.bikakuPenalty "rcl")}}selected{{/if}}>{{localize 'TG.resources.rcl.label'}}</option></select></label></section>{{/if}}
   {{#if typeFlags.isQuinque}}
     <section class="tg-panel">
-      <h2>{{localize 'TG.itemTypes.quinque'}}</h2>
-      <div class="tg-grid tg-grid-3"><label class="tg-inline-check"><span>{{localize 'TG.sheet.kakujaWeapon'}}</span><input name="system.kakuja.isKakujaWeapon" type="checkbox" {{#if system.kakuja.isKakujaWeapon}}checked{{/if}}></label><label class="tg-inline-check"><span>{{localize 'TG.sheet.freeGimmick'}}</span><input name="system.kakuja.freeGimmick" type="checkbox" {{#if system.kakuja.freeGimmick}}checked{{/if}}></label><label><span>{{localize 'TG.sheet.ammo'}}</span><input type="number" min="0" name="system.sidearm.ammo.value" value="{{system.sidearm.ammo.value}}"></label></div>
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-briefcase" aria-hidden="true"></i>{{localize 'TG.itemTypes.quinque'}}</h2></header>
       <div class="tg-grid tg-grid-3">
         <label>
           <span>{{localize 'TG.sheet.type'}}</span>
           <select name="system.primaryType">
-            <option value="ukaku" {{#if (eq system.primaryType "ukaku")}}selected{{/if}}>{{localize 'TG.kagune.ukaku'}}</option>
-            <option value="koukaku" {{#if (eq system.primaryType "koukaku")}}selected{{/if}}>{{localize 'TG.kagune.koukaku'}}</option>
-            <option value="rinkaku" {{#if (eq system.primaryType "rinkaku")}}selected{{/if}}>{{localize 'TG.kagune.rinkaku'}}</option>
-            <option value="bikaku" {{#if (eq system.primaryType "bikaku")}}selected{{/if}}>{{localize 'TG.kagune.bikaku'}}</option>
+            {{#each weaponTypes}}<option value="{{this}}" {{#if (eq this ../system.primaryType)}}selected{{/if}}>{{localize (concat "TG.kagune." this)}}</option>{{/each}}
           </select>
         </label>
         <label>
           <span>{{localize 'TG.resources.rcl.label'}}</span>
           <input name="system.rcl" type="number" value="{{system.rcl}}" min="0" step="1">
         </label>
-        <label class="tg-inline-check">
-          <input name="system.equipped" type="checkbox" value="true" {{#if system.equipped}}checked{{/if}}>
-          <span>{{localize 'TG.sheet.equipped'}}</span>
-        </label>
         <label>
-          <span>{{localize 'TG.resources.rcBonds.label'}}</span>
+          <span>{{localize 'TG.resources.rcBonds.label'}} ({{system.rcBonds.max}})</span>
           <input name="system.rcBonds.value" type="number" value="{{system.rcBonds.value}}" min="0" step="1">
         </label>
         <label>
@@ -85,41 +82,70 @@
           <span>{{localize 'TG.sheet.edgeSlotsUsed'}}</span>
           <input readonly name="system.edgeSlots.used" type="number" value="{{system.edgeSlots.used}}" min="0" step="1">
         </label>
+        <label>
+          <span>{{localize 'TG.sheet.ammo'}}</span>
+          <input type="number" min="0" name="system.sidearm.ammo.value" value="{{system.sidearm.ammo.value}}">
+        </label>
+      </div>
+      <div class="tg-checks">
+        <label class="tg-inline-check"><input name="system.equipped" type="checkbox" value="true" {{#if system.equipped}}checked{{/if}}><span>{{localize 'TG.sheet.equipped'}}</span></label>
+        <label class="tg-inline-check"><input name="system.kakuja.isKakujaWeapon" type="checkbox" {{#if system.kakuja.isKakujaWeapon}}checked{{/if}}><span>{{localize 'TG.sheet.kakujaWeapon'}}</span></label>
+        <label class="tg-inline-check"><input name="system.kakuja.freeGimmick" type="checkbox" {{#if system.kakuja.freeGimmick}}checked{{/if}}><span>{{localize 'TG.sheet.freeGimmick'}}</span></label>
       </div>
     </section>
   {{/if}}
 
-  {{#if edgesText}}{{/if}}
   {{#if (or typeFlags.isKagune typeFlags.isQuinque)}}
-    <section class="tg-panel"><div class="tg-grid tg-grid-2"><label><span>{{localize 'TG.sheet.secondaryType'}}</span><select name="system.secondaryType"><option value="">{{localize 'TG.kakuja.none'}}</option>{{#each weaponTypes}}<option value="{{this}}" {{#if (eq this ../system.secondaryType)}}selected{{/if}}>{{localize (concat "TG.kagune." this)}}</option>{{/each}}</select></label></div><h2>{{localize 'TG.sheet.edges'}}</h2><label><span>{{localize 'TG.sheet.edgesComma'}}</span><input type="text" name="system.edges" value="{{edgesText}}"></label></section>
+    <section class="tg-panel">
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-gem" aria-hidden="true"></i>{{localize 'TG.sheet.edges'}}</h2><span class="tg-hint">{{localize 'TG.sheet.edgeDropHint'}}</span></header>
+      <div class="tg-grid tg-grid-2">
+        <label><span>{{localize 'TG.sheet.secondaryType'}}</span><select name="system.secondaryType"><option value="">{{localize 'TG.kakuja.none'}}</option>{{#each weaponTypes}}<option value="{{this}}" {{#if (eq this ../system.secondaryType)}}selected{{/if}}>{{localize (concat "TG.kagune." this)}}</option>{{/each}}</select></label>
+        <label><span>{{localize 'TG.sheet.edgesComma'}}</span><input type="text" name="system.edges" value="{{edgesText}}"></label>
+      </div>
+    </section>
   {{/if}}
-  {{#if typeFlags.isCondition}}<section class="tg-panel"><div class="tg-grid tg-grid-2"><label><span>{{localize 'TG.sheet.conditionId'}}</span><input name="system.conditionId" value="{{system.conditionId}}"></label><label><span>{{localize 'TG.sheet.stacks'}}</span><input name="system.stacks" type="number" min="0" value="{{system.stacks}}"></label></div></section>{{/if}}
-  {{#if typeFlags.isKakujaArmor}}<section class="tg-panel"><div class="tg-grid tg-grid-2"><label><span>{{localize 'TG.sheet.type'}}</span><select name="system.armorType"><option value="attack" {{#if (eq system.armorType "attack")}}selected{{/if}}>{{localize 'TG.armor.attack'}}</option><option value="speed" {{#if (eq system.armorType "speed")}}selected{{/if}}>{{localize 'TG.armor.speed'}}</option></select></label><label><span>{{localize 'TG.sheet.armorStat'}}</span><select name="system.selectedAttackStat"><option value="str" {{#if (eq system.selectedAttackStat "str")}}selected{{/if}}>{{localize 'TG.stats.str.label'}}</option><option value="acc" {{#if (eq system.selectedAttackStat "acc")}}selected{{/if}}>{{localize 'TG.stats.acc.label'}}</option></select></label><label><span>{{localize 'TG.resources.rcl.label'}}</span><input name="system.rcl" type="number" min="45" value="{{system.rcl}}"></label></div></section>{{/if}}
+
+  {{#if typeFlags.isCondition}}
+    <section class="tg-panel">
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>{{localize 'TG.itemTypes.condition'}}</h2></header>
+      <div class="tg-grid tg-grid-2"><label><span>{{localize 'TG.sheet.conditionId'}}</span><input name="system.conditionId" value="{{system.conditionId}}"></label><label><span>{{localize 'TG.sheet.stacks'}}</span><input name="system.stacks" type="number" min="0" value="{{system.stacks}}"></label></div>
+    </section>
+  {{/if}}
+
+  {{#if typeFlags.isKakujaArmor}}
+    <section class="tg-panel">
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-user-shield" aria-hidden="true"></i>{{localize 'TG.itemTypes.kakuja-armor'}}</h2></header>
+      <div class="tg-grid tg-grid-3">
+        <label><span>{{localize 'TG.sheet.type'}}</span><select name="system.armorType"><option value="attack" {{#if (eq system.armorType "attack")}}selected{{/if}}>{{localize 'TG.armor.attack'}}</option><option value="speed" {{#if (eq system.armorType "speed")}}selected{{/if}}>{{localize 'TG.armor.speed'}}</option></select></label>
+        <label><span>{{localize 'TG.sheet.armorStat'}}</span><select name="system.selectedAttackStat"><option value="str" {{#if (eq system.selectedAttackStat "str")}}selected{{/if}}>{{localize 'TG.stats.str.label'}}</option><option value="acc" {{#if (eq system.selectedAttackStat "acc")}}selected{{/if}}>{{localize 'TG.stats.acc.label'}}</option></select></label>
+        <label><span>{{localize 'TG.resources.rcl.label'}}</span><input name="system.rcl" type="number" min="45" value="{{system.rcl}}"></label>
+        <label><span>{{localize 'TG.sheet.armorTurns'}}</span><input name="system.turnsActive" type="number" min="0" value="{{system.turnsActive}}"></label>
+        <label class="tg-inline-check"><input name="system.manifested" type="checkbox" {{#if system.manifested}}checked{{/if}}><span>{{localize 'TG.sheet.manifested'}}</span></label>
+      </div>
+    </section>
+  {{/if}}
+
   {{#if typeFlags.isKakuhou}}
-  <section class="tg-panel"><h2>{{localize 'TG.itemTypes.kakuhou'}}</h2><div class="tg-grid tg-grid-2">
-    <label><span>{{localize 'TG.sheet.name'}}</span><input name="system.sourceName" value="{{system.sourceName}}"></label>
-    <label><span>{{localize 'TG.sheet.rank'}}</span><input name="system.sourceRank" value="{{system.sourceRank}}"></label>
-    <label><span>{{localize 'TG.resources.rcl.label'}}</span><input type="number" min="0" name="system.sourceRcl" value="{{system.sourceRcl}}"></label>
-    <label><span>{{localize 'TG.sheet.type'}}</span><select name="system.sourceKaguneType">{{#each weaponTypes}}<option value="{{this}}" {{#if (eq this ../system.sourceKaguneType)}}selected{{/if}}>{{localize (concat "TG.kagune." this)}}</option>{{/each}}</select></label>
-    <label><span>{{localize 'TG.sheet.edgesComma'}}</span><input name="system.sourceEdges" value="{{sourceEdgesText}}"></label>
-    <label class="tg-inline-check"><span>{{localize 'TG.sheet.consumed'}}</span><input name="system.consumed" type="checkbox" {{#if system.consumed}}checked{{/if}}></label>
-  </div></section>{{/if}}
+    <section class="tg-panel">
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>{{localize 'TG.itemTypes.kakuhou'}}</h2></header>
+      <div class="tg-grid tg-grid-2">
+        <label><span>{{localize 'TG.sheet.name'}}</span><input name="system.sourceName" value="{{system.sourceName}}"></label>
+        <label><span>{{localize 'TG.sheet.rank'}}</span><select name="system.sourceRank">{{selectOptions options.ranks selected=system.sourceRank localize=true}}</select></label>
+        <label><span>{{localize 'TG.resources.rcl.label'}}</span><input type="number" min="0" name="system.sourceRcl" value="{{system.sourceRcl}}"></label>
+        <label><span>{{localize 'TG.sheet.type'}}</span><select name="system.sourceKaguneType">{{#each weaponTypes}}<option value="{{this}}" {{#if (eq this ../system.sourceKaguneType)}}selected{{/if}}>{{localize (concat "TG.kagune." this)}}</option>{{/each}}</select></label>
+        <label><span>{{localize 'TG.sheet.edgesComma'}}</span><input name="system.sourceEdges" value="{{sourceEdgesText}}"></label>
+        <label class="tg-inline-check"><input name="system.consumed" type="checkbox" {{#if system.consumed}}checked{{/if}}><span>{{localize 'TG.sheet.consumed'}}</span></label>
+      </div>
+    </section>
+  {{/if}}
+
   {{#if typeFlags.isEdge}}
     <section class="tg-panel">
-      <h2>{{localize 'TG.itemTypes.edge'}}</h2>
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-gem" aria-hidden="true"></i>{{localize 'TG.itemTypes.edge'}}</h2>{{#if system.ruleId}}<span class="tg-count">{{system.ruleId}}</span>{{/if}}</header>
       <div class="tg-grid tg-grid-3">
-        <label>
-          <span>{{localize 'TG.sheet.category'}}</span>
-          <input name="system.category" type="text" value="{{system.category}}">
-        </label>
-        <label>
-          <span>{{localize 'TG.sheet.slots'}}</span>
-          <input name="system.slots" type="number" value="{{system.slots}}" min="0" step="1">
-        </label>
-        <label>
-          <span>{{localize 'TG.sheet.formula'}}</span>
-          <input name="system.formula" type="text" value="{{system.formula}}">
-        </label>
+        <label><span>{{localize 'TG.sheet.category'}}</span><select name="system.category">{{selectOptions options.edgeCategories selected=system.category localize=true}}</select></label>
+        <label><span>{{localize 'TG.sheet.slots'}}</span><input name="system.slots" type="number" value="{{system.slots}}" min="0" step="1"></label>
+        <label><span>{{localize 'TG.sheet.formula'}}</span><input name="system.formula" type="text" value="{{system.formula}}"></label>
       </div>
       <div class="tg-rich-field">
         <span>{{localize 'TG.sheet.notes'}}</span>
@@ -130,63 +156,43 @@
 
   {{#if typeFlags.isManeuver}}
     <section class="tg-panel">
-      <h2>{{localize 'TG.itemTypes.maneuver'}}</h2>
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-person-running" aria-hidden="true"></i>{{localize 'TG.itemTypes.maneuver'}}</h2></header>
       <div class="tg-grid tg-grid-2">
-        <label>
-          <span>{{localize 'TG.sheet.maneuverType'}}</span>
-          <input name="system.maneuverType" type="text" value="{{system.maneuverType}}">
-        </label>
-        <label>
-          <span>{{localize 'TG.sheet.chatAction'}}</span>
-          <input name="system.chatAction" type="text" value="{{system.chatAction}}">
-        </label>
-        <label>
-          <span>{{localize 'TG.sheet.staminaFormula'}}</span>
-          <input name="system.staminaFormula" type="text" value="{{system.staminaFormula}}">
-        </label>
-        <label>
-          <span>{{localize 'TG.sheet.damageFormula'}}</span>
-          <input name="system.damageFormula" type="text" value="{{system.damageFormula}}">
-        </label>
+        <label><span>{{localize 'TG.sheet.maneuverType'}}</span><select name="system.maneuverType">{{selectOptions options.maneuverTypes selected=system.maneuverType localize=true}}</select></label>
+        <label><span>{{localize 'TG.sheet.chatAction'}}</span><select name="system.chatAction">{{selectOptions options.chatActions selected=system.chatAction localize=true}}</select></label>
+        <label><span>{{localize 'TG.sheet.staminaFormula'}}</span><input name="system.staminaFormula" type="text" value="{{system.staminaFormula}}"></label>
+        <label><span>{{localize 'TG.sheet.damageFormula'}}</span><input name="system.damageFormula" type="text" value="{{system.damageFormula}}"></label>
       </div>
     </section>
   {{/if}}
 
   {{#if typeFlags.isConsumable}}
     <section class="tg-panel">
-      <h2>{{localize 'TG.itemTypes.consumable'}}</h2>
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-kit-medical" aria-hidden="true"></i>{{localize 'TG.itemTypes.consumable'}}</h2></header>
       <div class="tg-grid tg-grid-3">
-        <label>
-          <span>{{localize 'TG.sheet.consumableType'}}</span>
-          <input name="system.consumableType" type="text" value="{{system.consumableType}}">
-        </label>
-        <label>
-          <span>{{localize 'TG.sheet.quantity'}}</span>
-          <input name="system.quantity" type="number" value="{{system.quantity}}" min="0" step="1">
-        </label>
-        <label>
-          <span>{{localize 'TG.sheet.range'}}</span>
-          <input name="system.range" type="text" value="{{system.range}}">
-        </label>
+        <label><span>{{localize 'TG.sheet.consumableType'}}</span><select name="system.consumableType">{{selectOptions options.consumableTypes selected=system.consumableType localize=true}}</select></label>
+        <label><span>{{localize 'TG.sheet.quantity'}}</span><input name="system.quantity" type="number" value="{{system.quantity}}" min="0" step="1"></label>
+        <label><span>{{localize 'TG.sheet.range'}}</span><input name="system.range" type="text" value="{{system.range}}"></label>
       </div>
+    </section>
+  {{/if}}
+
+  {{#if typeFlags.isLoot}}
+    <section class="tg-panel">
+      <div class="tg-grid tg-grid-2"><label><span>{{localize 'TG.sheet.quantity'}}</span><input name="system.quantity" type="number" value="{{system.quantity}}" min="0" step="1"></label></div>
     </section>
   {{/if}}
 
   {{#if typeFlags.isGimmick}}
     <section class="tg-panel">
-      <h2>{{localize 'TG.itemTypes.gimmick'}}</h2>
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-gears" aria-hidden="true"></i>{{localize 'TG.itemTypes.gimmick'}}</h2>{{#if system.active}}<span class="tg-state tg-tone-info">{{localize 'TG.states.active'}}</span>{{/if}}</header>
       <div class="tg-grid tg-grid-2">
-        <label>
-          <span>{{localize 'TG.sheet.gimmickType'}}</span>
-          <input name="system.gimmickType" type="text" value="{{system.gimmickType}}">
-        </label>
-        <label>
-          <span>{{localize 'TG.sheet.staminaCostMode'}}</span>
-          <input name="system.staminaCostMode" type="text" value="{{system.staminaCostMode}}">
-        </label>
+        <label><span>{{localize 'TG.sheet.gimmickType'}}</span><select name="system.gimmickType">{{selectOptions options.gimmickTypes selected=system.gimmickType localize=true}}</select></label>
+        <label><span>{{localize 'TG.sheet.staminaCostMode'}}</span><select name="system.staminaCostMode">{{selectOptions options.staminaModes selected=system.staminaCostMode localize=true}}</select></label>
+        <label><span>{{localize 'TG.sheet.selectedStat'}}</span><select name="system.selectedStat"><option value=""></option>{{selectOptions options.selectedStats selected=system.selectedStat localize=true}}</select></label>
+        <label><span>{{localize 'TG.sheet.selectedBenefit'}}</span><select name="system.selectedBenefit"><option value="attack" {{#if (eq system.selectedBenefit "attack")}}selected{{/if}}>{{localize 'TG.chat.attack'}}</option><option value="damage" {{#if (eq system.selectedBenefit "damage")}}selected{{/if}}>{{localize 'TG.chat.damage'}}</option></select></label>
       </div>
       <label><span>{{localize 'TG.sheet.grantedEdges'}}</span><input name="system.grantedEdges" value="{{grantedEdgesText}}"></label>
-      <div class="tg-grid tg-grid-2"><label><span>{{localize 'TG.sheet.stats'}}</span><input name="system.selectedStat" value="{{system.selectedStat}}"></label><label><span>{{localize 'TG.sheet.selectedBenefit'}}</span><select name="system.selectedBenefit"><option value="attack" {{#if (eq system.selectedBenefit "attack")}}selected{{/if}}>{{localize 'TG.chat.attack'}}</option><option value="damage" {{#if (eq system.selectedBenefit "damage")}}selected{{/if}}>{{localize 'TG.chat.damage'}}</option></select></label></div>
       <div class="tg-rich-field">
         <span>{{localize 'TG.sheet.dynamicEffect'}}</span>
         <prose-mirror class="tg-rich-text" name="system.dynamicEffect" data-document-uuid="{{item.uuid}}" value="{{system.dynamicEffect}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "dynamicEffect"}}}</prose-mirror>
@@ -195,7 +201,15 @@
   {{/if}}
 
   <section class="tg-panel">
-    <h2>{{localize 'TG.sheet.description'}}</h2>
-    <prose-mirror class="tg-rich-text" name="system.description" data-document-uuid="{{item.uuid}}" value="{{system.description}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "description"}}}</prose-mirror>
+    <div class="tg-rich-field">
+      <span>{{localize 'TG.sheet.description'}}</span>
+      <prose-mirror class="tg-rich-text" name="system.description" data-document-uuid="{{item.uuid}}" value="{{system.description}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "description"}}}</prose-mirror>
+    </div>
+    {{#if typeFlags.isKagune}}
+      <div class="tg-rich-field">
+        <span>{{localize 'TG.sheet.dynamicNotes'}}</span>
+        <prose-mirror class="tg-rich-text" name="system.dynamicNotes" data-document-uuid="{{item.uuid}}" value="{{system.dynamicNotes}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "dynamicNotes"}}}</prose-mirror>
+      </div>
+    {{/if}}
   </section>
 </div>

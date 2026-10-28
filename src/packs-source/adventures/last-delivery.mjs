@@ -6,7 +6,9 @@ import { buildSceneLayout, sceneLayouts } from "./last-delivery-scenes.mjs";
 
 export const adventureId = key => createHash("sha256").update(`last-delivery:v1:${key}`).digest("hex").slice(0, 16);
 const asset = file => `systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/${file}`;
-const flags = { "tokyo-ghoul-unofficial": { adventure: "last-delivery", contentVersion: 2 } };
+const flags = { "tokyo-ghoul-unofficial": { adventure: "last-delivery", contentVersion: 3 } };
+// Stable keys let the GM control panel find imported documents in any language.
+const keyedFlags = (key, extra = {}) => ({ "tokyo-ghoul-unofficial": { ...flags["tokyo-ghoul-unofficial"], key, ...extra } });
 const folder = key => adventureId(`folder:${key}`);
 const actorId = key => adventureId(`actor:${key}`);
 const journalId = key => adventureId(`journal:${key}`);
@@ -25,13 +27,13 @@ function medkit(key) {
   return { _id: adventureId(`kit:${key}`), name: "Field Medical Kit", type: "consumable", img: "icons/svg/regen.svg", system: { consumableType: "medkit", quantity: 1, maxCarry: 5, range: "melee", area: "none", effect: { removes: ["bleeding", "burning"], healingFormula: "PER + target END" }, automation: "assisted", description: "Use the system's medkit workflow; follow the target's class restrictions." } };
 }
 
-function finishActor(draft, key, { role = "", bond = "", secret = "", npc = false } = {}) {
+function finishActor(draft, key, { role = "", bond = "", secret = "", npc = false, yieldAt = null, noncombatant = false } = {}) {
   delete draft.validation;
   draft._id = actorId(key);
   draft.type = npc ? "npc" : "character";
   draft.img = asset(`tokens/${key}.svg`);
   draft.folder = folder(npc ? "npc" : "pcs");
-  draft.flags = structuredClone(flags);
+  draft.flags = keyedFlags(key, noncombatant ? { noncombatant: true } : {});
   draft.ownership = { default: 0 };
   draft.effects = [];
   draft.items = draft.items.map((item, index) => ({ ...item, _id: adventureId(`embedded:${key}:${index}`), img: "systems/tokyo-ghoul-unofficial/assets/rc-mark.svg", effects: [], flags: {} }));
@@ -43,6 +45,7 @@ function finishActor(draft, key, { role = "", bond = "", secret = "", npc = fals
   const resource = max => ({ value: max, max, min: 0, temp: 0, tempMaxPenalty: 0 });
   draft.system.resources = { vitality: resource(derived.vitalityMax), stamina: resource(derived.staminaMax), mealScore: resource(draft.system.identity.class === "investigator" ? 0 : derived.mealScoreMax) };
   draft.system.biography = { appearance: `<p>${role}</p>`, personality: `<p>${bond}</p>`, backstory: `<p>${secret}</p>`, goals: "<p>Recover Yui, rescue the patients, and decide who receives the evidence.</p>" };
+  draft.system.combat = { ...(draft.system.combat ?? {}), yieldAt };
   draft.system.automation = { ruleNotes: "<p>Last Delivery scenario profile. Story objectives and surrender are GM adjudicated. Use existing system attacks, reactions and resource automation.</p>" };
   draft.prototypeToken = { name: draft.name, actorLink: !npc, texture: { src: draft.img }, width: 1, height: 1, disposition: npc ? 0 : 1, displayName: 30, displayBars: 30, bar1: { attribute: "resources.vitality" }, bar2: { attribute: "resources.stamina" }, sight: { enabled: !npc, range: 0, angle: 360, visionMode: "basic" } };
   return draft;
@@ -60,16 +63,17 @@ export function createLastDelivery() {
     return finishActor(draft, profile.key, profile);
   });
   const npcProfiles = [
-    { key: "emi", name: "Emi Hayase • Coffee Shop Owner", actorClass: "ghoul", kaguneType: "bikaku", role: "Noncombatant ally", bond: "Protects vulnerable ghouls and keeps the meeting neutral.", secret: "Knows the clinic address and will give it freely." },
-    { key: "yui", name: "Yui Matsuda • Missing Courier", actorClass: "investigator", role: "Human noncombatant witness", bond: "Trusts Aya and Ren.", secret: "Copied the clinic ledger. Can identify Kurose and open the station cage." },
-    { key: "patient", name: "Haru Watanabe • Captive", actorClass: "investigator", role: "Human noncombatant captive", bond: "Wants both patients rescued.", secret: "Can walk with an escort; carries no weapon." },
-    { key: "guard", name: "Riku Inose • Clinic Enforcer", actorClass: "ghoul", statPreset: "koukakuTank", kaguneType: "koukaku", role: "Coerced enforcer", bond: "Kurose threatens his household.", secret: "Yields at half Vitality or accepts credible evacuation protection." },
-    { key: "lookout", name: "Chika Fuse • Freight Lookout", actorClass: "ghoul", statPreset: "ukakuRanged", kaguneType: "ukaku", role: "Coerced scout", bond: "Her brother is held as collateral.", secret: "She knows the south service route and can be recruited." },
-    { key: "boss", name: "Masato Kurose • Pallet", actorClass: "ghoul", kaguneType: "rinkaku", customStats: { str: 14, acc: 8, per: 10, end: 12, spd: 16, crl: 24 }, role: "Developed ghoul broker; original boss", bond: "Uses dependent ghouls as leverage.", secret: "A murderer hiding behind falsified mortuary records. Bargains when exposed; yields at 24 Vitality if escape is blocked." }
+    { key: "emi", name: "Emi Hayase • Coffee Shop Owner", actorClass: "ghoul", kaguneType: "bikaku", noncombatant: true, role: "Noncombatant ally", bond: "Protects vulnerable ghouls and keeps the meeting neutral.", secret: "Knows the clinic address and will give it freely." },
+    { key: "yui", name: "Yui Matsuda • Missing Courier", actorClass: "investigator", noncombatant: true, role: "Human noncombatant witness", bond: "Trusts Aya and Ren.", secret: "Copied the clinic ledger. Can identify Kurose and open the station cage." },
+    { key: "patient", name: "Haru Watanabe • Captive", actorClass: "investigator", noncombatant: true, role: "Human noncombatant captive", bond: "Wants both patients rescued.", secret: "Can walk with an escort; carries no weapon." },
+    { key: "guard", name: "Riku Inose • Clinic Enforcer", actorClass: "ghoul", statPreset: "koukakuTank", kaguneType: "koukaku", yieldAt: 46, role: "Coerced enforcer", bond: "Kurose threatens his household.", secret: "Yields at half Vitality or accepts credible evacuation protection." },
+    { key: "lookout", name: "Chika Fuse • Freight Lookout", actorClass: "ghoul", statPreset: "ukakuRanged", kaguneType: "ukaku", yieldAt: 41, role: "Coerced scout", bond: "Her brother is held as collateral.", secret: "She knows the south service route and can be recruited." },
+    { key: "boss", name: "Masato Kurose • Pallet", actorClass: "ghoul", kaguneType: "rinkaku", customStats: { str: 14, acc: 8, per: 10, end: 12, spd: 16, crl: 24 }, yieldAt: 24, role: "Developed ghoul broker; original boss", bond: "Uses dependent ghouls as leverage.", secret: "A murderer hiding behind falsified mortuary records. Bargains when exposed; yields at 24 Vitality if escape is blocked." },
+    { key: "kaito", name: "Kaito Fuse • Collateral", actorClass: "ghoul", kaguneType: "ukaku", noncombatant: true, role: "Chika's fifteen-year-old brother; noncombatant", bond: "Trusts his sister and nobody else.", secret: "Locked in the cab of Kurose's van at the station. Freeing him ends Kurose's hold over Chika." }
   ];
   for (const profile of npcProfiles) {
     const draft = createCharacterDraft(profile);
-    if (["yui", "patient", "emi"].includes(profile.key)) draft.items = [];
+    if (["yui", "patient", "emi", "kaito"].includes(profile.key)) draft.items = [];
     if (profile.key === "guard") draft.items[0].name = "Iron Wake";
     if (profile.key === "lookout") draft.items[0].name = "Feather Rain";
     if (profile.key === "boss") {
@@ -87,7 +91,7 @@ export function createLastDelivery() {
     ["camera", "Waterproof Camera", "Can preserve photos of evidence through ordinary GM-adjudicated interaction. No automatic roll modifier."]
   ]) items.push({ _id: adventureId(`item:${key}`), name, type: "loot", img: "icons/svg/item-bag.svg", folder: folder("items"), system: { description: `<p>${description}</p>`, quantity: 1, automation: "manual" }, flags: structuredClone(flags), ownership: { default: 0 } });
   items.push({ ...medkit("world"), folder: folder("items"), flags: structuredClone(flags), ownership: { default: 0 } });
-  const journal = journalContent.map(([key, name, html], index) => ({ _id: journalId(key), name, folder: folder(key === "briefing" || ["manifest", "message", "ledger"].includes(key) ? "handouts" : "gm"), sort: index * 100000, ownership: { default: 0 }, flags: structuredClone(flags), pages: [{ _id: adventureId(`page:${key}`), name, type: "text", title: { show: false, level: 1 }, text: { format: 1, content: `<article class="tg-system tg-adventure">${html.replace(/\{\{(actor|scene|journal|item):([^}]+)\}\}/g, (_, type, target) => {
+  const journal = journalContent.map(([key, name, html], index) => ({ _id: journalId(key), name, folder: folder(["briefing", "manifest", "message", "ledger", "photo"].includes(key) ? "handouts" : "gm"), sort: index * 100000, ownership: { default: 0 }, flags: keyedFlags(key), pages: [{ _id: adventureId(`page:${key}`), name, type: "text", title: { show: false, level: 1 }, text: { format: 1, content: `<article class="tg-system tg-adventure">${html.replace(/\{\{(actor|scene|journal|item):([^}]+)\}\}/g, (_, type, target) => {
     const collection = { actor: actors, scene: null, journal: null, item: items }[type];
     const id = type === "actor" ? actorId(target) : type === "scene" ? sceneId(target) : type === "journal" ? journalId(target) : adventureId(`item:${target}`);
     const label = collection?.find(d => d._id === id)?.name ?? (type === "journal" ? journalContent.find(j => j[0] === target)?.[1] : { alley: "Rain at Sazanami", clinic: "Aobane Clinic", station: "Shigure Last Freight" }[target]) ?? target;
@@ -96,9 +100,9 @@ export function createLastDelivery() {
   const sceneSpecs = [
     { key: "alley", name: "01 • Rain at Sazanami", image: "sazanami-alley.png", tokens: [["emi", 320, 240, false], ["lookout", 1240, 170, false], ["guard", 1090, 330, true]], pins: [[350, 280, "Coffee shop"], [780, 440, "Delivery van"], [1230, 220, "Loading yard"]] },
     { key: "clinic", name: "02 • Aobane Clinic", image: "aobane-clinic.png", tokens: [["yui", 1100, 260, false], ["guard", 740, 450, false], ["lookout", 1100, 660, true]], pins: [[400, 280, "Reception"], [1110, 280, "Treatment room"], [380, 690, "Cold room"], [1120, 680, "Office"]] },
-    { key: "station", name: "03 • Shigure Last Freight", image: "shigure-station.png", tokens: [["boss", 950, 290, false], ["patient", 1190, 710, false], ["patient", 1270, 710, false], ["guard", 800, 400, true], ["lookout", 1100, 400, true]], pins: [[970, 310, "Loading desk"], [1240, 700, "Captives"], [650, 890, "South service route"]] }
+    { key: "station", name: "03 • Shigure Last Freight", image: "shigure-station.png", tokens: [["boss", 950, 290, false], ["patient", 1190, 710, false], ["patient", 1270, 710, false], ["guard", 800, 400, true], ["lookout", 1100, 400, true], ["kaito", 1300, 360, true]], pins: [[970, 310, "Loading desk"], [1240, 700, "Captives"], [650, 890, "South service route"], [1380, 330, "Van cab"]] }
   ];
-  const scenes = sceneSpecs.map((spec, index) => ({ _id: sceneId(spec.key), name: spec.name, folder: folder("scenes"), active: false, navigation: true, navOrder: index, width: 1536, height: 1024, padding: 0, background: { src: asset(spec.image) }, backgroundColor: "#10141b", grid: { type: 0, size: 64, distance: 5, units: "ft" }, tokenVision: true, fog: { exploration: true }, environment: { darknessLevel: 0.35, globalLight: { enabled: true, bright: false, alpha: 0.2, luminosity: 0.2, color: "#9ab0c8" } }, journal: journalId(spec.key), ownership: { default: 0 }, flags: structuredClone(flags), tokens: [...spec.tokens.map(([key, x, y, hidden], i) => {
+  const scenes = sceneSpecs.map((spec, index) => ({ _id: sceneId(spec.key), name: spec.name, folder: folder("scenes"), active: false, navigation: true, navOrder: index, width: 1536, height: 1024, padding: 0, background: { src: asset(spec.image) }, backgroundColor: "#10141b", grid: { type: 0, size: 64, distance: 5, units: "ft" }, tokenVision: true, fog: { exploration: true }, environment: { darknessLevel: 0.35, globalLight: { enabled: true, bright: false, alpha: 0.2, luminosity: 0.2, color: "#9ab0c8" } }, journal: journalId(spec.key), ownership: { default: 0 }, flags: keyedFlags(spec.key), tokens: [...spec.tokens.map(([key, x, y, hidden], i) => {
     const actor = actors.find(a => a._id === actorId(key));
     return { ...structuredClone(actor.prototypeToken), _id: adventureId(`token:${spec.key}:${i}`), actorId: actor._id, actorLink: false, x, y, hidden, disposition: ["boss", "guard", "lookout"].includes(key) ? -1 : 0 };
   }), ...sceneLayouts[spec.key].party.map(([key, x, y], i) => {
@@ -106,5 +110,10 @@ export function createLastDelivery() {
     return { ...structuredClone(actor.prototypeToken), _id: adventureId(`pc-token:${spec.key}:${key}`), actorId: actor._id, actorLink: true, x, y, hidden: i >= 4, disposition: 1 };
   })], notes: spec.pins.map(([x, y, text], i) => ({ _id: adventureId(`note:${spec.key}:${i}`), entryId: journalId(spec.key), pageId: adventureId(`page:${spec.key}`), x, y, text, icon: "icons/svg/book.svg", iconSize: 32, global: false })), ...buildSceneLayout(spec.key, adventureId) }));
   const folders = [["pcs", "Actor", "Last Delivery • Playable Characters"], ["npc", "Actor", "Last Delivery • NPCs"], ["items", "Item", "Last Delivery • Arsenal and Evidence"], ["gm", "JournalEntry", "Last Delivery • GM Guide"], ["handouts", "JournalEntry", "Last Delivery • Handouts"], ["scenes", "Scene", "Last Delivery • Scenes"]].map(([key, type, name]) => ({ _id: folder(key), name, type, folder: null, sorting: "m", color: "#762b40" }));
-  return { _id: adventureId("adventure"), name: "The Last Delivery", img: asset("sazanami-alley.png"), caption: "An original Tokyo Ghoul one-shot for 4–6 players.", description: "<p>A stolen delivery exposes a ghoul broker's human trafficking route. Six original pregens, three illustrated scenes, a full GM guide, private character dossiers, evidence handouts, NPCs and equipment. Import all content, then read 00 • GM Start Here. Story content is English.</p>", actors, items, journal, scenes, folders, combats: [], tables: [], macros: [], cards: [], playlists: [], flags: structuredClone(flags) };
+  const macros = [{
+    _id: adventureId("macro:panel"), name: "Last Delivery • GM Control Panel", type: "script", scope: "global", img: "icons/svg/clockwork.svg",
+    folder: null, ownership: { default: 0 }, flags: keyedFlags("panel"),
+    command: "game.tokyoGhoul.adventures.lastDelivery.openPanel();"
+  }];
+  return { _id: adventureId("adventure"), name: "The Last Delivery", img: asset("sazanami-alley.png"), caption: "An original Tokyo Ghoul one-shot for 4–6 players.", description: "<p>A stolen delivery exposes a ghoul broker's human trafficking route. Six original pregens, three illustrated scenes, a full GM guide, private character dossiers, evidence handouts, NPCs and equipment. Includes a GM control panel macro for party size, story pressure, locks, NPC recruitment, wound carry-over and encounters. Import all content, then read 00 • GM Start Here. French text is provided by the tokyo-ghoul-unofficial-fr module.</p>", actors, items, journal, scenes, folders, combats: [], tables: [], macros, cards: [], playlists: [], flags: structuredClone(flags) };
 }

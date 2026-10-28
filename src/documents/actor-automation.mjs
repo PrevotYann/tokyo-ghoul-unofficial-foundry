@@ -1,5 +1,5 @@
 import { SYSTEM_ID } from "../config.mjs";
-import { buildAttackSummary, getManeuverBudgetForMode, validateAttackRange } from "../rules/combat-workflow.mjs";
+import { buildAttackSummary, getAttackCombatMode, getManeuverBudgetForMode, validateAttackRange } from "../rules/combat-workflow.mjs";
 import { planManeuver, modifyAttack, distanceToRangeBand, counterDamage, getThrowDistance } from "../rules/actions.mjs";
 import { hasEdge } from "../rules/edges.mjs";
 import { resolveRegeneration, resolveHealing } from "../rules/conditions.mjs";
@@ -10,7 +10,15 @@ import { calculateGimmickStaminaCost } from "../rules/gimmicks.mjs";
 import { calculateMedkitUse, getGrenadeProfile } from "../rules/consumables.mjs";
 import { rollD20Check, getMessageRolls } from "../rules/rolls.mjs";
 import { clampResource } from "../rules/damage.mjs";
-import { promptFields, escapeHTML } from "../sheets/roll-dialogs.mjs";
+import { promptFields } from "../sheets/roll-dialogs.mjs";
+import { logCardHTML } from "../ui/sheet-view.mjs";
+
+const LOG_ICONS = {
+  "TG.chat.move": "fa-shoe-prints", "TG.chat.maneuver": "fa-person-running", "TG.chat.spendStamina": "fa-bolt",
+  "TG.chat.applyDamage": "fa-heart-crack", "TG.chat.controlCheck": "fa-brain", "TG.chat.lostControl": "fa-explosion",
+  "TG.chat.healing": "fa-kit-medical", "TG.chat.kakujaMastered": "fa-skull", "TG.chat.incapacitated": "fa-skull-crossbones",
+  "TG.chat.revived": "fa-heart-pulse", "TG.chat.takeBreather": "fa-lungs", "TG.chat.gimmickToggle": "fa-gears"
+};
 
 export const actorAutomation = Base => class extends Base {
   get inCombat() { return !!game.combat?.started && game.combat.combatants.some(c => c.actor?.uuid === this.uuid); }
@@ -20,7 +28,7 @@ export const actorAutomation = Base => class extends Base {
   }
   notify(key) { ui.notifications.warn(game.i18n.localize(key)); return null; }
   async log(key, data = {}, result = null) {
-    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), rolls: getMessageRolls(result), content: `<section class="tg-system tg-chat-card"><p>${escapeHTML(game.i18n.format(key, {actor:this.name,...data}))}</p></section>` });
+    return ChatMessage.create({ speaker: ChatMessage.getSpeaker({ actor: this }), rolls: getMessageRolls(result), content: logCardHTML(game.i18n.format(key, {actor:this.name,...data}), LOG_ICONS[key]) });
   }
 
   async beginTurn({combatUuid=this.inCombat?game.combat.uuid:null}={}) {
@@ -64,6 +72,14 @@ export const actorAutomation = Base => class extends Base {
     return plan;
   }
 
+  get tokenDisposition() {
+    return this.token?.disposition ?? this.getActiveTokens()[0]?.document.disposition ?? this.prototypeToken?.disposition ?? null;
+  }
+
+  get attackCombatMode() {
+    return getAttackCombatMode(this.system.combat.mode, {actorType:this.type, disposition:this.tokenDisposition});
+  }
+
   async buildAttack(item, options) {
     const edges = this.getEdgeNames(item);
     const armor = this.getActiveKakujaArmor();
@@ -72,11 +88,11 @@ export const actorAutomation = Base => class extends Base {
     const lightweight = item?.type === "quinque" && edges.includes("lightweight") && options.attackMode !== "ranged";
     const rclBonus = this.system.kakuja.active && item?.type === "kagune" ? getKakujaStatBonus(this.system.kakuja.selectedBonus,"rcl") : 0;
     const source = item ? { type:item.type, name:item.name, system:{...item.system, rcl:item.system.rcl+rclBonus} } : null;
-    const raw = buildAttackSummary({stats:{str:lightweight ? this.getStat("spd") : this.getStat("str"), acc:this.getStat("acc")}, item:source, ...options, combatMode:this.system.combat.mode});
+    const raw = buildAttackSummary({stats:{str:lightweight ? this.getStat("spd") : this.getStat("str"), acc:this.getStat("acc")}, item:source, ...options, combatMode:this.attackCombatMode});
     const damageStat=options.attackMode==="ranged"?"acc":lightweight?"spd":"str";
     const damageStatBonus=this.getStat(damageStat)*((multipliers[damageStat]??1)-1);
     const gimmick = item?.type === "quinque" ? this.items.find(i => i.type === "gimmick" && i.system.active) : null;
-    return {...modifyAttack(raw,{action:options.action, str:this.getStat("str"), heavyDamageStat:this.getStat("str")*(multipliers.str??1), damageStatBonus, spd:this.getStat("spd"), end:this.getStat("end"), per:this.getStat("per"), rcl:source?.system.rcl??0, stat:this.getStat(gimmick?.system.selectedStat??"str")*(multipliers[gimmick?.system.selectedStat]??1), edges, mode:this.system.combat.mode, armor:armor?.system.armorType==="attack"&&!(item?.type==="kagune"&&this.system.identity.class==="quinx"), gimmick:gimmick?.system, allOut:options.allOut}), itemUuid:item?.uuid, primaryType:options.sidearm ? item?.system.sidearm.ammoType : item?.system.primaryType, edges};
+    return {...modifyAttack(raw,{action:options.action, str:this.getStat("str"), heavyDamageStat:this.getStat("str")*(multipliers.str??1), damageStatBonus, spd:this.getStat("spd"), end:this.getStat("end"), per:this.getStat("per"), rcl:source?.system.rcl??0, stat:this.getStat(gimmick?.system.selectedStat??"str")*(multipliers[gimmick?.system.selectedStat]??1), edges, mode:this.attackCombatMode, armor:armor?.system.armorType==="attack"&&!(item?.type==="kagune"&&this.system.identity.class==="quinx"), gimmick:gimmick?.system, allOut:options.allOut}), itemUuid:item?.uuid, primaryType:options.sidearm ? item?.system.sidearm.ammoType : item?.system.primaryType, edges};
   }
 
   async rollAttack(item = null, options = {}) {
@@ -271,6 +287,8 @@ export const actorAutomation = Base => class extends Base {
     const result=advanceKakujaMastery({currentSuccesses:k.masterySuccesses,success:roll.success,context:this.inCombat?"combat":"outOfCombat"});
     await this.update({"system.kakuja.masterySuccesses":result.successes,"system.kakuja.lostControl":result.lostControl,...(result.mastered?{[`system.kakuja.${k.stage==="full"?"masteredFull":"masteredHalf"}`]:true}:{})});
     if (result.lostControl) await this.log("TG.chat.lostControl");
+    // Each mastered stage grants a Dynamic Edge designed with the GM (PDF p. 15).
+    if (result.mastered) await this.log("TG.chat.kakujaMastered",{stage:game.i18n.localize(`TG.kakuja.${k.stage}`)});
     return result;
   }
 
@@ -372,7 +390,7 @@ export const actorAutomation = Base => class extends Base {
       const target=targets[0]??this;
       if (!target.isOwner) {
         if (!game.users.activeGM) return this.notify("TG.notifications.activeGMRequired");
-        return ChatMessage.create({content:game.i18n.format("TG.chat.healingRequested",{actor:this.name,target:target.name}),whisper:[game.users.activeGM.id],flags:{[SYSTEM_ID]:{healRequest:{actorUuid:this.uuid,itemUuid:item.uuid,targetUuid:target.uuid}}}});
+        return ChatMessage.create({content:logCardHTML(game.i18n.format("TG.chat.healingRequested",{actor:this.name,target:target.name}),"fa-kit-medical","alert"),whisper:[game.users.activeGM.id],flags:{[SYSTEM_ID]:{healRequest:{actorUuid:this.uuid,itemUuid:item.uuid,targetUuid:target.uuid}}}});
       }
       if (!await this.spendManeuver("medkit")) return;
       const result=calculateMedkitUse({per:this.getStat("per"),targetEnd:target.getStat("end")});

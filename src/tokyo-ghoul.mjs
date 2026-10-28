@@ -23,9 +23,13 @@ import { registerChatCardListeners } from "./ui/chat-cards.mjs";
 import { registerHandlebarsHelpers } from "./ui/handlebars-helpers.mjs";
 import { registerBabeleHooks } from "./localization/babele.mjs";
 import { registerDiceSoNiceHooks } from "./ui/dice-so-nice.mjs";
+import { registerGmTools, setEncounterMode, startEncounter } from "./ui/gm-tools.mjs";
+import { lastDelivery } from "./adventures/last-delivery-gm.mjs";
 
 registerBabeleHooks();
 registerDiceSoNiceHooks();
+registerGmTools();
+lastDelivery.registerHooks();
 
 const ACTOR_DATA_MODELS = {
   character: CharacterDataModel,
@@ -102,7 +106,10 @@ Hooks.once("init", async () => {
   game.tokyoGhoul = {
     CharacterBuilderApp,
     createActorFromCharacterDraft,
-    openCharacterBuilder
+    openCharacterBuilder,
+    startEncounter,
+    setEncounterMode,
+    adventures: { lastDelivery }
   };
 
   registerHandlebarsHelpers();
@@ -123,7 +130,7 @@ Hooks.on("renderActorDirectory", (_app, element) => {
   const button = document.createElement("button");
   button.type = "button";
   button.className = "tg-builder-launch";
-  button.textContent = game.i18n.localize("TG.builder.title");
+  button.innerHTML = `<i class="fa-solid fa-user-plus" aria-hidden="true"></i> ${game.i18n.localize("TG.builder.title")}`;
   button.addEventListener("click", () => openCharacterBuilder());
   (root.querySelector(".header-actions") ?? root).prepend(button);
 });

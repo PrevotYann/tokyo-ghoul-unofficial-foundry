@@ -27,3 +27,10 @@ test("validation accepts class-required weapon item presence", () => {
   assert.equal(investigator.warnings.some((warning) => warning.code.startsWith("class.")), false);
   assert.equal(quinx.warnings.some((warning) => warning.code.startsWith("class.")), false);
 });
+
+test("validation warns when more than two Quinque are carried", () => {
+  const quinque = equipped => ({ type: "quinque", system: { equipped } });
+  const codes = items => validateCharacterSystemData({ stats: validStats, identity: { class: "investigator" } }, items).warnings.map(w => w.code);
+  assert.ok(!codes([quinque(true), quinque(true), quinque(false)]).includes("quinque.carryLimit"));
+  assert.ok(codes([quinque(true), quinque(true), quinque(true)]).includes("quinque.carryLimit"));
+});

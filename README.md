@@ -1,8 +1,8 @@
 # Tokyo Ghoul: Unofficial TTRPG for Foundry VTT
 
-**Included one-shot: The Last Delivery.** An original 4–6 player Tokyo Ghoul investigation with six pregens, NPCs, weapons, evidence handouts and three generated top-down battlemaps. Open its Adventure compendium and import all content, then read **00 • GM Start Here**. [Contents, setup and validation](docs/qa/last-delivery.md).
+**Included one-shot: The Last Delivery.** An original 4–6 player Tokyo Ghoul investigation with six pregens, NPCs, weapons, evidence handouts and three generated top-down battlemaps. Open its Adventure compendium and import all content, then read **00 • GM Start Here** and run the **Last Delivery • GM Control Panel** macro (party size, story pressure, locks, NPC recruitment, wound carry-over and one-click encounters). [Contents, setup and validation](docs/qa/last-delivery.md).
 
-An unofficial system for Foundry **v14**, verified locally on **14.368**. Version 0.4.2 fixes stat rolls, adapts Character/NPC sheets to each class and adds optional Dice So Nice! animations with a red/black default theme. Version 0.4.0 added **The Last Delivery**, a complete native Adventure with original characters, equipment, journals, illustrated battlemaps, working walls/doors, lighting, vision and preplaced tokens.
+An unofficial system for Foundry **v14**, verified locally on **14.368**. Version 0.5.0 completes the remaining rulebook gaps, redesigns every sheet, window and chat card, and adds GM automation to the adventure ([release notes](docs/qa/release-0.5.0.md)). Version 0.4.2 fixes stat rolls, adapts Character/NPC sheets to each class and adds optional Dice So Nice! animations with a red/black default theme. Version 0.4.0 added **The Last Delivery**, a complete native Adventure with original characters, equipment, journals, illustrated battlemaps, working walls/doors, lighting, vision and preplaced tokens.
 
 ## Install
 
@@ -24,7 +24,7 @@ Progression tools cover stat spending, consumption, evolution, Kakuhou forging a
 
 English is the base language for UI strings and all compendium content. Babele support is optional and includes ID-keyed English templates for all Item packs, folder labels and mappings for descriptions and rule notes. The Adventure's story content is English. Edge automation uses stable rule IDs, so translated names preserve mechanics.
 
-Create a translation module starter with `npm run build:translations -- --module --lang fr --output artifacts/translation-module/fr`, then translate its English values. [Translation instructions and Foundry QA](docs/qa/translations.md) explain installation, mappings, compatibility and updates. The existing French UI remains available.
+Create a translation module starter with `npm run build:translations -- --module --lang fr --output artifacts/translation-module/fr`, then translate its English values. [Translation instructions and Foundry QA](docs/qa/translations.md) explain installation, mappings, compatibility and updates. The bundled French UI mirrors the [French translation module](https://github.com/PrevotYann/tokyo-ghoul-unofficial-fr), which also translates every compendium and The Last Delivery through Babele.
 
 ## Development
 
@@ -44,7 +44,7 @@ Run npm run release:package to create the installable archive and manifests in a
 
 The developer rulebook is expected locally at docs/rulebook/Tokyo Ghoul Tabletop RPG - Unofficial.pdf and is excluded from releases. Mechanics use formulas and concise paraphrases. The placeholder SVG is original. The background and custom wordmark were generated with the built-in image tool; the generation prompt is included beside the image in assets/. No official Tokyo Ghoul artwork, panels, music, logos or fonts are shipped. Tokyo Ghoul belongs to its respective rights holders.
 
-French localization includes English stubs for newer controls. Spatial movement, cover, area membership, Dynamic abilities and narrative triggers require GM judgment; consult the audit rather than assuming complete automation.
+Spatial movement, cover, area membership, Dynamic abilities and narrative triggers require GM judgment; consult the audit rather than assuming complete automation.
 
 Rich text on Actor and Item sheets is rendered as formatted content by default. Owners can use the pencil button to edit and save it; read-only sheets hide that control. Run `npm run test:sheet-content` against the disposable `tg-qa` v14 world to verify rich text display, editing, saving, permissions, weapon checkboxes and narrow layouts.
 

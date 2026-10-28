@@ -3,12 +3,15 @@ import { promptAttackOptions, promptRollOptions, promptFields } from "./roll-dia
 import { assignEdgeToWeapon } from "./edge-assignment.mjs";
 import { parseDropData } from "../ui/drag-drop.mjs";
 import { createKaguneDraft, createQuinqueDraft, getClassStartingProfile } from "../rules/character-builder.mjs";
-import { validateCharacterSystemData } from "../rules/validation.mjs";
+import { validateCharacterSystemData, countCarriedQuinque, QUINQUE_CARRY_LIMIT } from "../rules/validation.mjs";
+import { TG_CONFIG } from "../config.mjs";
+import { edgeLabel } from "../localization/labels.mjs";
+import { equivalentRank, pips, resourceBar, statDelta } from "../ui/sheet-view.mjs";
 
 export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
   static DEFAULT_OPTIONS = {
     classes: ["tg-system", "tg-sheet", "tg-actor-sheet"],
-    position: { width: 920, height: 760 },
+    position: { width: 940, height: 800 },
     window: { resizable: true },
     form: {
       handler: TokyoGhoulActorSheet.#onSubmit,
@@ -29,24 +32,102 @@ export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApp
     const context = await super._prepareContext(options);
     const actor = this.actor ?? this.document;
     const items = Array.from(actor.items ?? []);
+    const system = actor.system;
+    const actorClass = system.identity?.class;
+    const usesMealScore = ["ghoul", "quinx"].includes(actorClass);
+    const usesRage = ["investigator", "quinx"].includes(actorClass);
     return {
       ...context,
       actor,
-      system: actor.system,
+      system,
       enriched: await enrichSheetFields(actor, ["biography.appearance", "biography.personality", "biography.backstory", "biography.goals", "progression.notes", "automation.ruleNotes"]),
-      usesMealScore: ["ghoul", "quinx"].includes(actor.system.identity?.class),
-      usesRage: ["investigator", "quinx"].includes(actor.system.identity?.class),
-      usesKakuja: ["ghoul", "quinx"].includes(actor.system.identity?.class),
-      usesQuinque: ["investigator", "quinx"].includes(actor.system.identity?.class),
+      usesMealScore,
+      usesRage,
+      usesKakuja: ["ghoul", "quinx"].includes(actorClass),
+      usesQuinque: ["investigator", "quinx"].includes(actorClass),
       hasGimmicks: items.some(item => item.type === "gimmick"),
       effects: actor.effects.contents,
       rangeBands: ["melee","close","mid","long","far"],
-      kakujaStages: actor.system.identity?.class === "quinx" ? ["none", "half"] : ["none", "half", "full"],
+      quickActions: ["strike", "dodge", "block", "breather", "controlCheck"],
+      kakujaStages: actorClass === "quinx" ? ["none", "half"] : ["none", "half", "full"],
       maneuverActions: ["move","ready","allOut","counter","overextend","heavyStrike","grab","throw","breakGrapple", ...(items.some(item => item.type === "quinque" && item.system.sidearm?.enabled) ? ["reload"] : [])],
-      stats: Object.entries(actor.system.stats ?? {}).map(([key, data]) => ({ key, data })),
+      stats: Object.entries(system.stats ?? {}).map(([key, data]) => ({ key, data, delta: statDelta(data) })),
       itemGroups: this.#groupItems(items),
-      validation: validateCharacterSystemData(actor.system, items),
+      validation: validateCharacterSystemData(system, items),
+      view: this.#buildView(actor, items, { usesMealScore, usesRage }),
       isEditable: this.isEditable
+    };
+  }
+
+  #buildView(actor, items, { usesMealScore, usesRage }) {
+    const system = actor.system;
+    const actorClass = system.identity?.class ?? "ghoul";
+    const rankField = actorClass === "ghoul" ? "rankGhoul" : "rankInvestigator";
+    const rank = system.identity?.[rankField];
+    const rankList = actorClass === "ghoul" ? TG_CONFIG.ranks.ghoul : TG_CONFIG.ranks.investigator;
+    const equivalent = equivalentRank(rank);
+    const bars = [
+      { key: "vitality", ...resourceBar(system.resources.vitality) },
+      { key: "stamina", ...resourceBar(system.resources.stamina) },
+      ...(usesMealScore ? [{ key: "mealScore", ...resourceBar(system.resources.mealScore) }] : [])
+    ];
+    const budget = system.resources.maneuverBudget;
+    const conditions = items.filter(item => item.type === "condition");
+    const states = [
+      ...(system.resources.vitality.value <= 0 ? [{ key: "down", label: "TG.states.down", icon: "fa-skull-crossbones", tone: "danger" }] : []),
+      ...(usesRage && system.resources.rage?.active ? [{ key: "rage", label: "TG.states.rage", icon: "fa-fire", tone: "danger" }] : []),
+      ...(usesMealScore && system.hunger?.active ? [{ key: "hunger", label: "TG.states.hunger", icon: "fa-tooth", tone: "danger" }] : []),
+      ...(system.kakuja?.active ? [{ key: "kakuja", label: `TG.kakuja.${system.kakuja.stage}`, icon: "fa-skull", tone: "accent" }] : []),
+      ...(system.kakuja?.lostControl ? [{ key: "lostControl", label: "TG.states.lostControl", icon: "fa-explosion", tone: "danger" }] : []),
+      ...(system.combat?.counterDeclared ? [{ key: "counter", label: "TG.actions.counter", icon: "fa-rotate-left", tone: "info" }] : []),
+      ...(system.combat?.readiedAction?.trigger ? [{ key: "ready", label: "TG.actions.ready", icon: "fa-hourglass-half", tone: "info", title: system.combat.readiedAction.trigger }] : []),
+      ...(system.hunger?.regenerationSuppressed ? [{ key: "suppressed", label: "TG.states.regenSuppressed", icon: "fa-ban", tone: "warning" }] : []),
+      ...conditions.map(item => ({ key: item.system.conditionId, text: item.name, stacks: Number(item.system.stacks) > 1 ? item.system.stacks : null, icon: "fa-triangle-exclamation", tone: "warning", itemId: item.id }))
+    ];
+    const weapons = items.filter(item => ["kagune", "quinque", "kakuja-armor"].includes(item.type)).map(item => this.#weaponView(item));
+    const carried = countCarriedQuinque(items);
+    return {
+      actorClass,
+      rankField,
+      rank,
+      rankOptions: rankList.map(value => ({ value, label: `TG.ranks.${value}` })),
+      equivalentRank: equivalent ? `TG.ranks.${equivalent}` : null,
+      bars,
+      maneuverPips: pips(budget.value, budget.max),
+      reactionPips: pips(budget.reactionsReserved, budget.reactionsReserved),
+      states,
+      weapons,
+      weaponEdges: weapons.filter(weapon => weapon.edges.length),
+      quinqueCarry: actorClass === "ghoul" ? null : { value: carried, max: QUINQUE_CARRY_LIMIT, over: carried > QUINQUE_CARRY_LIMIT },
+      kakujaMasteryPips: pips(system.kakuja?.masterySuccesses ?? 0, system.kakuja?.active || system.kakuja?.masterySuccesses ? 10 : 0)
+    };
+  }
+
+  #weaponView(item) {
+    const system = item.system;
+    const isQuinque = item.type === "quinque", isKagune = item.type === "kagune", isArmor = item.type === "kakuja-armor";
+    const active = isQuinque ? !!system.equipped : !!system.manifested;
+    const range = system.range ?? {};
+    return {
+      id: item.id,
+      name: item.name,
+      img: item.img,
+      type: item.type,
+      rc: isArmor ? system.armorType : system.primaryType,
+      rcLabel: isArmor ? `TG.armor.${system.armorType}` : `TG.kagune.${system.primaryType}`,
+      secondary: system.secondaryType ? `TG.kagune.${system.secondaryType}` : null,
+      rcl: system.rcl,
+      active,
+      toggleAction: isQuinque ? (active ? "unequip" : "equip") : isKagune ? (active ? "withdraw" : "manifest") : "toggleArmor",
+      melee: !isArmor && range.melee ? `TG.ranges.${range.melee}` : null,
+      projectile: !isArmor && range.projectile ? `TG.ranges.${range.projectile}` : null,
+      edges: Array.from(system.edges ?? []).map(edge => ({ id: edge, label: edgeLabel(edge) })),
+      slots: system.edgeSlots ? { used: system.edgeSlots.used, max: system.edgeSlots.max } : null,
+      bonds: isQuinque ? { ...resourceBar(system.rcBonds), broken: !!system.rcBonds?.broken, repair: system.rcBonds?.repairDaysRemaining } : null,
+      ammo: isQuinque && system.sidearm?.enabled ? { value: system.sidearm.ammo.value, max: system.sidearm.ammo.max, type: `TG.kagune.${system.sidearm.ammoType}` } : null,
+      armor: isArmor ? { turns: system.turnsActive ?? 0, parasitic: (system.turnsActive ?? 0) >= 5 } : null,
+      kakujaWeapon: isQuinque && !!system.kakuja?.isKakujaWeapon,
+      canAttack: !isArmor
     };
   }
 
@@ -204,6 +285,7 @@ export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApp
     if (action === "switchForm") return item.setFlag("tokyo-ghoul-unofficial","activeForm",item.getFlag("tokyo-ghoul-unofficial","activeForm") === "secondary" ? "primary" : "secondary");
     if (action === "toggle") {
       const field = item.type === "quinque" ? "equipped" : "manifested";
+      if (item.type === "quinque" && !item.system.equipped && countCarriedQuinque(Array.from(this.actor.items)) >= QUINQUE_CARRY_LIMIT) return ui.notifications.warn(game.i18n.localize("TG.notifications.quinqueCarryLimit"));
       return item.update({[`system.${field}`]:!item.system[field], ...(item.type === "kakuja-armor" ? {"system.turnsActive":0} : {})});
     }
     if (item.type === "gimmick") return this.actor.toggleGimmick(item);
@@ -217,11 +299,11 @@ export class TokyoGhoulActorSheet extends foundry.applications.api.HandlebarsApp
 
   #groupItems(items) {
     const groups = {
-      weapons: { label: "TG.sheet.weapons", items: [] },
-      edges: { label: "TG.sheet.edges", items: [] },
-      maneuvers: { label: "TG.sheet.maneuvers", items: [] },
-      inventory: { label: "TG.sheet.inventory", items: [] },
-      conditions: { label: "TG.sheet.conditions", items: [] }
+      weapons: { label: "TG.sheet.weapons", icon: "fa-dragon", items: [] },
+      edges: { label: "TG.sheet.edges", icon: "fa-gem", items: [] },
+      maneuvers: { label: "TG.sheet.maneuvers", icon: "fa-person-running", items: [] },
+      inventory: { label: "TG.sheet.inventory", icon: "fa-box-open", items: [] },
+      conditions: { label: "TG.sheet.conditions", icon: "fa-triangle-exclamation", items: [] }
     };
 
     for (const item of items) {

@@ -73,3 +73,13 @@ test("defense resolution compares rolls and returns outcome plus counter tier", 
     counter: { margin: -10, automatic: false, damageMultiplier: 0 }
   });
 });
+
+test("vitality transitions report incapacitation, revival and yield thresholds", async () => {
+  const { getVitalityTransition } = await import("../../src/rules/damage.mjs");
+  assert.deepEqual(getVitalityTransition({ previous: 5, current: 0 }), { downed: true, revived: false, yields: false });
+  assert.deepEqual(getVitalityTransition({ previous: 0, current: 4 }), { downed: false, revived: true, yields: false });
+  assert.equal(getVitalityTransition({ previous: 30, current: 24, yieldAt: 24 }).yields, true);
+  assert.equal(getVitalityTransition({ previous: 24, current: 20, yieldAt: 24 }).yields, false, "only on crossing");
+  assert.equal(getVitalityTransition({ previous: 30, current: 0, yieldAt: 24 }).yields, false, "incapacitation supersedes yielding");
+  assert.equal(getVitalityTransition({ previous: 30, current: 10, yieldAt: null }).yields, false);
+});

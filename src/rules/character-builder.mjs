@@ -61,7 +61,7 @@ export function calculateBuilderRcl({ baseRcl, maxEdges, chosenEdges = [] } = {}
   });
 }
 
-export function createKaguneDraft({ name = "Kagune", actorClass = "ghoul", kaguneType = "ukaku", edges = [] } = {}) {
+export function createKaguneDraft({ name = "Kagune", actorClass = "ghoul", kaguneType = "ukaku", edges = [], bikakuPenalty = "crl" } = {}) {
   edges = edges.map(normalizeEdgeName);
   const profile = getClassStartingProfile(actorClass);
   const rcl = calculateBuilderRcl({ baseRcl: profile.kaguneRcl, maxEdges: profile.kaguneEdgeSlots, chosenEdges: edges });
@@ -77,7 +77,7 @@ export function createKaguneDraft({ name = "Kagune", actorClass = "ghoul", kagun
       range: getDefaultTypeRange(kaguneType),
       edgeSlots: { max: profile.kaguneEdgeSlots + (kaguneType === "bikaku" ? 1 : 0), used: edges.length, bonusFromType: kaguneType === "bikaku" ? 1 : 0 },
       edges,
-      evolution: { spentRcl: 0, statPurchases: [], swappedEdges: [] },
+      evolution: { spentRcl: 0, statPurchases: [], swappedEdges: [], bikakuPenalty: ["crl", "per", "rcl"].includes(bikakuPenalty) ? bikakuPenalty : "crl" },
       automation: "manual",
       description: "",
       dynamicNotes: ""
@@ -125,13 +125,16 @@ export function createCharacterDraft({
   quinqueType = "ukaku",
   kaguneEdges = [],
   quinqueEdges = [],
-  customStats = null
+  customStats = null,
+  kaguneName = "Kagune",
+  quinqueName = "Quinque",
+  bikakuPenalty = "crl"
 } = {}) {
   const profile = getClassStartingProfile(actorClass);
   const stats = customStats ? Object.fromEntries(TG_CONFIG.stats.map(key => [key, statObject(Number(customStats[key]))])) : buildStatsFromPreset(statPreset);
   const items = [];
-  if (profile.needsKagune) items.push(createKaguneDraft({ actorClass, kaguneType, edges: kaguneEdges }));
-  if (profile.needsQuinque) items.push(createQuinqueDraft({ actorClass, quinqueType, edges: quinqueEdges }));
+  if (profile.needsKagune) items.push(createKaguneDraft({ name: kaguneName || "Kagune", actorClass, kaguneType, edges: kaguneEdges, bikakuPenalty }));
+  if (profile.needsQuinque) items.push(createQuinqueDraft({ name: quinqueName || "Quinque", actorClass, quinqueType, edges: quinqueEdges }));
 
   return {
     name,

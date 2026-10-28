@@ -96,3 +96,8 @@ test("edge loadout validation catches restrictions and incompatible edges", () =
   assert.equal(result.errors.some((error) => error.code === "edge.allowedType"), true);
   assert.equal(result.errors.some((error) => error.code === "edge.incompatible"), true);
 });
+
+test("Prehensile extends Grab range but does not grant Grab or Throw", () => {
+  assert.deepEqual(calculateEdgeCombatModifiers(["Prehensile"]).grantsManeuvers, []);
+  assert.deepEqual(calculateEdgeCombatModifiers(["Grappler"]).grantsManeuvers, ["Grab", "Throw"]);
+});

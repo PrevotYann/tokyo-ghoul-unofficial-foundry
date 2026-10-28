@@ -1,126 +1,156 @@
-<div class="tg-form tg-character" autocomplete="off">
-  <header class="tg-sheet-header">
-    <img class="tg-portrait" src="{{actor.img}}" alt="{{actor.name}}" data-action="editImage">
-    <div class="tg-header-main">
-      <input class="tg-name" name="name" type="text" value="{{actor.name}}" aria-label="{{localize 'TG.sheet.name'}}">
-      <div class="tg-chip-row">
-        <span class="tg-chip">{{localize (concat "TG.classes." system.identity.class)}}</span>
-        <span class="tg-chip">{{localize 'TG.resources.vitality.label'}} {{system.resources.vitality.value}} / {{system.resources.vitality.max}}</span>
-        <span class="tg-chip">{{localize 'TG.resources.stamina.label'}} {{system.resources.stamina.value}} / {{system.resources.stamina.max}}</span>
-        {{#if usesMealScore}}
-          <span class="tg-chip">{{localize 'TG.resources.mealScore.label'}} {{system.resources.mealScore.value}} / {{system.resources.mealScore.max}}</span>
-        {{/if}}
+<div class="tg-form tg-character" data-class="{{view.actorClass}}" autocomplete="off">
+  <header class="tg-hud">
+    <div class="tg-hud-portrait">
+      <img class="tg-portrait" src="{{actor.img}}" alt="{{actor.name}}" data-action="editImage">
+      <span class="tg-class-sigil" aria-hidden="true"><i class="fa-solid {{#if (eq view.actorClass "ghoul")}}fa-eye{{else if (eq view.actorClass "quinx")}}fa-eye-low-vision{{else}}fa-briefcase{{/if}}"></i></span>
+    </div>
+    <div class="tg-hud-main">
+      <div class="tg-hud-title">
+        <input class="tg-name" name="name" type="text" value="{{actor.name}}" aria-label="{{localize 'TG.sheet.name'}}">
+        <div class="tg-badges">
+          <span class="tg-badge tg-badge-class">{{localize (concat "TG.classes." view.actorClass)}}</span>
+          <label class="tg-badge tg-badge-rank" title="{{localize 'TG.sheet.rankLabel'}}">
+            <i class="fa-solid fa-ranking-star" aria-hidden="true"></i>
+            <select name="system.identity.{{view.rankField}}" aria-label="{{localize 'TG.sheet.rankLabel'}}">
+              {{#each view.rankOptions}}<option value="{{value}}" {{#if (eq value ../view.rank)}}selected{{/if}}>{{localize label}}</option>{{/each}}
+            </select>
+          </label>
+          {{#if view.equivalentRank}}<span class="tg-badge tg-badge-muted" title="{{localize 'TG.sheet.rankEquivalent'}}">≈ {{localize view.equivalentRank}}</span>{{/if}}
+          {{#if system.identity.alias}}<span class="tg-badge tg-badge-muted">“{{system.identity.alias}}”</span>{{/if}}
+        </div>
       </div>
-      <div class="tg-action-row">
-        <button type="button" data-actor-action="strike">{{localize 'TG.actions.strike'}}</button>
-        <button type="button" data-actor-action="dodge">{{localize 'TG.actions.dodge'}}</button>
-        <button type="button" data-actor-action="block">{{localize 'TG.actions.block'}}</button>
-        <button type="button" data-actor-action="breather">{{localize 'TG.actions.breather'}}</button>
-        <button type="button" data-actor-action="controlCheck">{{localize 'TG.actions.controlCheck'}}</button>
+      <div class="tg-bars">
+        {{#each view.bars as |bar|}}
+          <div class="tg-bar tg-bar-{{bar.key}}{{#if bar.critical}} is-critical{{else if bar.low}} is-low{{/if}}">
+            <div class="tg-bar-label">
+              <span>{{localize (concat "TG.resources." bar.key ".label")}}</span>
+              <span class="tg-bar-value"><input name="system.resources.{{bar.key}}.value" type="number" value="{{bar.value}}" min="0" step="1" aria-label="{{localize (concat "TG.resources." bar.key ".label")}}"><span>/ {{bar.max}}</span></span>
+            </div>
+            <div class="tg-bar-track" role="meter" aria-valuemin="0" aria-valuemax="{{bar.max}}" aria-valuenow="{{bar.value}}" aria-label="{{localize (concat "TG.resources." bar.key ".label")}}"><div class="tg-bar-fill" style="width: {{bar.pct}}%"></div></div>
+          </div>
+        {{/each}}
+      </div>
+      <div class="tg-hud-row">
+        <div class="tg-pips" title="{{localize 'TG.sheet.maneuvers'}}">
+          <span class="tg-pips-label">{{localize 'TG.sheet.maneuvers'}}</span>
+          {{#each view.maneuverPips}}<i class="tg-pip{{#if filled}} is-filled{{/if}}" aria-hidden="true"></i>{{/each}}
+          <span class="tg-pips-count">{{system.resources.maneuverBudget.value}}/{{system.resources.maneuverBudget.max}}</span>
+        </div>
+        {{#if view.reactionPips.length}}
+          <div class="tg-pips tg-pips-reaction" title="{{localize 'TG.sheet.reactionsReserved'}}">
+            <span class="tg-pips-label">{{localize 'TG.sheet.reactionsShort'}}</span>
+            {{#each view.reactionPips}}<i class="tg-pip is-filled" aria-hidden="true"></i>{{/each}}
+          </div>
+        {{/if}}
+        <div class="tg-states">
+          {{#each view.states as |state|}}
+            <span class="tg-state tg-tone-{{state.tone}}" {{#if state.title}}title="{{state.title}}"{{/if}}><i class="fa-solid {{state.icon}}" aria-hidden="true"></i>{{#if state.text}}{{state.text}}{{else}}{{localize state.label}}{{/if}}{{#if state.stacks}} <b>×{{state.stacks}}</b>{{/if}}</span>
+          {{/each}}
+        </div>
       </div>
     </div>
   </header>
 
+  <nav class="tg-quickbar" aria-label="{{localize 'TG.sheet.quickActions'}}">
+    {{#each quickActions as |action|}}
+      <button type="button" class="tg-quick tg-quick-{{action}}" data-actor-action="{{action}}"><i class="fa-solid {{tgIcon action}}" aria-hidden="true"></i><span>{{localize (concat "TG.actions." action)}}</span></button>
+    {{/each}}
+  </nav>
+
   <nav class="tg-tabs" role="tablist" aria-label="{{localize 'TG.sheet.tabs'}}">
-    <button type="button" class="active" role="tab" data-tg-tab="overview">{{localize 'TG.tabs.overview'}}</button>
-    <button type="button" role="tab" data-tg-tab="combat">{{localize 'TG.tabs.combat'}}</button>
-    <button type="button" role="tab" data-tg-tab="weapons">{{localize 'TG.tabs.weapons'}}</button>
-    <button type="button" role="tab" data-tg-tab="edges">{{localize 'TG.tabs.edges'}}</button>
-    <button type="button" role="tab" data-tg-tab="progression">{{localize 'TG.tabs.progression'}}</button>
-    <button type="button" role="tab" data-tg-tab="inventory">{{localize 'TG.tabs.inventory'}}</button>
-    <button type="button" role="tab" data-tg-tab="biography">{{localize 'TG.tabs.biography'}}</button>
-    <button type="button" role="tab" data-tg-tab="settings">{{localize 'TG.tabs.settings'}}</button>
+    <button type="button" class="active" role="tab" data-tg-tab="overview"><i class="fa-solid fa-id-card" aria-hidden="true"></i><span>{{localize 'TG.tabs.overview'}}</span></button>
+    <button type="button" role="tab" data-tg-tab="combat"><i class="fa-solid fa-burst" aria-hidden="true"></i><span>{{localize 'TG.tabs.combat'}}</span></button>
+    <button type="button" role="tab" data-tg-tab="weapons"><i class="fa-solid fa-dragon" aria-hidden="true"></i><span>{{localize 'TG.tabs.weapons'}}</span></button>
+    <button type="button" role="tab" data-tg-tab="edges"><i class="fa-solid fa-gem" aria-hidden="true"></i><span>{{localize 'TG.tabs.edges'}}</span></button>
+    <button type="button" role="tab" data-tg-tab="progression"><i class="fa-solid fa-chart-line" aria-hidden="true"></i><span>{{localize 'TG.tabs.progression'}}</span></button>
+    <button type="button" role="tab" data-tg-tab="inventory"><i class="fa-solid fa-box-open" aria-hidden="true"></i><span>{{localize 'TG.tabs.inventory'}}</span></button>
+    <button type="button" role="tab" data-tg-tab="biography"><i class="fa-solid fa-book-open" aria-hidden="true"></i><span>{{localize 'TG.tabs.biography'}}</span></button>
+    <button type="button" role="tab" data-tg-tab="settings"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>{{localize 'TG.tabs.settings'}}</span></button>
   </nav>
 
   <section role="tabpanel" data-tg-panel="overview">
     <div class="tg-panel">
-      <h2>{{localize 'TG.sheet.identity'}}</h2>
-      <div class="tg-grid tg-grid-4">
-        <label>
-          <span>{{localize 'TG.sheet.class'}}</span>
-          <select name="system.identity.class">
-            <option value="ghoul" {{#if (eq system.identity.class "ghoul")}}selected{{/if}}>{{localize 'TG.classes.ghoul'}}</option>
-            <option value="investigator" {{#if (eq system.identity.class "investigator")}}selected{{/if}}>{{localize 'TG.classes.investigator'}}</option>
-            <option value="quinx" {{#if (eq system.identity.class "quinx")}}selected{{/if}}>{{localize 'TG.classes.quinx'}}</option>
-          </select>
-        </label>
-        <label>
-          <span>{{localize 'TG.sheet.faction'}}</span>
-          <input name="system.identity.faction" type="text" value="{{system.identity.faction}}">
-        </label>
-        <label>
-          <span>{{localize 'TG.sheet.alias'}}</span>
-          <input name="system.identity.alias" type="text" value="{{system.identity.alias}}">
-        </label>
-        <label>
-          <span>{{localize 'TG.sheet.pronouns'}}</span>
-          <input name="system.identity.pronouns" type="text" value="{{system.identity.pronouns}}">
-        </label>
-      </div>
-      <div class="tg-action-row tg-panel-actions">
-        <button type="button" data-actor-action="setupClass">{{localize 'TG.actions.setupClass'}}</button>
-      </div>
-    </div>
-
-    <div class="tg-panel">
-      <h2>{{localize 'TG.sheet.stats'}}</h2>
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-dice-d20" aria-hidden="true"></i>{{localize 'TG.sheet.stats'}}</h2><span class="tg-hint">{{localize 'TG.sheet.statRollHint'}}</span></header>
       <div class="tg-stat-grid">
         {{#each stats as |entry|}}
-          <article class="tg-stat-card">
-            <label>
-              <span>{{localize (concat "TG.stats." entry.key ".label")}}</span>
+          <article class="tg-stat" data-stat="{{entry.key}}">
+            <span class="tg-stat-key">{{localize (concat "TG.stats." entry.key ".label")}}</span>
+            <button type="button" class="tg-stat-roll" data-roll-stat="{{entry.key}}" aria-label="{{localize 'TG.actions.roll'}} {{localize (concat "TG.stats." entry.key ".label")}}">
+              <span class="tg-stat-total">{{entry.data.total}}</span>
+              <i class="fa-solid fa-dice-d20" aria-hidden="true"></i>
+            </button>
+            {{#if entry.delta}}<span class="tg-stat-delta{{#if (tgGt entry.delta 0)}} is-up{{else}} is-down{{/if}}">{{#if (tgGt entry.delta 0)}}+{{/if}}{{entry.delta}}</span>{{/if}}
+            <label class="tg-stat-base">
+              <span>{{localize 'TG.sheet.base'}}</span>
               <input name="system.stats.{{entry.key}}.base" type="number" value="{{entry.data.base}}" min="0" step="1">
             </label>
-            <div class="tg-stat-footer">
-              <strong>{{entry.data.total}}</strong>
-              <button type="button" data-roll-stat="{{entry.key}}">{{localize 'TG.actions.roll'}}</button>
-            </div>
           </article>
         {{/each}}
       </div>
     </div>
 
-    <div class="tg-panel">
-      <h2>{{localize 'TG.sheet.resources'}}</h2>
-      <div class="tg-action-row">{{#if usesRage}}<button type="button" data-actor-action="rage">{{localize 'TG.actions.rage'}}</button>{{/if}}<button type="button" data-actor-action="assignStats">{{localize 'TG.actions.assignStats'}}</button>{{#if usesMealScore}}<button type="button" data-actor-action="feed">{{localize 'TG.actions.feed'}}</button>{{/if}}</div>
-      <div class="tg-resource-grid">
-        <label>
-          <span>{{localize 'TG.resources.vitality.label'}}</span>
-          <input name="system.resources.vitality.value" type="number" value="{{system.resources.vitality.value}}" min="0" step="1">
-          <meter min="0" max="{{system.resources.vitality.max}}" value="{{system.resources.vitality.value}}"></meter>
-        </label>
-        <label>
-          <span>{{localize 'TG.resources.stamina.label'}}</span>
-          <input name="system.resources.stamina.value" type="number" value="{{system.resources.stamina.value}}" min="0" step="1">
-          <meter min="0" max="{{system.resources.stamina.max}}" value="{{system.resources.stamina.value}}"></meter>
-        </label>
-        {{#if usesMealScore}}
+    <div class="tg-columns">
+      <div class="tg-panel">
+        <header class="tg-panel-head"><h2><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>{{localize 'TG.sheet.resources'}}</h2></header>
+        <dl class="tg-derived">
+          <div><dt>{{localize 'TG.resources.vitality.label'}}</dt><dd>({{localize 'TG.stats.end.label'}} + {{localize 'TG.stats.crl.label'}}) × 3</dd></div>
+          <div><dt>{{localize 'TG.resources.stamina.label'}}</dt><dd>({{localize 'TG.stats.end.label'}} + {{localize 'TG.stats.spd.label'}}) × 3</dd></div>
+          {{#if usesMealScore}}<div><dt>{{localize 'TG.resources.mealScore.label'}}</dt><dd>max({{localize 'TG.stats.crl.label'}} × 1.5, 4)</dd></div>{{/if}}
+        </dl>
+        <div class="tg-action-grid">
+          {{#if usesRage}}<button type="button" class="tg-tile" data-actor-action="rage"><i class="fa-solid {{tgIcon "rage"}}" aria-hidden="true"></i><span>{{localize 'TG.actions.rage'}}</span></button>{{/if}}
+          <button type="button" class="tg-tile" data-actor-action="assignStats"><i class="fa-solid {{tgIcon "assignStats"}}" aria-hidden="true"></i><span>{{localize 'TG.actions.assignStats'}}</span></button>
+          {{#if usesMealScore}}<button type="button" class="tg-tile" data-actor-action="feed"><i class="fa-solid {{tgIcon "feed"}}" aria-hidden="true"></i><span>{{localize 'TG.actions.feed'}}</span></button>{{/if}}
+        </div>
+      </div>
+
+      <div class="tg-panel">
+        <header class="tg-panel-head"><h2><i class="fa-solid fa-user" aria-hidden="true"></i>{{localize 'TG.sheet.identity'}}</h2></header>
+        <div class="tg-grid tg-grid-2">
           <label>
-            <span>{{localize 'TG.resources.mealScore.label'}}</span>
-            <input name="system.resources.mealScore.value" type="number" value="{{system.resources.mealScore.value}}" min="0" step="1">
-            <meter min="0" max="{{system.resources.mealScore.max}}" value="{{system.resources.mealScore.value}}"></meter>
+            <span>{{localize 'TG.sheet.class'}}</span>
+            <select name="system.identity.class">
+              <option value="ghoul" {{#if (eq system.identity.class "ghoul")}}selected{{/if}}>{{localize 'TG.classes.ghoul'}}</option>
+              <option value="investigator" {{#if (eq system.identity.class "investigator")}}selected{{/if}}>{{localize 'TG.classes.investigator'}}</option>
+              <option value="quinx" {{#if (eq system.identity.class "quinx")}}selected{{/if}}>{{localize 'TG.classes.quinx'}}</option>
+            </select>
           </label>
-        {{/if}}
+          <label>
+            <span>{{localize 'TG.sheet.faction'}}</span>
+            <input name="system.identity.faction" type="text" value="{{system.identity.faction}}">
+          </label>
+          <label>
+            <span>{{localize 'TG.sheet.alias'}}</span>
+            <input name="system.identity.alias" type="text" value="{{system.identity.alias}}">
+          </label>
+          <label>
+            <span>{{localize 'TG.sheet.pronouns'}}</span>
+            <input name="system.identity.pronouns" type="text" value="{{system.identity.pronouns}}">
+          </label>
+        </div>
+        <div class="tg-action-row tg-panel-actions">
+          <button type="button" data-actor-action="setupClass"><i class="fa-solid {{tgIcon "setupClass"}}" aria-hidden="true"></i>{{localize 'TG.actions.setupClass'}}</button>
+        </div>
       </div>
     </div>
 
-    <div class="tg-panel">
-      <h2>{{localize 'TG.sheet.validation'}}</h2>
-      {{#if validation.warnings.length}}
+    {{#if validation.warnings.length}}
+      <div class="tg-panel tg-panel-warning">
+        <header class="tg-panel-head"><h2><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>{{localize 'TG.sheet.validation'}}</h2></header>
         <ul class="tg-warning-list">
           {{#each validation.warnings as |warning|}}
             <li>{{localize warning.message}}</li>
           {{/each}}
         </ul>
-      {{else}}
-        <p class="tg-muted">{{localize 'TG.validation.noWarnings'}}</p>
-      {{/if}}
-    </div>
+      </div>
+    {{else}}
+      <p class="tg-muted tg-ok"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> {{localize 'TG.validation.noWarnings'}}</p>
+    {{/if}}
   </section>
 
   <section role="tabpanel" data-tg-panel="combat" hidden>
     <div class="tg-panel">
-      <h2>{{localize 'TG.tabs.combat'}} <span class="tg-chip">{{system.resources.maneuverBudget.value}} / {{system.resources.maneuverBudget.max}} {{localize 'TG.sheet.maneuvers'}}</span></h2>
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-chess-knight" aria-hidden="true"></i>{{localize 'TG.sheet.turn'}}</h2><span class="tg-count">{{system.resources.maneuverBudget.value}} / {{system.resources.maneuverBudget.max}}</span></header>
       <div class="tg-grid tg-grid-3">
         <label>
           <span>{{localize 'TG.sheet.combatMode'}}</span>
@@ -138,56 +168,134 @@
           <input name="system.resources.maneuverBudget.reactionsReserved" type="number" value="{{system.resources.maneuverBudget.reactionsReserved}}" min="0" step="1">
         </label>
       </div>
-      <div class="tg-action-row tg-panel-actions">
-        <button type="button" data-actor-action="reserveReaction">{{localize 'TG.actions.reserveReaction'}}</button>
-        {{#each maneuverActions}}<button type="button" data-actor-action="{{this}}">{{localize (concat "TG.actions." this)}}</button>{{/each}}
-        {{#if hasGimmicks}}<button type="button" data-actor-action="toggleGimmick">{{localize 'TG.actions.toggleGimmick'}}</button>{{/if}}
+    </div>
+
+    <div class="tg-panel">
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-person-running" aria-hidden="true"></i>{{localize 'TG.sheet.maneuvers'}}</h2><span class="tg-hint">{{localize 'TG.sheet.maneuverHint'}}</span></header>
+      <div class="tg-action-grid">
+        <button type="button" class="tg-tile tg-tile-reaction" data-actor-action="reserveReaction"><i class="fa-solid {{tgIcon "reserveReaction"}}" aria-hidden="true"></i><span>{{localize 'TG.actions.reserveReaction'}}</span></button>
+        {{#each maneuverActions as |action|}}<button type="button" class="tg-tile" data-actor-action="{{action}}"><i class="fa-solid {{tgIcon action}}" aria-hidden="true"></i><span>{{localize (concat "TG.actions." action)}}</span></button>{{/each}}
+        {{#if hasGimmicks}}<button type="button" class="tg-tile" data-actor-action="toggleGimmick"><i class="fa-solid {{tgIcon "toggleGimmick"}}" aria-hidden="true"></i><span>{{localize 'TG.actions.toggleGimmick'}}</span></button>{{/if}}
       </div>
     </div>
+
+    {{#if view.weapons.length}}
+      <div class="tg-panel">
+        <header class="tg-panel-head"><h2><i class="fa-solid fa-crosshairs" aria-hidden="true"></i>{{localize 'TG.sheet.readyWeapons'}}</h2></header>
+        <ul class="tg-weapon-strip">
+          {{#each view.weapons as |weapon|}}{{#if weapon.canAttack}}
+            <li class="tg-weapon-chip{{#if weapon.active}} is-active{{/if}}" data-item-id="{{weapon.id}}" data-rc="{{weapon.rc}}">
+              <span class="tg-weapon-chip-name">{{weapon.name}}</span>
+              <span class="tg-weapon-chip-rcl">{{localize 'TG.resources.rcl.label'}} {{weapon.rcl}}</span>
+              <button type="button" data-item-action="toggle">{{localize (concat "TG.actions." weapon.toggleAction)}}</button>
+              <button type="button" class="tg-primary" data-item-action="use"><i class="fa-solid fa-burst" aria-hidden="true"></i>{{localize 'TG.actions.strike'}}</button>
+            </li>
+          {{/if}}{{/each}}
+        </ul>
+      </div>
+    {{/if}}
+
+    {{> "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs" group=(lookup itemGroups 4)}}
     {{> "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs" group=(lookup itemGroups 2)}}
   </section>
 
   <section role="tabpanel" data-tg-panel="weapons" hidden>
-    {{> "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs" group=(lookup itemGroups 0)}}
+    <div class="tg-weapon-grid tg-drop-zone">
+      {{#each view.weapons as |weapon|}}
+        <article class="tg-weapon-card{{#if weapon.active}} is-active{{/if}}{{#if weapon.bonds.broken}} is-broken{{/if}}" data-item-id="{{weapon.id}}" data-rc="{{weapon.rc}}">
+          <header class="tg-weapon-head">
+            <img src="{{weapon.img}}" alt="">
+            <div class="tg-weapon-title">
+              <button type="button" class="tg-item-name" data-item-action="edit">{{weapon.name}}</button>
+              <span class="tg-weapon-type"><i class="fa-solid {{tgItemIcon weapon.type}}" aria-hidden="true"></i>{{localize (concat "TG.itemTypes." weapon.type)}} · {{localize weapon.rcLabel}}{{#if weapon.secondary}} / {{localize weapon.secondary}}{{/if}}{{#if weapon.kakujaWeapon}} · {{localize 'TG.sheet.kakujaWeapon'}}{{/if}}</span>
+            </div>
+            <div class="tg-weapon-rcl"><span>{{localize 'TG.resources.rcl.label'}}</span><strong>{{weapon.rcl}}</strong></div>
+          </header>
+          <div class="tg-weapon-body">
+            {{#if weapon.melee}}<span class="tg-tag"><i class="fa-solid fa-hand-fist" aria-hidden="true"></i>{{localize weapon.melee}}</span>{{/if}}
+            {{#if weapon.projectile}}<span class="tg-tag"><i class="fa-solid fa-bullseye" aria-hidden="true"></i>{{localize weapon.projectile}}</span>{{/if}}
+            {{#if weapon.slots}}<span class="tg-tag"><i class="fa-solid fa-gem" aria-hidden="true"></i>{{weapon.slots.used}} / {{weapon.slots.max}} {{localize 'TG.sheet.slots'}}</span>{{/if}}
+            {{#if weapon.armor}}<span class="tg-tag{{#if weapon.armor.parasitic}} tg-tag-danger{{/if}}"><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i>{{localize 'TG.sheet.armorTurns'}} {{weapon.armor.turns}}</span>{{/if}}
+          </div>
+          {{#if weapon.bonds}}
+            <div class="tg-bar tg-bar-bonds{{#if weapon.bonds.low}} is-low{{/if}}">
+              <div class="tg-bar-label"><span>{{localize 'TG.resources.rcBonds.label'}}</span><span>{{weapon.bonds.value}} / {{weapon.bonds.max}}{{#if weapon.bonds.broken}} · {{localize 'TG.states.broken'}}{{/if}}</span></div>
+              <div class="tg-bar-track"><div class="tg-bar-fill" style="width: {{weapon.bonds.pct}}%"></div></div>
+            </div>
+          {{/if}}
+          {{#if weapon.ammo}}<p class="tg-ammo"><i class="fa-solid fa-gun" aria-hidden="true"></i>{{localize 'TG.actions.sidearm'}} · {{localize weapon.ammo.type}} · <strong>{{weapon.ammo.value}}</strong> / {{weapon.ammo.max}}</p>{{/if}}
+          {{#if weapon.edges.length}}<div class="tg-edge-chips">{{#each weapon.edges}}<span class="tg-edge-chip">{{label}}</span>{{/each}}</div>{{/if}}
+          <footer class="tg-weapon-actions">
+            <button type="button" data-item-action="toggle"><i class="fa-solid {{tgIcon weapon.toggleAction}}" aria-hidden="true"></i>{{localize (concat "TG.actions." weapon.toggleAction)}}</button>
+            {{#if weapon.secondary}}<button type="button" data-item-action="switchForm"><i class="fa-solid {{tgIcon "switchForm"}}" aria-hidden="true"></i>{{localize 'TG.actions.switchForm'}}</button>{{/if}}
+            {{#if weapon.canAttack}}<button type="button" class="tg-primary" data-item-action="use"><i class="fa-solid fa-burst" aria-hidden="true"></i>{{localize 'TG.actions.strike'}}</button>{{/if}}
+            <button type="button" class="tg-icon-button" data-item-action="delete" aria-label="{{localize 'TG.actions.delete'}}" title="{{localize 'TG.actions.delete'}}"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+          </footer>
+        </article>
+      {{else}}
+        <p class="tg-empty"><i class="fa-solid fa-dragon" aria-hidden="true"></i>{{localize 'TG.sheet.noWeapons'}}</p>
+      {{/each}}
+    </div>
+    {{#if view.quinqueCarry}}<p class="tg-muted tg-carry{{#if view.quinqueCarry.over}} is-over{{/if}}"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> {{localize 'TG.sheet.quinqueCarried'}} {{view.quinqueCarry.value}} / {{view.quinqueCarry.max}}</p>{{/if}}
   </section>
 
   <section role="tabpanel" data-tg-panel="edges" hidden>
+    {{#if view.weaponEdges.length}}
+      <div class="tg-panel">
+        <header class="tg-panel-head"><h2><i class="fa-solid fa-gem" aria-hidden="true"></i>{{localize 'TG.sheet.weaponEdges'}}</h2><span class="tg-hint">{{localize 'TG.sheet.edgeDropHint'}}</span></header>
+        {{#each view.weaponEdges as |weapon|}}
+          <div class="tg-edge-group" data-rc="{{weapon.rc}}">
+            <h3>{{weapon.name}} <small>{{weapon.slots.used}} / {{weapon.slots.max}}</small></h3>
+            <div class="tg-edge-chips">{{#each weapon.edges}}<span class="tg-edge-chip">{{label}}</span>{{/each}}</div>
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
     {{> "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs" group=(lookup itemGroups 1)}}
   </section>
 
   <section role="tabpanel" data-tg-panel="progression" hidden>
-    <div class="tg-panel">
-      <h2>{{localize 'TG.tabs.progression'}}</h2>
-      <div class="tg-grid tg-grid-2">
-        <label>
+    <div class="tg-columns">
+      <div class="tg-panel">
+        <header class="tg-panel-head"><h2><i class="fa-solid fa-chart-line" aria-hidden="true"></i>{{localize 'TG.tabs.progression'}}</h2></header>
+        <label class="tg-big-number">
           <span>{{localize 'TG.sheet.statPoints'}}</span>
           <input name="system.progression.statPoints" type="number" value="{{system.progression.statPoints}}" min="0" step="1">
         </label>
-        {{#if usesKakuja}}
-        <label>
-          <span>{{localize 'TG.sheet.kakujaStage'}}</span>
-          <select name="system.kakuja.stage">{{#each kakujaStages}}<option value="{{this}}" {{#if (eq this ../system.kakuja.stage)}}selected{{/if}}>{{localize (concat "TG.kakuja." this)}}</option>{{/each}}</select>
-        </label>
-        {{/if}}
+        <div class="tg-action-grid">
+          {{#if usesMealScore}}<button type="button" class="tg-tile" data-actor-action="consume"><i class="fa-solid {{tgIcon "consume"}}" aria-hidden="true"></i><span>{{localize 'TG.actions.consume'}}</span></button>{{/if}}
+          <button type="button" class="tg-tile" data-actor-action="spendPoints"><i class="fa-solid {{tgIcon "spendPoints"}}" aria-hidden="true"></i><span>{{localize 'TG.actions.spendPoints'}}</span></button>
+          {{#if usesMealScore}}<button type="button" class="tg-tile" data-actor-action="evolve"><i class="fa-solid {{tgIcon "evolve"}}" aria-hidden="true"></i><span>{{localize 'TG.actions.evolve'}}</span></button>{{/if}}
+          {{#if usesQuinque}}<button type="button" class="tg-tile" data-actor-action="forge"><i class="fa-solid {{tgIcon "forge"}}" aria-hidden="true"></i><span>{{localize 'TG.actions.forge'}}</span></button>{{/if}}
+          {{#if usesQuinque}}<button type="button" class="tg-tile" data-actor-action="upgrade"><i class="fa-solid {{tgIcon "upgrade"}}" aria-hidden="true"></i><span>{{localize 'TG.actions.upgrade'}}</span></button>{{/if}}
+        </div>
       </div>
+
       {{#if usesKakuja}}
-      <div class="tg-grid tg-grid-3">
-        <label class="tg-inline-check"><span>{{localize 'TG.sheet.kakujaUnlocked'}}</span><input name="system.kakuja.eligible" type="checkbox" {{#if system.kakuja.eligible}}checked{{/if}}></label>
-        <label class="tg-inline-check"><span>{{localize 'TG.sheet.masteredHalf'}}</span><input name="system.kakuja.masteredHalf" type="checkbox" {{#if system.kakuja.masteredHalf}}checked{{/if}}></label>
-        {{#if (eq system.identity.class "ghoul")}}<label class="tg-inline-check"><span>{{localize 'TG.sheet.masteredFull'}}</span><input name="system.kakuja.masteredFull" type="checkbox" {{#if system.kakuja.masteredFull}}checked{{/if}}></label>{{/if}}
-      </div>
-      <p class="tg-muted">{{localize 'TG.sheet.masteryProgress'}}: {{system.kakuja.masterySuccesses}} ? {{system.kakuja.selectedBonus}}</p>
+        <div class="tg-panel tg-panel-kakuja{{#if system.kakuja.active}} is-active{{/if}}">
+          <header class="tg-panel-head"><h2><i class="fa-solid fa-skull" aria-hidden="true"></i>{{localize 'TG.sheet.kakuja'}}</h2>{{#if system.kakuja.active}}<span class="tg-state tg-tone-accent">{{localize 'TG.states.active'}}</span>{{/if}}</header>
+          <label>
+            <span>{{localize 'TG.sheet.kakujaStage'}}</span>
+            <select name="system.kakuja.stage">{{#each kakujaStages}}<option value="{{this}}" {{#if (eq this ../system.kakuja.stage)}}selected{{/if}}>{{localize (concat "TG.kakuja." this)}}</option>{{/each}}</select>
+          </label>
+          <div class="tg-checks">
+            <label class="tg-inline-check"><input name="system.kakuja.eligible" type="checkbox" {{#if system.kakuja.eligible}}checked{{/if}}><span>{{localize 'TG.sheet.kakujaUnlocked'}}</span></label>
+            <label class="tg-inline-check"><input name="system.kakuja.masteredHalf" type="checkbox" {{#if system.kakuja.masteredHalf}}checked{{/if}}><span>{{localize 'TG.sheet.masteredHalf'}}</span></label>
+            {{#if (eq system.identity.class "ghoul")}}<label class="tg-inline-check"><input name="system.kakuja.masteredFull" type="checkbox" {{#if system.kakuja.masteredFull}}checked{{/if}}><span>{{localize 'TG.sheet.masteredFull'}}</span></label>{{/if}}
+          </div>
+          <div class="tg-mastery">
+            <span>{{localize 'TG.sheet.masteryProgress'}}: <strong>{{system.kakuja.masterySuccesses}}</strong></span>
+            {{#if view.kakujaMasteryPips.length}}<div class="tg-pips">{{#each view.kakujaMasteryPips}}<i class="tg-pip{{#if filled}} is-filled{{/if}}" aria-hidden="true"></i>{{/each}}</div>{{/if}}
+          </div>
+          <div class="tg-action-grid">
+            <button type="button" class="tg-tile" data-actor-action="mastery"><i class="fa-solid {{tgIcon "mastery"}}" aria-hidden="true"></i><span>{{localize 'TG.actions.mastery'}}</span></button>
+            <button type="button" class="tg-tile tg-tile-danger" data-actor-action="activateKakuja"><i class="fa-solid {{tgIcon "activateKakuja"}}" aria-hidden="true"></i><span>{{localize 'TG.actions.activateKakuja'}}</span></button>
+            <button type="button" class="tg-tile" data-actor-action="deactivateKakuja"><i class="fa-solid {{tgIcon "deactivateKakuja"}}" aria-hidden="true"></i><span>{{localize 'TG.actions.deactivateKakuja'}}</span></button>
+          </div>
+        </div>
       {{/if}}
-      <div class="tg-action-row tg-panel-actions">
-        {{#if usesKakuja}}<button type="button" data-actor-action="mastery">{{localize 'TG.actions.mastery'}}</button>{{/if}}
-        {{#if usesMealScore}}<button type="button" data-actor-action="consume">{{localize 'TG.actions.consume'}}</button>{{/if}}
-        <button type="button" data-actor-action="spendPoints">{{localize 'TG.actions.spendPoints'}}</button>
-        {{#if usesMealScore}}<button type="button" data-actor-action="evolve">{{localize 'TG.actions.evolve'}}</button>{{/if}}
-        {{#if usesQuinque}}<button type="button" data-actor-action="forge">{{localize 'TG.actions.forge'}}</button>{{/if}}
-        {{#if usesQuinque}}<button type="button" data-actor-action="upgrade">{{localize 'TG.actions.upgrade'}}</button>{{/if}}
-        {{#if usesKakuja}}<button type="button" data-actor-action="activateKakuja">{{localize 'TG.actions.activateKakuja'}}</button>{{/if}}
-        {{#if usesKakuja}}<button type="button" data-actor-action="deactivateKakuja">{{localize 'TG.actions.deactivateKakuja'}}</button>{{/if}}
-      </div>
+    </div>
+    <div class="tg-panel">
       <div class="tg-rich-field">
         <span>{{localize 'TG.sheet.notes'}}</span>
         <prose-mirror class="tg-rich-text" name="system.progression.notes" data-document-uuid="{{actor.uuid}}" value="{{system.progression.notes}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "progression.notes"}}}</prose-mirror>
@@ -197,12 +305,11 @@
 
   <section role="tabpanel" data-tg-panel="inventory" hidden>
     {{> "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs" group=(lookup itemGroups 3)}}
-    {{> "systems/tokyo-ghoul-unofficial/templates/actor/parts/item-list.hbs" group=(lookup itemGroups 4)}}
   </section>
 
   <section role="tabpanel" data-tg-panel="biography" hidden>
     <div class="tg-panel">
-      <h2>{{localize 'TG.tabs.biography'}}</h2>
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-book-open" aria-hidden="true"></i>{{localize 'TG.tabs.biography'}}</h2></header>
       <div class="tg-grid tg-grid-2">
         <div class="tg-rich-field">
           <span>{{localize 'TG.biography.appearance'}}</span>
@@ -226,15 +333,26 @@
 
   <section role="tabpanel" data-tg-panel="settings" hidden>
     <div class="tg-panel">
-      <h2>{{localize 'TG.tabs.settings'}}</h2>
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-flag" aria-hidden="true"></i>{{localize 'TG.sheet.gmControls'}}</h2></header>
+      <div class="tg-grid tg-grid-2">
+        <label>
+          <span>{{localize 'TG.sheet.yieldAt'}}</span>
+          <input name="system.combat.yieldAt" type="number" value="{{system.combat.yieldAt}}" min="0" step="1" placeholder="—">
+          <small class="tg-muted">{{localize 'TG.sheet.yieldAtHint'}}</small>
+        </label>
+      </div>
+    </div>
+    <div class="tg-panel">
       <div class="tg-rich-field">
         <span>{{localize 'TG.sheet.ruleNotes'}}</span>
         <prose-mirror class="tg-rich-text" name="system.automation.ruleNotes" data-document-uuid="{{actor.uuid}}" value="{{system.automation.ruleNotes}}" toggled {{#unless isEditable}}disabled{{/unless}}>{{{lookup enriched "automation.ruleNotes"}}}</prose-mirror>
       </div>
     </div>
-    <div class="tg-panel"><h2>{{localize 'TG.sheet.effects'}}</h2>
-      <button type="button" data-actor-action="addEffect">{{localize 'TG.actions.addEffect'}}</button>
-      <ol class="tg-item-list">{{#each effects}}<li><button type="button" data-effect-id="{{id}}">{{name}}</button><span class="tg-chip">{{#if disabled}}{{localize 'TG.states.inactive'}}{{else}}{{localize 'TG.states.active'}}{{/if}}</span></li>{{/each}}</ol>
+    <div class="tg-panel">
+      <header class="tg-panel-head"><h2><i class="fa-solid fa-wand-sparkles" aria-hidden="true"></i>{{localize 'TG.sheet.effects'}}</h2>
+        <button type="button" data-actor-action="addEffect"><i class="fa-solid {{tgIcon "addEffect"}}" aria-hidden="true"></i>{{localize 'TG.actions.addEffect'}}</button>
+      </header>
+      <ol class="tg-item-list">{{#each effects}}<li class="tg-item-row"><img class="tg-item-img" src="{{img}}" alt=""><button type="button" class="tg-item-name" data-effect-id="{{id}}"><span>{{name}}</span></button><span class="tg-state {{#if disabled}}tg-tone-muted{{else}}tg-tone-info{{/if}}">{{#if disabled}}{{localize 'TG.states.inactive'}}{{else}}{{localize 'TG.states.active'}}{{/if}}</span></li>{{else}}<li class="tg-empty">{{localize 'TG.sheet.noItems'}}</li>{{/each}}</ol>
     </div>
   </section>
 </div>

@@ -51,7 +51,8 @@ export function calculateEdgeCombatModifiers(edgeNames = [], { actorClass = null
     hungerTempStatBudget: has("Rampant") ? 10 : 0,
     regenerationType: actorClass === "investigator" ? "none" : (has("High-Speed Regeneration") || kaguneType === "rinkaku") ? "highSpeed" : (has("Ghoul Regeneration") || actorClass === "ghoul" || actorClass === "quinx") ? "normal" : "none",
     grantsManeuvers: [
-      ...(has("Grappler") || has("Prehensile") ? ["Grab", "Throw"] : []),
+      // Prehensile only extends Grab's range; Grappler is what grants the maneuvers.
+      ...(has("Grappler") ? ["Grab", "Throw"] : []),
       ...(has("Heavy Strikes") ? ["Heavy Strike"] : [])
     ],
     medkitMax: has("Healer") ? 5 : 0,

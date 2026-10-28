@@ -43,6 +43,8 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
         pendingReactions: new ArrayField(new ObjectField()),
         readiedAction: new ObjectField({ required: false, nullable: true, initial: null }),
         counterDeclared: new BooleanField({ required: true, initial: false }),
+        // Optional GM morale threshold: whisper a yield prompt when Vitality falls to it.
+        yieldAt: new NumberField({ required: false, nullable: true, integer: true, min: 0, initial: null }),
         grapple: new ObjectField({ required: true, initial: { isGrappling: false, grappledBy: null, targets: [] } })
       }),
       hunger: new SchemaField({

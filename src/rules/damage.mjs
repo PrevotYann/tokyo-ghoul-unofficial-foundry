@@ -105,3 +105,14 @@ export function resolveDefense({
     counter
   };
 }
+
+// Vitality 0 incapacitates (PDF p. 5); an optional yield threshold prompts the GM before that.
+export function getVitalityTransition({ previous = 0, current = 0, yieldAt = null } = {}) {
+  const before = numberOrZero(previous), after = numberOrZero(current);
+  const threshold = yieldAt === null || yieldAt === undefined || yieldAt === "" ? null : numberOrZero(yieldAt);
+  return {
+    downed: before > 0 && after <= 0,
+    revived: before <= 0 && after > 0,
+    yields: threshold !== null && before > threshold && after <= threshold && after > 0
+  };
+}

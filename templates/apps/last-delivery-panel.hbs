@@ -1,0 +1,57 @@
+<div class="tg-form tg-gm-panel-body">
+  <section class="tg-panel">
+    <header class="tg-panel-head"><h2><i class="fa-solid fa-users" aria-hidden="true"></i>{{localize "TG.lastDelivery.partySize"}}</h2></header>
+    <div class="tg-segmented">
+      {{#each sizes}}<button type="button" class="{{#if active}}tg-primary{{/if}}" data-action="partySize" data-size="{{size}}" aria-pressed="{{active}}">{{size}}</button>{{/each}}
+    </div>
+    <p class="tg-hint">{{localize (concat "TG.lastDelivery.scaling." partySize)}}</p>
+  </section>
+
+  <section class="tg-panel">
+    <header class="tg-panel-head"><h2><i class="fa-solid fa-gauge-high" aria-hidden="true"></i>{{localize "TG.lastDelivery.pressureTrack"}}</h2><span class="tg-count">{{pressure}} / {{pressureMax}}</span></header>
+    <div class="tg-pressure">
+      <button type="button" class="tg-icon-button" data-action="pressure" data-delta="-1" aria-label="−1"><i class="fa-solid fa-minus" aria-hidden="true"></i></button>
+      <div class="tg-pips">{{#each pressurePips}}<i class="tg-pip{{#if filled}} is-filled{{/if}}" aria-hidden="true"></i>{{/each}}</div>
+      <button type="button" class="tg-icon-button" data-action="pressure" data-delta="1" aria-label="+1"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
+    </div>
+    <p class="tg-hint">{{localize pressureEffect}}</p>
+  </section>
+
+  <section class="tg-panel">
+    <header class="tg-panel-head"><h2><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>{{localize "TG.lastDelivery.scenes"}}</h2></header>
+    <div class="tg-action-grid">
+      {{#each scenes}}<button type="button" class="tg-tile{{#if active}} tg-tile-reaction{{/if}}" data-action="travel" data-scene="{{key}}"><i class="fa-solid {{#if active}}fa-location-crosshairs{{else}}fa-location-dot{{/if}}" aria-hidden="true"></i><span>{{name}}</span></button>{{/each}}
+    </div>
+    <div class="tg-action-row tg-panel-actions">
+      <button type="button" class="tg-primary" data-action="encounter" {{#unless onAdventureScene}}disabled{{/unless}}><i class="fa-solid fa-burst" aria-hidden="true"></i>{{localize "TG.lastDelivery.startEncounter"}}</button>
+      <button type="button" data-action="carry" {{#unless onAdventureScene}}disabled{{/unless}}><i class="fa-solid fa-droplet" aria-hidden="true"></i>{{localize "TG.lastDelivery.carryWounds"}}</button>
+    </div>
+    {{#if hiddenTokens.length}}
+      <p class="tg-hint">{{localize "TG.lastDelivery.hiddenTokens"}}</p>
+      <div class="tg-action-row">{{#each hiddenTokens}}<button type="button" data-action="reveal" data-token="{{id}}"><i class="fa-solid fa-eye" aria-hidden="true"></i>{{name}}</button>{{/each}}</div>
+    {{/if}}
+  </section>
+
+  <section class="tg-panel">
+    <header class="tg-panel-head"><h2><i class="fa-solid fa-door-closed" aria-hidden="true"></i>{{localize "TG.lastDelivery.locks"}}</h2></header>
+    <div class="tg-action-row">
+      {{#each doors}}<button type="button" data-action="door" data-door="{{key}}"><i class="fa-solid {{#if locked}}fa-lock{{else}}fa-lock-open{{/if}}" aria-hidden="true"></i>{{localize label}}</button>{{/each}}
+    </div>
+  </section>
+
+  <section class="tg-panel">
+    <header class="tg-panel-head"><h2><i class="fa-solid fa-user-secret" aria-hidden="true"></i>{{localize "TG.lastDelivery.npcs"}}</h2></header>
+    <ol class="tg-item-list">
+      {{#each npcs}}
+        <li class="tg-item-row">
+          <img class="tg-item-img" src="{{img}}" alt="">
+          <span class="tg-item-name"><span>{{name}}</span>{{#if status}}<small>{{localize (concat "TG.lastDelivery.status." status)}}</small>{{/if}}</span>
+          <div class="tg-item-controls">
+            <button type="button" data-action="npc" data-actor="{{key}}" data-status="recruited" title="{{localize "TG.lastDelivery.recruit"}}" aria-label="{{localize "TG.lastDelivery.recruit"}}"><i class="fa-solid fa-handshake" aria-hidden="true"></i></button>
+            <button type="button" data-action="npc" data-actor="{{key}}" data-status="captured" title="{{localize "TG.lastDelivery.capture"}}" aria-label="{{localize "TG.lastDelivery.capture"}}"><i class="fa-solid fa-handcuffs" aria-hidden="true"></i></button>
+          </div>
+        </li>
+      {{/each}}
+    </ol>
+  </section>
+</div>

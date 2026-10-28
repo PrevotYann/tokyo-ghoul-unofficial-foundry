@@ -2,6 +2,7 @@ import { resolveDefense } from "../rules/damage.mjs";
 import { resolveQuinqueInterposeBlock, getTypeAdvantageBonus, getAntiGhoulQuinqueBonus } from "../rules/kagune-quinque.mjs";
 import { rollD20Check, getMessageRolls } from "../rules/rolls.mjs";
 import { SYSTEM_ID } from "../config.mjs";
+import { logCardHTML, rollTone } from "./sheet-view.mjs";
 
 let queue = Promise.resolve();
 const pending = new Set();
@@ -132,7 +133,7 @@ export function registerChatCardListeners() {
       if (!actor?.isOwner) {ui.notifications.warn(game.i18n.localize("TG.notifications.noPermission"));return;}
       if (!game.users.activeGM) {ui.notifications.warn(game.i18n.localize("TG.notifications.activeGMRequired"));return;}
       if (actor.getFlag(SYSTEM_ID,`resolved.${message.id}`)) {ui.notifications.warn(game.i18n.localize("TG.notifications.alreadyResolved"));return;}
-      await ChatMessage.create({content:game.i18n.format("TG.chat.defenseRequested",{actor:actor.name,action:game.i18n.localize(`TG.actions.${action}`)}),whisper:[game.users.activeGM.id],flags:{[SYSTEM_ID]:{defenseRequest:{messageId:message.id,defenderUuid:target.uuid,action}}}});
+      await ChatMessage.create({content:logCardHTML(game.i18n.format("TG.chat.defenseRequested",{actor:actor.name,action:game.i18n.localize(`TG.actions.${action}`)}),"fa-shield-halved","alert"),whisper:[game.users.activeGM.id],flags:{[SYSTEM_ID]:{defenseRequest:{messageId:message.id,defenderUuid:target.uuid,action}}}});
     } catch(error) {console.error(error);ui.notifications.error(game.i18n.localize("TG.notifications.workflowError"));}
     finally {pending.delete(message.id);button.disabled=false;}
   });

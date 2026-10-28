@@ -1,37 +1,46 @@
-<section class="tg-system tg-chat-card">
-  <h3>{{localize 'TG.chat.attack'}}</h3>
-  <dl class="tg-chat-grid">
-    <dt>{{localize 'TG.chat.attackRoll'}}</dt>
-    <dd>{{roll.formula}} = <strong>{{roll.total}}</strong></dd>
-    <dt>{{localize 'TG.chat.source'}}</dt>
-    <dd>{{#if attack.itemName}}{{attack.itemName}}{{else}}{{localize 'TG.chat.basicAttack'}}{{/if}}</dd>
-    <dt>{{localize 'TG.chat.targets'}}</dt>
-    <dd>
-      {{#each targets as |target|}}
-        {{target.name}}{{#unless @last}}, {{/unless}}
-      {{else}}
-        {{localize 'TG.chat.noTargets'}}
-      {{/each}}
-    </dd>
-    <dt>{{localize 'TG.chat.range'}}</dt>
-    <dd>{{localize (concat "TG.ranges." rangeValidation.targetRangeBand)}} / {{localize (concat "TG.ranges." rangeValidation.maxRangeBand)}}</dd>
-    <dt>{{localize 'TG.chat.damage'}}</dt>
-    <dd>{{attack.damageFormula}} = <strong>{{attack.damage}}</strong></dd>
-    <dt>{{localize 'TG.chat.staminaCost'}}</dt>
-    <dd>{{attack.costFormula}} = <strong>{{attack.staminaCost}}</strong></dd>
-    {{#if maneuverSpend.staminaPaid}}<dt>{{localize 'TG.chat.maneuverCost'}}</dt><dd>{{maneuverSpend.staminaPaid}}</dd>{{/if}}
-    {{#if resourceSpend.vitalityCost}}
-      <dt>{{localize 'TG.chat.vitalityOverflow'}}</dt>
-      <dd>{{resourceSpend.vitalityCost}}</dd>
+<section class="tg-system tg-chat-card tg-card-attack" {{#if attack.primaryType}}data-rc="{{attack.primaryType}}"{{/if}}>
+  <header class="tg-card-head">
+    <img src="{{actor.img}}" alt="">
+    <div>
+      <h3>{{#if attack.grenade}}{{localize (concat "TG.consumables." attack.grenade.type)}}{{else}}{{localize "TG.chat.attack"}}{{/if}}</h3>
+      <small>{{actor.name}} · {{#if attack.itemName}}{{attack.itemName}}{{else if attack.grenade}}{{localize "TG.chat.grenadeArea"}}{{else}}{{localize "TG.chat.basicAttack"}}{{/if}}{{#if attack.primaryType}} · {{localize (concat "TG.kagune." attack.primaryType)}}{{/if}}</small>
+    </div>
+  </header>
+  {{#if attack.grenade}}
+    <div class="tg-card-stats">
+      {{#if attack.grenade.dodgeTargetNumber}}<div class="tg-card-stat"><span>{{localize "TG.actions.dodge"}}</span><strong>{{attack.grenade.dodgeTargetNumber}}</strong><small>{{localize "TG.chat.toBeat"}}</small></div>{{/if}}
+      <div class="tg-card-stat"><span>{{localize "TG.actions.block"}}</span><strong>{{#if attack.grenade.blockTargetNumber}}{{attack.grenade.blockTargetNumber}}{{else}}—{{/if}}</strong><small>{{#if attack.grenade.blockTargetNumber}}{{localize "TG.chat.koukakuOnly"}}{{else}}{{localize "TG.chat.cannotBlock"}}{{/if}}</small></div>
+      {{#if attack.damage}}<div class="tg-card-stat is-damage"><span>{{localize "TG.chat.damage"}}</span><strong>{{attack.damage}}</strong><small>{{localize "TG.stats.acc.label"}} × 3</small></div>{{/if}}
+    </div>
+  {{else}}
+    <div class="tg-card-roll{{#if (eq roll.natural 20)}} is-critical{{else if (eq roll.natural 1)}} is-fumble{{/if}}">
+      <span class="tg-card-total">{{roll.total}}</span>
+      <div class="tg-card-formula">
+        <strong>{{localize "TG.chat.attackRoll"}}</strong>
+        <span>{{roll.formula}}</span>
+        {{#if (eq roll.natural 20)}}<span class="tg-card-tag is-critical">{{localize "TG.chat.critical"}}</span>{{else if (eq roll.natural 1)}}<span class="tg-card-tag is-fumble">{{localize "TG.chat.fumble"}}</span>{{/if}}
+      </div>
+    </div>
+    <div class="tg-card-stats">
+      <div class="tg-card-stat is-damage"><span>{{localize "TG.chat.damage"}}</span><strong>{{attack.damage}}</strong><small>{{attack.damageFormula}}</small></div>
+      <div class="tg-card-stat is-stamina"><span>{{localize "TG.chat.staminaCost"}}</span><strong>{{attack.staminaCost}}</strong><small>{{attack.costFormula}}</small></div>
+      <div class="tg-card-stat"><span>{{localize "TG.chat.range"}}</span><strong>{{localize (concat "TG.rangeShort." rangeValidation.targetRangeBand)}}</strong><small>{{localize "TG.chat.reach"}} {{localize (concat "TG.rangeShort." rangeValidation.maxRangeBand)}}</small></div>
+    </div>
+    {{#if (or maneuverSpend.staminaPaid resourceSpend.vitalityCost)}}
+      <dl class="tg-chat-grid">
+        {{#if maneuverSpend.staminaPaid}}<dt>{{localize "TG.chat.maneuverCost"}}</dt><dd>{{maneuverSpend.staminaPaid}}</dd>{{/if}}
+        {{#if resourceSpend.vitalityCost}}<dt>{{localize "TG.chat.vitalityOverflow"}}</dt><dd>{{resourceSpend.vitalityCost}}</dd>{{/if}}
+      </dl>
     {{/if}}
-  </dl>
-  {{#unless rangeValidation.valid}}
-    <p class="tg-warning">{{localize rangeValidation.message}}</p>
-  {{/unless}}
-  <div class="tg-action-row">
-    <button type="button" data-tg-chat-action="dodge">{{localize 'TG.actions.dodge'}}</button>
-    <button type="button" data-tg-chat-action="block">{{localize 'TG.actions.block'}}</button>
-    <button type="button" data-tg-chat-action="takeHit">{{localize 'TG.actions.takeHit'}}</button>
-    {{#unless attack.grenade}}<button type="button" data-tg-chat-action="interpose">{{localize 'TG.actions.interpose'}}</button>{{/unless}}
+  {{/if}}
+  <div class="tg-card-target"><i class="fa-solid fa-crosshairs" aria-hidden="true"></i>{{localize "TG.chat.targets"}}:
+    {{#each targets as |target|}}<strong>{{target.name}}</strong>{{#unless @last}}, {{/unless}}{{else}}{{localize "TG.chat.noTargets"}}{{/each}}
   </div>
+  {{#unless rangeValidation.valid}}<p class="tg-warning">{{localize rangeValidation.message}}</p>{{/unless}}
+  <footer class="tg-card-actions">
+    <button type="button" data-tg-chat-action="dodge"><i class="fa-solid fa-wind" aria-hidden="true"></i>{{localize "TG.actions.dodge"}}</button>
+    <button type="button" data-tg-chat-action="block"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i>{{localize "TG.actions.block"}}</button>
+    <button type="button" data-tg-chat-action="takeHit"><i class="fa-solid fa-heart-crack" aria-hidden="true"></i>{{localize "TG.actions.takeHit"}}</button>
+    {{#unless attack.grenade}}<button type="button" data-tg-chat-action="interpose"><i class="fa-solid fa-shield" aria-hidden="true"></i>{{localize "TG.actions.interpose"}}</button>{{/unless}}
+  </footer>
 </section>

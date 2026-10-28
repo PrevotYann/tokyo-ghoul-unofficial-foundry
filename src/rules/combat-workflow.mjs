@@ -31,6 +31,16 @@ export function getCombatModeRules(mode = "squad") {
   };
 }
 
+// Raid damage, cost halving and defeat follow-ups belong to the players' side (PDF p. 37).
+// Enemies still take three maneuvers but deal ordinary Squad damage.
+export function getsRaidBenefits({ actorType = "character", disposition = null } = {}) {
+  return actorType !== "npc" && disposition !== -1;
+}
+
+export function getAttackCombatMode(mode = "squad", side = {}) {
+  return mode === "raid" && getsRaidBenefits(side) ? "raid" : "squad";
+}
+
 export function applyCombatModeToAttack(attack, mode = "squad") {
   const rules = getCombatModeRules(mode);
   const staminaCost = attack.staminaCost === 0

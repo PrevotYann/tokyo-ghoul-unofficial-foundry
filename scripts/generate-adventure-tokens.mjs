@@ -4,7 +4,7 @@ import { characterProfiles } from "../src/packs-source/adventures/last-delivery.
 // Original vector token art, separate from generated raster battlemaps.
 const target = "assets/adventures/last-delivery/tokens";
 await fs.mkdir(target, { recursive: true });
-const profiles = [ ...characterProfiles.map(p => [p.key, p.name, p.actorClass]), ["emi", "Emi Hayase", "ghoul"], ["yui", "Yui Matsuda", "human"], ["patient", "Haru Watanabe", "human"], ["guard", "Riku Inose", "ghoul"], ["lookout", "Chika Fuse", "ghoul"], ["boss", "Masato Kurose", "boss"] ];
+const profiles = [ ...characterProfiles.map(p => [p.key, p.name, p.actorClass]), ["emi", "Emi Hayase", "ghoul"], ["yui", "Yui Matsuda", "human"], ["patient", "Haru Watanabe", "human"], ["guard", "Riku Inose", "ghoul"], ["lookout", "Chika Fuse", "ghoul"], ["boss", "Masato Kurose", "boss"], ["kaito", "Kaito Fuse", "ghoul"] ];
 for (const [index, [key, name, type]] of profiles.entries()) {
   const color = { investigator: "#58c8d6", ghoul: "#d46378", quinx: "#d6b565", human: "#8ab4a2", boss: "#ff435f" }[type];
   const mask = ["ghoul", "boss"].includes(type);

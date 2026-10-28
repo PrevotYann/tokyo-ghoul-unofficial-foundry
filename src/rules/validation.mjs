@@ -1,5 +1,11 @@
 import { validateStartingStatTotal } from "./derived-stats.mjs";
 
+export const QUINQUE_CARRY_LIMIT = 2;
+
+export function countCarriedQuinque(items = []) {
+  return items.filter(item => item.type === "quinque" && item.system?.equipped).length;
+}
+
 export function validateCharacterSystemData(system = {}, items = []) {
   const warnings = [];
   const statTotal = validateStartingStatTotal(system.stats);
@@ -35,6 +41,15 @@ export function validateCharacterSystemData(system = {}, items = []) {
       code: "class.quinx.hybridWeapons",
       severity: "warning",
       message: "TG.validation.quinxNeedsBoth"
+    });
+  }
+
+  // Investigators and Quinx carry at most two Quinque on their person (PDF p. 16).
+  if (countCarriedQuinque(items) > QUINQUE_CARRY_LIMIT) {
+    warnings.push({
+      code: "quinque.carryLimit",
+      severity: "warning",
+      message: "TG.validation.quinqueCarryLimit"
     });
   }
 

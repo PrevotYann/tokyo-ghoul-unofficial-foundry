@@ -1,10 +1,18 @@
-<section class="tg-system tg-chat-card">
-  <h3>{{title}}</h3>
-  <p>{{formula}} = <strong>{{total}}</strong></p>
-  {{#if extra}}
-    <p>{{localize 'TG.chat.criticalExtra'}} {{extra}}</p>
-  {{/if}}
-  {{#if success}}
-    <p>{{localize 'TG.chat.success'}}</p>
-  {{/if}}
+<section class="tg-system tg-chat-card tg-card-check">
+  <header class="tg-card-head">
+    {{#if img}}<img src="{{img}}" alt="">{{else}}<i class="fa-solid fa-dice-d20" aria-hidden="true"></i>{{/if}}
+    <div>
+      <h3>{{title}}</h3>
+      {{#if actorName}}<small>{{actorName}}</small>{{/if}}
+    </div>
+  </header>
+  <div class="tg-card-roll is-{{tone}}">
+    <span class="tg-card-total">{{total}}</span>
+    <div class="tg-card-formula">
+      <span>{{formula}}</span>
+      {{#if extra}}<span>{{localize "TG.chat.criticalExtra"}} {{extra}}</span>{{/if}}
+      {{#if (eq tone "critical")}}<span class="tg-card-tag is-critical">{{localize "TG.chat.critical"}}</span>{{else if (eq tone "fumble")}}<span class="tg-card-tag is-fumble">{{localize "TG.chat.fumble"}}</span>{{/if}}
+      {{#if (eq success true)}}<span class="tg-card-tag is-success">{{localize "TG.chat.success"}}{{#if targetNumber}} · TN {{targetNumber}}{{/if}}</span>{{else if (eq success false)}}<span class="tg-card-tag is-failure">{{localize "TG.chat.failure"}}{{#if targetNumber}} · TN {{targetNumber}}{{/if}}</span>{{/if}}
+    </div>
+  </div>
 </section>

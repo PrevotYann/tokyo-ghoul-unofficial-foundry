@@ -1,11 +1,12 @@
 import { enrichSheetFields, labelRichTextEditors } from "./rich-text.mjs";
 import { assignEdgeToWeapon } from "./edge-assignment.mjs";
 import { parseDropData } from "../ui/drag-drop.mjs";
+import { TG_CONFIG } from "../config.mjs";
 
 export class TokyoGhoulItemSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
   static DEFAULT_OPTIONS = {
     classes: ["tg-system", "tg-sheet", "tg-item-sheet"],
-    position: { width: 520, height: "auto" },
+    position: { width: 560, height: "auto" },
     window: { resizable: true },
     form: {
       handler: TokyoGhoulItemSheet.#onSubmit,
@@ -27,7 +28,7 @@ export class TokyoGhoulItemSheet extends foundry.applications.api.HandlebarsAppl
       ...context,
       item,
       system: item.system,
-      enriched: await enrichSheetFields(item, ["description", "notes", "dynamicEffect"]),
+      enriched: await enrichSheetFields(item, ["description", "notes", "dynamicEffect", "dynamicNotes"]),
       typeFlags: {
         isKagune: item.type === "kagune",
         isQuinque: item.type === "quinque",
@@ -41,11 +42,33 @@ export class TokyoGhoulItemSheet extends foundry.applications.api.HandlebarsAppl
         isLoot: item.type === "loot"
       },
       weaponTypes: ["ukaku","koukaku","rinkaku","bikaku"],
+      rc: ["kagune", "quinque"].includes(item.type) ? item.system.primaryType : item.type === "kakuja-armor" ? item.system.armorType : item.type === "kakuhou" ? item.system.sourceKaguneType : null,
+      heroStat: TokyoGhoulItemSheet.#heroStat(item),
+      options: {
+        gimmickTypes: ["attack", "defense", "form", "utility", "dynamic"].map(value => ({ value, label: `TG.gimmicks.${value}` })),
+        staminaModes: ["maxEndSpd", "tripleMaxEndSpd", "custom", "none"].map(value => ({ value, label: `TG.staminaModes.${value}` })),
+        consumableTypes: ["medkit", "fragGrenade", "incendiaryGrenade", "rcLimiterGrenade", "qBullet", "other"].map(value => ({ value, label: `TG.consumables.${value}` })),
+        maneuverTypes: ["action", "reaction"].map(value => ({ value, label: `TG.maneuverTypes.${value}` })),
+        chatActions: ["strike", "heavyStrike", "overextend", "allOut", "move", "ready", "breather", "counter", "enhance", "grab", "throw", "breakGrapple", "reload", "dodge", "block", "takeHit"].map(value => ({ value, label: `TG.actions.${value}` })),
+        edgeCategories: ["ghoul", "investigator", "universal"].map(value => ({ value, label: `TG.edgeCategories.${value}` })),
+        selectedStats: ["str", "acc", "per", "end", "spd", "crl", "rcl"].map(value => ({ value, label: `TG.stats.${value}.label` })),
+        ranks: TG_CONFIG.ranks.ghoul.map(value => ({ value, label: `TG.ranks.${value}` }))
+      },
       edgesText: Array.from(item.system.edges ?? []).join(", "),
       sourceEdgesText: Array.from(item.system.sourceEdges ?? []).join(", "),
       grantedEdgesText: Array.from(item.system.grantedEdges ?? []).join(", "),
       isEditable: this.isEditable
     };
+  }
+
+  static #heroStat(item) {
+    const system = item.system;
+    if (["kagune", "quinque", "kakuja-armor"].includes(item.type)) return { label: "TG.resources.rcl.label", value: system.rcl };
+    if (item.type === "kakuhou") return { label: "TG.resources.rcl.label", value: system.sourceRcl };
+    if (item.type === "consumable" || item.type === "loot") return { label: "TG.sheet.quantity", value: system.quantity ?? 1 };
+    if (item.type === "condition") return { label: "TG.sheet.stacks", value: system.stacks };
+    if (item.type === "edge") return { label: "TG.sheet.slots", value: system.slots };
+    return null;
   }
 
   _onRender(context, options) {
@@ -71,7 +94,7 @@ export class TokyoGhoulItemSheet extends foundry.applications.api.HandlebarsAppl
       const key = `system.${field}`;
       if (typeof data[key] === "string") data[key] = data[key].split(",").map(s => s.trim()).filter(Boolean);
     }
-    if (data["system.secondaryType"] === "") data["system.secondaryType"] = null;
+    for (const key of ["system.secondaryType", "system.selectedStat"]) if (data[key] === "") data[key] = null;
     return this.document.update(data);
   }
 }

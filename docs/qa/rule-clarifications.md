@@ -42,3 +42,13 @@ Direct sheet resource edits are administrative overrides; system actions run thr
 - Ending an uncontrolled Kakuja episode clears lost-control and consecutive-check state. Players cannot voluntarily end a living uncontrolled Kakuja; the GM retains control until unconsciousness (pp. 15–16). Permanent stage choices and mastered stages are preserved.
 
 Foundry 14.368 dispatches its protected `_manageTurnEvents` lifecycle asynchronously from document updates. The system exposes its completion promise and awaits it for GM turn navigation and action/reaction resolution, avoiding condition/resource races without a fixed sleep. Turn flags now carry combat identity; optional missing flags have safe defaults and existing Actor/Item schemas remain unchanged.
+
+## Rule completion audit (2026-10-28)
+
+- **Raid is a player-side benefit (p. 37).** "The damage that players deal is tripled against enemies, and stamina spent for each attack is halved"; defeat follow-ups are also granted to players. Every combatant takes three maneuvers, but `npc` actors and hostile-disposition tokens attack with Squad damage and costs and earn no follow-up. Player-owned or non-hostile `character` actors keep the Raid multipliers.
+- **Prehensile does not grant Grab (pp. 12, 17).** It extends Grab's range to the weapon's range and adds RCL to the opposed roll when a weapon is used. Only Grappler grants Grab and Throw; the derived `grantsManeuvers` list no longer includes Grab/Throw for Prehensile.
+- **Incapacitation at 0 Vitality (p. 5).** The system applies Foundry's `unconscious` status and marks the combatant defeated; regaining Vitality removes both. Whether the character is pacified, unconscious or killed remains a GM decision, announced in chat.
+- **Two Quinque on one's person (p. 16).** `equipped` Quinque count as carried. Equipping a third from the sheet is refused, and imported data exceeding the limit shows a validation warning. Stowed Quinque are storage; swapping them "in a safe area" is GM-adjudicated.
+- **Dynamic Edge on Kakuja mastery (p. 15).** Mastering a stage posts a chat reminder to design the stage's Dynamic Edge with the GM. Its effect remains manual.
+- **Bikaku drawback choice at creation (p. 11).** The builder now asks for the −2 stat (CRL, PER or RCL) instead of silently defaulting to CRL.
+- **Yield thresholds (optional, not a rulebook rule).** `system.combat.yieldAt` only whispers the GM when Vitality falls to the value. It changes no mechanics; it supports the adventure's surrender guidance.

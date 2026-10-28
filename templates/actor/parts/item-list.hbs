@@ -1,21 +1,24 @@
 <div class="tg-panel tg-drop-zone">
-  <h2>{{localize group.label}}</h2>
+  <header class="tg-panel-head"><h2><i class="fa-solid {{group.icon}}" aria-hidden="true"></i>{{localize group.label}}</h2><span class="tg-count">{{group.items.length}}</span></header>
   <ol class="tg-item-list">
     {{#each group.items as |item|}}
-      <li data-item-id="{{item.id}}">
-        <button type="button" class="tg-item-name" data-item-action="edit">{{item.name}}</button>
+      <li class="tg-item-row" data-item-id="{{item.id}}" data-type="{{item.type}}">
+        <img class="tg-item-img" src="{{item.img}}" alt="">
+        <button type="button" class="tg-item-name" data-item-action="edit">
+          <span>{{item.name}}</span>
+          <small><i class="fa-solid {{tgItemIcon item.type}}" aria-hidden="true"></i>{{localize (concat "TG.itemTypes." item.type)}}{{#if (tgGt item.system.stacks 1)}} · ×{{item.system.stacks}}{{/if}}{{#if (eq item.type "consumable")}} · ×{{item.system.quantity}}{{/if}}{{#if (eq item.type "gimmick")}} · {{localize (concat "TG.gimmicks." item.system.gimmickType)}}{{#if item.system.active}} · {{localize 'TG.states.active'}}{{/if}}{{/if}}{{#if (eq item.type "kakuhou")}} · {{item.system.sourceRank}} · {{localize 'TG.resources.rcl.label'}} {{item.system.sourceRcl}}{{#if item.system.consumed}} · {{localize 'TG.states.used'}}{{/if}}{{/if}}</small>
+        </button>
         <div class="tg-item-controls">
-          {{#if item.system.secondaryType}}<button type="button" data-item-action="switchForm">{{localize 'TG.actions.switchForm'}}</button>{{/if}}
+          {{#if item.system.secondaryType}}<button type="button" class="tg-icon-button" data-item-action="switchForm" title="{{localize 'TG.actions.switchForm'}}" aria-label="{{localize 'TG.actions.switchForm'}}"><i class="fa-solid {{tgIcon "switchForm"}}" aria-hidden="true"></i></button>{{/if}}
           {{#if (eq item.type "kagune")}}<button type="button" data-item-action="toggle">{{#if item.system.manifested}}{{localize 'TG.actions.withdraw'}}{{else}}{{localize 'TG.actions.manifest'}}{{/if}}</button>{{/if}}
           {{#if (eq item.type "quinque")}}<button type="button" data-item-action="toggle">{{#if item.system.equipped}}{{localize 'TG.actions.unequip'}}{{else}}{{localize 'TG.actions.equip'}}{{/if}}</button>{{/if}}
           {{#if (eq item.type "kakuja-armor")}}<button type="button" data-item-action="toggle">{{localize 'TG.actions.toggleArmor'}}</button>{{/if}}
-          {{#if (or (or (eq item.type "kagune") (eq item.type "quinque")) (or (eq item.type "maneuver") (or (eq item.type "consumable") (eq item.type "gimmick"))))}}<button type="button" data-item-action="use">{{localize 'TG.actions.use'}}</button>{{/if}}
-          <button type="button" data-item-action="delete" aria-label="{{localize 'TG.actions.delete'}}"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+          {{#if (or (eq item.type "kagune") (eq item.type "quinque") (eq item.type "maneuver") (eq item.type "consumable") (eq item.type "gimmick"))}}<button type="button" class="tg-primary" data-item-action="use"><i class="fa-solid {{tgIcon "use"}}" aria-hidden="true"></i>{{localize 'TG.actions.use'}}</button>{{/if}}
+          <button type="button" class="tg-icon-button" data-item-action="delete" aria-label="{{localize 'TG.actions.delete'}}" title="{{localize 'TG.actions.delete'}}"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
         </div>
-        <span class="tg-chip">{{localize (concat "TG.itemTypes." item.type)}}</span>
       </li>
     {{else}}
-      <li class="tg-muted">{{localize 'TG.sheet.noItems'}}</li>
+      <li class="tg-empty">{{localize 'TG.sheet.noItems'}}</li>
     {{/each}}
   </ol>
 </div>
