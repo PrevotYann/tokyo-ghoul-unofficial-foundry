@@ -1,7 +1,9 @@
 import fs from "node:fs/promises";
 import { characterProfiles } from "../src/packs-source/adventures/last-delivery.mjs";
 
-// Original vector token art, separate from generated raster battlemaps.
+// Legacy vector fallback art. v0.6.0 uses generated PNG portraits instead;
+// this script preserves the old paths for compatibility and never overwrites PNGs.
+// The built-in image-generation prompts are saved beside the PNG portraits.
 const target = "assets/adventures/last-delivery/tokens";
 await fs.mkdir(target, { recursive: true });
 const profiles = [ ...characterProfiles.map(p => [p.key, p.name, p.actorClass]), ["emi", "Emi Hayase", "ghoul"], ["yui", "Yui Matsuda", "human"], ["patient", "Haru Watanabe", "human"], ["guard", "Riku Inose", "ghoul"], ["lookout", "Chika Fuse", "ghoul"], ["boss", "Masato Kurose", "boss"], ["kaito", "Kaito Fuse", "ghoul"] ];

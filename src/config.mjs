@@ -27,7 +27,7 @@ export const TG_CONFIG = {
     rounding: "floor",
     minimum: 4
   },
-  schemaVersion: 3
+  schemaVersion: 4
 };
 
 export const RANGE_BANDS = {

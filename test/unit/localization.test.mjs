@@ -61,7 +61,8 @@ test("schema v3 migrates world and owned Edges without resetting v2 Actor bonuse
   const updates = [], previous = globalThis.game;
   const item = { type: "edge", name: "Hardy", system: {}, update: async data => updates.push(data) };
   globalThis.game = { user: { isActiveGM: true }, settings: { get: () => 2, set: async (_, key, value) => updates.push({ [key]: value }) }, packs: new Map(), items: [item], actors: [{ type: "character", items: [item], update: async () => assert.fail("v3 must not reset Actor bonuses") }] };
-  try { await runMigrations(); assert.deepEqual(updates, [{ "system.ruleId": "hardy" }, { "system.ruleId": "hardy" }, { schemaVersion: 3 }]); }
+  game.scenes = [];
+  try { await runMigrations(); assert.deepEqual(updates, [{ "system.ruleId": "hardy" }, { "system.ruleId": "hardy" }, { schemaVersion: 4 }]); }
   finally { globalThis.game = previous; }
 });
 

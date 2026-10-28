@@ -1,5 +1,6 @@
 import { SYSTEM_ID, TG_CONFIG } from "../config.mjs";
 import { normalizeEdgeName } from "./edges.mjs";
+import { migrateLastDeliveryActorArtwork, migrateLastDeliveryTokenArtwork } from "../adventures/last-delivery-art.mjs";
 
 /** Recover identity from source provenance before falling back to the English/original name. */
 export function migrateItemRuleIdentity(item, catalog = []) {
@@ -49,11 +50,16 @@ export async function runMigrations({ dryRun = false } = {}) {
     for (const item of game.items) await migrateItem(item);
     for (const actor of game.actors) {
       if (!["character", "npc"].includes(actor.type)) continue;
-      const update = {};
+      const update = current < 4 ? migrateLastDeliveryActorArtwork(actor) : {};
       // v1 persisted Kakuja bonuses. v2 derives them from activation instead.
       if (current < 2) for (const key of TG_CONFIG.stats) update[`system.stats.${key}.kakuja`] = 0;
       if (Object.keys(update).length) await actor.update(update);
       for (const item of actor.items) await migrateItem(item);
+    }
+    if (current < 4) for (const scene of game.scenes) {
+      const updates = Array.from(scene.tokens, token => ({ _id: token.id, ...migrateLastDeliveryTokenArtwork(token) }))
+        .filter(update => Object.keys(update).length > 1);
+      if (updates.length) await scene.updateEmbeddedDocuments("Token", updates);
     }
     await game.settings.set(SYSTEM_ID, "schemaVersion", TG_CONFIG.schemaVersion);
   }

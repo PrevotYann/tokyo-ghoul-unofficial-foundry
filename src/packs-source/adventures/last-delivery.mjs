@@ -3,6 +3,7 @@ import { createCharacterDraft, createKaguneDraft } from "../../rules/character-b
 import { calculateDerivedResources } from "../../rules/derived-stats.mjs";
 import { journalContent } from "./last-delivery-journals.mjs";
 import { buildSceneLayout, sceneLayouts } from "./last-delivery-scenes.mjs";
+import { lastDeliveryPortrait } from "../../adventures/last-delivery-art.mjs";
 
 export const adventureId = key => createHash("sha256").update(`last-delivery:v1:${key}`).digest("hex").slice(0, 16);
 const asset = file => `systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/${file}`;
@@ -31,7 +32,7 @@ function finishActor(draft, key, { role = "", bond = "", secret = "", npc = fals
   delete draft.validation;
   draft._id = actorId(key);
   draft.type = npc ? "npc" : "character";
-  draft.img = asset(`tokens/${key}.svg`);
+  draft.img = lastDeliveryPortrait(key);
   draft.folder = folder(npc ? "npc" : "pcs");
   draft.flags = keyedFlags(key, noncombatant ? { noncombatant: true } : {});
   draft.ownership = { default: 0 };

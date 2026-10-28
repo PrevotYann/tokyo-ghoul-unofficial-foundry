@@ -173,7 +173,7 @@
           }
         ],
         "_id": "b3fc16e43dfb0cf4",
-        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.svg",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.png",
         "folder": "874df816581951ac",
         "flags": {
           "tokyo-ghoul-unofficial": {
@@ -190,7 +190,7 @@
           "name": "Aya Teshima",
           "actorLink": true,
           "texture": {
-            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.svg"
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.png"
           },
           "width": 1,
           "height": 1,
@@ -342,7 +342,7 @@
           }
         ],
         "_id": "dcbf3bc4e6e3f452",
-        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.svg",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.png",
         "folder": "874df816581951ac",
         "flags": {
           "tokyo-ghoul-unofficial": {
@@ -359,7 +359,7 @@
           "name": "Ren Kisaragi",
           "actorLink": true,
           "texture": {
-            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.svg"
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.png"
           },
           "width": 1,
           "height": 1,
@@ -511,7 +511,7 @@
           }
         ],
         "_id": "e265cdcde8fcd05d",
-        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.svg",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.png",
         "folder": "874df816581951ac",
         "flags": {
           "tokyo-ghoul-unofficial": {
@@ -528,7 +528,7 @@
           "name": "Mio Naruse",
           "actorLink": true,
           "texture": {
-            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.svg"
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.png"
           },
           "width": 1,
           "height": 1,
@@ -716,7 +716,7 @@
           }
         ],
         "_id": "6f1d242fa0b3469f",
-        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.svg",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.png",
         "folder": "874df816581951ac",
         "flags": {
           "tokyo-ghoul-unofficial": {
@@ -733,7 +733,7 @@
           "name": "Daichi Ueno",
           "actorLink": true,
           "texture": {
-            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.svg"
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.png"
           },
           "width": 1,
           "height": 1,
@@ -955,7 +955,7 @@
           }
         ],
         "_id": "d9d1cabae5a178c8",
-        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.svg",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.png",
         "folder": "874df816581951ac",
         "flags": {
           "tokyo-ghoul-unofficial": {
@@ -972,7 +972,7 @@
           "name": "Nao Fushimi",
           "actorLink": true,
           "texture": {
-            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.svg"
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.png"
           },
           "width": 1,
           "height": 1,
@@ -1124,7 +1124,7 @@
           }
         ],
         "_id": "603f09339dce02cc",
-        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.svg",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.png",
         "folder": "874df816581951ac",
         "flags": {
           "tokyo-ghoul-unofficial": {
@@ -1141,7 +1141,7 @@
           "name": "Sora Amemiya",
           "actorLink": true,
           "texture": {
-            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.svg"
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.png"
           },
           "width": 1,
           "height": 1,
@@ -1258,7 +1258,7 @@
         },
         "items": [],
         "_id": "8e05d06cad5d2f11",
-        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/emi.svg",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/emi.png",
         "folder": "e1134adae5cab728",
         "flags": {
           "tokyo-ghoul-unofficial": {
@@ -1276,7 +1276,7 @@
           "name": "Emi Hayase • Coffee Shop Owner",
           "actorLink": false,
           "texture": {
-            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/emi.svg"
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/emi.png"
           },
           "width": 1,
           "height": 1,
@@ -1393,7 +1393,7 @@
         },
         "items": [],
         "_id": "83bcc6b88a48e6b2",
-        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/yui.svg",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/yui.png",
         "folder": "e1134adae5cab728",
         "flags": {
           "tokyo-ghoul-unofficial": {
@@ -1411,7 +1411,7 @@
           "name": "Yui Matsuda • Missing Courier",
           "actorLink": false,
           "texture": {
-            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/yui.svg"
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/yui.png"
           },
           "width": 1,
           "height": 1,
@@ -1528,7 +1528,7 @@
         },
         "items": [],
         "_id": "9990effb4cbad3b4",
-        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/patient.svg",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/patient.png",
         "folder": "e1134adae5cab728",
         "flags": {
           "tokyo-ghoul-unofficial": {
@@ -1546,7 +1546,7 @@
           "name": "Haru Watanabe • Captive",
           "actorLink": false,
           "texture": {
-            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/patient.svg"
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/patient.png"
           },
           "width": 1,
           "height": 1,
@@ -1698,7 +1698,7 @@
           }
         ],
         "_id": "c9ed3f809b60fdf2",
-        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.svg",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.png",
         "folder": "e1134adae5cab728",
         "flags": {
           "tokyo-ghoul-unofficial": {
@@ -1715,7 +1715,7 @@
           "name": "Riku Inose • Clinic Enforcer",
           "actorLink": false,
           "texture": {
-            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.svg"
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.png"
           },
           "width": 1,
           "height": 1,
@@ -1867,7 +1867,7 @@
           }
         ],
         "_id": "bb3383b578af98c0",
-        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.svg",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.png",
         "folder": "e1134adae5cab728",
         "flags": {
           "tokyo-ghoul-unofficial": {
@@ -1884,7 +1884,7 @@
           "name": "Chika Fuse • Freight Lookout",
           "actorLink": false,
           "texture": {
-            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.svg"
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.png"
           },
           "width": 1,
           "height": 1,
@@ -2036,7 +2036,7 @@
           }
         ],
         "_id": "1530b85c1ded8901",
-        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/boss.svg",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/boss.png",
         "folder": "e1134adae5cab728",
         "flags": {
           "tokyo-ghoul-unofficial": {
@@ -2053,7 +2053,7 @@
           "name": "Masato Kurose • Pallet",
           "actorLink": false,
           "texture": {
-            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/boss.svg"
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/boss.png"
           },
           "width": 1,
           "height": 1,
@@ -2170,7 +2170,7 @@
         },
         "items": [],
         "_id": "2512613989b984c9",
-        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/kaito.svg",
+        "img": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/kaito.png",
         "folder": "e1134adae5cab728",
         "flags": {
           "tokyo-ghoul-unofficial": {
@@ -2188,7 +2188,7 @@
           "name": "Kaito Fuse • Collateral",
           "actorLink": false,
           "texture": {
-            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/kaito.svg"
+            "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/kaito.png"
           },
           "width": 1,
           "height": 1,
@@ -3312,7 +3312,7 @@
             "name": "Emi Hayase • Coffee Shop Owner",
             "actorLink": false,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/emi.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/emi.png"
             },
             "width": 1,
             "height": 1,
@@ -3341,7 +3341,7 @@
             "name": "Chika Fuse • Freight Lookout",
             "actorLink": false,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.png"
             },
             "width": 1,
             "height": 1,
@@ -3370,7 +3370,7 @@
             "name": "Riku Inose • Clinic Enforcer",
             "actorLink": false,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.png"
             },
             "width": 1,
             "height": 1,
@@ -3399,7 +3399,7 @@
             "name": "Aya Teshima",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.png"
             },
             "width": 1,
             "height": 1,
@@ -3428,7 +3428,7 @@
             "name": "Ren Kisaragi",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.png"
             },
             "width": 1,
             "height": 1,
@@ -3457,7 +3457,7 @@
             "name": "Mio Naruse",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.png"
             },
             "width": 1,
             "height": 1,
@@ -3486,7 +3486,7 @@
             "name": "Daichi Ueno",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.png"
             },
             "width": 1,
             "height": 1,
@@ -3515,7 +3515,7 @@
             "name": "Nao Fushimi",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.png"
             },
             "width": 1,
             "height": 1,
@@ -3544,7 +3544,7 @@
             "name": "Sora Amemiya",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.png"
             },
             "width": 1,
             "height": 1,
@@ -4302,7 +4302,7 @@
             "name": "Yui Matsuda • Missing Courier",
             "actorLink": false,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/yui.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/yui.png"
             },
             "width": 1,
             "height": 1,
@@ -4331,7 +4331,7 @@
             "name": "Riku Inose • Clinic Enforcer",
             "actorLink": false,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.png"
             },
             "width": 1,
             "height": 1,
@@ -4360,7 +4360,7 @@
             "name": "Chika Fuse • Freight Lookout",
             "actorLink": false,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.png"
             },
             "width": 1,
             "height": 1,
@@ -4389,7 +4389,7 @@
             "name": "Aya Teshima",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.png"
             },
             "width": 1,
             "height": 1,
@@ -4418,7 +4418,7 @@
             "name": "Ren Kisaragi",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.png"
             },
             "width": 1,
             "height": 1,
@@ -4447,7 +4447,7 @@
             "name": "Mio Naruse",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.png"
             },
             "width": 1,
             "height": 1,
@@ -4476,7 +4476,7 @@
             "name": "Daichi Ueno",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.png"
             },
             "width": 1,
             "height": 1,
@@ -4505,7 +4505,7 @@
             "name": "Nao Fushimi",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.png"
             },
             "width": 1,
             "height": 1,
@@ -4534,7 +4534,7 @@
             "name": "Sora Amemiya",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.png"
             },
             "width": 1,
             "height": 1,
@@ -4686,7 +4686,8 @@
             "dir": 0,
             "flags": {
               "tokyo-ghoul-unofficial": {
-                "name": "Clinic side service door"
+                "name": "Clinic side service door",
+                "key": "serviceDoor"
               }
             },
             "_id": "03ba51bb85e54d78"
@@ -5277,7 +5278,7 @@
             "name": "Masato Kurose • Pallet",
             "actorLink": false,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/boss.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/boss.png"
             },
             "width": 1,
             "height": 1,
@@ -5306,7 +5307,7 @@
             "name": "Haru Watanabe • Captive",
             "actorLink": false,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/patient.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/patient.png"
             },
             "width": 1,
             "height": 1,
@@ -5335,7 +5336,7 @@
             "name": "Haru Watanabe • Captive",
             "actorLink": false,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/patient.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/patient.png"
             },
             "width": 1,
             "height": 1,
@@ -5364,7 +5365,7 @@
             "name": "Riku Inose • Clinic Enforcer",
             "actorLink": false,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/guard.png"
             },
             "width": 1,
             "height": 1,
@@ -5393,7 +5394,7 @@
             "name": "Chika Fuse • Freight Lookout",
             "actorLink": false,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/lookout.png"
             },
             "width": 1,
             "height": 1,
@@ -5422,7 +5423,7 @@
             "name": "Kaito Fuse • Collateral",
             "actorLink": false,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/kaito.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/kaito.png"
             },
             "width": 1,
             "height": 1,
@@ -5451,7 +5452,7 @@
             "name": "Aya Teshima",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/aya.png"
             },
             "width": 1,
             "height": 1,
@@ -5480,7 +5481,7 @@
             "name": "Ren Kisaragi",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/ren.png"
             },
             "width": 1,
             "height": 1,
@@ -5509,7 +5510,7 @@
             "name": "Mio Naruse",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/mio.png"
             },
             "width": 1,
             "height": 1,
@@ -5538,7 +5539,7 @@
             "name": "Daichi Ueno",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/daichi.png"
             },
             "width": 1,
             "height": 1,
@@ -5567,7 +5568,7 @@
             "name": "Nao Fushimi",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/nao.png"
             },
             "width": 1,
             "height": 1,
@@ -5596,7 +5597,7 @@
             "name": "Sora Amemiya",
             "actorLink": true,
             "texture": {
-              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.svg"
+              "src": "systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/tokens/sora.png"
             },
             "width": 1,
             "height": 1,
@@ -6126,7 +6127,8 @@
             "dir": 0,
             "flags": {
               "tokyo-ghoul-unofficial": {
-                "name": "Captive enclosure gate"
+                "name": "Captive enclosure gate",
+                "key": "captiveGate"
               }
             },
             "_id": "69119a72e87b07f1"

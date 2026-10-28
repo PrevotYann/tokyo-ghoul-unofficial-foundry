@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.0] - 2026-10-28
+
+- Replaced all 13 Last Delivery character and NPC silhouettes with individually generated dark urban anime portraits, with transparent circular tokens and the existing faction colors.
+- Actor sheets, prototype tokens and every placed adventure token use the new illustrations. The three map images and all scene geometry remain unchanged.
+- Existing worlds automatically replace bundled legacy artwork when the active GM loads the world. Custom portraits and token textures, resources, ownership and story progress are preserved.
+- Bundled generation prompts and retained legacy SVGs for compatibility. No official anime/manga images, characters or logos are included.
+
 ## [0.5.0] - 2026-10-28
 
 ### Rules

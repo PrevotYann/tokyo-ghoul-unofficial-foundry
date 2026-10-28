@@ -3,6 +3,13 @@
 ## Unit tests
 Use a test runner that can execute pure rule functions outside Foundry. Keep Foundry-specific integration tests separate.
 
+### Adventure artwork and upgrades
+- All 13 actors, prototype tokens and placed adventure tokens resolve to distinct bundled PNG portraits.
+- Schema 4 replaces only exact bundled SVG paths, independently preserving custom actor/token artwork and unlinked overrides.
+- Migration runs once, supports dry runs and only writes as the active GM.
+- Preserve the existing adventure map files byte for byte.
+- In the disposable Foundry v14 `tg-qa` world, run `npm run test:adventure-art` to verify downloads, alpha, a real sheet and migration of a wounded actor plus an unlinked token without changing the scene background, walls or lights.
+
 ### Roll tests
 - Natural 1 subtracts 10, minimum 0.
 - Natural 20 adds exactly one extra d20.
