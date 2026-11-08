@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.1] - 2026-11-08
+
+- French translation module 1.3.0 updates every changed Last Delivery journal, role, item description and panel reminder for 0.7.x, and is verified live in Foundry 14.368 (2,090 checks).
+- Repository cleanup: removed orphan LevelDB manifests and logs left by QA sessions, and a junction in an ignored QA folder that looped back to the repository root.
+
 ## [0.7.0] - 2026-11-08
 
 ### The Last Delivery: balance pass

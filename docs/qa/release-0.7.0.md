@@ -39,7 +39,7 @@ New unit tests reject any token that straddles a wall or any pin that covers a t
 
 ## Upgrading
 
-Adventure content version 4. Reimport The Last Delivery to get the new NPC profiles, positions and journals (this resets imported adventure state; finish or back up ongoing play first). Then click the party size in the GM Control Panel before the first scene so Kurose and Riku are scaled. No schema migration is needed. The external French translation module may still show the older journal text until it is updated.
+Adventure content version 4. Reimport The Last Delivery to get the new NPC profiles, positions and journals (this resets imported adventure state; finish or back up ongoing play first). Then click the party size in the GM Control Panel before the first scene so Kurose and Riku are scaled. No schema migration is needed. French tables need translation module 1.3.0 or later (see [0.7.1](release-0.7.1.md)).
 
 ## Validation
 
