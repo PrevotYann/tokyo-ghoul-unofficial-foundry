@@ -7,7 +7,7 @@ import { lastDeliveryPortrait } from "../../adventures/last-delivery-art.mjs";
 
 export const adventureId = key => createHash("sha256").update(`last-delivery:v1:${key}`).digest("hex").slice(0, 16);
 const asset = file => `systems/tokyo-ghoul-unofficial/assets/adventures/last-delivery/${file}`;
-const flags = { "tokyo-ghoul-unofficial": { adventure: "last-delivery", contentVersion: 3 } };
+const flags = { "tokyo-ghoul-unofficial": { adventure: "last-delivery", contentVersion: 4 } };
 // Stable keys let the GM control panel find imported documents in any language.
 const keyedFlags = (key, extra = {}) => ({ "tokyo-ghoul-unofficial": { ...flags["tokyo-ghoul-unofficial"], key, ...extra } });
 const folder = key => adventureId(`folder:${key}`);
@@ -16,7 +16,7 @@ const journalId = key => adventureId(`journal:${key}`);
 const sceneId = key => adventureId(`scene:${key}`);
 
 export const characterProfiles = [
-  { key: "aya", name: "Aya Teshima", actorClass: "investigator", statPreset: "investigatorMarksman", quinqueType: "ukaku", weapons: ["Signal Nine"], role: "Witness protection and ranged support", bond: "Yui is your childhood neighbor. Daichi is your mentor.", secret: "You contacted Yui before reporting the case. Bring her home alive." },
+  { key: "aya", name: "Aya Teshima", actorClass: "investigator", statPreset: "investigatorMarksman", quinqueType: "ukaku", quinqueEdges: ["healer"], medkits: 3, weapons: ["Signal Nine"], role: "Witness protection, battle medic and ranged support", bond: "Yui is your childhood neighbor. Daichi is your mentor.", secret: "You contacted Yui before reporting the case. Bring her home alive." },
   { key: "ren", name: "Ren Kisaragi", actorClass: "ghoul", statPreset: "balanced", kaguneType: "bikaku", weapons: ["Switchback"], role: "Courier and local guide", bond: "Emi sheltered you; Mio repairs your gear.", secret: "You ignored a suspicious tag on your last delivery. Tell the truth before someone else pays." },
   { key: "mio", name: "Mio Naruse", actorClass: "ghoul", statPreset: "koukakuTank", kaguneType: "koukaku", weapons: ["Rain Shelter"], role: "Protector and repairer", bond: "Ren brings supplies. Aya once let you walk away.", secret: "Kurose knows where your younger ward lives. Protect them without betraying Emi." },
   { key: "daichi", name: "Daichi Ueno", actorClass: "investigator", statPreset: "investigatorBrawler", quinqueType: "koukaku", weapons: ["Bridgekeeper"], role: "Case officer and close defense", bond: "Aya is your junior. Nao deserves to be treated as a person.", secret: "Your supervisor wants a simple arrest. Secure evidence that can survive an honest report." },
@@ -24,8 +24,8 @@ export const characterProfiles = [
   { key: "sora", name: "Sora Amemiya", actorClass: "ghoul", statPreset: "ukakuRanged", kaguneType: "ukaku", weapons: ["Featherlight"], role: "Scout and photographer", bond: "Yui carried film that exposed an earlier abduction.", secret: "A reporter already has one blurred photo. Rescue the subjects before deciding what to publish." }
 ];
 
-function medkit(key) {
-  return { _id: adventureId(`kit:${key}`), name: "Field Medical Kit", type: "consumable", img: "icons/svg/regen.svg", system: { consumableType: "medkit", quantity: 1, maxCarry: 5, range: "melee", area: "none", effect: { removes: ["bleeding", "burning"], healingFormula: "PER + target END" }, automation: "assisted", description: "Use the system's medkit workflow; follow the target's class restrictions." } };
+function medkit(key, quantity = 1) {
+  return { _id: adventureId(`kit:${key}`), name: "Field Medical Kit", type: "consumable", img: "icons/svg/regen.svg", system: { consumableType: "medkit", quantity, maxCarry: 5, range: "melee", area: "none", effect: { removes: ["bleeding", "burning"], healingFormula: "PER + target END" }, automation: "assisted", description: "Heals the user's PER + the target's END and removes Bleeding and Burning. Using a kit costs a maneuver and requires the Healer Edge (Aya)." } };
 }
 
 function finishActor(draft, key, { role = "", bond = "", secret = "", npc = false, yieldAt = null, noncombatant = false } = {}) {
@@ -58,24 +58,30 @@ export function createLastDelivery() {
     draft.items.forEach((item, index) => {
       item.name = profile.weapons[index];
       item.system.automation = "full";
-      item.system.description = `<p>${profile.role}'s original ${item.system.primaryType} ${item.type}. No optional Edges; unused starting slots convert to RCL through the character builder.</p>`;
+      item.system.description = item.system.edges.length
+        ? `<p>${profile.role}'s original ${item.system.primaryType} ${item.type}. Healer takes two Edge slots; the unused slot converts to RCL through the character builder.</p>`
+        : `<p>${profile.role}'s original ${item.system.primaryType} ${item.type}. No optional Edges; unused starting slots convert to RCL through the character builder.</p>`;
     });
-    if (["investigator", "quinx"].includes(profile.actorClass)) draft.items.push(medkit(profile.key));
+    if (profile.medkits) draft.items.push(medkit(profile.key, profile.medkits));
     return finishActor(draft, profile.key, profile);
   });
   const npcProfiles = [
     { key: "emi", name: "Emi Hayase • Coffee Shop Owner", actorClass: "ghoul", kaguneType: "bikaku", noncombatant: true, role: "Noncombatant ally", bond: "Protects vulnerable ghouls and keeps the meeting neutral.", secret: "Knows the clinic address and will give it freely." },
     { key: "yui", name: "Yui Matsuda • Missing Courier", actorClass: "investigator", noncombatant: true, role: "Human noncombatant witness", bond: "Trusts Aya and Ren.", secret: "Copied the clinic ledger. Can identify Kurose and open the station cage." },
     { key: "patient", name: "Haru Watanabe • Captive", actorClass: "investigator", noncombatant: true, role: "Human noncombatant captive", bond: "Wants both patients rescued.", secret: "Can walk with an escort; carries no weapon." },
-    { key: "guard", name: "Riku Inose • Clinic Enforcer", actorClass: "ghoul", statPreset: "koukakuTank", kaguneType: "koukaku", yieldAt: 46, role: "Coerced enforcer", bond: "Kurose threatens his household.", secret: "Yields at half Vitality or accepts credible evacuation protection." },
+    { key: "guard", name: "Riku Inose • Clinic Enforcer", actorClass: "ghoul", kaguneType: "koukaku", customStats: { str: 14, acc: 4, per: 10, end: 18, spd: 14, crl: 20 }, yieldAt: 30, role: "Coerced enforcer; alert, hard to pass", bond: "Kurose threatens his household.", secret: "Yields at 30 Vitality or accepts credible evacuation protection." },
     { key: "lookout", name: "Chika Fuse • Freight Lookout", actorClass: "ghoul", statPreset: "ukakuRanged", kaguneType: "ukaku", yieldAt: 41, role: "Coerced scout", bond: "Her brother is held as collateral.", secret: "She knows the south service route and can be recruited." },
-    { key: "boss", name: "Masato Kurose • Pallet", actorClass: "ghoul", kaguneType: "rinkaku", customStats: { str: 14, acc: 8, per: 10, end: 12, spd: 16, crl: 24 }, yieldAt: 24, role: "Developed ghoul broker; original boss", bond: "Uses dependent ghouls as leverage.", secret: "A murderer hiding behind falsified mortuary records. Bargains when exposed; yields at 24 Vitality if escape is blocked." },
+    { key: "boss", name: "Masato Kurose • Pallet", actorClass: "ghoul", kaguneType: "rinkaku", customStats: { str: 14, acc: 8, per: 12, end: 18, spd: 16, crl: 30 }, yieldAt: 24, role: "Developed ghoul broker; original boss", bond: "Uses dependent ghouls as leverage.", secret: "A murderer hiding behind falsified mortuary records. Bargains when exposed; yields at 24 Vitality if escape is blocked." },
     { key: "kaito", name: "Kaito Fuse • Collateral", actorClass: "ghoul", kaguneType: "ukaku", noncombatant: true, role: "Chika's fifteen-year-old brother; noncombatant", bond: "Trusts his sister and nobody else.", secret: "Locked in the cab of Kurose's van at the station. Freeing him ends Kurose's hold over Chika." }
   ];
   for (const profile of npcProfiles) {
     const draft = createCharacterDraft(profile);
     if (["yui", "patient", "emi", "kaito"].includes(profile.key)) draft.items = [];
-    if (profile.key === "guard") draft.items[0].name = "Iron Wake";
+    if (profile.key === "guard") {
+      // Scenario profile: a tank's Hardy Edge on top of the standard 16 RCL.
+      draft.items[0].name = "Iron Wake";
+      Object.assign(draft.items[0].system, { rcl: 16, edges: ["hardy"], edgeSlots: { ...draft.items[0].system.edgeSlots, used: 1 } });
+    }
     if (profile.key === "lookout") draft.items[0].name = "Feather Rain";
     if (profile.key === "boss") {
       draft.items = [createKaguneDraft({ name: "Red Ledger", kaguneType: "rinkaku" })];
@@ -99,9 +105,9 @@ export function createLastDelivery() {
     return `@UUID[${{ actor: "Actor", scene: "Scene", journal: "JournalEntry", item: "Item" }[type]}.${id}]{${label}}`;
   })}</article>` } }] }));
   const sceneSpecs = [
-    { key: "alley", name: "01 • Rain at Sazanami", image: "sazanami-alley.png", tokens: [["emi", 320, 240, false], ["lookout", 1240, 170, false], ["guard", 1090, 330, true]], pins: [[350, 280, "Coffee shop"], [780, 440, "Delivery van"], [1230, 220, "Loading yard"]] },
-    { key: "clinic", name: "02 • Aobane Clinic", image: "aobane-clinic.png", tokens: [["yui", 1100, 260, false], ["guard", 740, 450, false], ["lookout", 1100, 660, true]], pins: [[400, 280, "Reception"], [1110, 280, "Treatment room"], [380, 690, "Cold room"], [1120, 680, "Office"]] },
-    { key: "station", name: "03 • Shigure Last Freight", image: "shigure-station.png", tokens: [["boss", 950, 290, false], ["patient", 1190, 710, false], ["patient", 1270, 710, false], ["guard", 800, 400, true], ["lookout", 1100, 400, true], ["kaito", 1300, 360, true]], pins: [[970, 310, "Loading desk"], [1240, 700, "Captives"], [650, 890, "South service route"], [1380, 330, "Van cab"]] }
+    { key: "alley", name: "01 • Rain at Sazanami", image: "sazanami-alley.png", tokens: [["emi", 320, 240, false], ["lookout", 1180, 110, false], ["guard", 1090, 330, true]], pins: [[440, 200, "Coffee shop"], [806, 485, "Delivery van"], [1350, 210, "Loading yard"]] },
+    { key: "clinic", name: "02 • Aobane Clinic", image: "aobane-clinic.png", tokens: [["yui", 918, 253, false], ["guard", 740, 450, false], ["lookout", 1400, 450, true]], pins: [[400, 280, "Reception"], [1110, 280, "Treatment room"], [380, 690, "Cold room"], [1120, 680, "Office"]] },
+    { key: "station", name: "03 • Shigure Last Freight", image: "shigure-station.png", tokens: [["boss", 908, 388, false], ["patient", 1190, 710, false], ["patient", 1270, 710, false], ["guard", 800, 400, true], ["lookout", 1100, 400, false], ["kaito", 1300, 360, true]], pins: [[942, 470, "Loading desk"], [1280, 655, "Captives"], [1290, 905, "South service route"], [1290, 318, "Van cab"]] }
   ];
   const scenes = sceneSpecs.map((spec, index) => ({ _id: sceneId(spec.key), name: spec.name, folder: folder("scenes"), active: false, navigation: true, navOrder: index, width: 1536, height: 1024, padding: 0, background: { src: asset(spec.image) }, backgroundColor: "#10141b", grid: { type: 0, size: 64, distance: 5, units: "ft" }, tokenVision: true, fog: { exploration: true }, environment: { darknessLevel: 0.35, globalLight: { enabled: true, bright: false, alpha: 0.2, luminosity: 0.2, color: "#9ab0c8" } }, journal: journalId(spec.key), ownership: { default: 0 }, flags: keyedFlags(spec.key), tokens: [...spec.tokens.map(([key, x, y, hidden], i) => {
     const actor = actors.find(a => a._id === actorId(key));

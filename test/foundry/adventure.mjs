@@ -65,7 +65,7 @@ try {
     const source = adventure.toObject();
     const previousActive = game.scenes.active;
     let qaPlayer;
-    const mappings = { actors: "Actor", items: "Item", journal: "JournalEntry", scenes: "Scene", folders: "Folder" };
+    const mappings = { actors: "Actor", items: "Item", journal: "JournalEntry", scenes: "Scene", folders: "Folder", macros: "Macro" };
     for (const [field, type] of Object.entries(mappings)) {
       assert(source[field].every(d => !game.collections.get(type).has(d._id)), `${type} fixtures absent before import`);
     }
@@ -140,7 +140,7 @@ try {
       return { version: game.release.version, checks: checks.length, actors: source.actors.length, items: source.items.length, journals: source.journal.length, scenes: source.scenes.length };
     } finally {
       if (previousActive) await previousActive.activate();
-      for (const field of ["scenes", "journal", "items", "actors", "folders"]) {
+      for (const field of ["scenes", "journal", "items", "actors", "macros", "folders"]) {
         const type = mappings[field];
         const ids = source[field].map(d => d._id).filter(id => game.collections.get(type).has(id));
         if (ids.length) await getDocumentClass(type).deleteDocuments(ids).catch(error => console.error(`Cleanup ${type}: ${error.message}`));

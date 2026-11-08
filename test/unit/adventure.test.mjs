@@ -81,13 +81,13 @@ test("every scene has blocking geometry, doors, light, fog and linked party toke
 });
 
 test("GM automation keys, yield thresholds, macro and quick reference match the built actors", async () => {
-  const { partyTokenVisibility, nextPressure, PRESSURE_MAX } = await import("../../src/adventures/last-delivery-gm.mjs");
+  const { partyTokenVisibility, nextPressure, PRESSURE_MAX, npcScaling, SCALED_NPCS } = await import("../../src/adventures/last-delivery-gm.mjs");
   const adventure = createLastDelivery();
   const key = document => document.flags["tokyo-ghoul-unofficial"].key;
   assert.deepEqual(adventure.scenes.map(key), ["alley", "clinic", "station"]);
   const byKey = Object.fromEntries(adventure.actors.map(actor => [key(actor), actor]));
   for (const npc of ["emi", "yui", "patient", "kaito"]) assert.equal(byKey[npc].flags["tokyo-ghoul-unofficial"].noncombatant, true, npc);
-  assert.equal(byKey.guard.system.combat.yieldAt, Math.floor(byKey.guard.system.resources.vitality.max / 2));
+  assert.equal(byKey.guard.system.combat.yieldAt, Math.floor(byKey.guard.system.resources.vitality.max / 4));
   assert.equal(byKey.lookout.system.combat.yieldAt, byKey.lookout.system.resources.vitality.max - 1);
   assert.equal(byKey.boss.system.combat.yieldAt, 24);
   assert.ok(adventure.scenes[2].tokens.some(token => token.actorId === byKey.kaito._id && token.hidden));
@@ -101,6 +101,15 @@ test("GM automation keys, yield thresholds, macro and quick reference match the 
   assert.deepEqual(partyTokenVisibility(4), { nao: false, sora: false });
   assert.deepEqual(partyTokenVisibility(5), { nao: true, sora: false });
   assert.deepEqual(partyTokenVisibility(6), { nao: true, sora: true });
+  assert.deepEqual(SCALED_NPCS, ["boss", "guard"]);
+  assert.deepEqual(npcScaling(4, "boss"), {});
+  assert.deepEqual(npcScaling(5, "boss"), { crl: 10 });
+  assert.deepEqual(npcScaling(6, "guard"), { crl: 16 });
+  assert.deepEqual(npcScaling(6, "lookout"), {});
+  for (const size of [4, 5, 6]) {
+    const crl = byKey.boss.system.stats.crl.base + (npcScaling(size, "boss").crl ?? 0);
+    assert.ok(reference.includes(`${2 * byKey.boss.system.stats.end.base + 3 * crl}`), `Kurose ${size}-player Vitality documented`);
+  }
   assert.equal(nextPressure(0, -1), 0);
   assert.equal(nextPressure(2, 5), PRESSURE_MAX);
 });
@@ -109,4 +118,34 @@ test("locked doors carry stable keys independent of translated wall names", () =
   const adventure = createLastDelivery();
   const keyed = adventure.scenes.flatMap(scene => scene.walls.filter(w => w.flags["tokyo-ghoul-unofficial"].key).map(w => [scene.flags["tokyo-ghoul-unofficial"].key, w.flags["tokyo-ghoul-unofficial"].key, w.ds]));
   assert.deepEqual(keyed, [["clinic", "serviceDoor", 2], ["station", "captiveGate", 2]]);
+});
+
+test("tokens and journal pins sit clear of each other and of walls", () => {
+  const adventure = createLastDelivery();
+  // Proper segment intersection: endpoints of each segment lie strictly on opposite sides of the other.
+  const side = (ax, ay, bx, by, px, py) => Math.sign((bx - ax) * (py - ay) - (by - ay) * (px - ax));
+  const crosses = ([x1, y1, x2, y2], [x3, y3, x4, y4]) =>
+    side(x1, y1, x2, y2, x3, y3) * side(x1, y1, x2, y2, x4, y4) < 0 && side(x3, y3, x4, y4, x1, y1) * side(x3, y3, x4, y4, x2, y2) < 0;
+  const edges = ({ x, y }) => [[x, y, x + 64, y], [x + 64, y, x + 64, y + 64], [x + 64, y + 64, x, y + 64], [x, y + 64, x, y]];
+  for (const scene of adventure.scenes) {
+    for (const token of scene.tokens) {
+      for (const wall of scene.walls) assert.ok(!edges(token).some(edge => crosses(edge, wall.c)), `${scene.name}: token at ${token.x},${token.y} straddles ${wall.flags["tokyo-ghoul-unofficial"].name}`);
+      for (const note of scene.notes) {
+        const nearestX = Math.max(token.x, Math.min(note.x, token.x + 64)), nearestY = Math.max(token.y, Math.min(note.y, token.y + 64));
+        assert.ok(Math.hypot(note.x - nearestX, note.y - nearestY) > note.iconSize / 2, `${scene.name}: pin ${note.text} covers a token`);
+      }
+    }
+  }
+});
+
+test("only the Healer pregen carries medkits", () => {
+  const adventure = createLastDelivery();
+  for (const actor of adventure.actors) {
+    const kits = actor.items.filter(item => item.system.consumableType === "medkit");
+    const healer = actor.items.some(item => item.system.edges?.includes("healer"));
+    assert.equal(kits.length > 0, healer, actor.name);
+  }
+  const aya = adventure.actors.find(actor => actor.flags["tokyo-ghoul-unofficial"].key === "aya");
+  assert.equal(aya.items.find(item => item.type === "quinque").system.rcl, 12);
+  assert.equal(aya.items.find(item => item.system.consumableType === "medkit").system.quantity, 3);
 });

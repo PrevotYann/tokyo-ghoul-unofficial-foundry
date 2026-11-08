@@ -1,6 +1,6 @@
 {
   "name": "tokyo-ghoul-unofficial-foundry",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -17,7 +17,9 @@
     "test:foundry": "node test/foundry/runtime.mjs",
     "test:combat": "node test/foundry/four-actor-combat.mjs",
     "test:ui": "node --test test/ui/*.test.mjs",
-    "release:package": "node scripts/package-release.mjs"
+    "release:package": "node scripts/package-release.mjs",
+    "sim:adventure": "node scripts/simulate-last-delivery.mjs",
+    "test:adventure-balance": "node test/foundry/adventure-balance.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",

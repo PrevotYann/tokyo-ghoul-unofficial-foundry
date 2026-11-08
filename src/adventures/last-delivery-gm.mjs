@@ -20,6 +20,23 @@ export function partyTokenVisibility(size = 4) {
   return Object.fromEntries(Object.entries(OPTIONAL_PCS).map(([key, minimum]) => [key, Number(size) >= minimum]));
 }
 
+/**
+ * Temporary CRL the opposition gains per party size (balance-simulated; see
+ * scripts/simulate-last-delivery.mjs). Stored in each stat's `temp` field, so the
+ * ordinary derived formulas raise Vitality and nothing else is altered.
+ */
+export const NPC_PARTY_SCALING = Object.freeze({
+  4: Object.freeze({}),
+  5: Object.freeze({ boss: Object.freeze({ crl: 10 }), guard: Object.freeze({ crl: 8 }) }),
+  6: Object.freeze({ boss: Object.freeze({ crl: 30 }), guard: Object.freeze({ crl: 16 }) })
+});
+export const SCALED_NPCS = ["boss", "guard"];
+
+/** Pure: temporary stat bonuses for one scaled NPC at a party size. */
+export function npcScaling(size = 4, actorKey) {
+  return { ...(NPC_PARTY_SCALING[Number(size)]?.[actorKey] ?? {}) };
+}
+
 /** Pure: clamp the story pressure track. */
 export function nextPressure(current = 0, delta = 0) {
   return Math.max(0, Math.min(PRESSURE_MAX, Number(current || 0) + Number(delta || 0)));
@@ -67,7 +84,22 @@ export const lastDelivery = {
       for (const token of this.tokensOf(key)) await token.update({ hidden: !show });
     }
     await game.settings.set(SYSTEM_ID, "lastDeliveryPartySize", Number(size));
+    await this.applyNpcScaling(size);
     await whisperGM(game.i18n.format("TG.lastDelivery.partySizeSet", { size, scaling: game.i18n.localize(`TG.lastDelivery.scaling.${size}`) }), "fa-users");
+  },
+
+  /** Scale Kurose and Riku to the party; a foe at full Vitality stays at full. */
+  async applyNpcScaling(size = this.partySize) {
+    for (const key of SCALED_NPCS) {
+      const actor = this.actor(key);
+      if (!actor) continue;
+      const bonus = npcScaling(size, key);
+      const vitality = actor.system.resources.vitality;
+      const wasFull = vitality.value >= vitality.max;
+      await actor.update(Object.fromEntries(["crl", "end"].map(stat => [`system.stats.${stat}.temp`, bonus[stat] ?? 0])));
+      const max = actor.system.resources.vitality.max;
+      await actor.update({ "system.resources.vitality.value": wasFull ? max : Math.min(vitality.value, max) });
+    }
   },
 
   async adjustPressure(delta) {

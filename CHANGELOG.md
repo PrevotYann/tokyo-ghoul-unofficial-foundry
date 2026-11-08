@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.0] - 2026-11-08
+
+### The Last Delivery: balance pass
+
+- Added a Monte-Carlo encounter simulator (`npm run sim:adventure`) built on the system's own attack, defense, counter, regeneration, Hunger/Rage, medkit and breather formulas. It covers every scene at 4/5/6 players and the full night with wounds carried between scenes, plus seeded balance regression tests.
+- Kurose: 126 VIT / 102 STM (PER 12, END 18, CRL 30). Riku: 123 VIT, SPD 11, Hardy, yields at 30. Every fight used to end in round one; the station now lasts 2–3.5 rounds with real risk, and the whole night is won in about 95–100% of simulated runs under the guide's tactics.
+- Chika fights beside Kurose at the station until Kaito is freed. In the 6-player alley Riku only watches and withdraws.
+- GM Control Panel party size now scales Kurose (+10/+30 CRL) and Riku (+8/+16 CRL) through temporary stats, preserving existing wounds.
+- Aya is now the battle medic (Healer Edge, three kits). The unusable medkits on Daichi and Nao were removed, and the clinic cabinet restocks two kits.
+- GM guide: opposition tactics (one Strike plus one reaction, no attacks on PCs who have not acted, spread pressure), simulated results and updated stat tables.
+- Fixed token and pin placement on all three maps (pins covering Chika, Emi, Yui, Kurose, patients and Aya; Kurose away from the desk; South service route pin at the wrong gap). Tests now reject wall-straddling tokens and token-covering pins.
+- Live QA: new `test:adventure-balance` suite; `test:adventure` now cleans up the imported macro.
+
 ## [0.6.0] - 2026-10-28
 
 - Replaced all 13 Last Delivery character and NPC silhouettes with individually generated dark urban anime portraits, with transparent circular tokens and the existing faction colors.

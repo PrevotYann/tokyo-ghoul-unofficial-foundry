@@ -2,7 +2,7 @@
 
 **Included one-shot: The Last Delivery.** An original 4–6 player Tokyo Ghoul investigation with six pregens, NPCs, weapons, evidence handouts and three generated top-down battlemaps. Open its Adventure compendium and import all content, then read **00 • GM Start Here** and run the **Last Delivery • GM Control Panel** macro (party size, story pressure, locks, NPC recruitment, wound carry-over and one-click encounters). [Contents, setup and validation](docs/qa/last-delivery.md).
 
-An unofficial system for Foundry **v14**, verified locally on **14.368**. Version **0.6.0** replaces all 13 Last Delivery silhouettes with original anime portraits and upgrades artwork in existing worlds automatically ([release notes](docs/qa/release-0.6.0.md)). Includes class-specific Character/NPC sheets, automated rules, GM adventure controls and optional Dice So Nice! animations. **The Last Delivery** is a complete native Adventure with original characters, equipment, journals, illustrated battlemaps, working walls/doors, lighting, vision and preplaced tokens.
+An unofficial system for Foundry **v14**, verified locally on **14.368**. Version **0.7.0** balance-tests The Last Delivery with a combat simulator, retunes its opposition and party-size scaling, makes Aya the medic and fixes token and pin placement ([release notes](docs/qa/release-0.7.0.md)). Includes class-specific Character/NPC sheets, automated rules, GM adventure controls and optional Dice So Nice! animations. **The Last Delivery** is a complete native Adventure with original characters, equipment, journals, illustrated battlemaps, working walls/doors, lighting, vision and preplaced tokens.
 
 ## Install
 
@@ -45,6 +45,8 @@ Run npm run release:package to create the installable archive and manifests in a
 The developer rulebook is expected locally at docs/rulebook/Tokyo Ghoul Tabletop RPG - Unofficial.pdf and is excluded from releases. Mechanics use formulas and concise paraphrases. The placeholder SVG is original. The background, custom wordmark and all 13 Last Delivery character portraits were generated with the built-in image tool; generation prompts are included beside the images in assets/. The portraits are original dark urban anime characters, supplied as transparent circular PNGs in `assets/adventures/last-delivery/tokens/`. No official Tokyo Ghoul artwork, panels, music, logos or fonts are shipped. Tokyo Ghoul belongs to its respective rights holders.
 
 Version 0.6.0 updates portraits and tokens in existing worlds automatically when the active GM loads the world. Only exact paths to the bundled legacy silhouettes are replaced; custom artwork and adventure progress are preserved. New imports use the illustrations directly. The adventure's existing map images, walls, lighting and placement remain unchanged. See [v0.6.0 release notes](docs/qa/release-0.6.0.md).
+
+Run `npm run sim:adventure` to replay The Last Delivery's encounters thousands of times with the system's combat formulas (use `-- --runs 500` for a quicker pass, or `-- --log` for one annotated station fight); `test/unit/adventure-balance.test.mjs` keeps the results inside the design bounds. Run `npm run test:adventure-balance` against `tg-qa` to verify party-size scaling and the medkit workflow live.
 
 Run `npm run test:adventure-art` in the disposable `tg-qa` world to verify all 13 portrait downloads, transparent backgrounds, real sheet display and the artwork migration, including custom token preservation, wounds and unchanged scene geometry.
 
